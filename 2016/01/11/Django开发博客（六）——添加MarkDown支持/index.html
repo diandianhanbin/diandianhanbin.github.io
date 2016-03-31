@@ -1,0 +1,587 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,Django," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="背景新增文章的功能总算是磕磕碰碰的完成了，有时间要去学学前端的技术，自己写一个界面出来，目前看到的界面都是别人的，看起来有点坑，虽然总体风格不错，但是很难找到特别符合我想法的界面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django开发博客（六）——添加MarkDown支持">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/01/11/Django开发博客（六）——添加MarkDown支持/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="背景新增文章的功能总算是磕磕碰碰的完成了，有时间要去学学前端的技术，自己写一个界面出来，目前看到的界面都是别人的，看起来有点坑，虽然总体风格不错，但是很难找到特别符合我想法的界面。">
+<meta property="og:updated_time" content="2016-03-31T05:28:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django开发博客（六）——添加MarkDown支持">
+<meta name="twitter:description" content="背景新增文章的功能总算是磕磕碰碰的完成了，有时间要去学学前端的技术，自己写一个界面出来，目前看到的界面都是别人的，看起来有点坑，虽然总体风格不错，但是很难找到特别符合我想法的界面。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Django开发博客（六）——添加MarkDown支持 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django开发博客（六）——添加MarkDown支持
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-11T13:26:11+08:00" content="2016-01-11">
+              2016-01-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新增文章的功能总算是磕磕碰碰的完成了，有时间要去学学前端的技术，自己写一个界面出来，目前看到的界面都是别人的，看起来有点坑，虽然总体风格不错，但是很难找到特别符合我想法的界面。<br><a id="more"></a><br>下一步博客需要新增markdown的功能、编辑功能和删除功能<br>注：markdown现在基本上已经是一个博客所必须具备的功能了，语法详见<a href="http://www.appinn.com/markdown/" target="_blank" rel="external">《markdown语法说明》</a><br>编辑和删除功能：这两个功能一般来说放在后台使用，因为博客只负责展示内容给别人看，只不过熟悉一下这个东西</p>
+<hr>
+<p>版本相关<br>操作系统：Mac OS X EI Caption<br>Python版本：3.4<br>Django版本：1.9<br>IDE:PyCharm</p>
+<hr>
+<h2 id="编辑和删除"><a href="#编辑和删除" class="headerlink" title="编辑和删除"></a>编辑和删除</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>删除的思路很简单，点击按钮的时候web端传一个文章的唯一键值（ID）给后端，后端执行删除操作吧数据库这条记录删除了，再返回一个页面，可以自己做一个结果页。也可以直接返回首页（或者其他），我是直接返回首页了，等学会前端后再来返工写这个结果页。<br>编辑相对复杂一些，点击编辑按钮的时候，web端要吧文章的ID传给后端，后端要跳转到一个页面，然后把文章的内容填充到页面的编辑框中。我的想法是和新增使用同一个页面，具体实现细节还没想好，后续再增加这个逻辑的处理</p>
+<h3 id="视图函数"><a href="#视图函数" class="headerlink" title="视图函数"></a>视图函数</h3><p>先写好编辑和删除的函数，编辑先用占位符处理，删除可以写好方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">views.py</span><br><span class="line"></span><br><span class="line">def del_article(request, blog_body_id):</span><br><span class="line">    BlogBody.objects.get(id=blog_body_id).delete()</span><br><span class="line">    return redirect(&apos;/&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def edit_article(request):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<p>传入ID，然后使用ID在数据库做一个删除，最后重定向到首页。编辑的视图函数暂时不处理，使用pass站位。</p>
+<h3 id="url处理"><a href="#url处理" class="headerlink" title="url处理"></a>url处理</h3><p>url需要新增一个删除的匹配规则。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">urls.py</span><br><span class="line"></span><br><span class="line">url(r&apos;^del_article/(?P&lt;blog_body_id&gt;\d+)/$&apos;, views.del_article, name=&apos;del_article&apos;),</span><br></pre></td></tr></table></figure>
+<p>匹配的规则和显示文章的内容一样。需要吧这个(?P<blog_body_id>\d+加上，这样后台才能接受到传入的ID。</blog_body_id></p>
+<h3 id="模版处理"><a href="#模版处理" class="headerlink" title="模版处理"></a>模版处理</h3><p>模版处理其实就是一个删除的入口。这个入口放在那里取决于你自己。我是放在文章的内容页里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">view.html</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;/&quot;&gt;编辑&lt;/a&gt; &lt;a href=&quot;&#123;% url &apos;del_article&apos; blog_content.id %&#125;&quot;&gt;删除&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>这个可以自己随意放置，里面链接的方式和之前的URL跳转方式一样。这样删除功能就搞定了</p>
+<h2 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>这一块就比较麻烦了，自己去写语法肯定是比较麻烦的。Python有现成的markdown库，我们直接调用就行了。安装方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo pip install markdown</span><br></pre></td></tr></table></figure>
+<p>安装完毕之后，我们要做的就是在Django中使用这个语法作为一个过滤器，把存入后台的markdown文本转化显示出来。<br>注：Django在1.5之后的版本把内置的markdown移除了，所以我们只能自己制造过滤器。</p>
+<h3 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h3><p>在app下新建一个templatetags，里面新建两个文件，一个是<strong>init</strong>.py空文件。表示这个是Python的一个模块。另一个是custom_markdown.py。输入以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">app/templatetags/custom_markdown.py</span><br><span class="line"></span><br><span class="line">import markdown</span><br><span class="line">from django import template</span><br><span class="line">from django.template.defaultfilters import stringfilter</span><br><span class="line">from django.utils.encoding import force_text</span><br><span class="line">from django.utils.safestring import mark_safe</span><br><span class="line"></span><br><span class="line">register = template.Library()  # 自定义filter时必须加上</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@register.filter(is_safe=True)  # 注册template filter</span><br><span class="line">@stringfilter  # 希望字符串作为参数</span><br><span class="line">def custom_markdown(value):</span><br><span class="line">    return mark_safe(markdown.markdown(value,</span><br><span class="line">                                       extensions=[&apos;markdown.extensions.fenced_code&apos;, &apos;markdown.extensions.codehilite&apos;],</span><br><span class="line">                                       safe_mode=True,</span><br><span class="line">                                       enable_attributes=False))</span><br></pre></td></tr></table></figure>
+<p>这样我们的过滤方法就写好了，详细的内容参照<a href="http://python.usyiyi.cn/django/howto/custom-template-tags.html" target="_blank" rel="external">《自定义标签和过滤器》</a></p>
+<h3 id="模版处理-1"><a href="#模版处理-1" class="headerlink" title="模版处理"></a>模版处理</h3><p>在需要使用markdown过滤的模版中输入这行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;% load custom_markdown %&#125;。</span><br></pre></td></tr></table></figure>
+<p>表示载入我们的过滤器。然后再我们的文章内容的变量中使用这个就行了，类似这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;&#123; blog_content.blog_body | custom_markdown &#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就不需要上次写的那个增加空格和换行的过滤了。</p>
+<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>使用markdown还不够，我们还需要让代码高亮显示。去<a href="https://github.com/richleland/pygments-css" target="_blank" rel="external">pygment-css</a>下载自己需要的css样式，随便一个下载来使用都可以。我是全部下下来一个一个的看了效果。使用这个的时候需要安装<a href="https://pypi.python.org/pypi/Pygments" target="_blank" rel="external">pygment</a>，我是使用3.x的版本，所以我下载的是3.3的库，安装完毕后，在base.html载入下载的CSS就可以看到最终的效果了</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>markdown和语法高亮相关是参考<a href="http://wiki.jikexueyuan.com/project/django-set-up-blog/markdown.html" target="_blank" rel="external">《极客学院教程》</a>整（chao）理（xi）而来。总体来说，还是很快速的实现了功能。但是还是有一些问题。比如：<br>1、存放到数据库的字段会变成##这种，显示列表的时候不好看。<br>2、我的HTML代码是高亮了。。。。可是Python的代码依然不是高亮的。= =！<br>3、代码不会自动换行，基本上长代码都无法浏览。<br>（未完待续。。。。）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/06/Django开发博客（五）——新增文章/" rel="next" title="Django开发博客（五）——新增文章">
+                <i class="fa fa-chevron-left"></i> Django开发博客（五）——新增文章
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/14/Django开发博客（七）——MarkDown优化/" rel="prev" title="Django开发博客（七）——MarkDown优化">
+                Django开发博客（七）——MarkDown优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑和删除"><span class="nav-number">2.</span> <span class="nav-text">编辑和删除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图函数"><span class="nav-number">2.2.</span> <span class="nav-text">视图函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url处理"><span class="nav-number">2.3.</span> <span class="nav-text">url处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版处理"><span class="nav-number">2.4.</span> <span class="nav-text">模版处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown"><span class="nav-number">3.</span> <span class="nav-text">markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义过滤器"><span class="nav-number">3.2.</span> <span class="nav-text">自定义过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版处理-1"><span class="nav-number">3.3.</span> <span class="nav-text">模版处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码高亮"><span class="nav-number">3.4.</span> <span class="nav-text">代码高亮</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="今天在帮前端准备数据的时候，需要把数据格式转成json格式，说实话，涉及到中文有时候真的是很蛋疼，除非对Python的编码规则比较了解，不然处理起来真的很蛋疼。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python读写Json涉及到中文的处理">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/01/22/Python读写Json涉及到中文的处理/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="今天在帮前端准备数据的时候，需要把数据格式转成json格式，说实话，涉及到中文有时候真的是很蛋疼，除非对Python的编码规则比较了解，不然处理起来真的很蛋疼。">
+<meta property="og:updated_time" content="2016-03-31T03:18:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python读写Json涉及到中文的处理">
+<meta name="twitter:description" content="今天在帮前端准备数据的时候，需要把数据格式转成json格式，说实话，涉及到中文有时候真的是很蛋疼，除非对Python的编码规则比较了解，不然处理起来真的很蛋疼。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Python读写Json涉及到中文的处理 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python读写Json涉及到中文的处理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-22T11:17:44+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天在帮前端准备数据的时候，需要把数据格式转成json格式，说实话，涉及到中文有时候真的是很蛋疼，除非对Python的编码规则比较了解，不然处理起来真的很蛋疼。<br><a id="more"></a></p>
+<h2 id="整个逻辑"><a href="#整个逻辑" class="headerlink" title="整个逻辑"></a>整个逻辑</h2><p>我们需要处理的是把一些文章处理，生成多个html文件，然后用json来显示文章的列表，图片，摘要和标题。</p>
+<p>##思路<br>为了以后的数据扩展，那必须有一个数据库，我的想法就是自己写一个简单的网页做为提交输入，然后post到后台以后录入到数据库中，再写一个展示文章的页面，展示效果正确后，写一个requests动态的把所有的数据都爬下来生成一个一个的html文档。最后的json数据我只要从数据库把数据抽出来生成就行了。</p>
+<p>##前端<br>其实前端的东西很简单，最近一直在写网页，所以前端的东西分分钟就搞定了。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">urls.py</span><br><span class="line"></span><br><span class="line">from django.conf.urls import url, include</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">urlpatterns = &#123;</span><br><span class="line">    url(r&apos;^$&apos;, views.index, name=&apos;index&apos;),</span><br><span class="line">    url(r&apos;add_article/&apos;, views.add_article, name=&apos;add_article&apos;),</span><br><span class="line">    url(r&apos;^article/(?P&lt;main_id&gt;\S+)/$&apos;, views.article, name=&apos;article&apos;),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">views.py</span><br><span class="line"></span><br><span class="line"># coding=utf-8</span><br><span class="line">from django.shortcuts import render</span><br><span class="line">from .models import Tzxy</span><br><span class="line"></span><br><span class="line"># Create your views here.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def index(request):</span><br><span class="line">    return render(request, &apos;index.html&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def add_article(request):</span><br><span class="line">    error = &apos;error&apos;</span><br><span class="line">    if request.method == &apos;POST&apos;:</span><br><span class="line">        # 获取前段request的内容</span><br><span class="line">        main_id = request.POST[&apos;main_id&apos;]</span><br><span class="line">        img_url = request.POST[&apos;img_url&apos;]</span><br><span class="line">        title = request.POST[&apos;title&apos;]</span><br><span class="line">        content = request.POST[&apos;content&apos;]</span><br><span class="line">        abstract = content[:50]</span><br><span class="line">        print main_id</span><br><span class="line">        indb = Tzxy(</span><br><span class="line">                    main_id=main_id,</span><br><span class="line">                    img_url=img_url,</span><br><span class="line">                    title=title,</span><br><span class="line">                    content=content,</span><br><span class="line">                    abstract=abstract</span><br><span class="line">                    )</span><br><span class="line">        indb.save()</span><br><span class="line">        error = &apos;success&apos;</span><br><span class="line">        return render(request, &apos;index.html&apos;, &#123;&apos;error&apos;: error&#125;)</span><br><span class="line">    return render(request, &apos;index.html&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def article(request, main_id):</span><br><span class="line">    article_detial = Tzxy.objects.get(main_id=main_id)</span><br><span class="line">    return render(request, &apos;views.html&apos;, &#123;&apos;content&apos;: article_detial&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">models.py</span><br><span class="line"></span><br><span class="line">from __future__ import unicode_literals</span><br><span class="line">from django.db import models</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Tzxy(models.Model):</span><br><span class="line">    main_id = models.CharField(max_length=10)</span><br><span class="line">    img_url = models.CharField(max_length=50, null=True)</span><br><span class="line">    title = models.CharField(max_length=50)</span><br><span class="line">    content = models.TextField()</span><br><span class="line">    abstract = models.CharField(max_length=200)</span><br><span class="line"></span><br><span class="line">admin.site.register(Tzxy)</span><br></pre></td></tr></table></figure>
+<p>模板我就随便写了一个简单的表单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">index.html</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">   &lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script src=&quot;http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form method=&quot;post&quot; action=&quot;/tzxy/add_article/&quot;&gt;</span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line">main_id: &lt;input type=&quot;text&quot; name=&quot;main_id&quot;&gt;&lt;br&gt;</span><br><span class="line">img_url: &lt;input type=&quot;text&quot; name=&quot;img_url&quot;&gt;&lt;br&gt;</span><br><span class="line">title: &lt;input type=&quot;text&quot; name=&quot;title&quot;&gt;&lt;br&gt;</span><br><span class="line">&#123;% if error == &apos;success&apos; %&#125;</span><br><span class="line">    &lt;div class=&quot;alert alert-success&quot;&gt;&#123;&#123; error &#125;&#125;&lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&lt;textarea name=&quot;content&quot; rows=&quot;25&quot; style=&quot;width: 600px;&quot;&gt;&lt;/textarea&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; name=&quot;Submit&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>展示的页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load custom_markdown %&#125;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;zh-cn&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no&quot; /&gt;</span><br><span class="line">	&lt;meta name=&quot;apple-touch-fullscreen&quot; content=&quot;yes&quot; /&gt;</span><br><span class="line">	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</span><br><span class="line">	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;</span><br><span class="line">	&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-store&quot; /&gt;</span><br><span class="line">	&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot; /&gt;</span><br><span class="line">	&lt;meta http-equiv=&quot;Expires&quot; content=&quot;0&quot; /&gt;</span><br><span class="line">	&lt;title&gt;&#123;&#123; content.title &#125;&#125;&lt;/title&gt;</span><br><span class="line">	&lt;link rel=&quot;stylesheet&quot; href=&quot;../../css/cssreset.min.css&quot;&gt;</span><br><span class="line">	&lt;link rel=&quot;stylesheet&quot; href=&quot;../../css/fx_tzxy_content.min.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">	&lt;div class=&quot;page&quot;&gt;</span><br><span class="line">		&lt;h1&gt;&#123;&#123; content.title &#125;&#125;&lt;/h1&gt;</span><br><span class="line">		&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">			&#123;&#123; content.content | custom_markdown | linebreaksbr &#125;&#125;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>当然，我里面使用了markdown来处理了一些数据。有关markdown的集成，可以移步<a href="http://blog.csdn.net/wyb199026/article/details/50497123" target="_blank" rel="external">《Django开发博客（六）——添加markdown支持》</a><br>爬数据的小脚本如下，需要使用到requests模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf-8</span><br><span class="line">import sys</span><br><span class="line">import requests</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf8&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def tohtml(file_name, startpos, endpos):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    请求网页数据后把网页源码存储为html格式,启动脚本时要先启动Django的Server</span><br><span class="line">    :param file_name:生成文件名的前缀,最后一位用传入的数字来代替</span><br><span class="line">    :param startpos:开始的数字</span><br><span class="line">    :param endpos:结束的数字</span><br><span class="line">    :return:None</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    for x in range(startpos, endpos):</span><br><span class="line">        r = requests.get(&apos;http://127.0.0.1:8000/tzxy/article/&apos; + file_name + str(x))</span><br><span class="line">        with open(&apos;/Users/SvenWeng/Desktop/test/&apos; + file_name + str(x) + &apos;.html&apos;, &apos;w&apos;) as f:</span><br><span class="line">            f.write(r.text)</span><br><span class="line">    print &apos;success&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    tzhtl_name = &apos;tzxy_tzhtl_h_&apos;</span><br><span class="line">    djjyy_name = &apos;tzxy_djjyy_h_&apos;</span><br><span class="line">    tohtml(djjyy_name, 1, 39)</span><br></pre></td></tr></table></figure>
+<p>里面的一些命名自己可以根据需要去修改。</p>
+<h2 id="生成json"><a href="#生成json" class="headerlink" title="生成json"></a>生成json</h2><p>说实话，json的使用方式很简单，Python对json的支持也很好，不过涉及到中文就有点蛋疼了，我的代码是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf-8</span><br><span class="line">import sqlite3</span><br><span class="line">import json</span><br><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf8&apos;)</span><br><span class="line"></span><br><span class="line">list_json = []</span><br><span class="line"></span><br><span class="line">conn = sqlite3.connect(&apos;db.sqlite3&apos;)</span><br><span class="line">c = conn.cursor()</span><br><span class="line">sql = &apos;select * from Tzxy_tzxy&apos;</span><br><span class="line">c.execute(sql)</span><br><span class="line">all_thing = c.fetchall()</span><br><span class="line"></span><br><span class="line">for x in all_thing:</span><br><span class="line">    dic_member = &#123;&apos;id&apos;: x[1].split(&apos;_&apos;)[3],</span><br><span class="line">                  &apos;img&apos;: x[2],</span><br><span class="line">                  &apos;title&apos;: x[3],</span><br><span class="line">                  &apos;abstract&apos;: &apos;&apos;&#125;</span><br><span class="line">    list_json.append(dic_member)</span><br><span class="line">conn.close()</span><br><span class="line"></span><br><span class="line">final_json = json.dumps(list_json, sort_keys=True, indent=4)</span><br><span class="line">with open(&apos;test.json&apos;, &apos;w&apos;) as f:</span><br><span class="line">    f.write(final_json)</span><br></pre></td></tr></table></figure>
+<p>代码逻辑是：定义一个空列表，用来装生成的字典信息，然后从sqlite里面把之前存的数据全部抓出来。把数据循环生成自己想要的格式的字典，一个一个的插到列表中。再用Python提供的json.dumps方法把数据转成json格式，再写入文件就行了。<br>逻辑看上去是没什么问题，实现起来也很完美，但是最后我打开json文件检查的时候发现所有的中文都变成Unicode了。这简直是坑爹啊。<br>大致查了一下，好像网络上对这块说的内容并不详细，举得例子也都是非常非常简单的那种，直接给中文的，并不是我想要的，最后只能硬着头皮去看官方的说明，最后找到了这么一个东西<strong>ensure_ascii=False</strong>，在Python转Json的时候带上这个方法，也就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final_json = json.dumps(list_json, sort_keys=True, indent=4, ensure_ascii=False)</span><br></pre></td></tr></table></figure>
+<p>这样处理之后，写入文件就是正常的中文了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/14/Django开发博客（七）——MarkDown优化/" rel="next" title="Django开发博客（七）——MarkDown优化">
+                <i class="fa fa-chevron-left"></i> Django开发博客（七）——MarkDown优化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/27/Python批量更改文件名/" rel="prev" title="Python批量更改文件名">
+                Python批量更改文件名 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#整个逻辑"><span class="nav-number">1.</span> <span class="nav-text">整个逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成json"><span class="nav-number">2.</span> <span class="nav-text">生成json</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

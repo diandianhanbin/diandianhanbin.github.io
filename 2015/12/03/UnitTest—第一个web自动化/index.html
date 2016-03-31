@@ -1,0 +1,560 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Pyunittest的内容我们看的也差不多了，主体功能大致如此，现在我们来看看selenium如何使用Pyunittest执行自动化测试。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UnitTest—第一个web自动化">
+<meta property="og:url" content="http://www.wengyanbin.me/2015/12/03/UnitTest—第一个web自动化/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="Pyunittest的内容我们看的也差不多了，主体功能大致如此，现在我们来看看selenium如何使用Pyunittest执行自动化测试。">
+<meta property="og:updated_time" content="2016-03-31T05:54:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UnitTest—第一个web自动化">
+<meta name="twitter:description" content="Pyunittest的内容我们看的也差不多了，主体功能大致如此，现在我们来看看selenium如何使用Pyunittest执行自动化测试。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> UnitTest—第一个web自动化 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UnitTest—第一个web自动化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-03T13:53:24+08:00" content="2015-12-03">
+              2015-12-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Pyunittest的内容我们看的也差不多了，主体功能大致如此，现在我们来看看selenium如何使用Pyunittest执行自动化测试。<br><a id="more"></a></p>
+<h2 id="本期目标"><a href="#本期目标" class="headerlink" title="本期目标"></a>本期目标</h2><ol>
+<li>打开百度，搜索“selenium”，关闭浏览器</li>
+<li>打开百度，设置搜索的最大条数为20条（默认是10条），关闭浏览器</li>
+</ol>
+<h2 id="编写测试案例"><a href="#编写测试案例" class="headerlink" title="编写测试案例"></a>编写测试案例</h2><p>先编写我们的测试类，在初始化的时候要做一些处理，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Baidu(unittest.TestCase):</span><br><span class="line"></span><br><span class="line">	def setUp(self):</span><br><span class="line">		self.driver = webdriver.Chrome()</span><br><span class="line">		self.driver.implicitly_wait(30)</span><br><span class="line">		self.base_url = &quot;http://www.baidu.com&quot;</span><br><span class="line">		self.verificationErrors = []</span><br><span class="line">		self.accept_next_alert = True</span><br></pre></td></tr></table></figure>
+<p>Baidu类继承unittest.TestCase。初始化中实例化webdriver.Chrome()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.driver.implicitly_wait(30)								#表示等待一段时间。</span><br><span class="line">self.base_url = &quot;http://www.baidu.com&quot;			#定义我们测试的地址。</span><br><span class="line">self.verificationErrors = []									#这行定义的是一个错误接受的列表，暂时不用管。</span><br><span class="line">self.accept_next_alert = True							#这行表示接受弹出的alert窗口。</span><br></pre></td></tr></table></figure>
+<h3 id="第一个目标"><a href="#第一个目标" class="headerlink" title="第一个目标"></a>第一个目标</h3><p>第一个目标很简单，用ID定位输入框和搜索按钮，具体代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def test_baidu_search(self):</span><br><span class="line">		driver = self.driver</span><br><span class="line">		driver.get(self.base_url + &quot;/&quot;)</span><br><span class="line">		driver.find_element_by_id(&quot;kw&quot;).send_keys(&quot;selenium webdriver&quot;)</span><br><span class="line">		driver.find_element_by_id(&quot;su&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line">		driver.close()</span><br></pre></td></tr></table></figure>
+<h3 id="第二个目标"><a href="#第二个目标" class="headerlink" title="第二个目标"></a>第二个目标</h3><p>第二个目标有点麻烦，首先百度高级设置的地址是”<a href="http://www.baidu.com/gaoji/preferences.html&quot;，我们定义的基础地址是“http://www.baidu.com”，要在后面把相关的字符串补齐。之后我们要定位到搜索条数的地方，修改为20.修改完毕之后会弹出一个alert窗口，我们要干掉这个窗口后再关闭浏览器。具体代码如下：" target="_blank" rel="external">http://www.baidu.com/gaoji/preferences.html&quot;，我们定义的基础地址是“http://www.baidu.com”，要在后面把相关的字符串补齐。之后我们要定位到搜索条数的地方，修改为20.修改完毕之后会弹出一个alert窗口，我们要干掉这个窗口后再关闭浏览器。具体代码如下：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def test_baidu_set(self):</span><br><span class="line">		driver = self.driver</span><br><span class="line"></span><br><span class="line">		driver.get(self.base_url+&quot;/gaoji/preferences.html&quot;)</span><br><span class="line"></span><br><span class="line">		m = driver.find_element_by_name(&quot;NR&quot;)</span><br><span class="line">		m.find_element_by_xpath(&quot;//option[@value=&apos;20&apos;]&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line"></span><br><span class="line">		driver.find_element_by_xpath(&quot;//input[@value=&apos;保存设置&apos;]&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line">		driver.switch_to_alert().accept()</span><br></pre></td></tr></table></figure>
+<p>同理，在这个测试案例中，我们要先引用初始化的driver。定位地址时用Python的字符串拼接方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m = driver.find_element_by_name(&quot;NR&quot;)</span><br><span class="line">m.find_element_by_xpath(&quot;//option[@value=&apos;20&apos;]&quot;).click()</span><br></pre></td></tr></table></figure>
+<p>这两行表示定位到下拉选项为20的这个地方，第一行是定义到这个下拉组件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select name=&quot;NR&quot; id=&quot;nr&quot;&gt;</span><br><span class="line">&lt;option value=&quot;10&quot; selected=&quot;&quot;&gt;每页显示10条&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;20&quot;&gt;每页显示20条&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;50&quot;&gt;每页显示50条&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<p>上面是这个下拉组件的源码，先定位到这个select组件，再使用xpath的方式定位到20条记录这个下拉选项，调用点击按钮选中这条记录。谷歌浏览器的调试工具可以直接复制这条xpath地址（//*[@id=”nr”]/option[2]）也可以直接使用这个来定位。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(&quot;//input[@value=&apos;保存设置&apos;]&quot;).click()</span><br></pre></td></tr></table></figure>
+<p>这条就是直接用xpath方法定位到保存按钮。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to_alert().accept()</span><br></pre></td></tr></table></figure>
+<p>这条命令就是接受弹出的alert对话框。</p>
+<h3 id="结束测试时清除的函数"><a href="#结束测试时清除的函数" class="headerlink" title="结束测试时清除的函数"></a>结束测试时清除的函数</h3><p>每条测试案例开始时都会打开浏览器，然后执行测试案例。执行完毕后需要关闭浏览器，关闭的方法我们写在清除函数中，具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def tearDown(self):</span><br><span class="line">		self.driver.quit()</span><br><span class="line">		self.assertEqual([],self.verificationErrors)</span><br></pre></td></tr></table></figure>
+<h3 id="开始跑测试案例"><a href="#开始跑测试案例" class="headerlink" title="开始跑测试案例"></a>开始跑测试案例</h3><p>最后我们需要吧测试案例跑起来，验证我们写的对不对。在前面的章节已经讲过这里要这么跑了。具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	testunit = unittest.TestSuite()</span><br><span class="line">	testunit.addTest(Baidu(&apos;test_baidu_search&apos;))</span><br><span class="line">	testunit.addTest(Baidu(&apos;test_baidu_set&apos;))</span><br><span class="line">	runner.run(testunit)</span><br></pre></td></tr></table></figure>
+<h2 id="完整的代码"><a href="#完整的代码" class="headerlink" title="完整的代码"></a>完整的代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from selenium import webdriver</span><br><span class="line">import unittest,time,re</span><br><span class="line"></span><br><span class="line">class Baidu(unittest.TestCase):</span><br><span class="line"></span><br><span class="line">	def setUp(self):</span><br><span class="line">		self.driver = webdriver.Chrome()</span><br><span class="line">		self.driver.implicitly_wait(30)</span><br><span class="line">		self.base_url = &quot;http://www.baidu.com&quot;</span><br><span class="line">		self.verificationErrors = []</span><br><span class="line">		self.accept_next_alert = True</span><br><span class="line"></span><br><span class="line">	def test_baidu_search(self):</span><br><span class="line">		driver = self.driver</span><br><span class="line">		driver.get(self.base_url + &quot;/&quot;)</span><br><span class="line">		driver.find_element_by_id(&quot;kw&quot;).send_keys(&quot;selenium webdriver&quot;)</span><br><span class="line">		driver.find_element_by_id(&quot;su&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line">		driver.close()</span><br><span class="line"></span><br><span class="line">	def test_baidu_set(self):</span><br><span class="line">		driver = self.driver</span><br><span class="line"></span><br><span class="line">		driver.get(self.base_url+&quot;/gaoji/preferences.html&quot;)</span><br><span class="line"></span><br><span class="line">		# m = driver.find_element_by_name(&quot;NR&quot;)</span><br><span class="line">		# m.find_element_by_xpath(&quot;//option[@value=&apos;20&apos;]&quot;).click()</span><br><span class="line">		driver.find_element_by_xpath(&apos;//*[@id=&quot;nr&quot;]/option[3]&apos;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line"></span><br><span class="line">		driver.find_element_by_xpath(&quot;//*[@id=&apos;save&apos;]&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line">		driver.switch_to_alert().accept()</span><br><span class="line"></span><br><span class="line">	def tearDown(self):</span><br><span class="line">		self.driver.quit()</span><br><span class="line">		self.assertEqual([],self.verificationErrors)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	testunit = unittest.TestSuite()</span><br><span class="line">	testunit.addTest(Baidu(&apos;test_baidu_search&apos;))</span><br><span class="line">	testunit.addTest(Baidu(&apos;test_baidu_set&apos;))</span><br><span class="line">	runner.run(testunit)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/03/UnitTest—测试多个文件/" rel="next" title="UnitTest—测试多个文件">
+                <i class="fa fa-chevron-left"></i> UnitTest—测试多个文件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/03/UnitTest—加上测试报告/" rel="prev" title="UnitTest—加上测试报告">
+                UnitTest—加上测试报告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本期目标"><span class="nav-number">1.</span> <span class="nav-text">本期目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写测试案例"><span class="nav-number">2.</span> <span class="nav-text">编写测试案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个目标"><span class="nav-number">2.1.</span> <span class="nav-text">第一个目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二个目标"><span class="nav-number">2.2.</span> <span class="nav-text">第二个目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束测试时清除的函数"><span class="nav-number">2.3.</span> <span class="nav-text">结束测试时清除的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始跑测试案例"><span class="nav-number">2.4.</span> <span class="nav-text">开始跑测试案例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整的代码"><span class="nav-number">3.</span> <span class="nav-text">完整的代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

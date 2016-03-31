@@ -1,0 +1,585 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,Django," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="文章首发：我的博客
+好久没发文章了，最近我在学习使用第三方接口来优化我的网站，这篇文章介绍两个接口吧，都是从百度API商店折腾了之后使用的，一个是天气资讯，另一个是名人名言。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django使用第三方接口（一）">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/03/12/Django使用第三方接口（一）/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="文章首发：我的博客
+好久没发文章了，最近我在学习使用第三方接口来优化我的网站，这篇文章介绍两个接口吧，都是从百度API商店折腾了之后使用的，一个是天气资讯，另一个是名人名言。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1228386-4d9c798a9e456193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-03-31T03:08:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django使用第三方接口（一）">
+<meta name="twitter:description" content="文章首发：我的博客
+好久没发文章了，最近我在学习使用第三方接口来优化我的网站，这篇文章介绍两个接口吧，都是从百度API商店折腾了之后使用的，一个是天气资讯，另一个是名人名言。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1228386-4d9c798a9e456193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Django使用第三方接口（一） | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django使用第三方接口（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T10:41:06+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>文章首发：<a href="http://wybblog.applinzi.com/blog/article/30/" target="_blank" rel="external">我的博客</a></p>
+<p>好久没发文章了，最近我在学习使用第三方接口来优化我的网站，这篇文章介绍两个接口吧，都是从百度API商店折腾了之后使用的，一个是天气资讯，另一个是名人名言。<br><a id="more"></a></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>其实调接口很简单，原理和使用数据库的数据差不多，我们使用本地数据库的时候是通过： 连接数据库——获取数据——返回前端——前端处理这么一个流程，调用接口其实也差不多是这样，发送请求——收到数据——数据处理——返回前端——前端处理。理清思路后我们就来处理处理这块的使用方法。</p>
+<h2 id="名人名言"><a href="#名人名言" class="headerlink" title="名人名言"></a>名人名言</h2><p>关于名人名言，我是放在我博客的首页展示，效果图如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1228386-4d9c798a9e456193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="名人名言效果图"></p>
+<p>整个调用流程和上文说的思路差不多，首先，进入百度API商店，传送门在这：<a href="http://apistore.baidu.com/apiworks/servicedetail/1756.html" target="_blank" rel="external">http://apistore.baidu.com/apiworks/servicedetail/1756.html</a></p>
+<p>查看API后，只要请求的时候带上相关参数就行了，API文档比较简单，百度API商店也给了Python的示例，不过百度的示例使用的是urllib这个python自带的库，我用的是requests这个库，对比起来requests这个库使用起来更简单，我的前端使用的是jQuery调用ajax来从Django后台异步获取数据，所以打开网页的时候你会发现这一块一开始是没有的，过了一秒后才会出现数据。废话不多说，上代码。</p>
+<h3 id="views-py"><a href="#views-py" class="headerlink" title="views.py"></a>views.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">def famous(request):   </span><br><span class="line">  famous_word = Mingrenmingyan()    </span><br><span class="line">  return JsonResponse(famous_word.get_mrmy(), safe=False)</span><br></pre></td></tr></table></figure>
+<p>师徒函数很简单，初始化这个类，然后返回一个json数据给前端。整个处理方法我单独写了一个common类来处理，所以还需要在views的开头引入这个方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from common.common import Weather, Mingrenmingyan</span><br></pre></td></tr></table></figure>
+<h3 id="common-py"><a href="#common-py" class="headerlink" title="common.py"></a>common.py</h3><p>这个方法我是专门来处理一些数据的，所以会写好几个类。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Mingrenmingyan:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    处理名人名言接口返回的数据</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    def __init__(self):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        初始化相关数据,包括接口的url,headers和parm</span><br><span class="line">        :return: None</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        self.url = &apos;http://apis.baidu.com/avatardata/mingrenmingyan/lookup&apos;</span><br><span class="line">        self.headers = &#123;&quot;apikey&quot;: &quot;your key&quot;&#125;</span><br><span class="line">        self.parm = &#123;</span><br><span class="line">            &quot;dtype&quot;: &quot;JSON&quot;,</span><br><span class="line">            &quot;keyword&quot;: &quot;人生&quot;,</span><br><span class="line">            &quot;page&quot;: &quot;1&quot;,</span><br><span class="line">            &quot;rows&quot;: &quot;20&quot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def get_mrmy(self):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        从接口获取名人名言数据,随机选取一条返回,返回json数据.</span><br><span class="line">        :return:json, 名人名言数据</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        wb_data = requests.get(self.url, headers=self.headers, params=self.parm)</span><br><span class="line">        data = wb_data.json()</span><br><span class="line">        if data[&apos;error_code&apos;] == 0:</span><br><span class="line">            result = data[&apos;result&apos;]</span><br><span class="line">            random_num = random.randint(0, 19)</span><br><span class="line">            return json.dumps(result[random_num])</span><br><span class="line">        else:</span><br><span class="line">            return json.dumps(data)</span><br></pre></td></tr></table></figure>
+<p>这个类是处理名人名言数据的，因为接口返回的是20条数据，因此我会随机选取一条返回给前端。</p>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><p>在前端我是用js的ajax方法异步获取数据，所以这里我只贴js部分的代码，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function famous()&#123;</span><br><span class="line">    $.getJSON(&apos;/blog/get_famous/&apos;, function(data)&#123;</span><br><span class="line">        var famous_data = jQuery.parseJSON(data);</span><br><span class="line">        console.log(famous_data);</span><br><span class="line">        $(&apos;#mrmy-body&apos;).html(</span><br><span class="line">            &apos;&lt;p&gt;&apos; + famous_data.famous_saying + &apos;&lt;/p&gt;&apos;</span><br><span class="line">        );</span><br><span class="line">        $(&apos;#mrmy-footer&apos;).html(</span><br><span class="line">            &apos;&lt;p&gt;By--&apos; + famous_data.famous_name + &apos;&lt;/p&gt;&apos;</span><br><span class="line">        )</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="url-py"><a href="#url-py" class="headerlink" title="url.py"></a>url.py</h3><p>在url部分就为前后端通讯加一条路由就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">url(r&apos;^get_famous&apos;, views.famous, name=&apos;famous&apos;),</span><br></pre></td></tr></table></figure>
+<p>这样一个名人名言的接口调用就完成了。</p>
+<h2 id="天气资讯"><a href="#天气资讯" class="headerlink" title="天气资讯"></a>天气资讯</h2><p>天气资讯接口的调用方式也非常简单，和这部分是一样的。我就不详细的贴了，就是一个页面一个搜索框一个展示，方法和上文说的是一样的，相信聪明的你自己就可以写出来。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/01/Django博客开发（九）—添加多说评论/" rel="next" title="Django博客开发（九）—添加多说评论">
+                <i class="fa fa-chevron-left"></i> Django博客开发（九）—添加多说评论
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/12/Python小知识——深度剖析获取迭代序列/" rel="prev" title="Python小知识——深度剖析获取迭代序列">
+                Python小知识——深度剖析获取迭代序列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名人名言"><span class="nav-number">2.</span> <span class="nav-text">名人名言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#views-py"><span class="nav-number">2.1.</span> <span class="nav-text">views.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#common-py"><span class="nav-number">2.2.</span> <span class="nav-text">common.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端"><span class="nav-number">2.3.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-py"><span class="nav-number">2.4.</span> <span class="nav-text">url.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#天气资讯"><span class="nav-number">3.</span> <span class="nav-text">天气资讯</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

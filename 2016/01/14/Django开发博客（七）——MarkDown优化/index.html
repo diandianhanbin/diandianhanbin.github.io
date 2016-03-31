@@ -1,0 +1,588 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,Django," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="背景上一次把markdown集成之后，发现还是有很多问题。这次需要做一些优化。1、markdown与普通文本的区别显示。2、增加点击量的统计3、添加名片卡的滑动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django开发博客（七）——MarkDown优化">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/01/14/Django开发博客（七）——MarkDown优化/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="背景上一次把markdown集成之后，发现还是有很多问题。这次需要做一些优化。1、markdown与普通文本的区别显示。2、增加点击量的统计3、添加名片卡的滑动">
+<meta property="og:updated_time" content="2016-03-31T03:20:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django开发博客（七）——MarkDown优化">
+<meta name="twitter:description" content="背景上一次把markdown集成之后，发现还是有很多问题。这次需要做一些优化。1、markdown与普通文本的区别显示。2、增加点击量的统计3、添加名片卡的滑动">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Django开发博客（七）——MarkDown优化 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django开发博客（七）——MarkDown优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-14T11:19:19+08:00" content="2016-01-14">
+              2016-01-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>上一次把markdown集成之后，发现还是有很多问题。这次需要做一些优化。<br>1、markdown与普通文本的区别显示。<br>2、增加点击量的统计<br>3、添加名片卡的滑动<br><a id="more"></a></p>
+<hr>
+<p>版本相关<br>操作系统：Mac OS X EI Caption<br>Python版本：3.4<br>Django版本：1.9<br>IDE：PyCharm</p>
+<hr>
+<h2 id="markdown的优化"><a href="#markdown的优化" class="headerlink" title="markdown的优化"></a>markdown的优化</h2><p>我试着转载其他博客的内容过来，发现非markdown格式的文本转过来显示的很丑很丑，几乎没办法看，所以针对这个需要做一些优化。刚好之前数据库的字段定义的太少了，趁这个机会扩充一下。在models.py中加几个字段上去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">models.py</span><br><span class="line"></span><br><span class="line">blog_ismarkdown = models.CharField(max_length=1, null=True)</span><br><span class="line">blog_like = models.IntegerField(null=True)</span><br><span class="line">blog_clicknum = models.IntegerField(null=True)</span><br></pre></td></tr></table></figure>
+<p>三个字段，一个用来控制文章格式的分类，是否属于markdown。like字段留存，后续做点赞的扩充。clicknum字段用来处理统计点击量的数据。<br>扩充的时候需要添加null=True来处理这几个字段允许为空，否则无法变更成功。变更成功后再取消这些null。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations grzx</span><br><span class="line">python manage.py sqlmigrate grzx 0004</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<p>第二句的0004要根据自己数据库迁移的版本来定。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>添加ismarkdown字段的意义在于，添加文章的时候，让别人选择文章类型是否属于markdown，如果是，则传递一个1到后台，后台处理到数据库中，如果不是，则传递一个0到后台，后台处理到数据库。别人点击查看文章内容时，后台传递文章主体内容到模版，一起传递一个markdown标记。模版做一个简单的判断，以markdown格式还是普通文本格式来显示。</p>
+<h3 id="视图函数的处理"><a href="#视图函数的处理" class="headerlink" title="视图函数的处理"></a>视图函数的处理</h3><p>根据上面的思路，需要修改的地方有两个，一个是新增文章的时候存储这个ismarkdown这个标记。另一个是查看文章内容的时候返回这个标记，让模版使用相应的方式来处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">views.py  sub_article</span><br><span class="line"></span><br><span class="line">def sub_article(request):</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    if request.method == &apos;POST&apos;:</span><br><span class="line">        mytype = request.POST[&apos;article_type&apos;]</span><br><span class="line">        title = request.POST[&apos;article_title&apos;]</span><br><span class="line">        # body = markdown(request.POST[&apos;article_editor&apos;])</span><br><span class="line">        body = request.POST[&apos;article_editor&apos;]</span><br><span class="line">        markdown = request.POST[&apos;article_markdown&apos;]</span><br><span class="line">        updb = BlogBody(blog_title=title, blog_ismarkdown=markdown, blog_body=body, blog_type=mytype, blog_timestamp=time.strftime(&quot;%Y-%m-%d %X&quot;, time.localtime()), blog_author=&apos;点点寒彬&apos;, blog_clicknum=1, blog_like=0)</span><br><span class="line">        updb.save()</span><br><span class="line">        cursor.execute(&apos;select max(id) from grzx_blogbody where blog_type = %s &apos;, [mytype])</span><br><span class="line">        new_id = cursor.fetchone()</span><br><span class="line">        return redirect(&apos;/grzx/article/&apos; + str(new_id[0]) + &apos;/&apos;)</span><br></pre></td></tr></table></figure>
+<p>由于返回给模版的时候，是整条记录返回回去的，那么就不用专门来处理，只要在模版层处理就行了。</p>
+<h3 id="模版处理"><a href="#模版处理" class="headerlink" title="模版处理"></a>模版处理</h3><p>根据上面的思路，模版处理需要处理两个地方。首先，我们在新增文章的时候需要增加一个文本类型是否为markdown的选择栏位。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">add_article.html</span><br><span class="line"></span><br><span class="line">&lt;form method=&quot;post&quot; action=&quot;/grzx/sub_article/&quot;&gt;</span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    &lt;p&gt;文章标题&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;select name=&quot;article_type&quot; style=&quot;height: 20px; width: 120px;&quot;&gt;</span><br><span class="line">            &lt;option value=&quot;Python&quot; selected=&quot;selected&quot;&gt;Python&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;abouttest&quot;&gt;测试相关&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;mytalk&quot;&gt;个人杂谈&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;diary&quot;&gt;偶尔能想起来的日记&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">        &lt;input name=&quot;article_title&quot; type=&quot;text&quot; style=&quot;height: 20px;width: 400px;&quot; placeholder=&quot;请输入文章标题&quot;&gt;</span><br><span class="line">&#123;#        &lt;input name=&quot;article_markdown&quot; type=&quot;checkbox&quot; value=&quot;1&quot;&gt;MarkDown#&#125;</span><br><span class="line">        &lt;select name=&quot;article_markdown&quot; style=&quot;height: 20px; width: 90px;&quot;&gt;</span><br><span class="line">            &lt;option value=&quot;1&quot; selected=&quot;selected&quot;&gt;MarkDown&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;0&quot;&gt;普通文本&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;p&gt;文章内容&lt;/p&gt;</span><br><span class="line">    &lt;textarea name=&quot;article_editor&quot; rows=&quot;55&quot; style=&quot;width: 630px;&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot; style=&quot;margin-left: 300px;width: 60px;height: 20px;&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>增加了这个选择栏位后，每次填写的时候就会传递标记给视图函数去处理了。再一个需要处理的是view.html。需要做一个简单的判断。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">view.html</span><br><span class="line"></span><br><span class="line">        &lt;p style=&quot;word-wrap: break-word;word-break:break-all;&quot;&gt;</span><br><span class="line">            &#123;% if blog_content.blog_ismarkdown == &apos;1&apos; %&#125;</span><br><span class="line">                &#123;&#123; blog_content.blog_body | custom_markdown &#125;&#125;</span><br><span class="line">            &#123;% elif blog_content.blog_ismarkdown == &apos;0&apos; %&#125;</span><br><span class="line">                &#123;&#123; blog_content.blog_body &#125;&#125;</span><br><span class="line">            &#123;% endif %&#125;</span><br><span class="line">        &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>这样就完成了。跑起来试试看吧。</p>
+<h2 id="点击量的统计"><a href="#点击量的统计" class="headerlink" title="点击量的统计"></a>点击量的统计</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>这部分就比较简单了，上文已经把数据库加好了，现在只要做一个简单的处理，就是点击的时候在数据库吧这个字段的数字加一就好了。当然，我们做了这个处理，模版就要把点击量显示出来。</p>
+<p>###视图函数<br>这部分很简单，就直接上代码了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">views.py</span><br><span class="line"></span><br><span class="line">def article(request, blog_body_id=&apos;&apos;):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    处理点击事件,并且点击数加一</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    blog_content = BlogBody.objects.get(id=blog_body_id)</span><br><span class="line">    num = blog_content.blog_clicknum</span><br><span class="line">    num += 1</span><br><span class="line">    blog_content.blog_clicknum = num</span><br><span class="line">    blog_content.save()</span><br><span class="line">    return render(request, &apos;view.html&apos;, &#123;&apos;blog_content&apos;: blog_content&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="模版函数"><a href="#模版函数" class="headerlink" title="模版函数"></a>模版函数</h3><p>同样很简单，就是展示一个显示数据，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">view.html</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;box&quot;&gt;发布时间：&#123;&#123; blog_content.blog_timestamp &#125;&#125;&lt;span&gt;作者：&#123;&#123; blog_content.blog_author &#125;&#125;&lt;/span&gt;&lt;span&gt;阅读:&#123;&#123; blog_content.blog_clicknum &#125;&#125;&lt;/span&gt;&lt;a href=&quot;/&quot;&gt;编辑&lt;/a&gt; &lt;a href=&quot;&#123;% url &apos;del_article&apos; blog_content.id %&#125;&quot;&gt;删除&lt;/a&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="添加名片的滑动跟随"><a href="#添加名片的滑动跟随" class="headerlink" title="添加名片的滑动跟随"></a>添加名片的滑动跟随</h2><p>这部分使用的是一个CSS的属性，就是把这个盒子层次摆放到第一位。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   &lt;div class=&quot;card&quot; style=&quot;width: 280px;position: fixed;z-index: 1;&quot;&gt;</span><br><span class="line">        &lt;h1&gt;About Me&lt;/h1&gt;</span><br><span class="line">        &lt;p&gt;网名：Sven Weng | 点点寒彬&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;职业：测试工程师&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;公司：华林证券&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;Email：234827102@qq.com&lt;/p&gt;</span><br><span class="line">      &lt;ul class=&quot;linkmore&quot;&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;/grzx/add_article&quot; class=&quot;talk&quot; title=&quot;给我留言&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;/&quot; class=&quot;address&quot; title=&quot;联系地址&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;/&quot; class=&quot;email&quot; title=&quot;给我写信&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;/&quot; class=&quot;photos&quot; title=&quot;生活照片&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&#123;#        &lt;li&gt;&lt;a href=&quot;/&quot; class=&quot;heart&quot; title=&quot;关注我&quot;&gt;&lt;/a&gt;&lt;/li&gt;#&#125;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>就是在style中增加一个z-index:1;这个css属性。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>再怎么说，一个博客也已经搭建完毕了，剩下的功能都需要一点一点的去细化和慢慢的经营。最后的一步，把它部署上去。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/11/Django开发博客（六）——添加MarkDown支持/" rel="next" title="Django开发博客（六）——添加MarkDown支持">
+                <i class="fa fa-chevron-left"></i> Django开发博客（六）——添加MarkDown支持
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/22/Python读写Json涉及到中文的处理/" rel="prev" title="Python读写Json涉及到中文的处理">
+                Python读写Json涉及到中文的处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown的优化"><span class="nav-number">2.</span> <span class="nav-text">markdown的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图函数的处理"><span class="nav-number">2.2.</span> <span class="nav-text">视图函数的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版处理"><span class="nav-number">2.3.</span> <span class="nav-text">模版处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击量的统计"><span class="nav-number">3.</span> <span class="nav-text">点击量的统计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版函数"><span class="nav-number">3.2.</span> <span class="nav-text">模版函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加名片的滑动跟随"><span class="nav-number">4.</span> <span class="nav-text">添加名片的滑动跟随</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

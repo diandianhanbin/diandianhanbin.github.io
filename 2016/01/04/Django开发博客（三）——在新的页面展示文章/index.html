@@ -1,0 +1,594 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,Django," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="背景之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django开发博客（三）——在新的页面展示文章">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/01/04/Django开发博客（三）——在新的页面展示文章/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="背景之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。">
+<meta property="og:updated_time" content="2016-03-31T05:37:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django开发博客（三）——在新的页面展示文章">
+<meta name="twitter:description" content="背景之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Django开发博客（三）——在新的页面展示文章 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django开发博客（三）——在新的页面展示文章
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-04T11:27:23+08:00" content="2016-01-04">
+              2016-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。<br><a id="more"></a></p>
+<hr>
+<p>版本相关<br>操作系统：Mac OS X EI Caption<br>Python版本：3.4<br>Django版本：1.9<br>IDE：PyCharm</p>
+<hr>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路很简单，其实就是我点击标题，要跳转到一个新的url地址，跳转到这个地址的时候，会传给url一个<strong>唯一的标识</strong>视图函数再从url中捕获这个<strong>唯一的标识</strong>，这个标识就代表这个标题的文章所有信息的索引。然后用这个<strong>唯一的标识</strong>去数据库查询出这里的记录，再把查出来的记录传递到展示文章内容的页面就可以了。</p>
+<h2 id="模版文件的修改"><a href="#模版文件的修改" class="headerlink" title="模版文件的修改"></a>模版文件的修改</h2><p>模版文件是html的内容，Html中我们文章的标题有一个a标签，这个标签标识超链接，点击标题就会跳转到a标签指向的url。所以我们就从这里下手</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for content in blog_body %&#125;</span><br><span class="line">&lt;li&gt;</span><br><span class="line">  &lt;div class=&quot;arrow_box&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ti&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!--三角形--&gt;</span><br><span class="line">    &lt;div class=&quot;ci&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!--圆形--&gt;</span><br><span class="line">    &lt;h2 class=&quot;title&quot;&gt;&lt;a href=&quot;&#123;% url &apos;article&apos; content.id%&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123; content.blog_title &#125;&#125;&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;ul class=&quot;textinfo&quot;&gt;</span><br><span class="line">      &lt;a href=&quot;/&quot;&gt;&lt;img src=&quot;&#123;&#123; content.blog_imgurl &#125;&#125;&quot;&gt;&lt;/a&gt;</span><br><span class="line">      &lt;p&gt; &#123;&#123; content.blog_body &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;ul class=&quot;details&quot;&gt;</span><br><span class="line">      &lt;li class=&quot;likes&quot;&gt;&lt;a href=&quot;#&quot;&gt;10&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li class=&quot;comments&quot;&gt;&lt;a href=&quot;#&quot;&gt;34&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li class=&quot;icon-time&quot;&gt;&lt;a href=&quot;#&quot;&gt;&#123;&#123; content.blog_timestamp &#125;&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;!--arrow_box end--&gt; </span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+<p>用for循环生成的文章标题的a标签都用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">href=&quot;&#123;% url &apos;article&apos; content.id%&#125;&quot;</span><br></pre></td></tr></table></figure>
+<p>这个带入，每一篇文章的标题的链接就是/app/article/id。这里我们就完成了跳转的第一步。</p>
+<p>##url跳转视图函数<br>跳转到了新的url。我们需要获取这个url的id信息，然后传递给视图函数去执行相关处理。在url.py中加入这个url匹配信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url.py</span><br><span class="line"></span><br><span class="line"> url(r&apos;^article/(?P&lt;blog_body_id&gt;[0-9])/$&apos;, views.article, name=&apos;article&apos;),</span><br></pre></td></tr></table></figure>
+<p>url其中的?P blog_body_id[0-9]就表示这样一个信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Python 正则表达式中，命名正则表达式组的语法是(?P&lt;name&gt;pattern)，其中name 是组的名称，pattern 是要匹配的模式。</span><br></pre></td></tr></table></figure>
+<p>所以我们这样写，blog_body_id就表示传递进去的id值，也就是a标签跳转页面/app/article/id中的id。[0-9]表示是这个位置只会出现数字。这部分具体的介绍请参考<a href="http://python.usyiyi.cn/django/topics/http/urls.html" target="_blank" rel="external">《URL调度器》</a></p>
+<h2 id="视图函数处理"><a href="#视图函数处理" class="headerlink" title="视图函数处理"></a>视图函数处理</h2><p>这时url已经把id传递给了视图函数。现在视图函数要执行的处理有：1、获取传入的id。2、使用id查询文章的信息。3、把文章的信息返回给处理的模版。</p>
+<ul>
+<li>获取传入的id</li>
+</ul>
+<p>在视图函数中定义一个article的函数，获取的信息为request和blog_body_id.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def article(request, blog_body_id=&apos;&apos;):</span><br><span class="line">	print(blog_body_id)</span><br></pre></td></tr></table></figure>
+<p>执行的时候，如果有参数传入，则会把传入的参数打印出来</p>
+<ul>
+<li>使用id查询文章</li>
+</ul>
+<p>这个就比较简单了，因为这个id是唯一的，所以只要用get方法就可以获取了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog_content = BlogBody.objects.get(id=blog_body_id)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>把文章信息返回给模版</li>
+</ul>
+<p>返回信息给模版，我们下载的模版有一个view.html文件，就是它了，你也可以自己改一个名字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return render(request, &apos;view.html&apos;, &#123;&apos;blog_content&apos;: blog_content&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="view-html模版的修改"><a href="#view-html模版的修改" class="headerlink" title="view.html模版的修改"></a>view.html模版的修改</h2><p>相关修改的内容参照<a href="http://blog.csdn.net/wyb199026/article/details/50456143" target="_blank" rel="external">《使用现有的H5模版写网站》</a>修改就可以了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/30/Django开发博客（一）快速写简单的博客/" rel="next" title="Django开发博客（一）快速写简单的博客">
+                <i class="fa fa-chevron-left"></i> Django开发博客（一）快速写简单的博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/04/Django开发博客（二）——使用模版写网站/" rel="prev" title="Django开发博客（二）——使用模版写网站">
+                Django开发博客（二）——使用模版写网站 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模版文件的修改"><span class="nav-number">3.</span> <span class="nav-text">模版文件的修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图函数处理"><span class="nav-number">4.</span> <span class="nav-text">视图函数处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#view-html模版的修改"><span class="nav-number">5.</span> <span class="nav-text">view.html模版的修改</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,Django," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="背景MacBook的数据被抹去之后，我又重写了一个博客，同样是用现成已有的前端模板写的。这次我只要一个简洁的功能就行了，太复杂很多功能用不到，毫无意义。这次的博客我多加了两个功能，一个是多说的评论框，另一个是日历。另外，我把自己的公众号的二维码也一起放上去了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django博客开发（九）—添加多说评论">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/03/01/Django博客开发（九）—添加多说评论/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="背景MacBook的数据被抹去之后，我又重写了一个博客，同样是用现成已有的前端模板写的。这次我只要一个简洁的功能就行了，太复杂很多功能用不到，毫无意义。这次的博客我多加了两个功能，一个是多说的评论框，另一个是日历。另外，我把自己的公众号的二维码也一起放上去了。">
+<meta property="og:updated_time" content="2016-03-31T03:09:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django博客开发（九）—添加多说评论">
+<meta name="twitter:description" content="背景MacBook的数据被抹去之后，我又重写了一个博客，同样是用现成已有的前端模板写的。这次我只要一个简洁的功能就行了，太复杂很多功能用不到，毫无意义。这次的博客我多加了两个功能，一个是多说的评论框，另一个是日历。另外，我把自己的公众号的二维码也一起放上去了。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Django博客开发（九）—添加多说评论 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django博客开发（九）—添加多说评论
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-01T11:08:18+08:00" content="2016-03-01">
+              2016-03-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>MacBook的数据被抹去之后，我又重写了一个博客，同样是用现成已有的前端模板写的。这次我只要一个简洁的功能就行了，太复杂很多功能用不到，毫无意义。这次的博客我多加了两个功能，一个是多说的评论框，另一个是日历。另外，我把自己的公众号的二维码也一起放上去了。<br><a id="more"></a></p>
+<hr>
+<p>版本相关<br>操作系统：Mac OS X EI Caption<br>Python版本：2.7<br>IDE：PyCharm</p>
+<hr>
+<h2 id="为什么要评论框"><a href="#为什么要评论框" class="headerlink" title="为什么要评论框"></a>为什么要评论框</h2><p>其实我的博客PV很低，不过再怎样也应该有一个可以评论的地方，虽然没几个人会起来折腾。<br>评论框的用处有两个，一个在文章底部，另一个是留言板，所以这次的博客专门加了留言板的页面。</p>
+<h2 id="多说"><a href="#多说" class="headerlink" title="多说"></a>多说</h2><p>首先必须要注册一个多说的账号，<a href="http://duoshuo.com" target="_blank" rel="external">点击这里</a>，注册成功之后，在后台管理中的工具可以找到通用代码，这段代码就是一个js的代码，嵌入到你的文章就行了。当然，多说还专门为python做了一个SDK，两种方法都可以实现。</p>
+<p>##Js代码实现<br>公用代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 多说评论框 start --&gt;</span><br><span class="line">	&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;请将此处替换成文章在你的站点中的ID&quot; data-title=&quot;请替换成文章的标题&quot; data-url=&quot;请替换成文章的网址&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;!-- 多说评论框 end --&gt;</span><br><span class="line">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var duoshuoQuery = &#123;short_name:&quot;自动生成&quot;&#125;;</span><br><span class="line">	(function() &#123;</span><br><span class="line">		var ds = document.createElement(&apos;script&apos;);</span><br><span class="line">		ds.type = &apos;text/javascript&apos;;ds.async = true;</span><br><span class="line">		ds.src = (document.location.protocol == &apos;https:&apos; ? &apos;https:&apos; : &apos;http:&apos;) + &apos;//static.duoshuo.com/embed.js&apos;;</span><br><span class="line">		ds.charset = &apos;UTF-8&apos;;</span><br><span class="line">		(document.getElementsByTagName(&apos;head&apos;)[0] </span><br><span class="line">		 || document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(ds);</span><br><span class="line">	&#125;)();</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;!-- 多说公共JS代码 end --&gt;</span><br></pre></td></tr></table></figure>
+<p>其实代码里面说的也很详细的，你只要在文章的底部，在body标签内放上这段代码，然后把div中的几个东西改一下就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;lm&quot; data-title=&quot;留言板&quot; data-url=&quot;&#123;% url &apos;message&apos; %&#125;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>我的留言板的代码，其实留言板你就当成是一篇文章就行了。文章内部的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&#123;&#123; article_view.id &#125;&#125;&quot; data-title=&quot;&#123;&#123; article_view.blog_title &#125;&#125;&quot; data-url=&quot;&#123;% url &apos;article&apos; article_view.id %&#125;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>只要这样配置好之后，再重新打开网页，你就会发现网页下方多了一个多说评论框。</p>
+<h2 id="多说SDK"><a href="#多说SDK" class="headerlink" title="多说SDK"></a>多说SDK</h2><p>SDK的原理其实就是在Django中多安装一个应用，<a href="http://dev.duoshuo.com/python-sdk" target="_blank" rel="external">Python-SDK的说明文档</a>已经把相关信息说的很清楚了。我没有使用这个方法，因为JS代码已经非常灵活了，没必要再单独使用SDK。</p>
+<h2 id="多说后台"><a href="#多说后台" class="headerlink" title="多说后台"></a>多说后台</h2><p>在多说后台里面可以管理很多东西，包括评论过滤，评论框的主体，允许图片等等，还可以导出评论。当然，我的blog基本上没什么人关注，所以不会有太多人来留言。</p>
+<h2 id="多说分享"><a href="#多说分享" class="headerlink" title="多说分享"></a>多说分享</h2><p>多说的后台里面多了一个分享的功能，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;ds-share&quot; data-thread-key=&quot;此处请替换为当前文章的thread-key&quot; data-title=&quot;此处请替换为分享时显示的标题&quot; data-images=&quot;此处请替换为分享时显示的图片的链接地址&quot; data-content=&quot;此处请替换为分享时显示的内容&quot; data-url=&quot;此处请替换为分享时显示的链接地址&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ds-share-inline&quot;&gt;</span><br><span class="line">      &lt;ul  class=&quot;ds-share-icons-16&quot;&gt;</span><br><span class="line">      	</span><br><span class="line">      	&lt;li data-toggle=&quot;ds-share-icons-more&quot;&gt;&lt;a class=&quot;ds-more&quot; href=&quot;javascript:void(0);&quot;&gt;分享到：&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a class=&quot;ds-weibo&quot; href=&quot;javascript:void(0);&quot; data-service=&quot;weibo&quot;&gt;微博&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a class=&quot;ds-qzone&quot; href=&quot;javascript:void(0);&quot; data-service=&quot;qzone&quot;&gt;QQ空间&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a class=&quot;ds-qqt&quot; href=&quot;javascript:void(0);&quot; data-service=&quot;qqt&quot;&gt;腾讯微博&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a class=&quot;ds-wechat&quot; href=&quot;javascript:void(0);&quot; data-service=&quot;wechat&quot;&gt;微信&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      	</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">      &lt;div class=&quot;ds-share-icons-more&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>我还没有使用，只是看到了，等有时间使用的时候再做一下相关分享吧。</p>
+<h2 id="JS日历"><a href="#JS日历" class="headerlink" title="JS日历"></a>JS日历</h2><p>JS日历其实是一个很简单的东西，网络上现成的代码很多，翻一番拿来改一下就行了，下面是我copy的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Created by SvenWeng on 16/2/28.</span><br><span class="line"> */</span><br><span class="line">function montharr(m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11) &#123;</span><br><span class="line">    this[0] = m0;</span><br><span class="line">    this[1] = m1;</span><br><span class="line">    this[2] = m2;</span><br><span class="line">    this[3] = m3;</span><br><span class="line">    this[4] = m4;</span><br><span class="line">    this[5] = m5;</span><br><span class="line">    this[6] = m6;</span><br><span class="line">    this[7] = m7;</span><br><span class="line">    this[8] = m8;</span><br><span class="line">    this[9] = m9;</span><br><span class="line">    this[10] = m10;</span><br><span class="line">    this[11] = m11;</span><br><span class="line">&#125;</span><br><span class="line">function calendar() &#123;</span><br><span class="line">    var monthNames = &quot;JanFebMarAprMayJunJulAugSepOctNovDec&quot;;</span><br><span class="line">    var today = new Date();</span><br><span class="line">    var thisDay;</span><br><span class="line">    var monthDays = new montharr(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);</span><br><span class="line">    year = today.getYear();</span><br><span class="line">    thisDay = today.getDate();</span><br><span class="line">    if (((year % 4 == 0) &amp;&amp; (year % 100 != 0)) || (year % 400 == 0)) monthDays[1] = 29;</span><br><span class="line">    nDays = monthDays[today.getMonth()];</span><br><span class="line">    firstDay = today;</span><br><span class="line">    firstDay.setDate(1); // works fine for most systems</span><br><span class="line">    testMe = firstDay.getDate();</span><br><span class="line">    if (testMe == 2) firstDay.setDate(0);</span><br><span class="line">    startDay = firstDay.getDay();</span><br><span class="line">    document.write(&apos;&lt;table border=&quot;0&quot; width=&quot;100%&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot; align=&quot;CENTER&quot; bgcolor=&quot;#0080FF&quot;&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TR&gt;&lt;TD align=&quot;center&quot;&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;table border=&quot;0&quot; width=&quot;100%&quot; cellspacing=&quot;1&quot; cellpadding=&quot;2&quot; bgcolor=&quot;Silver&quot;&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;tr&gt;&lt;th colspan=&quot;7&quot; bgcolor=&quot;#C8E3FF&quot;&gt;&apos;);</span><br><span class="line">    var dayNames = new Array(&quot;星期日&quot;, &quot;星期一&quot;, &quot;星期二&quot;, &quot;星期三&quot;, &quot;星期四&quot;, &quot;星期五&quot;, &quot;星期六&quot;);</span><br><span class="line">    var monthNames = new Array(&quot;一月&quot;, &quot;二月&quot;, &quot;三月&quot;, &quot;四月&quot;, &quot;五月&quot;, &quot;六月&quot;, &quot;七月&quot;, &quot;八月&quot;, &quot;九月&quot;, &quot;十月&quot;, &quot;十一月&quot;, &quot;十二月&quot;);</span><br><span class="line">    var now = new Date();</span><br><span class="line">    document.write(&apos;&lt;font class=&quot;today&quot;&gt;&apos; + today.getFullYear() + &quot;&amp;nbsp;&quot; + monthNames[now.getMonth()] + now.getDate() + &quot;日&amp;nbsp;&quot; + dayNames[now.getDay()] + &quot;&lt;/FONT&gt;&quot;);</span><br><span class="line">    document.write(&apos;&lt;/TH&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TH class=&quot;thead&quot;&gt;日&lt;/FONT&gt;&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TH class=&quot;thead&quot;&gt;一&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TH class=&quot;thead&quot;&gt;二&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TH class=&quot;thead&quot;&gt;三&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TH class=&quot;thead&quot;&gt;四&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TH class=&quot;thead&quot;&gt;五&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;TH class=&quot;thead&quot;&gt;六&lt;/TH&gt;&apos;);</span><br><span class="line">    document.write(&quot;&lt;/TR&gt;&lt;TR&gt;&quot;);</span><br><span class="line">    column = 0;</span><br><span class="line">    if (startDay &gt; 0) &#123;</span><br><span class="line">        document.write(&apos;&lt;td colspan=&quot;&apos; + startDay + &apos;&quot; bgcolor=&quot;#ffffff&quot;&gt;&lt;/td&gt;&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">    column += startDay;</span><br><span class="line">    for (i = 1; i &lt;= nDays; i++) &#123;</span><br><span class="line">        if (i == thisDay) &#123;</span><br><span class="line">            document.write(&apos;&lt;/TD&gt;&lt;td align=&quot;CENTER&quot; bgcolor=&quot;#76d2c5&quot;&gt;&lt;FONT class=&quot;whiteword&quot;&gt;&lt;B&gt;&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            document.write(&apos;&lt;/TD&gt;&lt;TD BGCOLOR=&quot;#FFFFFF&quot; ALIGN=&quot;CENTER&quot;&gt;&lt;FONT class=&quot;nday&quot;&gt;&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">        document.write(i);</span><br><span class="line">        if (i == thisDay) document.write(&quot;&lt;/FONT&gt;&lt;/TD&gt;&quot;)</span><br><span class="line">        column++;</span><br><span class="line">        if (column == 7) &#123;</span><br><span class="line">            document.write(&quot;&lt;TR&gt;&quot;);</span><br><span class="line">            column = 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (column &lt; 7) &#123;</span><br><span class="line">        document.write(&apos;&lt;td colspan=&quot;&apos; + (7 - column) + &apos;&quot; bgcolor=&quot;#ffffff&quot;&gt;&lt;/td&gt;&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    //document.write(&apos;&lt;TR&gt;&lt;td colspan=&quot;3&quot; align=&quot;right&quot; valign=&quot;bottom&quot;&gt;&apos;);</span><br><span class="line">    //document.write(&apos;&lt;font class=&quot;whiteword&quot;&gt;&lt;b&gt;现在时间&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;&lt;td valign=&quot;bottom&quot; colspan=&quot;4&quot;&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;div id=&quot;clock&quot; class=&quot;clock&quot;&gt;&lt;/div&gt;&apos;);</span><br><span class="line">    document.write(&apos;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在首页中引用一下就行了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">	&lt;script language=&quot;javascript&quot;&gt;</span><br><span class="line">		calendar();</span><br><span class="line">		startclock();</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/01/python生成二维码/" rel="next" title="python生成二维码">
+                <i class="fa fa-chevron-left"></i> python生成二维码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/12/Django使用第三方接口（一）/" rel="prev" title="Django使用第三方接口（一）">
+                Django使用第三方接口（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要评论框"><span class="nav-number">2.</span> <span class="nav-text">为什么要评论框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多说"><span class="nav-number">3.</span> <span class="nav-text">多说</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多说SDK"><span class="nav-number">4.</span> <span class="nav-text">多说SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多说后台"><span class="nav-number">5.</span> <span class="nav-text">多说后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多说分享"><span class="nav-number">6.</span> <span class="nav-text">多说分享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS日历"><span class="nav-number">7.</span> <span class="nav-text">JS日历</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,unittest," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="执行完Pyunittest后，会输出一个测试结果，显示效果如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UnitTest—加上测试报告">
+<meta property="og:url" content="http://www.wengyanbin.me/2015/12/03/UnitTest—加上测试报告/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="执行完Pyunittest后，会输出一个测试结果，显示效果如下：">
+<meta property="og:updated_time" content="2016-03-31T06:04:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UnitTest—加上测试报告">
+<meta name="twitter:description" content="执行完Pyunittest后，会输出一个测试结果，显示效果如下：">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> UnitTest—加上测试报告 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UnitTest—加上测试报告
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-03T13:55:01+08:00" content="2015-12-03">
+              2015-12-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>执行完Pyunittest后，会输出一个测试结果，显示效果如下：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">testSum (__main__.testNum) ... ok</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 1 test in 0.000s</span><br><span class="line"></span><br><span class="line">OK</span><br></pre></td></tr></table></figure></p>
+<p>结果显示的比较清晰，报错的时候也能具体到某行，但是别人是没办法看的，我们需要一个更漂亮的测试报告来告诉别人我们的自动化到底测试了什么。</p>
+<h2 id="使用HTMLTestRunner生成html的测试报告"><a href="#使用HTMLTestRunner生成html的测试报告" class="headerlink" title="使用HTMLTestRunner生成html的测试报告"></a>使用HTMLTestRunner生成html的测试报告</h2><h3 id="HTMLTestRunner的安装"><a href="#HTMLTestRunner的安装" class="headerlink" title="HTMLTestRunner的安装"></a>HTMLTestRunner的安装</h3><p>其实就是引入一个模块，我们需要去下载这个文件<a href="http://tungwaiyip.info/software/HTMLTestRunner.html" target="_blank" rel="external">下载点我</a>。下载之后要把这个文件放到Python的目录下。<strong>笔者使用的是MacBook</strong>打开终端，输入python进入交互模式输入下列命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">sys.path</span><br></pre></td></tr></table></figure>
+<p>就能找到python的地址了，我的是’/Library/Python/2.7/site-packages’。所以我们只要吧HTMLTestRunner.py文件放到’/Library/Python/2.7/‘这个目录下就行了。测试是否正常，只要在终端中输入import HTMLTestRunner，如果没有报错就表示已经成功安装了，是不是很简单？</p>
+<h3 id="使用HTMLTestRunner"><a href="#使用HTMLTestRunner" class="headerlink" title="使用HTMLTestRunner"></a>使用HTMLTestRunner</h3><p>首先，我们使用的时候要导入这个模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import HTMLTestRunner</span><br></pre></td></tr></table></figure>
+<p>然后在运行的地方加上这些代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">filename = &apos;/Users/svenweng/Desktop/result.html&apos;</span><br><span class="line">fp = file(filename,&apos;wb&apos;)</span><br><span class="line"></span><br><span class="line">runner = HTMLTestRunner.HTMLTestRunner(</span><br><span class="line">	stream = fp,</span><br><span class="line">	title = &apos;Baidu Test Report&apos;,</span><br><span class="line">	description = &apos;testcase demo&apos;</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<p>其中filename表示生成报告的地址，笔者使用的是<strong>MacBook</strong>所以导出的地址是这样的，如果是Windows用户，则填写绝对路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fp = file(filename,&apos;wb&apos;)</span><br></pre></td></tr></table></figure>
+<p>暂不知道是什么意思，先copy着用吧。最后的runner中加上生成报告的元素，title就是标题了，description就是对测试的一些描述。把这些整合进上一章的代码，完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from selenium import webdriver</span><br><span class="line">import unittest,time,re</span><br><span class="line">import HTMLTestRunner</span><br><span class="line"></span><br><span class="line">class Baidu(unittest.TestCase):</span><br><span class="line"></span><br><span class="line">	def setUp(self):</span><br><span class="line">		self.driver = webdriver.Chrome()</span><br><span class="line">		self.driver.implicitly_wait(30)</span><br><span class="line">		self.base_url = &quot;http://www.baidu.com&quot;</span><br><span class="line">		self.verificationErrors = []</span><br><span class="line">		self.accept_next_alert = True</span><br><span class="line"></span><br><span class="line">	def test_baidu_search(self):</span><br><span class="line">		driver = self.driver</span><br><span class="line">		driver.get(self.base_url + &quot;/&quot;)</span><br><span class="line">		driver.find_element_by_id(&quot;kw&quot;).send_keys(&quot;selenium webdriver&quot;)</span><br><span class="line">		driver.find_element_by_id(&quot;su&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line">		driver.close()</span><br><span class="line"></span><br><span class="line">	def test_baidu_set(self):</span><br><span class="line">		driver = self.driver</span><br><span class="line">		driver.get(self.base_url+&quot;/gaoji/preferences.html&quot;)</span><br><span class="line">		driver.find_element_by_xpath(&apos;//*[@id=&quot;nr&quot;]/option[2]&apos;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line"></span><br><span class="line">		driver.find_element_by_xpath(&quot;//*[@id=&apos;save&apos;]&quot;).click()</span><br><span class="line">		time.sleep(2)</span><br><span class="line">		driver.switch_to_alert().accept()</span><br><span class="line"></span><br><span class="line">	def tearDown(self):</span><br><span class="line">		self.driver.quit()</span><br><span class="line">		self.assertEqual([],self.verificationErrors)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	testunit = unittest.TestSuite()</span><br><span class="line">	testunit.addTest(Baidu(&apos;test_baidu_search&apos;))</span><br><span class="line">	testunit.addTest(Baidu(&apos;test_baidu_set&apos;))</span><br><span class="line">	filename = &apos;/Users/svenweng/Desktop/result.html&apos;</span><br><span class="line">	fp = file(filename,&apos;wb&apos;)</span><br><span class="line"></span><br><span class="line">	runner = HTMLTestRunner.HTMLTestRunner(</span><br><span class="line">		stream = fp,</span><br><span class="line">		title = &apos;Baidu Test Report&apos;,</span><br><span class="line">		description = &apos;testcase demo&apos;</span><br><span class="line">		)</span><br><span class="line">	runner.run(testunit)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/unittest/" rel="tag">#unittest</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/03/UnitTest—第一个web自动化/" rel="next" title="UnitTest—第一个web自动化">
+                <i class="fa fa-chevron-left"></i> UnitTest—第一个web自动化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/30/Django开发博客（一）快速写简单的博客/" rel="prev" title="Django开发博客（一）快速写简单的博客">
+                Django开发博客（一）快速写简单的博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用HTMLTestRunner生成html的测试报告"><span class="nav-number">1.</span> <span class="nav-text">使用HTMLTestRunner生成html的测试报告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTMLTestRunner的安装"><span class="nav-number">1.1.</span> <span class="nav-text">HTMLTestRunner的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用HTMLTestRunner"><span class="nav-number">1.2.</span> <span class="nav-text">使用HTMLTestRunner</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

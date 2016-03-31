@@ -1,0 +1,627 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,MongoDB," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="前言都说MongoDB这个NoSql数据库特别友好，使用起来也非常方便，今天稍微接触了一下，发现真的是非常非常简单，但是网上对这块内容涉及的很少，而且很多内容都是很老的版本使用的方法，我看了一下官方API文档中描述的内容也不多，顺手翻译一下吧，造福一下后来人。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-MongoDB翻译">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/03/14/Python-MongoDB翻译/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="前言都说MongoDB这个NoSql数据库特别友好，使用起来也非常方便，今天稍微接触了一下，发现真的是非常非常简单，但是网上对这块内容涉及的很少，而且很多内容都是很老的版本使用的方法，我看了一下官方API文档中描述的内容也不多，顺手翻译一下吧，造福一下后来人。">
+<meta property="og:updated_time" content="2016-03-31T03:16:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python-MongoDB翻译">
+<meta name="twitter:description" content="前言都说MongoDB这个NoSql数据库特别友好，使用起来也非常方便，今天稍微接触了一下，发现真的是非常非常简单，但是网上对这块内容涉及的很少，而且很多内容都是很老的版本使用的方法，我看了一下官方API文档中描述的内容也不多，顺手翻译一下吧，造福一下后来人。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Python-MongoDB翻译 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python-MongoDB翻译
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-14T10:41:06+08:00" content="2016-03-14">
+              2016-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>都说MongoDB这个NoSql数据库特别友好，使用起来也非常方便，今天稍微接触了一下，发现真的是非常非常简单，但是网上对这块内容涉及的很少，而且很多内容都是很老的版本使用的方法，我看了一下官方API文档中描述的内容也不多，顺手翻译一下吧，造福一下后来人。<br><a id="more"></a><br><strong>注：我并不是逐字逐句的翻译，在某些地方我无法精确翻译的时候，我概括了大概的意思，有能力的可以直接看<a href="http://api.mongodb.org/python/current/tutorial.html?_ga=1.218270941.558755682.1457943607#getting-a-single-document-with-find-one" target="_blank" rel="external">官方文档</a></strong></p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>首先，我们需要安装PyMongo模块，在PythonShell中下面的代码能正常运行且无报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import pymongo</span><br></pre></td></tr></table></figure>
+<p>当然，你的MongoDB需要在默认地址和端口开启，你可以按照这个方法确认你是否安装了MongoDB：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mongod</span><br></pre></td></tr></table></figure>
+<h2 id="建立一个MongoClient"><a href="#建立一个MongoClient" class="headerlink" title="建立一个MongoClient"></a>建立一个MongoClient</h2><p>第一步我们需要建立一个MongoClient来运行MongoDB，这个做起来非常简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from pymongo import MongoClient</span><br><span class="line">&gt;&gt;&gt; client = MongoClient()</span><br></pre></td></tr></table></figure>
+<p>上面的代码会连接默认的地址和端口，我们也可以自己指定地址和端口，像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; client = MongoClient(&apos;localhost&apos;, 27017)</span><br></pre></td></tr></table></figure>
+<p>或者使用MongoDB的URI连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; client = MongoClient(&apos;mongodb://localhost:27017/&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="获取数据库"><a href="#获取数据库" class="headerlink" title="获取数据库"></a>获取数据库</h2><p>一个MongoDB可以提供多个数据库接口。当使用PyMongo的时候，你可以使用获取属性的方式建立MongoClient：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; db = client.test_database</span><br></pre></td></tr></table></figure>
+<p>如果你使用上面的方法无法获取数据库的时候，你可以使用字典的方式来获取数据库。</p>
+<h2 id="获取连接"><a href="#获取连接" class="headerlink" title="获取连接"></a>获取连接</h2><p>获取连接的方式和获取数据库的方式一样，也可以使用获取属性的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; collection = db.test_collection</span><br></pre></td></tr></table></figure>
+<p>或者使用字典的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; collection = db[&apos;test-collection&apos;]</span><br></pre></td></tr></table></figure>
+<p>注意：使用MongoDB建立连接非常容易，但是上面的所有操作都不是实实在在的操作了MongoDB，当第一次获取数据库和建立连接的时候，数据库和连接会被创建。</p>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p>MongoDB的数据格式存储使用的是JSON风格，在PyMongo中，我们使用的字典类型就相当于数据。比如下面的数据就类似博客中的post信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import datetime</span><br><span class="line">&gt;&gt;&gt; post = &#123;&quot;author&quot;: &quot;Mike&quot;,</span><br><span class="line">...         &quot;text&quot;: &quot;My first blog post!&quot;,</span><br><span class="line">...         &quot;tags&quot;: [&quot;mongodb&quot;, &quot;python&quot;, &quot;pymongo&quot;],</span><br><span class="line">...         &quot;date&quot;: datetime.datetime.utcnow()&#125;</span><br></pre></td></tr></table></figure>
+<p>数据格式可以容纳python的类型（就像datetime.datetime）</p>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><p>往数据库插入一条数据我们使用insert_one()方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; posts = db.posts</span><br><span class="line">&gt;&gt;&gt; post_id = posts.insert_one(post).inserted_id</span><br><span class="line">&gt;&gt;&gt; post_id</span><br><span class="line">ObjectId(&apos;...&apos;)</span><br></pre></td></tr></table></figure>
+<p>当我们插入数据成功的时候，MongoDB会生成一个特殊的主键“_id”。这个主键“_id”的值是唯一的。insert_one()返回的值就是这个主键的值。</p>
+<p>插入第一条数据后，数据库、数据表和连接都建立了，我们可以查看列表中的所有信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; db.collection_names(include_system_collections=False)</span><br><span class="line">[u&apos;posts&apos;]</span><br></pre></td></tr></table></figure>
+<h2 id="使用find-one-方法获取一条记录"><a href="#使用find-one-方法获取一条记录" class="headerlink" title="使用find_one()方法获取一条记录"></a>使用find_one()方法获取一条记录</h2><p>在MongoDB中最基本的方法就是find_one()。这个方法返回一条符合条件的记录（或者None）。当你知道某条信息只有一个的时候，这个方法非常有用，或者返回第一条数据，这里我们使用这个方法获取第一条数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; posts.find_one()</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(...), u&apos;text&apos;: u&apos;My first blog post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;</span><br></pre></td></tr></table></figure>
+<p>结果是我们之前插入的一条字典型的数据。</p>
+<p><strong>注意：返回结果中的“_id”是插入数据时自动添加的。</strong></p>
+<p>find_one()同时也提供了精确查找的功能，下面的示例是我们定位author为Mike的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; posts.find_one(&#123;&quot;author&quot;: &quot;Mike&quot;&#125;)</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(...), u&apos;text&apos;: u&apos;My first blog post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;</span><br></pre></td></tr></table></figure>
+<p>如果我们把author换成另外一个，则不会返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; posts.find_one(&#123;&quot;author&quot;: &quot;Eliot&quot;&#125;)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="使用ObjectId查询"><a href="#使用ObjectId查询" class="headerlink" title="使用ObjectId查询"></a>使用ObjectId查询</h2><p>我们也可以用“_id”来查询，下面是我们的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; post_id</span><br><span class="line">ObjectId(...)</span><br><span class="line">&gt;&gt;&gt; posts.find_one(&#123;&quot;_id&quot;: post_id&#125;)</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(...), u&apos;text&apos;: u&apos;My first blog post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;</span><br></pre></td></tr></table></figure>
+<p>注意：ObjectId和转换为字符串的ObjectId是不一样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; post_id_as_str = str(post_id)</span><br><span class="line">&gt;&gt;&gt; posts.find_one(&#123;&quot;_id&quot;: post_id_as_str&#125;) # No result</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>在web应用中一个很常见的现象就是从URI中获取ObjectId来查询后台记录。在使用这个之前需要把str类型转换成ObjectId类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from bson.objectid import ObjectId</span><br><span class="line"></span><br><span class="line"># The web framework gets post_id from the URL and passes it as a string</span><br><span class="line">def get(post_id):</span><br><span class="line">    # Convert from string to ObjectId:</span><br><span class="line">    document = client.db.collection.find_one(&#123;&apos;_id&apos;: ObjectId(post_id)&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Unicode-Strings注意事项"><a href="#Unicode-Strings注意事项" class="headerlink" title="Unicode Strings注意事项"></a>Unicode Strings注意事项</h2><p>你可能会注意到我们的数据和存进去的数据有一些不一样，比如（ u’Mike’ 而不是‘Mike’）。</p>
+<p>MongoDB是使用BSON来存储数据。BSON是使用utf-8来编码的。所以PyMongo存储的str类型必须是utf-8的。（‘str’类型）也是要被支持的，因此Unicode类型(&lt;‘unicode’类型&gt;)需要先编码成utf-8，我们的示例中PythonShell显示的是u’Mike’而不是‘Mike’就是因为PyMongo解码了BSON的string变成Python的unicode string。</p>
+<h2 id="大量的插入数据"><a href="#大量的插入数据" class="headerlink" title="大量的插入数据"></a>大量的插入数据</h2><p>为了让查询更有意思，我们需要插入多一些数据。能够新增一条记录，我们也可以做到新增多条记录。使用insert_many()方法插入由第一条数据组成的列表，只需要往服务端发送一条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; new_posts = [&#123;&quot;author&quot;: &quot;Mike&quot;,</span><br><span class="line">...               &quot;text&quot;: &quot;Another post!&quot;,</span><br><span class="line">...               &quot;tags&quot;: [&quot;bulk&quot;, &quot;insert&quot;],</span><br><span class="line">...               &quot;date&quot;: datetime.datetime(2009, 11, 12, 11, 14)&#125;,</span><br><span class="line">...              &#123;&quot;author&quot;: &quot;Eliot&quot;,</span><br><span class="line">...               &quot;title&quot;: &quot;MongoDB is fun&quot;,</span><br><span class="line">...               &quot;text&quot;: &quot;and pretty easy too!&quot;,</span><br><span class="line">...               &quot;date&quot;: datetime.datetime(2009, 11, 10, 10, 45)&#125;]</span><br><span class="line">&gt;&gt;&gt; result = posts.insert_many(new_posts)</span><br><span class="line">&gt;&gt;&gt; result.inserted_ids</span><br><span class="line">[ObjectId(&apos;...&apos;), ObjectId(&apos;...&apos;)]</span><br></pre></td></tr></table></figure>
+<p>这个例子有几个有意思的地方：</p>
+<ul>
+<li>insert_many()返回了两个相互对应ObjectId</li>
+<li>new_post[1]有一个不同的地方，多了一个“tags”字段。而现在我们又多了一个字段，这就是我们说MongoDB非常<em>schema-free</em>（开放？）</li>
+</ul>
+<h2 id="查询一条以上的记录"><a href="#查询一条以上的记录" class="headerlink" title="查询一条以上的记录"></a>查询一条以上的记录</h2><p>我们使用find()方法来获取一条以上的记录。find()返回一组符合条件的记录，并且允许我们通过迭代的方式获取它们。例如，在post中我们可以迭代的获取所有查询的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; for post in posts.find():</span><br><span class="line">...   post</span><br><span class="line">...</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(...), u&apos;text&apos;: u&apos;My first blog post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;, u&apos;tags&apos;: [u&apos;mongodb&apos;, u&apos;python&apos;, u&apos;pymongo&apos;]&#125;</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(2009, 11, 12, 11, 14), u&apos;text&apos;: u&apos;Another post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;, u&apos;tags&apos;: [u&apos;bulk&apos;, u&apos;insert&apos;]&#125;</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(2009, 11, 10, 10, 45), u&apos;text&apos;: u&apos;and pretty easy too!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Eliot&apos;, u&apos;title&apos;: u&apos;MongoDB is fun&apos;&#125;</span><br></pre></td></tr></table></figure>
+<p>就像我们使用find_one()一样，我们也可以在这里加上查询条件来获取符合条件的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; for post in posts.find(&#123;&quot;author&quot;: &quot;Mike&quot;&#125;):</span><br><span class="line">...   post</span><br><span class="line">...</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(...), u&apos;text&apos;: u&apos;My first blog post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;, u&apos;tags&apos;: [u&apos;mongodb&apos;, u&apos;python&apos;, u&apos;pymongo&apos;]&#125;</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(2009, 11, 12, 11, 14), u&apos;text&apos;: u&apos;Another post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;, u&apos;tags&apos;: [u&apos;bulk&apos;, u&apos;insert&apos;]&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>如果我们只想获取数量，我们可以使用count()方法来代替全记录查询。我们可以获得查询的数量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; posts.count()</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>或者获得符合条件的数量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; posts.find(&#123;&quot;author&quot;: &quot;Mike&quot;&#125;).count()</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h2 id="不同种类的查询"><a href="#不同种类的查询" class="headerlink" title="不同种类的查询"></a>不同种类的查询</h2><p>MongoDB还提供了许多种类的查询方式。例如我们查询数据的日期小于某一个日期，且按照author字段来排序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = datetime.datetime(2009, 11, 12, 12)</span><br><span class="line">&gt;&gt;&gt; for post in posts.find(&#123;&quot;date&quot;: &#123;&quot;$lt&quot;: d&#125;&#125;).sort(&quot;author&quot;):</span><br><span class="line">...   print post</span><br><span class="line">...</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(2009, 11, 10, 10, 45), u&apos;text&apos;: u&apos;and pretty easy too!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Eliot&apos;, u&apos;title&apos;: u&apos;MongoDB is fun&apos;&#125;</span><br><span class="line">&#123;u&apos;date&apos;: datetime.datetime(2009, 11, 12, 11, 14), u&apos;text&apos;: u&apos;Another post!&apos;, u&apos;_id&apos;: ObjectId(&apos;...&apos;), u&apos;author&apos;: u&apos;Mike&apos;, u&apos;tags&apos;: [u&apos;bulk&apos;, u&apos;insert&apos;]&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们使用“$lt”来做一个限制的查询，使用sort()来对author字段排序。</p>
+<h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p>增加一个主键能够帮助我们快速而准确的查询记录，也可以使我们存储的数据更加有用。在这个示例中，我们将会展示在一个已存在主键的表中新增一个主键：</p>
+<p>首先，我们要新增一个主键：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; result = db.profiles.create_index([(&apos;user_id&apos;, pymongo.ASCENDING)],</span><br><span class="line">...                                   unique=True)</span><br><span class="line">&gt;&gt;&gt; list(db.profiles.index_information())</span><br><span class="line">[u&apos;user_id_1&apos;, u&apos;_id_&apos;]</span><br></pre></td></tr></table></figure>
+<p>注意，我们现在有两个主键了，一个是MongoDB自带的”_id“，另一个是我们新增的”user_id“。</p>
+<p>现在，我们来新增一些用户信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; user_profiles = [</span><br><span class="line">...     &#123;&apos;user_id&apos;: 211, &apos;name&apos;: &apos;Luke&apos;&#125;,</span><br><span class="line">...     &#123;&apos;user_id&apos;: 212, &apos;name&apos;: &apos;Ziltoid&apos;&#125;]</span><br><span class="line">&gt;&gt;&gt; result = db.profiles.insert_many(user_profiles)</span><br></pre></td></tr></table></figure>
+<p>我们新增的主键阻止我们新增一条已存在这个主键的记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; new_profile = &#123;&apos;user_id&apos;: 213, &apos;name&apos;: &apos;Drew&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; duplicate_profile = &#123;&apos;user_id&apos;: 212, &apos;name&apos;: &apos;Tommy&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; result = db.profiles.insert_one(new_profile)  # This is fine.</span><br><span class="line">&gt;&gt;&gt; result = db.profiles.insert_one(duplicate_profile)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">pymongo.errors.DuplicateKeyError: E11000 duplicate key error index: test_database.profiles.$user_id_1 dup key: &#123; : 212 &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>官方文档上并没有给出删除，修改记录的方法，或许是我目前还没看到吧，等看到了我会再补充上来的。文档比较短，翻译的过程中由于本人英语水平有限，并不能做到逐字逐句的翻译，也无法保证完全准确，并且会有一些地方的内容念起来并不是那么的顺口，但是官方文档想表达的大概意思应该是不会错的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/MongoDB/" rel="tag">#MongoDB</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/12/Python小知识——深度剖析获取迭代序列/" rel="next" title="Python小知识——深度剖析获取迭代序列">
+                <i class="fa fa-chevron-left"></i> Python小知识——深度剖析获取迭代序列
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立一个MongoClient"><span class="nav-number">3.</span> <span class="nav-text">建立一个MongoClient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取数据库"><span class="nav-number">4.</span> <span class="nav-text">获取数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取连接"><span class="nav-number">5.</span> <span class="nav-text">获取连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档"><span class="nav-number">6.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入数据"><span class="nav-number">7.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用find-one-方法获取一条记录"><span class="nav-number">8.</span> <span class="nav-text">使用find_one()方法获取一条记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ObjectId查询"><span class="nav-number">9.</span> <span class="nav-text">使用ObjectId查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unicode-Strings注意事项"><span class="nav-number">10.</span> <span class="nav-text">Unicode Strings注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大量的插入数据"><span class="nav-number">11.</span> <span class="nav-text">大量的插入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询一条以上的记录"><span class="nav-number">12.</span> <span class="nav-text">查询一条以上的记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数"><span class="nav-number">13.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同种类的查询"><span class="nav-number">14.</span> <span class="nav-text">不同种类的查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主键"><span class="nav-number">15.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">16.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

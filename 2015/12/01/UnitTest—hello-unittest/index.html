@@ -1,0 +1,583 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,unittest," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Hello PyUnitTestPyUnitTest是什么
+作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UnitTest—hello-unittest">
+<meta property="og:url" content="http://www.wengyanbin.me/2015/12/01/UnitTest—hello-unittest/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="Hello PyUnitTestPyUnitTest是什么
+作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上">
+<meta property="og:updated_time" content="2016-03-31T06:05:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UnitTest—hello-unittest">
+<meta name="twitter:description" content="Hello PyUnitTestPyUnitTest是什么
+作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> UnitTest—hello-unittest | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UnitTest—hello-unittest
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-01T14:02:35+08:00" content="2015-12-01">
+              2015-12-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Hello-PyUnitTest"><a href="#Hello-PyUnitTest" class="headerlink" title="Hello PyUnitTest"></a>Hello PyUnitTest</h1><h2 id="PyUnitTest是什么"><a href="#PyUnitTest是什么" class="headerlink" title="PyUnitTest是什么"></a>PyUnitTest是什么</h2><blockquote>
+<p>作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：<a href="http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上。" target="_blank" rel="external">http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上。</a><br>unittest是一个python版本的junit，junit是java中的单元测试框架，对java的单元测试，有一句话很贴切：Keep the bar green，相信使用eclipse写过java单元测试的都心领神会。unittest实现了很多junit中的概念，比如我们非常熟悉的test case, test suite等，总之，原理都是相通的，只是用不同的语言表达出来。</p>
+</blockquote>
+<a id="more"></a>
+<p>这里吐槽一下，我其实是想研究Appium对移动端的自动化测试，结果发现Appium是基于selenium发展过来的，Python调用selenium自动化测试有比较详细的文档，而Appium文档实在是太少太少，于是我就顺着Appium看到了selenium。看着看着发现，要执行selenium的自动化测试，必须要了解测试框架。于是又开始研究这个Python的unittest测试框架。</p>
+<h2 id="第一个例子"><a href="#第一个例子" class="headerlink" title="第一个例子"></a>第一个例子</h2><p>程序语言都喜欢使用helloworld来开始，这个框架我们也使用这个来作例子吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import unittest</span><br><span class="line"></span><br><span class="line">def hello():</span><br><span class="line">	return &quot;hello world&quot;</span><br><span class="line"></span><br><span class="line">class testNum(unittest.TestCase):</span><br><span class="line">	def testHello(self):</span><br><span class="line">		self.assertEqual(&quot;hello world&quot;,hello())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	unittest.main()</span><br></pre></td></tr></table></figure>
+<p>上面是一个很简单的测试例子。运行的结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 1 tests in 0.000s</span><br><span class="line"></span><br><span class="line">OK</span><br><span class="line">[Finished in 0.1s]</span><br></pre></td></tr></table></figure>
+<p>我们来分析一下这个代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import unittest</span><br></pre></td></tr></table></figure>
+<p>编码类型使用UTF8，引用unittest模块，unittest是Python自带的模块，无需另外安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def hello():</span><br><span class="line">	return &quot;hello world&quot;</span><br></pre></td></tr></table></figure>
+<p>功能函数，返回hello world，也是我们的被测试函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class testNum(unittest.TestCase):</span><br><span class="line">	def testHello(self):</span><br><span class="line">		self.assertEqual(&quot;hello world&quot;,hello())</span><br></pre></td></tr></table></figure>
+<p>测试函数，继承unittest.TestCase。里面所有的测试案例都使用test开头，里面的方法self.assertEqual()表示断言两个值相等比如调用hello()函数，我们得到的结果就是hello world。和我们给的预期值相同。运行结果就是成功。如果运行失败，会显示下面的东西</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">F</span><br><span class="line">======================================================================</span><br><span class="line">FAIL: testHello (__main__.testNum)</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/Users/svenweng/Desktop/Development/unittest/testcal.py&quot;, line 21, in testHello</span><br><span class="line">    self.assertEqual(&quot;hello word&quot;,hello())</span><br><span class="line">AssertionError: &apos;hello word&apos; != &apos;hello world&apos;</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 1 tests in 0.000s</span><br><span class="line"></span><br><span class="line">FAILED (failures=1)</span><br><span class="line">[Finished in 0.1s with exit code 1]</span><br><span class="line">[shell_cmd: python -u &quot;/Users/svenweng/Desktop/Development/unittest/testcal.py&quot;]</span><br><span class="line">[dir: /Users/svenweng/Desktop/Development/unittest]</span><br><span class="line">[path: /usr/bin:/bin:/usr/sbin:/sbin]</span><br></pre></td></tr></table></figure>
+<p>错误提示很明确。AssertionError: ‘hello word’ != ‘hello world’</p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>assertEqual(a, b)     a == b<br>assertNotEqual(a, b)     a != b<br>assertTrue(x)     bool(x) is True<br>assertFalse(x)     bool(x) is False<br>assertIs(a, b)     a is b     2.7<br>assertIsNot(a, b)     a is not b     2.7<br>assertIsNone(x)     x is None     2.7<br>assertIsNotNone(x)     x is not None     2.7<br>assertIn(a, b)     a in b     2.7<br>assertNotIn(a, b)     a not in b     2.7<br>assertIsInstance(a, b)     isinstance(a, b)     2.7<br>assertNotIsInstance(a, b)     not isinstance(a, b)     2.7 </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/unittest/" rel="tag">#unittest</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/01/UnitTest—为你的测试结果打印案例名称/" rel="next" title="UnitTest—为你的测试结果打印案例名称">
+                <i class="fa fa-chevron-left"></i> UnitTest—为你的测试结果打印案例名称
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/02/UnitTest—引入其他类/" rel="prev" title="UnitTest—引入其他类">
+                UnitTest—引入其他类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-PyUnitTest"><span class="nav-number">1.</span> <span class="nav-text">Hello PyUnitTest</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PyUnitTest是什么"><span class="nav-number">1.1.</span> <span class="nav-text">PyUnitTest是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个例子"><span class="nav-number">1.2.</span> <span class="nav-text">第一个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方法"><span class="nav-number">1.3.</span> <span class="nav-text">其他方法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
