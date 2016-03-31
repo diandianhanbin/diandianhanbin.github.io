@@ -41,11 +41,13 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Sven, Weng, 翁彦彬，博客，Python， 点点寒彬" />
 
 
 
 
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
 
 
 
@@ -93,6 +95,15 @@
 
 
 
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -176,6 +187,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
@@ -234,9 +255,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/03/01/python生成二维码/" itemprop="url">
+            <a class="post-title-link" href="/2016/03/01/Django博客开发（九）—添加多说评论/" itemprop="url">
               
-                <span itemprop="name">python生成二维码</span>
+                <span itemprop="name">Django博客开发（九）—添加多说评论</span>
               
             </a>
         
@@ -295,7 +316,7 @@
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
                alt="Sven Weng" />
           <p class="site-author-name" itemprop="name">Sven Weng</p>
           <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
@@ -319,18 +340,67 @@
 
           
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
         </nav>
 
         
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Zhihu
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Facebook
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Linkedin
+                  
+                </a>
+              </span>
+            
           
         </div>
 
@@ -339,6 +409,31 @@
 
         
         <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">MyBlog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyanbin.me" target="_blank">MyWebSite</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">MyCSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">My简书</a>
+                </li>
+              
+            </ul>
           
         </div>
 
@@ -451,9 +546,28 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wybblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
