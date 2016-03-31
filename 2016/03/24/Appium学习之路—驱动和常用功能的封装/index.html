@@ -1,0 +1,613 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Appium,测试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="背景初步了解Appium各个功能之后，应该把这些功能进行一些封装，否则整个代码会比较难看，可用性和重用性也会很差。本文是我这段时间使用Appium的一些想法，仅供参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Appium学习之路—驱动和常用功能的封装">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/03/24/Appium学习之路—驱动和常用功能的封装/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="背景初步了解Appium各个功能之后，应该把这些功能进行一些封装，否则整个代码会比较难看，可用性和重用性也会很差。本文是我这段时间使用Appium的一些想法，仅供参考。">
+<meta property="og:updated_time" content="2016-03-31T07:06:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Appium学习之路—驱动和常用功能的封装">
+<meta name="twitter:description" content="背景初步了解Appium各个功能之后，应该把这些功能进行一些封装，否则整个代码会比较难看，可用性和重用性也会很差。本文是我这段时间使用Appium的一些想法，仅供参考。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Appium学习之路—驱动和常用功能的封装 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Appium学习之路—驱动和常用功能的封装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-24T15:04:28+08:00" content="2016-03-24">
+              2016-03-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>初步了解Appium各个功能之后，应该把这些功能进行一些封装，否则整个代码会比较难看，可用性和重用性也会很差。本文是我这段时间使用Appium的一些想法，仅供参考。<br><a id="more"></a></p>
+<hr>
+<p>操作系统：Mac OS X EI Caption</p>
+<p>Appium: 1.4.16</p>
+<p>Java: java version “1.7.0_79”</p>
+<p>node.js: v5.3.0</p>
+<p>npm: 3.3.12</p>
+<p>手机：小米NOTE4</p>
+<p>待测应用： 微证券</p>
+<hr>
+<h2 id="driver的封装"><a href="#driver的封装" class="headerlink" title="driver的封装"></a>driver的封装</h2><p>初始化的driver是Python操作Appium的核心，因此driver在整个代码中重用率是非常高的。</p>
+<p>新建一个driver.py文件，专门用来封装driver。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># ecoding=utf-8</span><br><span class="line">__author__ = &quot;Sven_Weng&quot;</span><br><span class="line">from appium import webdriver</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class AppiumTest:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        desired_caps = &#123;&apos;platformName&apos;: &apos;Android&apos;,</span><br><span class="line">                        &apos;platformVersion&apos;: &apos;5.0.2&apos;,</span><br><span class="line">                        &apos;deviceName&apos;: &apos;5136b01e&apos;,</span><br><span class="line">                        &apos;appPackage&apos;: &apos;com.weizq&apos;,</span><br><span class="line">                        &apos;appActivity&apos;: &apos;com.zztzt.android.simple.app.MainActivity&apos;&#125;</span><br><span class="line">        self.driver = webdriver.Remote(&apos;http://localhost:4723/wd/hub&apos;, desired_caps)</span><br><span class="line">        self.driver.implicitly_wait(30)</span><br><span class="line"></span><br><span class="line">    def get_driver(self):</span><br><span class="line">        return self.driver</span><br></pre></td></tr></table></figure>
+<p>在AppiumTest这个类中，初始化函数包含了driver的信息，然后在get_driver函数中直接把这个driver返回回去，测试用例中只要在测试类的初始化中调用它，就能获取driver。</p>
+<h2 id="按模块划分封装的方法"><a href="#按模块划分封装的方法" class="headerlink" title="按模块划分封装的方法"></a>按模块划分封装的方法</h2><p>我是这么划分模块的，一个Element，专门封装操作和对象有关的方法，把find_element_by_id这种很长很长的方法缩短一点，用一些比较简洁的名字封装一下，使用起来代码可读性也会比较强。一个common类，专门封装通用的方法，其他就是按照功能模块来划分，我测试的微证券有4个主要功能，所以会有财讯、行情、发现、我这些类模块。</p>
+<h3 id="element对象封装"><a href="#element对象封装" class="headerlink" title="element对象封装"></a>element对象封装</h3><p>我自己的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">class Element:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    封装Appium中关于元素对象的方法</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        at = AppiumTest()</span><br><span class="line">        self.driver = at.get_driver()</span><br><span class="line"></span><br><span class="line">    def get_id(self, id):</span><br><span class="line">        element = self.driver.find_element_by_id(id)</span><br><span class="line">        return element</span><br><span class="line"></span><br><span class="line">    def get_name(self, name):</span><br><span class="line">        element = self.driver.find_element_by_name(name)</span><br><span class="line">        return element</span><br><span class="line"></span><br><span class="line">    def over(self):</span><br><span class="line">        element = self.driver.quit()</span><br><span class="line">        return element</span><br><span class="line"></span><br><span class="line">    def get_screen(self, path):</span><br><span class="line">        self.driver.get_screenshot_as_file(path)</span><br><span class="line"></span><br><span class="line">    def get_size(self):</span><br><span class="line">        size = self.driver.get_window_size()</span><br><span class="line">        return size</span><br><span class="line"></span><br><span class="line">    def swipe_to_up(self):</span><br><span class="line">        window_size = self.get_size()</span><br><span class="line">        width = window_size.get(&quot;width&quot;)</span><br><span class="line">        height = window_size.get(&quot;height&quot;)</span><br><span class="line">        self.driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 500)</span><br><span class="line"></span><br><span class="line">    def swipe_to_down(self):</span><br><span class="line">        window_size = self.get_size()</span><br><span class="line">        width = window_size.get(&quot;width&quot;)</span><br><span class="line">        height = window_size.get(&quot;height&quot;)</span><br><span class="line">        self.driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, 500)</span><br><span class="line"></span><br><span class="line">    def swipe_to_left(self):</span><br><span class="line">        window_size = self.get_size()</span><br><span class="line">        width = window_size.get(&quot;width&quot;)</span><br><span class="line">        height = window_size.get(&quot;height&quot;)</span><br><span class="line">        self.driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, 500)</span><br><span class="line"></span><br><span class="line">    def swipe_to_right(self):</span><br><span class="line">        window_size = self.get_size()</span><br><span class="line">        width = window_size.get(&quot;width&quot;)</span><br><span class="line">        height = window_size.get(&quot;height&quot;)</span><br><span class="line">        self.driver.swipe(width * 4 / 5, height / 2, width / 5, height / 2, 500)</span><br><span class="line"></span><br><span class="line">    def back(self):</span><br><span class="line">        self.driver.keyevent(4)</span><br><span class="line"></span><br><span class="line">    def get_classes(self, classesname):</span><br><span class="line">        elements = self.driver.find_elements_by_class_name(classesname)</span><br><span class="line">        return elements</span><br><span class="line"></span><br><span class="line">    def get_ids(self, ids):</span><br><span class="line">        elements = self.driver.find_elements_by_id(ids)</span><br><span class="line">        return elements</span><br><span class="line"></span><br><span class="line">    def switch_h5(self):</span><br><span class="line">        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, &#123;&quot;name&quot;: &quot;WEBVIEW_com.weizq&quot;&#125;)</span><br><span class="line"></span><br><span class="line">    def switch_app(self):</span><br><span class="line">        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, &#123;&quot;name&quot;: &quot;NATIVE_APP&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<p>上面封装的很简单，就是一些常用的方法，在初始化函数中初始化driver即可。</p>
+<h3 id="common"><a href="#common" class="headerlink" title="common"></a>common</h3><p>common就是封装一些通用的方法，比如登录，比大小，获取股票代码，页面标题校验等等。以下是我的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">class Common:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    封装通用的方法</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.cf = ConfigParser.ConfigParser()</span><br><span class="line">        self.cf.read(&apos;enable_data.conf&apos;)</span><br><span class="line"></span><br><span class="line">    def cycle_screen(self, section_name, num, driver):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        循环截图功能</span><br><span class="line">        从json文件中读取信息,用来定位点击的方位和保存截图的路径</span><br><span class="line">        执行成功则返回True,否则返回False</span><br><span class="line">        :param section_name: json文件中一级节点的名称</span><br><span class="line">        :param num: json文件中对应的列表序列位</span><br><span class="line">        :param driver: Appium的驱动</span><br><span class="line">        :return:True or False</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            with open(&apos;get_screen.json&apos;, &apos;r&apos;) as f:</span><br><span class="line">                jsondata = f.read()</span><br><span class="line">            cx_info = json.loads(jsondata)</span><br><span class="line">            values = cx_info[section_name][num].values()</span><br><span class="line">            for value in values:</span><br><span class="line">                driver.get_name(value[&apos;name&apos;]).click()</span><br><span class="line">                time.sleep(2)</span><br><span class="line">                self.check_title(value[&apos;name&apos;], driver)</span><br><span class="line">                driver.get_screen(value[&apos;path&apos;])</span><br><span class="line">                logging.info(value[&apos;log&apos;])</span><br><span class="line">            return True</span><br><span class="line">        except Exception as e:</span><br><span class="line">            logging.warning(e)</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">    def cycle_screen_and_back(self, section_name, num, driver):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        功能和上一个函数一样,在步骤最后加了一个返回事件,用来处理&quot;行情&quot;-&quot;更多&quot;页面的数据校验</span><br><span class="line">        :param section_name: conf配置文件的节点名称</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            with open(&apos;get_screen.json&apos;, &apos;r&apos;) as f:</span><br><span class="line">                jsondata = f.read()</span><br><span class="line">            cx_info = json.loads(jsondata)</span><br><span class="line">            values = cx_info[section_name][num].values()</span><br><span class="line">            for value in values:</span><br><span class="line">                logging.info(value)</span><br><span class="line">                driver.get_name(value[&apos;name&apos;]).click()</span><br><span class="line">                time.sleep(2)</span><br><span class="line">                self.check_title(value[&apos;name&apos;], driver)</span><br><span class="line">                # title = driver.get_classes(&apos;android.widget.TextView&apos;)[0].text</span><br><span class="line">                # try:</span><br><span class="line">                #     assert title == value[&apos;name&apos;]</span><br><span class="line">                #     logging.info(title + &apos;页面显示正确&apos;)</span><br><span class="line">                # except Exception as e:</span><br><span class="line">                #     logging.warning(value[&apos;name&apos;])</span><br><span class="line">                #     logging.warning(title + &apos;页面显示不正确&apos;)</span><br><span class="line">                driver.get_screen(value[&apos;path&apos;])</span><br><span class="line">                driver.driver.keyevent(4)</span><br><span class="line">                time.sleep(1)</span><br><span class="line">                logging.info(value[&apos;log&apos;])</span><br><span class="line">            return True</span><br><span class="line">        except Exception as e:</span><br><span class="line">            logging.warning(e)</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">    def check_title(self, title, driver):</span><br><span class="line">        text = driver.get_classes(&apos;android.widget.TextView&apos;)[0].text</span><br><span class="line">        try:</span><br><span class="line">            assert text == title</span><br><span class="line">            logging.info(&quot;标题为: &#123;&#125; 校验通过&quot;.format(title))</span><br><span class="line">            return True</span><br><span class="line">        except Exception as e:</span><br><span class="line">            logging.warning(e)</span><br><span class="line">            logging.warning(&quot;标题为: &#123;&#125; 校验不通过&quot;.format(title))</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">    def compare(self, ids, numstar, numend, driver):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        比较传入值得大小, 第一个数比第二个数大返回True,否则返回False</span><br><span class="line">        :param ids:传入的ID名</span><br><span class="line">        :param numstar:传入的开始序号</span><br><span class="line">        :param numend:传入的结束需要</span><br><span class="line">        :param driver:驱动</span><br><span class="line">        :return:True or False</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            startext = float(driver.get_ids(ids)[numstar].text)</span><br><span class="line">            endtext = float(driver.get_ids(ids)[numend].text)</span><br><span class="line">        except ValueError:</span><br><span class="line">            starmark = driver.get_ids(ids)[numstar].text[:1]</span><br><span class="line">            endmark = driver.get_ids(ids)[numend].text[:1]</span><br><span class="line">            if starmark == endmark:</span><br><span class="line">                startext = float(driver.get_ids(ids)[numstar].text.lstrip(starmark).rstrip(&apos;%&apos;))</span><br><span class="line">                endtext = float(driver.get_ids(ids)[numend].text.lstrip(endmark).rstrip(&apos;%&apos;))</span><br><span class="line">            elif starmark == &quot;+&quot;:</span><br><span class="line">                return True</span><br><span class="line">            elif starmark == &quot;-&quot;:</span><br><span class="line">                return False</span><br><span class="line">        if startext &gt; endtext:</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">    def get_SotckCode(self, ids, driver):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        获取行情-自选页面中的所有股票代码,自选超过50支的时候请修改参数中的range(10)</span><br><span class="line">        返回list</span><br><span class="line">        :param driver:驱动控件</span><br><span class="line">        :return:list, 自选股票代码</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        SotckCode = []</span><br><span class="line">        for x in driver.get_ids(ids):</span><br><span class="line">            SotckCode.append(x.text)</span><br><span class="line">        for x in range(5):</span><br><span class="line">            driver.swipe_to_up()</span><br><span class="line">            for x in driver.get_ids(ids):</span><br><span class="line">                if x.text not in SotckCode:</span><br><span class="line">                    SotckCode.append(x.text)</span><br><span class="line">        return SotckCode</span><br><span class="line"></span><br><span class="line">    def zjzh_login(self, driver):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        资金账号登录方法,传入appium-driver</span><br><span class="line">        APP启动时需要资金账号为登录状态时调用</span><br><span class="line">        :param driver: Appium驱动</span><br><span class="line">        :return: True</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        driver.get_name(&apos;发现&apos;).click()</span><br><span class="line">        driver.switch_h5()</span><br><span class="line">        driver.get_classes(&apos;list-item&apos;)[1].click()</span><br><span class="line">        driver.switch_app()</span><br><span class="line">        driver.get_name(&apos;买入&apos;).click()</span><br><span class="line">        username = self.cf.get(&apos;zjzh_login_info&apos;, &apos;username&apos;)</span><br><span class="line">        password = self.cf.get(&apos;zjzh_login_info&apos;, &apos;password&apos;)</span><br><span class="line">        if self.tra_login(username, password, driver):</span><br><span class="line">            self.check_title(u&apos;委托买入&apos;, driver)</span><br><span class="line">            driver.back()</span><br><span class="line">            driver.back()</span><br><span class="line">            self.check_title(u&apos;发现&apos;, driver)</span><br><span class="line">            logging.info(&apos;资金账号登录成功&apos;)</span><br><span class="line">            return True</span><br><span class="line"></span><br><span class="line">    def tra_login(self, username, password, driver):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        资金账号登录页面的登录方法</span><br><span class="line">        :param username:账号</span><br><span class="line">        :param password:密码</span><br><span class="line">        :param driver:Appium驱动</span><br><span class="line">        :return:True</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        driver.get_id(&apos;com.weizq:id/edit_account&apos;).clear()</span><br><span class="line">        driver.get_id(&apos;com.weizq:id/edit_account&apos;).send_keys(username)</span><br><span class="line">        logging.info(&apos;输入的账号为: &#123;&#125;&apos;.format(username))</span><br><span class="line">        driver.get_id(&apos;com.weizq:id/edit_password&apos;).send_keys(password)</span><br><span class="line">        logging.info(&apos;输入的密码为: &#123;&#125;&apos;.format(password))</span><br><span class="line">        yzm = driver.get_id(&apos;com.weizq:id/text_yanzhengma&apos;).text</span><br><span class="line">        logging.info(&apos;验证码为:&#123;&#125;&apos;.format(yzm))</span><br><span class="line">        driver.get_id(&apos;com.weizq:id/edit_yanzhengma&apos;).send_keys(yzm)</span><br><span class="line">        driver.get_id(&apos;com.weizq:id/login&apos;).click()</span><br><span class="line">        time.sleep(3)</span><br><span class="line">        return True</span><br></pre></td></tr></table></figure>
+<h3 id="其他功能模块"><a href="#其他功能模块" class="headerlink" title="其他功能模块"></a>其他功能模块</h3><p>其他功能模块也是同样的道理，不过其他模块封装的都是特定功能模块才会用到的方法，因为代码可能涉及公司的机密，所以功能模块的代码就暂不放出来，思想还是一样的。</p>
+<h2 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h2><p>关于日志记录的原则，我觉得是这样的，写入日志的必须是一些关键的信息，把日志浏览一遍，基本上就能了解到整个脚本跑的流程，比如我调试一些功能的时候，基本上不用关注手机运行的页面，脚本到底做了什么，只要看日志就懂了。下面是一些我调试功能的时候打出来的日志：</p>
+<blockquote>
+<p>Thu, 24 Mar 2016 14:26:35 test_weizq.py[line:437] INFO ==========结束测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:26:37 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:26:55 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:27:23 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:27:32 test_weizq.py[line:448] INFO —–开始测试个人资料页面校验—–</p>
+<p>Thu, 24 Mar 2016 14:27:36 test_weizq.py[line:456] INFO 旧的昵称是: 6850252</p>
+<p>Thu, 24 Mar 2016 14:27:50 test_weizq.py[line:463] INFO 新的昵称是: 5030013</p>
+<p>Thu, 24 Mar 2016 14:27:50 test_weizq.py[line:437] INFO ==========结束测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:31:55 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:32:06 test_weizq.py[line:448] INFO —–开始测试个人资料页面校验—–</p>
+<p>Thu, 24 Mar 2016 14:32:09 test_weizq.py[line:468] INFO 女</p>
+<p>Thu, 24 Mar 2016 14:32:09 test_weizq.py[line:437] INFO ==========结束测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:34:38 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:34:50 test_weizq.py[line:448] INFO —–开始测试个人资料页面校验—–</p>
+<p>Thu, 24 Mar 2016 14:34:53 test_weizq.py[line:468] INFO 修改前的性别: 女</p>
+<p>Thu, 24 Mar 2016 14:34:58 test_weizq.py[line:472] INFO 性别修改为: 男</p>
+<p>Thu, 24 Mar 2016 14:34:58 test_weizq.py[line:437] INFO ==========结束测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:35:14 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:35:35 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:35:47 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:36:01 test_weizq.py[line:429] INFO ==========开始测试我的内容==========</p>
+<p>Thu, 24 Mar 2016 14:36:12 test_weizq.py[line:448] INFO —–开始测试个人资料页面校验—–</p>
+<p>Thu, 24 Mar 2016 14:36:16 test_weizq.py[line:456] INFO 旧的昵称是: 5030013</p>
+<p>Thu, 24 Mar 2016 14:36:28 test_weizq.py[line:463] INFO 新的昵称是: 908602</p>
+<p>Thu, 24 Mar 2016 14:36:28 test_weizq.py[line:468] INFO 修改前的性别: 男</p>
+<p>Thu, 24 Mar 2016 14:36:33 test_weizq.py[line:475] INFO 性别修改为: 女</p>
+<p>Thu, 24 Mar 2016 14:36:33 test_weizq.py[line:437] INFO ==========结束测试我的内容==========</p>
+</blockquote>
+<p>基本上看到这些日志就知道我到底在测试什么东西了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Appium/" rel="tag">#Appium</a>
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/18/Appium学习之路—无安卓源码的一些准备/" rel="next" title="Appium学习之路—无安卓源码的一些准备">
+                <i class="fa fa-chevron-left"></i> Appium学习之路—无安卓源码的一些准备
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/31/Appium学习之路—环境搭建/" rel="prev" title="Appium学习之路—环境搭建">
+                Appium学习之路—环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#driver的封装"><span class="nav-number">2.</span> <span class="nav-text">driver的封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按模块划分封装的方法"><span class="nav-number">3.</span> <span class="nav-text">按模块划分封装的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#element对象封装"><span class="nav-number">3.1.</span> <span class="nav-text">element对象封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#common"><span class="nav-number">3.2.</span> <span class="nav-text">common</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他功能模块"><span class="nav-number">3.3.</span> <span class="nav-text">其他功能模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志记录"><span class="nav-number">4.</span> <span class="nav-text">日志记录</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

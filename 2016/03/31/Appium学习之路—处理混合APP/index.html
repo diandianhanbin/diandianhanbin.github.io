@@ -1,0 +1,599 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Appium,测试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="文章首发：《我的博客》
+背景自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Appium学习之路—处理混合APP">
+<meta property="og:url" content="http://www.wengyanbin.me/2016/03/31/Appium学习之路—处理混合APP/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="文章首发：《我的博客》
+背景自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/811987cbgw1f20rlzwtwwj21kw103thr.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/811987cbgw1f25r2354hcj21d4120n6k.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/811987cbgw1f25rku93r2j21kw176grv.jpg">
+<meta property="og:updated_time" content="2016-03-31T07:09:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Appium学习之路—处理混合APP">
+<meta name="twitter:description" content="文章首发：《我的博客》
+背景自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/811987cbgw1f20rlzwtwwj21kw103thr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Appium学习之路—处理混合APP | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyanbin.me</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Appium学习之路—处理混合APP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-31T15:08:50+08:00" content="2016-03-31">
+              2016-03-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>文章首发：<a href="http://wybblog.applinzi.com/blog/article/34/" target="_blank" rel="external">《我的博客》</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。<br><a id="more"></a></p>
+<hr>
+<p>操作系统：Mac OS X EI Caption</p>
+<p>Appium: 1.4.16</p>
+<p>Java: java version “1.7.0_79”</p>
+<p>node.js: v5.3.0</p>
+<p>npm: 3.3.12</p>
+<p>手机：小米NOTE4</p>
+<p>待测应用： 微证券</p>
+<hr>
+<h2 id="常规方法"><a href="#常规方法" class="headerlink" title="常规方法"></a>常规方法</h2><p>正常来说，常规的方法应该是使用UI Automator Viewer来探测页面的元素，比如下面这样：</p>
+<p><img src="http://ww1.sinaimg.cn/mw690/811987cbgw1f20rlzwtwwj21kw103thr.jpg" alt="页面元素"></p>
+<p>但是，如果是混合开发，就会出现只有一个webview元素的情况，正常的方法无法定位。比如这样：<br><img src="http://ww3.sinaimg.cn/mw690/811987cbgw1f25r2354hcj21d4120n6k.jpg" alt="webview"></p>
+<p>常规的方法是没办法定位出这部分内容，只有一个webview，无法像原生一样获取内容。</p>
+<h2 id="取巧的办法"><a href="#取巧的办法" class="headerlink" title="取巧的办法"></a>取巧的办法</h2><p>如果针对H5的元素，只需要点击的话，可以这么做，比如上文我们的开户页面，我们需要做的只是在这个页面上点击立即开户，跳转到下一个页面，我们可以用这种取巧的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.driver.get_name(&apos;立即开户&apos;).click()</span><br></pre></td></tr></table></figure>
+<p>这样的代码，也是可以实现的，当然，上面的get_name我是进行封装了的，原来的代码是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def get_name(self, name):</span><br><span class="line">        element = self.driver.find_element_by_name(name)</span><br><span class="line">        return element</span><br></pre></td></tr></table></figure>
+<h2 id="更优化的处理方式"><a href="#更优化的处理方式" class="headerlink" title="更优化的处理方式"></a>更优化的处理方式</h2><p>既然是H5页面，如果能够获取HTML代码就好了，那么就可以使用操作DOM的方式来操作这个H5。</p>
+<hr>
+<p>谷歌浏览器：版本 49.0.2623.87 (64-bit)</p>
+<hr>
+<p>我用的谷歌浏览器是这个版本，把手机连接上电脑，在谷歌浏览器中输入这个代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome://inspect</span><br></pre></td></tr></table></figure>
+<p>点击这个按钮：</p>
+<p><img src="http://ww1.sinaimg.cn/mw690/811987cbgw1f25rku93r2j21kw176grv.jpg" alt="inspect"></p>
+<p>神奇的一幕出现了，所有的代码都展示在你面前。就像web一样调试混合APP中的H5.</p>
+<h2 id="切换webdriver"><a href="#切换webdriver" class="headerlink" title="切换webdriver"></a>切换webdriver</h2><p>虽然解决了html代码的问题，但是另一个问题出现了，我们要怎么去操作DOM。常规的方法是没办法了，只能操作原生的，这个时候我们需要把webdriver切换成H5的，而不是原生的。</p>
+<p>其实原理很简单，只要把webdriver切换到H5的方式就行了。使用如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">contexts</span><br><span class="line">contexts(self):</span><br><span class="line"></span><br><span class="line">    Returns the contexts within the current session.</span><br><span class="line">    返回当前会话中的上下文，使用后可以识别H5页面的控件</span><br><span class="line"></span><br><span class="line">    :Usage:</span><br><span class="line">        driver.contexts</span><br><span class="line">用法 driver.contexts</span><br></pre></td></tr></table></figure>
+<p>调用这个方法后，把结果打印出来，你会发现是一个列表，列表中的第一个是NATIVE_APP，这个就表示现在的webdriver是调用原生的功能，我们使用这个命令切换一下就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def switch_h5(self):</span><br><span class="line">        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, &#123;&quot;name&quot;: &quot;WEBVIEW_com.weizq&quot;&#125;)</span><br><span class="line"></span><br><span class="line">    def switch_app(self):</span><br><span class="line">        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, &#123;&quot;name&quot;: &quot;NATIVE_APP&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<p>第一个函数就是封装切换到H5的方法，name对应的东西就是通过contexts列表中打印出来的东西，当然你也可以使用其他的方法封装。</p>
+<p>切换到H5的webdriver之后，再使用driver.find_element_by_id试试？现在就变成查找DOM相关的功能了，再调用第二个函数，又切回原生的webdriver了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Appium/" rel="tag">#Appium</a>
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/31/Appium学习之路—环境搭建/" rel="next" title="Appium学习之路—环境搭建">
+                <i class="fa fa-chevron-left"></i> Appium学习之路—环境搭建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Sven Weng" />
+          <p class="site-author-name" itemprop="name">Sven Weng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常规方法"><span class="nav-number">2.</span> <span class="nav-text">常规方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取巧的办法"><span class="nav-number">3.</span> <span class="nav-text">取巧的办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更优化的处理方式"><span class="nav-number">4.</span> <span class="nav-text">更优化的处理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换webdriver"><span class="nav-number">5.</span> <span class="nav-text">切换webdriver</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
