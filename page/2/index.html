@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"right","display":"always"},
     fancybox: true,
     motion: true,
@@ -726,8 +726,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/01/Django博客开发（九）—添加多说评论/" itemprop="url">
-                  Django博客开发（九）—添加多说评论
+                <a class="post-title-link" href="/2016/03/01/python生成二维码/" itemprop="url">
+                  python生成二维码
                 </a>
               
             
@@ -770,8 +770,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/01/Django博客开发（九）—添加多说评论/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/Django博客开发（九）—添加多说评论/" itemprop="commentsCount"></span>
+                <a href="/2016/03/01/python生成二维码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/python生成二维码/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -794,9 +794,11 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>MacBook的数据被抹去之后，我又重写了一个博客，同样是用现成已有的前端模板写的。这次我只要一个简洁的功能就行了，太复杂很多功能用不到，毫无意义。这次的博客我多加了两个功能，一个是多说的评论框，另一个是日历。另外，我把自己的公众号的二维码也一起放上去了。<br>
+          <p>版本相关<br>操作系统：Mac OS X EI Caption<br>Python版本：2.7<br>IDE：Sublime Text 3</p>
+<hr>
+<h2 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a>依赖库</h2><p>Python生成二维码需要的依赖库为PIL和QRcode。<br>坑爹的是，百度了好久都没有找到PIL，不知道是什么时候改名了，pillow就是传说中的PIL。<br>安装命令：sudo pip install pillow、sudo pip install qrcode<br>验证是否安装成功，使用命令from PIL import Image，就可以验证PIL是否安装成功，qrcode则使用import qrcode，两条命令不报错，就说明依赖的环境已经完毕了。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/01/Django博客开发（九）—添加多说评论/#more" rel="contents">
+            <a class="btn" href="/2016/03/01/python生成二维码/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -860,8 +862,8 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
-               alt="Sven Weng" />
-          <p class="site-author-name" itemprop="name">Sven Weng</p>
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
           <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
         </div>
         <nav class="site-state motion-element">
@@ -958,15 +960,15 @@
         
         <div class="links-of-blogroll motion-element">
           
-            <div class="links-of-blogroll-title">Links</div>
+            <div class="links-of-blogroll-title">友情链接</div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://wybblog.applinzi.com" target="_blank">MyBlog</a>
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://www.wengyanbin.me" target="_blank">MyWebSite</a>
+                  <a href="http://www.wengyanbin.me" target="_blank">我的个人站点</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
@@ -974,11 +976,11 @@
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/wyb199026" target="_blank">MyCSDN</a>
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">My简书</a>
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
                 </li>
               
             </ul>
@@ -1006,7 +1008,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Sven Weng</span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
 </div>
 
 <div class="powered-by">
@@ -1016,7 +1018,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -1069,6 +1071,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
 
   
 
