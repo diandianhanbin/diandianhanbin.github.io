@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Mist',
     sidebar: {"position":"right","display":"always"},
     fancybox: true,
     motion: true,
@@ -131,7 +131,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">www.wengyanbin.me</p>
+  <p class="site-subtitle">www.wengyb.com</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -257,8 +257,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/27/Python批量更改文件名/" itemprop="url">
-                  Python批量更改文件名
+                <a class="post-title-link" href="/2015/12/03/UnitTest—测试多个文件/" itemprop="url">
+                  UnitTest—测试多个文件
                 </a>
               
             
@@ -271,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-27T10:41:06+08:00" content="2016-01-27">
-              2016-01-27
+            <time itemprop="dateCreated" datetime="2015-12-03T13:52:06+08:00" content="2015-12-03">
+              2015-12-03
             </time>
           </span>
 
@@ -301,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/27/Python批量更改文件名/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/27/Python批量更改文件名/" itemprop="commentsCount"></span>
+                <a href="/2015/12/03/UnitTest—测试多个文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/UnitTest—测试多个文件/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,9 +325,9 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于后台数据有好多，但是文案提供过来的图片命名全部没有按照格式来命名，Python这么强大的语言，肯定是能够处理这个问题的，于是我就写了一个小脚本批量改文件名。<br>
+          <p>写测试案例的过程中，我们可以需要写多个py文件，一个一个的去执行再生成报告，不仅麻烦而且多份报告还要重新去整合，浪费时间，有没有一种方法可以把我们写的所有py文件同时执行呢？其实这种方法类似之前的测试多个类的方法。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/27/Python批量更改文件名/#more" rel="contents">
+            <a class="btn" href="/2015/12/03/UnitTest—测试多个文件/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -374,8 +374,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/22/Python读写Json涉及到中文的处理/" itemprop="url">
-                  Python读写Json涉及到中文的处理
+                <a class="post-title-link" href="/2015/12/02/UnitTest—引入其他类/" itemprop="url">
+                  UnitTest—引入其他类
                 </a>
               
             
@@ -388,8 +388,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-22T11:17:44+08:00" content="2016-01-22">
-              2016-01-22
+            <time itemprop="dateCreated" datetime="2015-12-02T13:58:08+08:00" content="2015-12-02">
+              2015-12-02
             </time>
           </span>
 
@@ -418,8 +418,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/22/Python读写Json涉及到中文的处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/Python读写Json涉及到中文的处理/" itemprop="commentsCount"></span>
+                <a href="/2015/12/02/UnitTest—引入其他类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/02/UnitTest—引入其他类/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -442,9 +442,9 @@
 
       
         
-          <p>今天在帮前端准备数据的时候，需要把数据格式转成json格式，说实话，涉及到中文有时候真的是很蛋疼，除非对Python的编码规则比较了解，不然处理起来真的很蛋疼。<br>
+          <p>我们在测试的过程中，不是所有时候都要把代码和测试代码放到一起的，比如开发的代码很长很长，那么我们如果把开发的代码全部拷贝出来，这样整个文件就显得比较冗余。不方便检查。我们可以使用import的方法把待测试的代码引入到我们的测试文件中。比如这样一段代码，单独保存到一个文件中，我保存的文件名是testclass.py<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/22/Python读写Json涉及到中文的处理/#more" rel="contents">
+            <a class="btn" href="/2015/12/02/UnitTest—引入其他类/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -491,8 +491,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/14/Django开发博客（七）——MarkDown优化/" itemprop="url">
-                  Django开发博客（七）——MarkDown优化
+                <a class="post-title-link" href="/2015/12/01/UnitTest—hello-unittest/" itemprop="url">
+                  UnitTest—hello-unittest
                 </a>
               
             
@@ -505,8 +505,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-14T11:19:19+08:00" content="2016-01-14">
-              2016-01-14
+            <time itemprop="dateCreated" datetime="2015-12-01T14:02:35+08:00" content="2015-12-01">
+              2015-12-01
             </time>
           </span>
 
@@ -535,8 +535,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/14/Django开发博客（七）——MarkDown优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/14/Django开发博客（七）——MarkDown优化/" itemprop="commentsCount"></span>
+                <a href="/2015/12/01/UnitTest—hello-unittest/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/01/UnitTest—hello-unittest/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -559,9 +559,11 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>上一次把markdown集成之后，发现还是有很多问题。这次需要做一些优化。<br>1、markdown与普通文本的区别显示。<br>2、增加点击量的统计<br>3、添加名片卡的滑动<br>
+          <h1 id="Hello-PyUnitTest"><a href="#Hello-PyUnitTest" class="headerlink" title="Hello PyUnitTest"></a>Hello PyUnitTest</h1><h2 id="PyUnitTest是什么"><a href="#PyUnitTest是什么" class="headerlink" title="PyUnitTest是什么"></a>PyUnitTest是什么</h2><blockquote>
+<p>作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：<a href="http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上。">http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上。</a><br>unittest是一个python版本的junit，junit是java中的单元测试框架，对java的单元测试，有一句话很贴切：Keep the bar green，相信使用eclipse写过java单元测试的都心领神会。unittest实现了很多junit中的概念，比如我们非常熟悉的test case, test suite等，总之，原理都是相通的，只是用不同的语言表达出来。</p>
+</blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/14/Django开发博客（七）——MarkDown优化/#more" rel="contents">
+            <a class="btn" href="/2015/12/01/UnitTest—hello-unittest/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -608,8 +610,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/11/Django开发博客（六）——添加MarkDown支持/" itemprop="url">
-                  Django开发博客（六）——添加MarkDown支持
+                <a class="post-title-link" href="/2015/12/01/UnitTest—为你的测试结果打印案例名称/" itemprop="url">
+                  UnitTest—为你的测试结果打印案例名称
                 </a>
               
             
@@ -622,8 +624,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-11T13:26:11+08:00" content="2016-01-11">
-              2016-01-11
+            <time itemprop="dateCreated" datetime="2015-12-01T13:56:04+08:00" content="2015-12-01">
+              2015-12-01
             </time>
           </span>
 
@@ -652,8 +654,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/11/Django开发博客（六）——添加MarkDown支持/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/Django开发博客（六）——添加MarkDown支持/" itemprop="commentsCount"></span>
+                <a href="/2015/12/01/UnitTest—为你的测试结果打印案例名称/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/01/UnitTest—为你的测试结果打印案例名称/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -676,9 +678,9 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新增文章的功能总算是磕磕碰碰的完成了，有时间要去学学前端的技术，自己写一个界面出来，目前看到的界面都是别人的，看起来有点坑，虽然总体风格不错，但是很难找到特别符合我想法的界面。<br>
+          <h2 id="打印测试用例名称"><a href="#打印测试用例名称" class="headerlink" title="打印测试用例名称"></a>打印测试用例名称</h2><p>上一篇文章中，我们看到了，直接执行的结果显示不是很友好，测试成功显示的结果如下<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/11/Django开发博客（六）——添加MarkDown支持/#more" rel="contents">
+            <a class="btn" href="/2015/12/01/UnitTest—为你的测试结果打印案例名称/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -725,8 +727,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/06/Django开发博客（五）——新增文章/" itemprop="url">
-                  Django开发博客（五）——新增文章
+                <a class="post-title-link" href="/2015/12/01/UnitTest—测试案例初始化和退出/" itemprop="url">
+                  UnitTest—测试案例初始化和退出
                 </a>
               
             
@@ -739,8 +741,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-06T11:24:39+08:00" content="2016-01-06">
-              2016-01-06
+            <time itemprop="dateCreated" datetime="2015-12-01T13:48:31+08:00" content="2015-12-01">
+              2015-12-01
             </time>
           </span>
 
@@ -769,8 +771,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/06/Django开发博客（五）——新增文章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/Django开发博客（五）——新增文章/" itemprop="commentsCount"></span>
+                <a href="/2015/12/01/UnitTest—测试案例初始化和退出/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/01/UnitTest—测试案例初始化和退出/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -793,9 +795,360 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>大概的博客已经搭建完毕了，但是我们添加内容一直都是通过后台系统来添加。这样的博客感觉档次不是非常高。我们需要添加一个页面，用来提交文章。<br>
+          <p>这篇文章主要介绍unittest的初始化和结束函数<br>unittest的初始化和结束类似Python类的<strong>init</strong>和<strong>del</strong>。<br>先回顾一下Python中Class的初始化和结束<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/06/Django开发博客（五）——新增文章/#more" rel="contents">
+            <a class="btn" href="/2015/12/01/UnitTest—测试案例初始化和退出/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/01/UnitTest—测试多个类/" itemprop="url">
+                  UnitTest—测试多个类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-01T11:48:31+08:00" content="2015-12-01">
+              2015-12-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/01/UnitTest—测试多个类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/01/UnitTest—测试多个类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前两篇文章中学习了如何做一个简单的单元测试。现在问题来了，如果多一个测试类呢？要写两个文件吗？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/01/UnitTest—测试多个类/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/23/Appium学习之路—demon的解释/" itemprop="url">
+                  Appium学习之路—demon的解释
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-23T15:01:02+08:00" content="2015-11-23">
+              2015-11-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/23/Appium学习之路—demon的解释/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/23/Appium学习之路—demon的解释/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Appium学习之路—demon的解释"><a href="#Appium学习之路—demon的解释" class="headerlink" title="Appium学习之路—demon的解释"></a>Appium学习之路—demon的解释</h1>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/23/Appium学习之路—demon的解释/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/20/Python练习题—动态打印歌词/" itemprop="url">
+                  Python练习题—动态打印歌词
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-20T10:41:06+08:00" content="2015-11-20">
+              2015-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/20/Python练习题—动态打印歌词/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/20/Python练习题—动态打印歌词/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Python的一个习题"><a href="#Python的一个习题" class="headerlink" title="Python的一个习题"></a>Python的一个习题</h2><p>这段时间一直在学习Python，把基础语法看完之后，就像找一点小练习来测试一下学习的程度，但是网络上大部分的东西都是一些算术题，比如水仙花算法，杨辉三角等等问题，做起来没什么意思，旁边一个前端开发的哥们给我出了一个题，挺有意思的，发出来给大家看看，一起学习学习。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/20/Python练习题—动态打印歌词/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -825,7 +1178,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 
@@ -1015,7 +1368,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
 
@@ -1068,13 +1421,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
-
-
 
   
 
