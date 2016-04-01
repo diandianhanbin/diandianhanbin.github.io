@@ -385,6 +385,41 @@
   </entry>
   
   <entry>
+    <title>Python小知识——深度剖析获取迭代序列</title>
+    <link href="http://www.wengyanbin.me/2016/03/12/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E8%8E%B7%E5%8F%96%E8%BF%AD%E4%BB%A3%E5%BA%8F%E5%88%97/"/>
+    <id>http://www.wengyanbin.me/2016/03/12/Python小知识——深度剖析获取迭代序列/</id>
+    <published>2016-03-12T02:41:06.000Z</published>
+    <updated>2016-03-31T03:15:37.000Z</updated>
+    
+    <content type="html">&lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;num = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in li:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; num, &amp;apos;element :&amp;apos;, i&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	num += 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这种方式获取起来很容写，也比较好理解，但是这个运行过程中多声明了一个变量，性能上并不是最优的（当然基本上我们写的东西性能上不差这一点）。&lt;/p&gt;
+&lt;p&gt;另一个替代方法是使用len（）和range（）的结合使用，这个方法用起来也是非常方便的，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in range(len(li)):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; i, &amp;apos;element :&amp;apos;, li[i]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;类似的方法还有zip（）， while循环等等。&lt;/p&gt;
+&lt;h2 id=&quot;enumerate&quot;&gt;&lt;a href=&quot;#enumerate&quot; class=&quot;headerlink&quot; title=&quot;enumerate&quot;&gt;&lt;/a&gt;enumerate&lt;/h2&gt;&lt;p&gt;今天在看书的时候突然看到这个函数，这个函数处理起来真的是非常巧妙，至少我感觉比上文提到的方法更简单，更粗暴。&lt;/p&gt;
+&lt;p&gt;看下面的代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i, e in enumerate(li):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print  i, e&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;======输出结果===========&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 b&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2 c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Finished in 0.1s]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这种实现方式代码简洁，可读性强。其函数签名如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;enumerate(sequence, start=0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中的sequence可以为任意一个可迭代的对象，函数的本质上就是一个迭代器，可以使用next()方法获取下一个迭代元素，比如上面的代码我们做一下简单的修改。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;e = enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=======输出结果======&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;enumerate object at 0x1079faaa0&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(0, &amp;apos;a&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(1, &amp;apos;b&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;不适用于字典&quot;&gt;&lt;a href=&quot;#不适用于字典&quot; class=&quot;headerlink&quot; title=&quot;不适用于字典&quot;&gt;&lt;/a&gt;不适用于字典&lt;/h3&gt;&lt;p&gt;字典这个类型是无序的，所以无法使用enumerate来处理字典的迭代,当然，你如果使用了也不会报错。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wengyanbin.me/categories/Python/"/>
+    
+    
+      <category term="python" scheme="http://www.wengyanbin.me/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Django使用第三方接口（一）</title>
     <link href="http://www.wengyanbin.me/2016/03/12/Django%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%A5%E5%8F%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://www.wengyanbin.me/2016/03/12/Django使用第三方接口（一）/</id>
@@ -425,41 +460,6 @@
       <category term="python" scheme="http://www.wengyanbin.me/tags/python/"/>
     
       <category term="Django" scheme="http://www.wengyanbin.me/tags/Django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python小知识——深度剖析获取迭代序列</title>
-    <link href="http://www.wengyanbin.me/2016/03/12/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E8%8E%B7%E5%8F%96%E8%BF%AD%E4%BB%A3%E5%BA%8F%E5%88%97/"/>
-    <id>http://www.wengyanbin.me/2016/03/12/Python小知识——深度剖析获取迭代序列/</id>
-    <published>2016-03-12T02:41:06.000Z</published>
-    <updated>2016-03-31T03:15:37.000Z</updated>
-    
-    <content type="html">&lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;num = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in li:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; num, &amp;apos;element :&amp;apos;, i&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	num += 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这种方式获取起来很容写，也比较好理解，但是这个运行过程中多声明了一个变量，性能上并不是最优的（当然基本上我们写的东西性能上不差这一点）。&lt;/p&gt;
-&lt;p&gt;另一个替代方法是使用len（）和range（）的结合使用，这个方法用起来也是非常方便的，代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in range(len(li)):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; i, &amp;apos;element :&amp;apos;, li[i]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;类似的方法还有zip（）， while循环等等。&lt;/p&gt;
-&lt;h2 id=&quot;enumerate&quot;&gt;&lt;a href=&quot;#enumerate&quot; class=&quot;headerlink&quot; title=&quot;enumerate&quot;&gt;&lt;/a&gt;enumerate&lt;/h2&gt;&lt;p&gt;今天在看书的时候突然看到这个函数，这个函数处理起来真的是非常巧妙，至少我感觉比上文提到的方法更简单，更粗暴。&lt;/p&gt;
-&lt;p&gt;看下面的代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i, e in enumerate(li):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print  i, e&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;======输出结果===========&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 b&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2 c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Finished in 0.1s]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这种实现方式代码简洁，可读性强。其函数签名如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;enumerate(sequence, start=0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其中的sequence可以为任意一个可迭代的对象，函数的本质上就是一个迭代器，可以使用next()方法获取下一个迭代元素，比如上面的代码我们做一下简单的修改。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;e = enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=======输出结果======&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;enumerate object at 0x1079faaa0&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(0, &amp;apos;a&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(1, &amp;apos;b&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;不适用于字典&quot;&gt;&lt;a href=&quot;#不适用于字典&quot; class=&quot;headerlink&quot; title=&quot;不适用于字典&quot;&gt;&lt;/a&gt;不适用于字典&lt;/h3&gt;&lt;p&gt;字典这个类型是无序的，所以无法使用enumerate来处理字典的迭代,当然，你如果使用了也不会报错。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://www.wengyanbin.me/categories/Python/"/>
-    
-    
-      <category term="python" scheme="http://www.wengyanbin.me/tags/python/"/>
     
   </entry>
   
