@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyanbin.me/"/>
-  <updated>2016-04-01T09:21:53.000Z</updated>
+  <updated>2016-04-01T09:26:58.000Z</updated>
   <id>http://www.wengyanbin.me/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://www.wengyanbin.me/2016/04/01/Python%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7-%E4%B8%80-%E2%80%94Monkey/"/>
     <id>http://www.wengyanbin.me/2016/04/01/Python开发测试工具-一-—Monkey/</id>
     <published>2016-04-01T09:17:44.000Z</published>
-    <updated>2016-04-01T09:21:53.000Z</updated>
+    <updated>2016-04-01T09:26:58.000Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h2&gt;&lt;p&gt;整个实现流程并不困难，一个界面填写数据，提交到后台，然后Python调用os模块，执行shell命令，然后就可以实现GUI端的Monkey了。&lt;/p&gt;
 &lt;h2 id=&quot;Web端&quot;&gt;&lt;a href=&quot;#Web端&quot; class=&quot;headerlink&quot; title=&quot;Web端&quot;&gt;&lt;/a&gt;Web端&lt;/h2&gt;&lt;p&gt;前段时间一直都在看web端的知识，我就想用web写一个界面，然后后台用Django执行，就可以很简单的完成这个工具了。&lt;/p&gt;
 &lt;h3 id=&quot;使用POST表单实现&quot;&gt;&lt;a href=&quot;#使用POST表单实现&quot; class=&quot;headerlink&quot; title=&quot;使用POST表单实现&quot;&gt;&lt;/a&gt;使用POST表单实现&lt;/h3&gt;&lt;p&gt;前端就是用Bootstrap来实现了，对我来说，写了这么久得博客，这块东西比较容易了，代码就不放了，bootstrap套套就出来了，界面图如下：&lt;/p&gt;
@@ -66,7 +66,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。&lt;br&gt;
     
     </summary>
     

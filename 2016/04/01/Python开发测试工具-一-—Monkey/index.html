@@ -59,24 +59,18 @@
 
 
 
-<meta name="description" content="背景最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。
-思路整个实现流程并不困难，一个界面填写数据，提交到后台，然后Python调用os模块，执行shell命令，然后就可以实现GUI端的Monkey了。
-Web端前段时间一直都在看web端的知识，我就">
+<meta name="description" content="背景最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python开发测试工具(一)—Monkey">
 <meta property="og:url" content="http://www.wengyanbin.me/2016/04/01/Python开发测试工具-一-—Monkey/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="背景最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。
-思路整个实现流程并不困难，一个界面填写数据，提交到后台，然后Python调用os模块，执行shell命令，然后就可以实现GUI端的Monkey了。
-Web端前段时间一直都在看web端的知识，我就">
+<meta property="og:description" content="背景最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。">
 <meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/F819E2C3-3A6B-4BCD-B538-22F1E9D9C6BF.png">
 <meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/ABAD9EFF-A159-48CA-A794-B431FC5021C3.png">
-<meta property="og:updated_time" content="2016-04-01T09:21:53.000Z">
+<meta property="og:updated_time" content="2016-04-01T09:26:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python开发测试工具(一)—Monkey">
-<meta name="twitter:description" content="背景最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。
-思路整个实现流程并不困难，一个界面填写数据，提交到后台，然后Python调用os模块，执行shell命令，然后就可以实现GUI端的Monkey了。
-Web端前段时间一直都在看web端的知识，我就">
+<meta name="twitter:description" content="背景最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。">
 <meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/F819E2C3-3A6B-4BCD-B538-22F1E9D9C6BF.png">
 
 
@@ -329,7 +323,7 @@ Web端前段时间一直都在看web端的知识，我就">
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在测试安卓的时候，经常会用到Monkey，Monkey作为安卓的基础工具，必须要到命令行去敲敲敲，做起来非常非常麻烦，于是我就想能不能利用学会的Python知识直接开发一个带有界面的安卓测试工具。<br><a id="more"></a></p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>整个实现流程并不困难，一个界面填写数据，提交到后台，然后Python调用os模块，执行shell命令，然后就可以实现GUI端的Monkey了。</p>
 <h2 id="Web端"><a href="#Web端" class="headerlink" title="Web端"></a>Web端</h2><p>前段时间一直都在看web端的知识，我就想用web写一个界面，然后后台用Django执行，就可以很简单的完成这个工具了。</p>
 <h3 id="使用POST表单实现"><a href="#使用POST表单实现" class="headerlink" title="使用POST表单实现"></a>使用POST表单实现</h3><p>前端就是用Bootstrap来实现了，对我来说，写了这么久得博客，这块东西比较容易了，代码就不放了，bootstrap套套就出来了，界面图如下：</p>
