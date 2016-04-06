@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="个人杂谈," />
+  <meta name="keywords" content="测试,python," />
 
 
 
@@ -59,16 +59,16 @@
 
 
 
-<meta name="description" content="今天早上有一条新闻刷爆了朋友圈，微信提现收费了。公告的内容是这样的：">
+<meta name="description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信收费">
-<meta property="og:url" content="http://www.wengyb.com/2016/02/16/微信收费/index.html">
+<meta property="og:title" content="Python开发测试工具（二）—Monkey工具的优化">
+<meta property="og:url" content="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="今天早上有一条新闻刷爆了朋友圈，微信提现收费了。公告的内容是这样的：">
-<meta property="og:updated_time" content="2016-03-31T06:56:23.000Z">
+<meta property="og:description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
+<meta property="og:updated_time" content="2016-04-06T14:22:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微信收费">
-<meta name="twitter:description" content="今天早上有一条新闻刷爆了朋友圈，微信提现收费了。公告的内容是这样的：">
+<meta name="twitter:title" content="Python开发测试工具（二）—Monkey工具的优化">
+<meta name="twitter:description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
 
 
 
@@ -86,7 +86,7 @@
   };
 </script>
 
-  <title> 微信收费 | 点点寒彬 </title>
+  <title> Python开发测试工具（二）—Monkey工具的优化 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
             
             
               
-                微信收费
+                Python开发测试工具（二）—Monkey工具的优化
               
             
           </h1>
@@ -267,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-16T14:54:47+08:00" content="2016-02-16">
-              2016-02-16
+            <time itemprop="dateCreated" datetime="2016-04-06T22:19:11+08:00" content="2016-04-06">
+              2016-04-06
             </time>
           </span>
 
@@ -281,8 +281,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MyTalk/" itemprop="url" rel="index">
-                    <span itemprop="name">MyTalk</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -297,8 +297,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/02/16/微信收费/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/16/微信收费/" itemprop="commentsCount"></span>
+                <a href="/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,43 +320,26 @@
       
 
       
-        <p>今天早上有一条新闻刷爆了朋友圈，微信提现收费了。公告的内容是这样的：<br><a id="more"></a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。<br><a id="more"></a></p>
+<h2 id="多线程处理"><a href="#多线程处理" class="headerlink" title="多线程处理"></a>多线程处理</h2><p>上篇文章末尾提到可以使用多线程或者多进程来处理，其实我心里也没有底。今天算是稍微了解了一下，百度之后发现提的比较多的就是线程，我就先尝试了多线程的处理方式，不过不管用多线程还是多进程，都必须对原来的代码进行改写了，原来的代码编写方式是使用最基本的方式，连函数都没有处理，这次改动就一起改了，新生成一个AndroidTools类，然后在init函数中把原来界面的代码copy进去，这样实例化这个类的时候，就会画出界面了。</p>
+<h3 id="给按钮加一个线程"><a href="#给按钮加一个线程" class="headerlink" title="给按钮加一个线程"></a>给按钮加一个线程</h3><p>其实整个调用方式是在AndroidTools类中加一个函数，然后把执行Monkey按钮的命令封装到这个函数里，在这个函数中给这个命令分配一个线程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_monkey</span><span class="params">(self)</span>:</span></span><br><span class="line">        t = threading.Thread(target=<span class="keyword">lambda</span>: self.mk.merge_command(self.cm.get_text(log_path), *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br></pre></td></tr></table></figure>
+<p>这样开了一个线程给按钮，运行之后确实解决了界面卡顿的问题，不过新的问题就来了，这个进程没办法停止。即使我点击结束Monkey，从日志来看命令也确实执行了，但是这个线程就是停不下来。这又是一个巨大的坑。</p>
+<p>当然，我尝试过很多种方式处理这个问题。比如设置一个全局变量来监控，点击停止后先结束线程，再执行结束Monkey的命令。不过结果都是很失败，不是线程阻塞就是线程阻塞。</p>
+<p>网上停止线程的方式基本都是通过一个死循环来监控变量，结束父线程的方式来结束子线程。对线程的了解还不是很深入，实施了几次都不成功。</p>
+<p>官方也没有提供停止线程的方法，据说是不提倡手动停止线程。</p>
+<p><strong> 按我的理解，线程在执行Monkeky，这时我通过命令停止Monkey，那么这个线程就应该自动结束了。不知道为什么执行起来并不是那么回事</strong></p>
+<p>如果有朋友知道，请留言告诉我。</p>
+<h2 id="多进程的处理"><a href="#多进程的处理" class="headerlink" title="多进程的处理"></a>多进程的处理</h2><p>大概折腾了一整个下午吧，实在是有点心烦，我就换了一个东西写，在写爬虫的时候用到了多进程，我就在想如果把我的思想换一下，用多进程来处理这些按钮事件，是不是也很好呢？</p>
 <blockquote>
-<p>2月16日，微信支付团队发布公告，3月1日起，个人用户的微信零钱提现功能（从零钱到银行卡）开始对超额部分收取手续费，转账恢复免费。根据新的政策，从3月1日起计算，每位用户（身份证维度）有累计1000元免费提现额度，超出1000元部分按银行费率收取手续费，费率均为0.1%，每笔最少收0.1元。</p>
+<p><strong>按我的理解，线程在执行Monkeky，这时我通过命令停止Monkey，那么这个线程就应该自动结束了。不知道为什么执行起来并不是那么回事</strong></p>
 </blockquote>
-<p>其实里面有许多可以挖掘的信息。</p>
-<h3 id="额度1000"><a href="#额度1000" class="headerlink" title="额度1000"></a>额度1000</h3><p>对于这个额度1000，其实认真看可以发现，是每位微信用户一辈子的额度，免费的提现额度是1000。对！<strong>一辈子！</strong>。<br>微信对于用户的区分是用身份证来区分的，那么也就是基本上你没有可以取巧的方式了。</p>
-<h3 id="费率0-1"><a href="#费率0-1" class="headerlink" title="费率0.1%"></a>费率0.1%</h3><p>超出部分按银行费率收取，均为0.1%，这个数据其实是可商榷的。毕竟，不是所有银行都是这么个费率。</p>
-<h3 id="官方回应"><a href="#官方回应" class="headerlink" title="官方回应"></a>官方回应</h3><p>微信官方是这么回复的：</p>
-<blockquote>
-<p>手续费并非微信收取，而是缴纳给了银行，微信称，“一直以来，基于微信支付的每一笔转账和提现交易，不论金额大小都要向银行缴纳手续费交易。对提现交易收费并不是微信支付追求营收之举，而是用于支付银行手续费。”同时，微信支付团队称正在积极与银行方面密切沟通，争取早日实现转账、提现交易完全免费。</p>
-</blockquote>
-<p>从官方的回复我们可以挖掘出这些信息：</p>
-<ul>
-<li>微信收费并不是为了赚钱，而是让用户自己付自己应该付给银行的钱，微信只是代收。</li>
-<li>微信被银行收费是按笔来收的</li>
-<li>微信正在和银行沟通，希望银行能够免了这笔手续费</li>
-</ul>
-<h3 id="纠结的微信"><a href="#纠结的微信" class="headerlink" title="纠结的微信"></a>纠结的微信</h3><p>微信所说的成本大致是这么些东西。</p>
-<blockquote>
-<p>成本产生来源于两方面：1.银行在第三方支付每次调用快捷支付接口时都会按金额收取手续费，2.部分银行在提现时会再次收取费用，在此次调整中，微信支付选择承担了所有转账的成本，而在提现时收取手续费成本。</p>
-</blockquote>
-<p>这么看来，其实微信收费并不太合理。涉及到银行的收费，只有调用银行快捷支付接口的时候，银行才会收取费用。<br>我们可以想象一下这样的场景，A打麻将输了100元给B。通过微信支付付款。A需要转账给B100元，A的零钱包没有钱，通过快捷支付从银行卡里转了100给B，最后B从微信钱包中提现到自己的银行卡中。资金流向就是从A的银行卡的活期户流到B的微信钱包，再从B的微信钱包提现到银行卡。<br>场景中的手续费发生是这样的：<br>1、A微信支付给B的过程，钱是先从A的银行卡到A的微信钱包，再从A的微信钱包转给B。这里银行收了手续费，因为A从银行充值到钱包的过程中调用了银行的接口，微信帮A垫付了这笔手续费。<br>2、B从微信钱包中提现到自己的银行卡，微信向B收了0.1%的手续费。<br>那么整个过程中，从理论上来看，微信应该向A收取手续费。但是向A收取手续费，虽然道理上说得通，但是用户体验会很差。</p>
-<p>微信纠结的地方不仅仅如此。这种场景公关处理一下，我相信大家也基本上能够理解。还有一个更厉害的地方。那里才是高成本的聚集地。</p>
-<p>我们再来看一个场景，ABC三个人斗地主，1毛钱一盘，A输了100盘，于是A向BC的钱包转100次1毛钱。由于A的钱包没有余额，于是100笔全部走银行的快捷支付。这100笔快捷支付，微信都得付钱给银行。</p>
-<p>类似场景中的零碎钱的支出，才是微信产生巨大成本的地方。这么看起来，微信确实帮我们承担了巨大的成本。</p>
-<h3 id="值得商榷的成本"><a href="#值得商榷的成本" class="headerlink" title="值得商榷的成本"></a>值得商榷的成本</h3><p>不过巨大成本也是值得商榷的。零钱包有着巨大的余额，至少我是不相信腾讯不会利用这笔资金做些什么。虽然我没有什么理财经验，但是手上握着几十个E的资金，我也会去找银行做协定存款。这笔利息，是用户给微信带来的。也没见微信给个说法。</p>
-<h3 id="用户资金导向？"><a href="#用户资金导向？" class="headerlink" title="用户资金导向？"></a>用户资金导向？</h3><p>这些年阿里有一件事一直没干成，那就是社交。同理、腾讯的金融一直做的很烂。好不容易微信支付在竞争中占了上风，但是对腾讯的金融梦一直没什么帮助。零钱包中的零钱总数巨大，但是似乎用来买理财产品的人并不多，起码从我个人来看，我更愿意去隔壁阿里买，他们做了这么多年，靠谱。<br>据说前阵子微信推出了零钱理财，很明显和支付宝余额、余额宝是一个道理。你的支付宝余额放在余额中没有收益，转到余额宝每天就能产生利息，恐怕现在没人的支付宝余额有钱吧。<strong>有理由相信，微信未来也会推出一个功能，零钱自动理财，点一下零钱自动转到零钱理财账户的余额中。</strong><br>既然提现收费了，那就买点理财产品吧，买我腾讯的产品免费，但是你要提现去买阿里的东西？不好意思，我要收点买路钱。</p>
-<h3 id="一些遗漏"><a href="#一些遗漏" class="headerlink" title="一些遗漏"></a>一些遗漏</h3><p>还有这么些东西没说到，比如：</p>
-<blockquote>
-<p>2.部分银行在提现时会再次收取费用</p>
-</blockquote>
-<p>既然是官方公告，那么应该不是空穴来风，但是这个<strong>“部分”</strong>也是值得商榷的，从行为上来看。提现就是银行获得了存款，那么，哪有这么傻缺的银行你送他钱他还要收费？</p>
-<blockquote>
-<p>微信正在和银行沟通，希望银行能够免了这笔手续费</p>
-</blockquote>
-<p>这个文案厉害啊！银行免了手续费，微信就获得了好名声。银行不免，那也是银行的事，和我微信没什么关系。</p>
-<h3 id="最后补一句"><a href="#最后补一句" class="headerlink" title="最后补一句"></a>最后补一句</h3><p>要是你们觉得微信收费很不爽，可以给我发红包，给我发红包不收费的。哈哈哈！！！</p>
+<p>如果把这个理解放到进程上呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> def run_monkey(self):</span><br><span class="line">        t = multiprocessing.Process(target=lambda: 		</span><br><span class="line">        self.mk.merge_command(self.cm.get_text(log_path),  *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br><span class="line"></span><br><span class="line">def stop_monkey(self):</span><br><span class="line">        self.ad.stop_monkey(status)</span><br></pre></td></tr></table></figure>
+<p>这样跑起来，果然是成功了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>写代码有时候是这样，突然的灵光一闪，几分钟就可能解决一个大问题，今天这个线程的问题我整整google了一天，结果突然一个想法，换成进程，就成功了。</p>
+<p>工具的基本功能是完善了，后续可以加上内存监控，电量监控，cup监控等功能，不过那都是后话了。</p>
+<p>完整功能的代码在<a href="https://github.com/diandianhanbin/AndroidTools" target="_blank" rel="external">Github</a></p>
 
       
     </div>
@@ -392,7 +375,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/个人杂谈/" rel="tag">#个人杂谈</a>
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -401,17 +386,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/09/2015年度总结/" rel="next" title="2015年度总结">
-                <i class="fa fa-chevron-left"></i> 2015年度总结
+              <a href="/2016/04/01/Python开发测试工具-一-—Monkey/" rel="next" title="Python开发测试工具(一)—Monkey">
+                <i class="fa fa-chevron-left"></i> Python开发测试工具(一)—Monkey
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/18/迟来的ApplePay/" rel="prev" title="迟来的ApplePay">
-                迟来的ApplePay <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -426,10 +407,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/02/16/微信收费/"
-     data-title="微信收费"
+        <div class="ds-share flat" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/"
+     data-title="Python开发测试工具（二）—Monkey工具的优化"
      data-content=""
-     data-url="http://www.wengyb.com/2016/02/16/微信收费/">
+     data-url="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -456,8 +437,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/02/16/微信收费/"
-           data-title="微信收费" data-url="http://www.wengyb.com/2016/02/16/微信收费/">
+      <div class="ds-thread" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/"
+           data-title="Python开发测试工具（二）—Monkey工具的优化" data-url="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/">
       </div>
     
   </div>
@@ -629,7 +610,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#额度1000"><span class="nav-number">1.</span> <span class="nav-text">额度1000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费率0-1"><span class="nav-number">2.</span> <span class="nav-text">费率0.1%</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方回应"><span class="nav-number">3.</span> <span class="nav-text">官方回应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纠结的微信"><span class="nav-number">4.</span> <span class="nav-text">纠结的微信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值得商榷的成本"><span class="nav-number">5.</span> <span class="nav-text">值得商榷的成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户资金导向？"><span class="nav-number">6.</span> <span class="nav-text">用户资金导向？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些遗漏"><span class="nav-number">7.</span> <span class="nav-text">一些遗漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后补一句"><span class="nav-number">8.</span> <span class="nav-text">最后补一句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程处理"><span class="nav-number">2.</span> <span class="nav-text">多线程处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给按钮加一个线程"><span class="nav-number">2.1.</span> <span class="nav-text">给按钮加一个线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程的处理"><span class="nav-number">3.</span> <span class="nav-text">多进程的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
