@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试,python," />
+  <meta name="keywords" content="个人杂谈," />
 
 
 
@@ -59,16 +59,22 @@
 
 
 
-<meta name="description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
+<meta name="description" content="易中天其人
+易中天（1947年2月8日－），湖南长沙人，中国知名作家、学者、教育家。
+1981年毕业于武汉大学，获文学硕士学位并留校任教。后在厦门大学中文系任教 。2015年4月声明已经退休。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python开发测试工具（二）—Monkey工具的优化">
-<meta property="og:url" content="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/index.html">
+<meta property="og:title" content="易中天与《易中天中华史》">
+<meta property="og:url" content="http://www.wengyb.com/2016/04/10/易中天与《易中天中华史》/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
-<meta property="og:updated_time" content="2016-04-06T14:22:24.000Z">
+<meta property="og:description" content="易中天其人
+易中天（1947年2月8日－），湖南长沙人，中国知名作家、学者、教育家。
+1981年毕业于武汉大学，获文学硕士学位并留校任教。后在厦门大学中文系任教 。2015年4月声明已经退休。">
+<meta property="og:updated_time" content="2016-04-09T17:18:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python开发测试工具（二）—Monkey工具的优化">
-<meta name="twitter:description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
+<meta name="twitter:title" content="易中天与《易中天中华史》">
+<meta name="twitter:description" content="易中天其人
+易中天（1947年2月8日－），湖南长沙人，中国知名作家、学者、教育家。
+1981年毕业于武汉大学，获文学硕士学位并留校任教。后在厦门大学中文系任教 。2015年4月声明已经退休。">
 
 
 
@@ -86,7 +92,7 @@
   };
 </script>
 
-  <title> Python开发测试工具（二）—Monkey工具的优化 | 点点寒彬 </title>
+  <title> 易中天与《易中天中华史》 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +261,7 @@
             
             
               
-                Python开发测试工具（二）—Monkey工具的优化
+                易中天与《易中天中华史》
               
             
           </h1>
@@ -267,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-06T22:19:11+08:00" content="2016-04-06">
-              2016-04-06
+            <time itemprop="dateCreated" datetime="2016-04-10T01:15:31+08:00" content="2016-04-10">
+              2016-04-10
             </time>
           </span>
 
@@ -281,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/MyTalk/" itemprop="url" rel="index">
+                    <span itemprop="name">MyTalk</span>
                   </a>
                 </span>
 
@@ -297,8 +303,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/" itemprop="commentsCount"></span>
+                <a href="/2016/04/10/易中天与《易中天中华史》/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/易中天与《易中天中华史》/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,26 +326,29 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。<br><a id="more"></a></p>
-<h2 id="多线程处理"><a href="#多线程处理" class="headerlink" title="多线程处理"></a>多线程处理</h2><p>上篇文章末尾提到可以使用多线程或者多进程来处理，其实我心里也没有底。今天算是稍微了解了一下，百度之后发现提的比较多的就是线程，我就先尝试了多线程的处理方式，不过不管用多线程还是多进程，都必须对原来的代码进行改写了，原来的代码编写方式是使用最基本的方式，连函数都没有处理，这次改动就一起改了，新生成一个AndroidTools类，然后在init函数中把原来界面的代码copy进去，这样实例化这个类的时候，就会画出界面了。</p>
-<h3 id="给按钮加一个线程"><a href="#给按钮加一个线程" class="headerlink" title="给按钮加一个线程"></a>给按钮加一个线程</h3><p>其实整个调用方式是在AndroidTools类中加一个函数，然后把执行Monkey按钮的命令封装到这个函数里，在这个函数中给这个命令分配一个线程</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_monkey</span><span class="params">(self)</span>:</span></span><br><span class="line">        t = threading.Thread(target=<span class="keyword">lambda</span>: self.mk.merge_command(self.cm.get_text(log_path), *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br></pre></td></tr></table></figure>
-<p>这样开了一个线程给按钮，运行之后确实解决了界面卡顿的问题，不过新的问题就来了，这个进程没办法停止。即使我点击结束Monkey，从日志来看命令也确实执行了，但是这个线程就是停不下来。这又是一个巨大的坑。</p>
-<p>当然，我尝试过很多种方式处理这个问题。比如设置一个全局变量来监控，点击停止后先结束线程，再执行结束Monkey的命令。不过结果都是很失败，不是线程阻塞就是线程阻塞。</p>
-<p>网上停止线程的方式基本都是通过一个死循环来监控变量，结束父线程的方式来结束子线程。对线程的了解还不是很深入，实施了几次都不成功。</p>
-<p>官方也没有提供停止线程的方法，据说是不提倡手动停止线程。</p>
-<p><strong> 按我的理解，线程在执行Monkeky，这时我通过命令停止Monkey，那么这个线程就应该自动结束了。不知道为什么执行起来并不是那么回事</strong></p>
-<p>如果有朋友知道，请留言告诉我。</p>
-<h2 id="多进程的处理"><a href="#多进程的处理" class="headerlink" title="多进程的处理"></a>多进程的处理</h2><p>大概折腾了一整个下午吧，实在是有点心烦，我就换了一个东西写，在写爬虫的时候用到了多进程，我就在想如果把我的思想换一下，用多进程来处理这些按钮事件，是不是也很好呢？</p>
-<blockquote>
-<p><strong>按我的理解，线程在执行Monkeky，这时我通过命令停止Monkey，那么这个线程就应该自动结束了。不知道为什么执行起来并不是那么回事</strong></p>
+        <h2 id="易中天其人"><a href="#易中天其人" class="headerlink" title="易中天其人"></a>易中天其人</h2><blockquote>
+<p>易中天（1947年2月8日－），湖南长沙人，中国知名作家、学者、教育家。</p>
+<p>1981年毕业于武汉大学，获文学硕士学位并留校任教。后在厦门大学中文系任教 。2015年4月声明已经退休。<br><a id="more"></a><br>易中天长期从事文学、艺术、美学、心理学、人类学、历史学等研究，著有《〈文心雕龙〉美学思想论稿》、《艺术人类学》等著作。2005年央视《百家讲坛》“开坛论道”的学者，2006年在央视“百家讲坛”主讲《汉代风云人物》、《易中天品三国》。2008年主讲《先秦诸子百家争鸣》。  2013年宣布写作36卷本《易中天中华史》，2013年12月5日，荣获第八届作家富豪榜最佳历史书。<br>引自百度百科</p>
 </blockquote>
-<p>如果把这个理解放到进程上呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> def run_monkey(self):</span><br><span class="line">        t = multiprocessing.Process(target=lambda: 		</span><br><span class="line">        self.mk.merge_command(self.cm.get_text(log_path),  *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br><span class="line"></span><br><span class="line">def stop_monkey(self):</span><br><span class="line">        self.ad.stop_monkey(status)</span><br></pre></td></tr></table></figure>
-<p>这样跑起来，果然是成功了。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>写代码有时候是这样，突然的灵光一闪，几分钟就可能解决一个大问题，今天这个线程的问题我整整google了一天，结果突然一个想法，换成进程，就成功了。</p>
-<p>工具的基本功能是完善了，后续可以加上内存监控，电量监控，cup监控等功能，不过那都是后话了。</p>
-<p>完整功能的代码在<a href="https://github.com/diandianhanbin/AndroidTools" target="_blank" rel="external">Github</a></p>
+<h2 id="初识易中天"><a href="#初识易中天" class="headerlink" title="初识易中天"></a>初识易中天</h2><p>最初知道易中天先生，是在央视《百家讲坛》上看到了品三国。</p>
+<p>男生都喜欢三国这段历史，但是对三国的认知大多限于《三国演义》和一些三国系列的游戏。当时听到了易中天先生的品三国系列，让我从另外一个角度重新审视三国，让本来就喜欢历史的我获取了一个新的历史观，原来我觉得历史就是看故事，看了品三国之后，发现历史不仅仅只有故事，还有很多可以了解和研究的方向。</p>
+<p>05年正值高中，每天课业都比较重，基本上没时间完整的看完品三国，于是就买了品三国书籍来看，看完之后特别受教，也特别喜欢易中天先生的写作风格和历史观（虽然有些观点我并不怎么赞同），之后接连阅读了易中天先生的其他书籍，包括《帝国的惆怅》、《帝国的终结》、《美国宪法的诞生和我们的反思》。</p>
+<p>再之后由于高三，虽然我对念书不怎么感冒，毕竟高考是人生的一大考，还是要花很多时间准备的，慢慢的就没有继续接触易中天先生的其他书籍。</p>
+<h2 id="再见易中天"><a href="#再见易中天" class="headerlink" title="再见易中天"></a>再见易中天</h2><p>再次看到易中天先生，是在央视的《开讲啦》，说实话，我一直觉得央视最好的节目就是《百家讲坛》和《开讲啦》，当然《宇宙联播》一定是第一节目。</p>
+<p>一个将近70岁的老头在电视上讲述他的过去，看起来也挺逗的，在最后他说他现在退休了，准备写出36卷的《易中天中华史》，即使2个月的时间能写完一本也需要3年的时间。不得不说老先生很值得我敬佩。</p>
+<h2 id="《易中天中华史》"><a href="#《易中天中华史》" class="headerlink" title="《易中天中华史》"></a>《易中天中华史》</h2><p>截止到今天，一共出了十三卷，我看了其中的三卷，分别是《从春秋到战国》、《秦并天下》和《隋唐定局》，如果能等到36卷完结的那天，我一定会全套购买来阅读。读了3本，再加上之前的理解，慢慢的整理了一些自己的思想。</p>
+<h3 id="适合人群"><a href="#适合人群" class="headerlink" title="适合人群"></a>适合人群</h3><p>每个人的历史观是不一样的，取决于每个人对历史的理解，比如一个历史知识比较渊博的人，那么他会比较偏爱看一些史料的讲解，那些东西更接近真正的历史，就像一位资深程序员，那么他就会偏爱看一些语言源码实现的分析，程序架构设计等内容。而历史知识比较匮乏而又想了解历史，学习历史、那么这套书就会很适合你，相对诙谐的笔法、独到的见解，对初学者非常的友好。</p>
+<h3 id="轻松的历史"><a href="#轻松的历史" class="headerlink" title="轻松的历史"></a>轻松的历史</h3><p>书的风格几乎完整的延续了品三国。读起来相对友好，小故事带动制度、文化的知识。再通过一段一段的联系，不断的层层递进，很轻松的就能够理清逻辑关系，读起来不至于一头雾水。</p>
+<h3 id="节点的历史"><a href="#节点的历史" class="headerlink" title="节点的历史"></a>节点的历史</h3><p>整部中华史从介绍来看，大体是按一个一个的时间节点来分的。我国的历史书基本上分为两种，一种是编年体史书，比如《春秋》、《资治通鉴》等。另一种是纪传体史书，比如《史记》、《二十四史》等。而这套易中天中华史，基本上是以时间为主线，在每个时间节点上以制度、文化为中心点，展开来讲述。这种写法让整部中华史的脉络非常清晰，易于理解。</p>
+<h3 id="多元化的社会"><a href="#多元化的社会" class="headerlink" title="多元化的社会"></a>多元化的社会</h3><p>天下大势，合久必分，分久必合，在这些分分合合中，慢慢的由单一的社会发展为多元化的社会。</p>
+<p>夏商西周的统一后东周社会分崩离析、造就了春秋战国时期思想的百家争鸣，各国的战争格局，慢慢的促进了民族的融合，包括政治、包括思想、包括文化。在不断的战争中不断的融合。等到秦汉统一的时候，使得中国空前强大。再后来的魏晋南北朝，慢慢接受了一些少数民族的文化，比如羯、白匈奴、丁零、铁弗、卢水胡、鲜卑等民族的文化慢慢的融入了中华文明，于是造就了世界级的隋唐时代。</p>
+<h3 id="权利的游戏"><a href="#权利的游戏" class="headerlink" title="权利的游戏"></a>权利的游戏</h3><p>纵观中国历史，就是一部权利的游戏，跟着易中天先生一点一点的了解帝制的演变，可以发现真的是非常非常非常的有意思，从最初的禅让制到家天下的过度，皇帝不断的集权，这才是可研究的大道，深入研究这些演变，整个权利演变的大局观的培养，能够很好的应用到现代社会，比如职场规划，从宏观上为自己规划一条道路，比研究那些职场小伎俩靠谱的多。</p>
+<p>皇帝从宰相手中中夺权、从将军手中夺权。随着皇权的不断集中，在明清时代达到了中央集权的巅峰。《易中天中华史》给我们勾勒出一幅完整的演变图。</p>
+<h2 id="坚持的力量"><a href="#坚持的力量" class="headerlink" title="坚持的力量"></a>坚持的力量</h2><p>说实话，坚持几年持之以恒的做一件事，真的是非常非常难，但是很多成功又是离不开坚持的。</p>
+<p>曾经我坚持写日记，写了5本满满的日记本，大概一千多篇吧。随着杂事越来越多，终于是坚持不下去了，每天处理了很多杂事之后，还要静下心来写日记，从我自己的体验来看，即使是随便写写，一篇日记三四百字，也是非常伤脑的。</p>
+<p>之所以博客为什么不火而微博却火了这么久，其中原因之一就是因为世界上绝大多数人是坚持不下来一直写东西，内容驱动的产品缺乏内容，必然是无法火的，为什么内容产生不多，一是可写的东西不多，二是在当时并没有很健全的体制来保护原创和内容变现，最最关键的一个原因就是：<strong>坚持真的很难</strong>。</p>
+<p>祝愿易中天先生能够实现这个伟大的愿望吧！</p>
+<h2 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h2><p>给自己一个flag吧，<strong>每个月写一篇作文</strong>，不求文章写的多好，但求再次感知坚持的力量。</p>
 
       
     </div>
@@ -375,9 +384,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/测试/" rel="tag">#测试</a>
-          
-            <a href="/tags/python/" rel="tag">#python</a>
+            <a href="/tags/个人杂谈/" rel="tag">#个人杂谈</a>
           
         </div>
       
@@ -386,17 +393,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/01/Python开发测试工具-一-—Monkey/" rel="next" title="Python开发测试工具(一)—Monkey">
-                <i class="fa fa-chevron-left"></i> Python开发测试工具(一)—Monkey
+              <a href="/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/" rel="next" title="Python开发测试工具（二）—Monkey工具的优化">
+                <i class="fa fa-chevron-left"></i> Python开发测试工具（二）—Monkey工具的优化
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/10/易中天与《易中天中华史》/" rel="prev" title="易中天与《易中天中华史》">
-                易中天与《易中天中华史》 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -411,10 +414,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/"
-     data-title="Python开发测试工具（二）—Monkey工具的优化"
+        <div class="ds-share flat" data-thread-key="2016/04/10/易中天与《易中天中华史》/"
+     data-title="易中天与《易中天中华史》"
      data-content=""
-     data-url="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/">
+     data-url="http://www.wengyb.com/2016/04/10/易中天与《易中天中华史》/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -441,8 +444,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/"
-           data-title="Python开发测试工具（二）—Monkey工具的优化" data-url="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/">
+      <div class="ds-thread" data-thread-key="2016/04/10/易中天与《易中天中华史》/"
+           data-title="易中天与《易中天中华史》" data-url="http://www.wengyb.com/2016/04/10/易中天与《易中天中华史》/">
       </div>
     
   </div>
@@ -614,7 +617,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程处理"><span class="nav-number">2.</span> <span class="nav-text">多线程处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给按钮加一个线程"><span class="nav-number">2.1.</span> <span class="nav-text">给按钮加一个线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程的处理"><span class="nav-number">3.</span> <span class="nav-text">多进程的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#易中天其人"><span class="nav-number">1.</span> <span class="nav-text">易中天其人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识易中天"><span class="nav-number">2.</span> <span class="nav-text">初识易中天</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再见易中天"><span class="nav-number">3.</span> <span class="nav-text">再见易中天</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《易中天中华史》"><span class="nav-number">4.</span> <span class="nav-text">《易中天中华史》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#适合人群"><span class="nav-number">4.1.</span> <span class="nav-text">适合人群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轻松的历史"><span class="nav-number">4.2.</span> <span class="nav-text">轻松的历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的历史"><span class="nav-number">4.3.</span> <span class="nav-text">节点的历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多元化的社会"><span class="nav-number">4.4.</span> <span class="nav-text">多元化的社会</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权利的游戏"><span class="nav-number">4.5.</span> <span class="nav-text">权利的游戏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坚持的力量"><span class="nav-number">5.</span> <span class="nav-text">坚持的力量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的最后"><span class="nav-number">6.</span> <span class="nav-text">最后的最后</span></a></li></ol></div>
             
           </div>
         </section>
