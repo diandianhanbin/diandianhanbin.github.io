@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Appium,测试,Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="前言这段时间在Testerhome上看了一些有关性能测试的帖子，看别人的东西，始终是别人的，只有自己写一遍才能体会其中的细节，虽然说不要重复造轮子，但是这种基础的东西，造一次轮子能够学会很多东西，最近看的东西也比较多，拿来实战一下也未尝不可。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidTestTool开发笔记">
+<meta property="og:url" content="http://www.wengyb.com/2016/04/19/AndroidTestTool开发笔记/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="前言这段时间在Testerhome上看了一些有关性能测试的帖子，看别人的东西，始终是别人的，只有自己写一遍才能体会其中的细节，虽然说不要重复造轮子，但是这种基础的东西，造一次轮子能够学会很多东西，最近看的东西也比较多，拿来实战一下也未尝不可。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/3D158640-1AB0-4776-B07C-B6212CE2F437.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/6E2A853B-7FA1-46DB-970B-E153C53EB2AD.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/02C218C4-5922-439C-A63B-10BC5661C5F4.png">
+<meta property="og:updated_time" content="2016-04-19T02:39:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidTestTool开发笔记">
+<meta name="twitter:description" content="前言这段时间在Testerhome上看了一些有关性能测试的帖子，看别人的东西，始终是别人的，只有自己写一遍才能体会其中的细节，虽然说不要重复造轮子，但是这种基础的东西，造一次轮子能够学会很多东西，最近看的东西也比较多，拿来实战一下也未尝不可。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/3D158640-1AB0-4776-B07C-B6212CE2F437.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AndroidTestTool开发笔记 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyb.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidTestTool开发笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-19T10:34:32+08:00" content="2016-04-19">
+              2016-04-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/19/AndroidTestTool开发笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/19/AndroidTestTool开发笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这段时间在Testerhome上看了一些有关性能测试的帖子，看别人的东西，始终是别人的，只有自己写一遍才能体会其中的细节，虽然说不要重复造轮子，但是这种基础的东西，造一次轮子能够学会很多东西，最近看的东西也比较多，拿来实战一下也未尝不可。<br><a id="more"></a><br>整个工程下来难度其实不大，主要是一些基本知识，只不过涉及的面比较广，需要的要素如下：</p>
+<hr>
+<p>开发相关</p>
+<p>操作系统： Mac OS X EI capitan</p>
+<p>Python： 2.7</p>
+<p>Django：1.8.2</p>
+<p>前端：Html、Css、Js、Bootstrap、jQuery、Ajax、<a href="http://echarts.baidu.com" target="_blank" rel="external">Echarts</a></p>
+<p>Android：ADB相关知识、Monkey相关知识</p>
+<hr>
+<h2 id="程序的架构"><a href="#程序的架构" class="headerlink" title="程序的架构"></a>程序的架构</h2><p>当然，用架构来形容有点夸张了，大概的模型如下图：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/3D158640-1AB0-4776-B07C-B6212CE2F437.png" alt="程序模型"></p>
+<p>整个程序的模型并不复杂，都是通过ADB SHELL来操作Android设备、获取设备信息。在最初设计的时候是没有Tkinter的，因为我对这个GUI端并不熟，信号槽的信号传递和事件的绑定并不了解，而Web端相对了解一些。但是执行的时候发现有一些问题。在<a href="http://wybblog.applinzi.com/blog/article/36/" target="_blank" rel="external">《Python开发测试工具(一)—Monkey》</a>里面有详细描述这个问题。于是临时去学习Tkinter的知识，临时硬拼拼了一个GUI端出来。</p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>前端分为GUI和Web两个端，GUi端使用Tkinter，Web端使用Bootstrap和jQuery。两个端界面大概长这样。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/6E2A853B-7FA1-46DB-970B-E153C53EB2AD.png" alt="客户端"></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png" alt="web端"></p>
+<h3 id="Tkinter"><a href="#Tkinter" class="headerlink" title="Tkinter"></a>Tkinter</h3><p>最初我的选择不是TKinter，这个Python自带的原生包功能非常原始，而且最关键的是用的人太少，没人写中文文档，我如果要使用它，就必须去看英文的原文。但是其他几个GUI端也都有相应的缺点，PyQt环境搭建麻烦，而且中文文档大多是Qt4的，WxPython文档少，功能也不见得比Tkinter强大多少。最终还是硬着头皮吧Tkinter的官方文档看完了，因为没有现成的代码，所以我就把所有代码丢到了一起，全部放在gui.py中，整个代码完全没有结构而言，不过再怎样，功能也算是实现了。</p>
+<p><strong>Tkinter有几个坑爹的点我简单的列一下。</strong></p>
+<h4 id="Entry只读时无法显示文字"><a href="#Entry只读时无法显示文字" class="headerlink" title="Entry只读时无法显示文字"></a>Entry只读时无法显示文字</h4><p>Entry就是一个Text输入框，单行的那种。一旦设置为只读属性，就无法显示文字，所以整个Tkinter如果要做成一个不允许输入又要展示状态的信息媒介，That’s Impossible。</p>
+<h4 id="Label不能动态的改变"><a href="#Label不能动态的改变" class="headerlink" title="Label不能动态的改变"></a>Label不能动态的改变</h4><p>Tkinter的标签在初始化生成之后，就再也无法改变了，无法做动态的更新。</p>
+<h4 id="Placeholder效果实现起来很坑爹"><a href="#Placeholder效果实现起来很坑爹" class="headerlink" title="Placeholder效果实现起来很坑爹"></a>Placeholder效果实现起来很坑爹</h4><p>Html中placeholder的效果很友好（就是文本框为空时显示一个提示语，输入内容后提示语消失的属性），但是在Tkinter中如果要实现它，就必须自己动手写两个事件，一是初始化的时候默认赋值，二是点击Entry获得焦点后做一个删除处理。</p>
+<h4 id="按钮回调函数的时候无法传参"><a href="#按钮回调函数的时候无法传参" class="headerlink" title="按钮回调函数的时候无法传参"></a>按钮回调函数的时候无法传参</h4><p>这才是最坑爹的一点。。。基本上函数都要传参的诶~~~当然，通过万能的Google我还是找到了解决办法，就是使用lambda语句来处理。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">get_cpu_info = Button(master, text=<span class="string">"开始生成cpu信息"</span>,</span><br><span class="line">                              command=<span class="keyword">lambda</span>: self.get_cpuinfo(self.cm.get_text(cpu_monitor)))</span><br></pre></td></tr></table></figure>
+<p>在这么多的坑中，我竟然还是坚持用完了Tkinter，当然我看的是英文的文档，也有可能有这个方法我没有看到，毕竟看英文的文档还是很操蛋的一件事。</p>
+<h3 id="多进程的处理"><a href="#多进程的处理" class="headerlink" title="多进程的处理"></a>多进程的处理</h3><p>Tkinter是一个单线程的处理机制，我想在执行Monkey的同时又执行获取内存、获取CPU，那就必须挂上多进程来处理（多线程理论上也是可以的，但是实践中我发现经常会发生线程阻塞的情况）。当然，程序比较简单，不需要专门去做进程池来处理，只要每个功能开一个进程去处理就好了。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">t = multiprocessing.Process(target=<span class="keyword">lambda</span>: self.ad.get_cpuinfo(package_name, <span class="string">'cpuinfo'</span>))</span><br><span class="line">t.start()</span><br></pre></td></tr></table></figure>
+<h3 id="GUI端的一些核心代码"><a href="#GUI端的一些核心代码" class="headerlink" title="GUI端的一些核心代码"></a>GUI端的一些核心代码</h3><ul>
+<li>执行Monkey</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_monkey</span><span class="params">(self)</span>:</span></span><br><span class="line">        t = multiprocessing.Process(target=<span class="keyword">lambda</span>: self.mk.merge_command(self.cm.get_text(log_path),</span><br><span class="line">                                                                         *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_command</span><span class="params">(self, path, *args)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        组合命令,Monkey使用</span><br><span class="line">        :param path:日志地址</span><br><span class="line">        :param args:Monkey命令中的其他参数</span><br><span class="line">        :return:None</span><br><span class="line">        """</span></span><br><span class="line">        member = <span class="string">' '</span>.join(args)</span><br><span class="line">        command = <span class="string">'adb shell monkey &#123;&#125; &gt; &#123;&#125;'</span>.format(member, path)</span><br><span class="line">        self.run(command)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collect</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        收集参数中的元素,转换为列表返回</span><br><span class="line">        :param args:传入的参数</span><br><span class="line">        :return:list</span><br><span class="line">        """</span></span><br><span class="line">        str_list = []</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> args:</span><br><span class="line">            str_list.append(self.get_text(x))</span><br><span class="line">        <span class="keyword">return</span> str_list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取内存信息</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_meminfo</span><span class="params">(self, package_name)</span>:</span></span><br><span class="line">        self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">        self.cf.set(<span class="string">'monkey_check'</span>, <span class="string">'mark'</span>, <span class="string">'True'</span>)</span><br><span class="line">        self.cf.write(open(<span class="string">'monkey.conf'</span>, <span class="string">'w'</span>))</span><br><span class="line">        status = self.cf.get(<span class="string">'monkey_check'</span>, <span class="string">'mark'</span>)</span><br><span class="line">        <span class="keyword">with</span> open(self.ad.get_dir(<span class="string">'meminfo'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">while</span> status == <span class="string">'True'</span>:</span><br><span class="line">                f.write(self.ad.get_meminfo(package_name))</span><br><span class="line">                f.write(<span class="string">'\n'</span>)</span><br><span class="line">                time.sleep(<span class="number">0.5</span>)</span><br><span class="line">                self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">                <span class="keyword">if</span> self.cf.get(<span class="string">'monkey_check'</span>, <span class="string">'mark'</span>) == <span class="string">'False'</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_meminfo</span><span class="params">(self, package_name)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		获取内存信息</span><br><span class="line">		:return:str, 内存信息</span><br><span class="line">		"""</span></span><br><span class="line">		newlist = []</span><br><span class="line">		f = os.popen(<span class="string">'adb shell dumpsys meminfo '</span> + package_name)</span><br><span class="line">		<span class="keyword">for</span> x <span class="keyword">in</span> f.readlines():</span><br><span class="line">			newlist.append(x.strip())</span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			mem_total = newlist[<span class="number">8</span>].split(<span class="string">'   '</span>)[<span class="number">7</span>]</span><br><span class="line">			mem_used = newlist[<span class="number">8</span>].split(<span class="string">'   '</span>)[<span class="number">8</span>]</span><br><span class="line">			mem_free = newlist[<span class="number">8</span>].split(<span class="string">'   '</span>)[<span class="number">9</span>]</span><br><span class="line">		<span class="keyword">except</span> Exception:</span><br><span class="line">			mem_total = <span class="string">''</span></span><br><span class="line">			mem_used = <span class="string">''</span></span><br><span class="line">			mem_free = <span class="string">''</span></span><br><span class="line">		meminfo = <span class="string">'&#123;&#125;,&#123;&#125;,&#123;&#125;'</span>.format(mem_total, mem_used, mem_free)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> meminfo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取CPU信息</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cpuinfo</span><span class="params">(self, package_name, url)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		往cpuinfo文件夹中新写一个记录cpu信息的文件</span><br><span class="line">		:param package_name:测试包名</span><br><span class="line">		:param url:cpu文件的路径</span><br><span class="line">		:return:None</span><br><span class="line">		"""</span></span><br><span class="line">		self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">		self.cf.set(<span class="string">'cpu_check'</span>, <span class="string">'mark'</span>, <span class="string">'True'</span>)</span><br><span class="line">		self.cf.write(open(<span class="string">'monkey.conf'</span>, <span class="string">'w'</span>))</span><br><span class="line">		<span class="keyword">with</span> open(self.get_dir(url), <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">			<span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">				a = os.popen(<span class="string">'adb shell dumpsys cpuinfo | grep '</span> + package_name)</span><br><span class="line">				cpuinfo_list = a.readlines()[<span class="number">0</span>].split(<span class="string">' '</span>)</span><br><span class="line">				<span class="keyword">if</span> len(cpuinfo_list) == <span class="number">13</span>:</span><br><span class="line">					cpu = [cpuinfo_list[<span class="number">2</span>], cpuinfo_list[<span class="number">4</span>], cpuinfo_list[<span class="number">7</span>]]</span><br><span class="line">					cpuinfo = <span class="string">','</span>.join(cpu)</span><br><span class="line">					f.write(cpuinfo)</span><br><span class="line">					f.write(<span class="string">'\n'</span>)</span><br><span class="line">					time.sleep(<span class="number">0.5</span>)</span><br><span class="line">					self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">					<span class="keyword">if</span> self.cf.get(<span class="string">'cpu_check'</span>, <span class="string">'mark'</span>) == <span class="string">"False"</span>:</span><br><span class="line">						<span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>当时写代码的时候比较随性，没有做统一的规划，写完后又不太想重新改，就这样放着吧。</p>
+<h3 id="Web端"><a href="#Web端" class="headerlink" title="Web端"></a>Web端</h3><p>Web端的处理就相对比较顺畅了，我把收集内存信息和CPU信息都放在Tkinter了，因此在Web端只负责展示就行了。当然，最后我又突发奇想把收集流量信息放在Web端了，主要是流量信息不完全用走势图可以完全展示，因此就把这个功能放在Web端了。</p>
+<h4 id="web端的几个页面"><a href="#web端的几个页面" class="headerlink" title="web端的几个页面"></a>web端的几个页面</h4><p>最初web端我是设计用来查看走势图的，因此有这么几个页面：主页、内存信息、CPU信息、流量信息，本来还有一个gxfinfo，但是不同Android手机展示出来的矩阵不同，统一处理的方案我还没想出来，暂时就搁浅了，等后续想出来后我再补充，在导航栏上我把打开GUI端的按钮集成了进来，也就是说以后我要使用就只要打开WEB端就行了，一站式解决方案。</p>
+<h4 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h4><p>首页原来我是放置一些说明的，后来发现在首页也可以加一些功能，比如直接查看包名、查看Activity，查看手机上有多少app等简单实用的功能。这些功能自己从shell中去获取也不难，但是集成进来之后显得更简单易用了。</p>
+<h5 id="获取当前包名和Activity"><a href="#获取当前包名和Activity" class="headerlink" title="获取当前包名和Activity"></a>获取当前包名和Activity</h5><p>获取的命令很简单，在*nux下的命令就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys window windows | grep mFocusedApp</span><br></pre></td></tr></table></figure>
+<p>windows需要调整一下这个命令。获取之后做一些截取就可以拿到包名和Activity，把信息返回给前端即可，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cur_pknm</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			f = os.popen(<span class="string">'adb shell dumpsys window windows | grep mFocusedApp'</span>)</span><br><span class="line">			<span class="keyword">for</span> x <span class="keyword">in</span> f.readlines():</span><br><span class="line">				pknm = x.strip().split(<span class="string">' '</span>)[<span class="number">4</span>]</span><br><span class="line">			pk_info = pknm.split(<span class="string">'/'</span>)</span><br><span class="line">			pk_data = &#123;</span><br><span class="line">				<span class="string">'errmsg'</span>: <span class="string">'查询成功'</span>,</span><br><span class="line">				<span class="string">'package_name'</span>: pk_info[<span class="number">0</span>],</span><br><span class="line">				<span class="string">'avtivity_name'</span>: pk_info[<span class="number">1</span>]</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">			pk_data = &#123;</span><br><span class="line">				<span class="string">'errmsg'</span>: <span class="string">'请确认设备正确连接或者是否有打开APP?'</span></span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">return</span> pk_data</span><br></pre></td></tr></table></figure>
+<p>前端接受代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//获取当前包名和Activity</span></span><br><span class="line">    $(<span class="string">"#get_cur_packagename"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $.getJSON(</span><br><span class="line">            <span class="string">'/datashow/get_cur_packagename/'</span>,</span><br><span class="line">            <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                $(<span class="string">"#pkinfo"</span>).fadeIn(<span class="string">'slow'</span>);</span><br><span class="line">                $(<span class="string">"#package_name"</span>).html(<span class="string">'当前打开的包名为: &lt;mark&gt;'</span>+data[<span class="string">'package_name'</span>]+<span class="string">"&lt;/mark&gt;"</span>);</span><br><span class="line">                $(<span class="string">"#activity_name"</span>).html(<span class="string">'当前打开的avtivity为: &lt;mark&gt;'</span>+data[<span class="string">'avtivity_name'</span>]+<span class="string">"&lt;/mark&gt;"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>获取所有第三方应用的命令是这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell pm list package -3</span><br></pre></td></tr></table></figure>
+<p>依照上面的方式给代码就行了。效果就是这样：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png" alt="web端"></p>
+<h3 id="内存cpu监控"><a href="#内存cpu监控" class="headerlink" title="内存cpu监控"></a>内存cpu监控</h3><p>这两部分的内容类似，都是作为一个展示的页面来处理，就需要后端给数据，数据收集在GUi端做处理，那么前端就需要发Ajax请求到后端获取数据，获取数据后调用Echarts进行绘图。前端的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//内存信息获取</span></span><br><span class="line">    $(<span class="string">'#mem_query'</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> filename = $(<span class="string">"#selquery"</span>).val();</span><br><span class="line">        <span class="keyword">var</span> myChart = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'main'</span>), <span class="string">'dark'</span>);</span><br><span class="line">        $.get(<span class="string">'/datashow/getmemdata/'</span> + filename).done(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">            myChart.hideLoading();</span><br><span class="line">            myChart.setOption(&#123;</span><br><span class="line">                title: &#123;</span><br><span class="line">                    text: <span class="string">'内存监控信息'</span></span><br><span class="line">                &#125;,</span><br><span class="line">                tooltip: &#123;</span><br><span class="line">                    trigger: <span class="string">'axis'</span></span><br><span class="line">                &#125;,</span><br><span class="line">                legend: &#123;</span><br><span class="line">                    data: [<span class="string">'内存总体使用量'</span>, <span class="string">'内存剩余可用量'</span>]</span><br><span class="line">                &#125;,</span><br><span class="line">                toolbox: &#123;</span><br><span class="line">                    feature: &#123;</span><br><span class="line">                        saveAsImage: &#123;&#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                grid: &#123;</span><br><span class="line">                    left: <span class="string">'3%'</span>,</span><br><span class="line">                    right: <span class="string">'4%'</span>,</span><br><span class="line">                    bottom: <span class="string">'3%'</span>,</span><br><span class="line">                    containLabel: <span class="literal">true</span></span><br><span class="line">                &#125;,</span><br><span class="line">                xAxis: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        type: <span class="string">'category'</span>,</span><br><span class="line">                        boundaryGap: <span class="literal">false</span>,</span><br><span class="line">                        data: []</span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                yAxis: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        type: <span class="string">'value'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                series: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        name: <span class="string">'内存剩余可用量'</span>,</span><br><span class="line">                        type: <span class="string">'line'</span>,</span><br><span class="line">                        areaStyle: &#123;normal: &#123;&#125;&#125;,</span><br><span class="line">                        data: data[<span class="string">'user_data'</span>]</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        name: <span class="string">'内存总体使用量'</span>,</span><br><span class="line">                        type: <span class="string">'line'</span>,</span><br><span class="line">                        label: &#123;</span><br><span class="line">                            normal: &#123;</span><br><span class="line">                                show: <span class="literal">true</span>,</span><br><span class="line">                                position: <span class="string">'top'</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;,</span><br><span class="line">                        opacity: <span class="string">'0.1'</span>,</span><br><span class="line">                        areaStyle: &#123;normal: &#123;opacity: <span class="string">'0.1'</span>&#125;&#125;,</span><br><span class="line">                        data: data[<span class="string">'total_data'</span>]</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>后端数据我们收集的时候是存在一个一个的TXT文本中，因此需要做这么几件事。</p>
+<ol>
+<li>在初始化页面的时候，获取所有的txt文件名，在前端生成一个下拉框给用户选择。</li>
+<li>选择对应的文件查看后，发送数据给前端绘图。</li>
+</ol>
+<p>因此我是这样设计的，在前端页面初始化的时候，发Ajax请求获取文件名来生成下拉框，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">            url: <span class="string">'/datashow/getdirlist/meminfo'</span>,</span><br><span class="line">            success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> arr = data[<span class="string">'data'</span>];</span><br><span class="line">                <span class="keyword">var</span> select = $(<span class="string">"&lt;select id='selquery' class='form-control'&gt;&lt;/select&gt;"</span>);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">                    select = select.append(<span class="string">"&lt;option value='"</span> + arr[i] + <span class="string">"'&gt;"</span> + arr[i] + <span class="string">"&lt;/option&gt;"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">                $(<span class="string">"#selection"</span>).append(select)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>后端获取所有文件名后返回给前端，这里我会把第一个文件剔除出返回的列表，第一个文件名是我初始化项目结构的时候给的文件，并没有实际的数据，之后按倒叙返回给前端。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDirList</span><span class="params">(request, cate)</span>:</span></span><br><span class="line">	rst = []</span><br><span class="line">	url = <span class="string">'&#123;&#125;/device_info/&#123;&#125;'</span>.format(os.getcwd(), cate)</span><br><span class="line">	old_rst = os.listdir(url)</span><br><span class="line">	old_rst.pop(<span class="number">0</span>)</span><br><span class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> old_rst:</span><br><span class="line">		rst.append(x.split(<span class="string">'.'</span>)[<span class="number">0</span>])</span><br><span class="line">	rst_data = &#123;</span><br><span class="line">		<span class="string">'status'</span>: <span class="number">200</span>,</span><br><span class="line">		<span class="string">'data'</span>: rst[::<span class="number">-1</span>]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> JsonResponse(rst_data)</span><br></pre></td></tr></table></figure>
+<p>CPU信息也是同理获取，代码就不多贴了。</p>
+<h3 id="流量监控"><a href="#流量监控" class="headerlink" title="流量监控"></a>流量监控</h3><p>流量监控的命令是由两部分组成，一个要取到应用的PID，然后通过这个PID去取相应的记录文件，两部分的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_pid</span><span class="params">(self, package_name)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		获取pid</span><br><span class="line">		:param package_name:包名</span><br><span class="line">		:return: str, pid</span><br><span class="line">		"""</span></span><br><span class="line">		pid = []</span><br><span class="line">		f = os.popen(<span class="string">'adb shell ps | grep '</span> + package_name)</span><br><span class="line">		<span class="keyword">for</span> x <span class="keyword">in</span> f.readlines():</span><br><span class="line">			pid_list = x.split(<span class="string">' '</span>)</span><br><span class="line">			<span class="keyword">for</span> y <span class="keyword">in</span> pid_list:</span><br><span class="line">				<span class="keyword">if</span> y.strip() == package_name:</span><br><span class="line">					<span class="keyword">for</span> z <span class="keyword">in</span> x.split(<span class="string">' '</span>):</span><br><span class="line">						<span class="keyword">if</span> z:</span><br><span class="line">							pid.append(z)</span><br><span class="line">		rst = pid[<span class="number">1</span>]</span><br><span class="line">		<span class="keyword">return</span> rst</span><br><span class="line">		</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_flow</span><span class="params">(self, package_name, url)</span>:</span></span><br><span class="line">		self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">		self.cf.set(<span class="string">'flow_mark'</span>, <span class="string">'mark'</span>, <span class="string">'True'</span>)</span><br><span class="line">		self.cf.write(open(<span class="string">'monkey.conf'</span>, <span class="string">'w'</span>))</span><br><span class="line">		<span class="keyword">with</span> open(self.get_dir(url), <span class="string">'w'</span>) <span class="keyword">as</span> fn:</span><br><span class="line">			<span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">				rst_list = []</span><br><span class="line">				f = os.popen(<span class="string">'adb shell cat /proc/&#123;&#125;/net/dev | grep wlan0'</span>.format(self.get_pid(package_name)))</span><br><span class="line">				<span class="keyword">for</span> x <span class="keyword">in</span> f.readlines():</span><br><span class="line">					<span class="keyword">for</span> y <span class="keyword">in</span> x.split(<span class="string">' '</span>):</span><br><span class="line">						<span class="keyword">if</span> y:</span><br><span class="line">							rst_list.append(y)</span><br><span class="line">				up = rst_list[<span class="number">9</span>]</span><br><span class="line">				down = rst_list[<span class="number">1</span>]</span><br><span class="line">				flowInfo = <span class="string">'&#123;&#125;,&#123;&#125;'</span>.format(down, up)</span><br><span class="line">				fn.write(flowInfo)</span><br><span class="line">				fn.write(<span class="string">'\n'</span>)</span><br><span class="line">				<span class="keyword">print</span> flowInfo</span><br><span class="line">				time.sleep(<span class="number">0.5</span>)</span><br><span class="line">				self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">				<span class="keyword">if</span> self.cf.get(<span class="string">'flow_mark'</span>, <span class="string">'mark'</span>) == <span class="string">"False"</span>:</span><br><span class="line">					<span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>流量的功能需要记录执行的时间和上行下行流量，因此在开始记录流量的时候，我会在配置文件写入一个时间戳，和已发生的上下行流量，停止的时候再记录一次信息，两个信息对减的结果返回给前端，前端就能展示时间和消耗的流量了。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flow</span><span class="params">(self, package_name, mark)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		获取流量信息</span><br><span class="line">		:param package_name:包名</span><br><span class="line">		:param mark:获取流量的标记</span><br><span class="line">		:return:</span><br><span class="line">		"""</span></span><br><span class="line">		<span class="keyword">if</span> mark == <span class="string">"start"</span>:</span><br><span class="line">			rst_list = []</span><br><span class="line">			f = os.popen(<span class="string">'adb shell cat /proc/&#123;&#125;/net/dev | grep wlan0'</span>.format(self.get_pid(package_name)))</span><br><span class="line">			<span class="keyword">for</span> x <span class="keyword">in</span> f.readlines():</span><br><span class="line">				<span class="keyword">for</span> y <span class="keyword">in</span> x.split(<span class="string">' '</span>):</span><br><span class="line">					<span class="keyword">if</span> y:</span><br><span class="line">						rst_list.append(y)</span><br><span class="line">			rst = int(rst_list[<span class="number">1</span>]) + int(rst_list[<span class="number">9</span>])</span><br><span class="line">			conf_data = &#123;</span><br><span class="line">				<span class="string">'total'</span>: str(rst),</span><br><span class="line">				<span class="string">'flowup'</span>: str(rst_list[<span class="number">9</span>]),</span><br><span class="line">				<span class="string">'flowdown'</span>: str(rst_list[<span class="number">1</span>]),</span><br><span class="line">				<span class="string">'timestart'</span>: str(time.time())</span><br><span class="line">			&#125;</span><br><span class="line">			self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">			self.cf.set(<span class="string">'flow_mark'</span>, <span class="string">'flow_total'</span>, conf_data[<span class="string">'total'</span>])</span><br><span class="line">			self.cf.set(<span class="string">'flow_mark'</span>, <span class="string">'flow_up'</span>, conf_data[<span class="string">'flowup'</span>])</span><br><span class="line">			self.cf.set(<span class="string">'flow_mark'</span>, <span class="string">'flow_down'</span>, conf_data[<span class="string">'flowdown'</span>])</span><br><span class="line">			self.cf.set(<span class="string">'flow_mark'</span>, <span class="string">'time_start'</span>, conf_data[<span class="string">'timestart'</span>])</span><br><span class="line">			self.cf.write(open(<span class="string">'monkey.conf'</span>, <span class="string">'w'</span>))</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			rst_list = []</span><br><span class="line">			f = os.popen(<span class="string">'adb shell cat /proc/&#123;&#125;/net/dev | grep wlan0'</span>.format(self.get_pid(package_name)))</span><br><span class="line">			<span class="keyword">for</span> x <span class="keyword">in</span> f.readlines():</span><br><span class="line">				<span class="keyword">for</span> y <span class="keyword">in</span> x.split(<span class="string">' '</span>):</span><br><span class="line">					<span class="keyword">if</span> y:</span><br><span class="line">						rst_list.append(y)</span><br><span class="line">			rst = int(rst_list[<span class="number">1</span>]) + int(rst_list[<span class="number">9</span>])</span><br><span class="line">			end_data = &#123;</span><br><span class="line">				<span class="string">'total'</span>: str(rst),</span><br><span class="line">				<span class="string">'flowup'</span>: str(rst_list[<span class="number">9</span>]),</span><br><span class="line">				<span class="string">'flowdown'</span>: str(rst_list[<span class="number">1</span>]),</span><br><span class="line">				<span class="string">'timend'</span>: str(time.time())</span><br><span class="line">			&#125;</span><br><span class="line">			self.cf.read(<span class="string">'monkey.conf'</span>)</span><br><span class="line">			oldTotal = self.cf.get(<span class="string">'flow_mark'</span>, <span class="string">'flow_total'</span>)</span><br><span class="line">			oldUp = self.cf.get(<span class="string">'flow_mark'</span>, <span class="string">'flow_up'</span>)</span><br><span class="line">			oldDown = self.cf.get(<span class="string">'flow_mark'</span>, <span class="string">'flow_down'</span>)</span><br><span class="line">			oldTime = self.cf.get(<span class="string">'flow_mark'</span>, <span class="string">'time_start'</span>)</span><br><span class="line">			rst_data = &#123;</span><br><span class="line">				<span class="string">'total'</span>: str(int(end_data[<span class="string">'total'</span>]) - int(oldTotal)),</span><br><span class="line">				<span class="string">'up'</span>: str(int(end_data[<span class="string">'flowup'</span>]) - int(oldUp)),</span><br><span class="line">				<span class="string">'down'</span>: str(int(end_data[<span class="string">'flowdown'</span>]) - int(oldDown)),</span><br><span class="line">				<span class="string">'time'</span>: str(float(end_data[<span class="string">'timend'</span>]) - float(oldTime))</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> rst_data</span><br></pre></td></tr></table></figure>
+<p>因为处理的东西比较多，所以我也贴一下前端的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(<span class="string">"#getflow"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> val = $(<span class="string">"#getflow"</span>).text();</span><br><span class="line">        <span class="keyword">var</span> myDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">        <span class="keyword">var</span> package_name = $(<span class="string">"#package"</span>).val();</span><br><span class="line">        <span class="keyword">if</span> (val == <span class="string">'点击开始测试'</span>) &#123;</span><br><span class="line">            $(<span class="string">"#getflow"</span>).removeClass().addClass(<span class="string">'btn btn-danger'</span>);</span><br><span class="line">            $.get(</span><br><span class="line">                <span class="string">'/datashow/testflow/'</span>,</span><br><span class="line">                &#123;mark: <span class="string">'start'</span>, package: package_name&#125;</span><br><span class="line">            );</span><br><span class="line">            $(<span class="string">"#getflow"</span>).text(<span class="string">'点击停止测试'</span>);</span><br><span class="line">            $(<span class="string">"#start"</span>).text(<span class="string">'开始测试时间为: '</span> + myDate.toLocaleTimeString());</span><br><span class="line">            $(<span class="string">"#end"</span>).text(<span class="string">''</span>);</span><br><span class="line">            $(<span class="string">"#result"</span>).html(<span class="string">''</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            $(<span class="string">"#getflow"</span>).removeClass().addClass(<span class="string">'btn btn-default'</span>);</span><br><span class="line">            $(<span class="string">"#end"</span>).text(<span class="string">'结束测试时间为: '</span> + myDate.toLocaleTimeString());</span><br><span class="line">            $(<span class="string">"#getflow"</span>).text(<span class="string">'点击开始测试'</span>);</span><br><span class="line">            $.get(</span><br><span class="line">                <span class="string">'/datashow/testflow/'</span>,</span><br><span class="line">                &#123;mark: <span class="string">'end'</span>, package: package_name&#125;,</span><br><span class="line">                <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    $(<span class="string">"#result"</span>).html(</span><br><span class="line">                        <span class="string">"测试结果:"</span> +</span><br><span class="line">                        <span class="string">"&lt;hr&gt;"</span> +</span><br><span class="line">                        <span class="string">"测试一共耗时:"</span> + data[<span class="string">'time'</span>] + <span class="string">"秒"</span> +</span><br><span class="line">                        <span class="string">"&lt;hr&gt;"</span> +</span><br><span class="line">                        <span class="string">"总计流量消耗: "</span> + data[<span class="string">'total'</span>] + <span class="string">"byte"</span> +</span><br><span class="line">                        <span class="string">"&lt;hr&gt;"</span> +</span><br><span class="line">                        <span class="string">"上行流量: "</span> + data[<span class="string">'up'</span>] + <span class="string">"byte"</span> +</span><br><span class="line">                        <span class="string">"&lt;hr&gt;"</span> +</span><br><span class="line">                        <span class="string">"下行流量: "</span> + data[<span class="string">'down'</span>]</span><br><span class="line">                    )</span><br><span class="line">                &#125;</span><br><span class="line">            );</span><br><span class="line">            $(<span class="string">"#selection"</span>).html(<span class="string">''</span>);</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                url: <span class="string">'/datashow/getdirlist/flowinfo'</span>,</span><br><span class="line">                success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">var</span> arr = data[<span class="string">'data'</span>];</span><br><span class="line">                    <span class="keyword">var</span> select = $(<span class="string">"&lt;select id='selquery' class='form-control'&gt;&lt;/select&gt;"</span>);</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">                        select = select.append(<span class="string">"&lt;option value='"</span> + arr[i] + <span class="string">"'&gt;"</span> + arr[i] + <span class="string">"&lt;/option&gt;"</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                    $(<span class="string">"#selection"</span>).append(select)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>最终的效果图就是这样：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/02C218C4-5922-439C-A63B-10BC5661C5F4.png" alt="流量监控"></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>整个开发周期前后大概花了两周时间，这些知识熟的朋友应该可以更快，在使用前端知识的时候，我基本上都是靠w3cschool来解决，大概的概念我懂，但是具体的编码还是需要去copy。在整个项目写完后，我感觉我对这块的了解也更加深入了，重复造轮子的好处就是可以深入理解这些东西的来源，比如adb的使用，Android的一些知识。真正在工作当中使用的话，当然还是直接使用一些大公司的产品比较好，他们的东西比较成熟，精准度从一定程度上来说也比我们自己写的质量会高一些。</p>
+<p>最后的最后，代码放在<a href="https://github.com/diandianhanbin/AndroidTools" target="_blank" rel="external">Github</a>，有兴趣的朋友可以自行翻阅。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创知识分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/wecharpay.jpeg" alt="点点寒彬 | SvenWeng WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/alipay.jpeg" alt="点点寒彬 | SvenWeng Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+<div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Appium/" rel="tag">#Appium</a>
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/10/易中天与《易中天中华史》/" rel="next" title="易中天与《易中天中华史》">
+                <i class="fa fa-chevron-left"></i> 易中天与《易中天中华史》
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/19/AndroidTestTool开发笔记/"
+     data-title="AndroidTestTool开发笔记"
+     data-content=""
+     data-url="http://www.wengyb.com/2016/04/19/AndroidTestTool开发笔记/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/19/AndroidTestTool开发笔记/"
+           data-title="AndroidTestTool开发笔记" data-url="http://www.wengyb.com/2016/04/19/AndroidTestTool开发笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyb.com" target="_blank">我的个人站点</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的架构"><span class="nav-number">2.</span> <span class="nav-text">程序的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端"><span class="nav-number">3.</span> <span class="nav-text">前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tkinter"><span class="nav-number">3.1.</span> <span class="nav-text">Tkinter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Entry只读时无法显示文字"><span class="nav-number">3.1.1.</span> <span class="nav-text">Entry只读时无法显示文字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Label不能动态的改变"><span class="nav-number">3.1.2.</span> <span class="nav-text">Label不能动态的改变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Placeholder效果实现起来很坑爹"><span class="nav-number">3.1.3.</span> <span class="nav-text">Placeholder效果实现起来很坑爹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按钮回调函数的时候无法传参"><span class="nav-number">3.1.4.</span> <span class="nav-text">按钮回调函数的时候无法传参</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程的处理"><span class="nav-number">3.2.</span> <span class="nav-text">多进程的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI端的一些核心代码"><span class="nav-number">3.3.</span> <span class="nav-text">GUI端的一些核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web端"><span class="nav-number">3.4.</span> <span class="nav-text">Web端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web端的几个页面"><span class="nav-number">3.4.1.</span> <span class="nav-text">web端的几个页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首页"><span class="nav-number">3.4.2.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取当前包名和Activity"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">获取当前包名和Activity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存cpu监控"><span class="nav-number">3.5.</span> <span class="nav-text">内存cpu监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量监控"><span class="nav-number">3.6.</span> <span class="nav-text">流量监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wengyanbin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
