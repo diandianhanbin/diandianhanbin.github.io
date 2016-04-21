@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-04-19T02:39:13.000Z</updated>
+  <updated>2016-04-21T15:32:54.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -16,11 +16,117 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>宇宙APP性能测试报告</title>
+    <link href="http://www.wengyb.com/2016/04/21/%E5%AE%87%E5%AE%99APP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/"/>
+    <id>http://www.wengyb.com/2016/04/21/宇宙APP性能测试报告/</id>
+    <published>2016-04-21T15:29:05.000Z</published>
+    <updated>2016-04-21T15:32:54.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这两周用python自己折腾了一个安卓性能测试工具，当然，整套工具的功能还不够完善，但是，测试几个指标基本上是没什么问题的。本着结果驱动的原则，先用这套工具来试试我们的宇宙级炒股APP&lt;strong&gt;微证券&lt;/strong&gt;（下称宇宙APP）的性能。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;工具概览&quot;&gt;&lt;a href=&quot;#工具概览&quot; class=&quot;headerlink&quot; title=&quot;工具概览&quot;&gt;&lt;/a&gt;工具概览&lt;/h2&gt;&lt;p&gt;工具的开发流程在这里：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/39/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《AndroidTestTool开发笔记》&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;工具由两部分组成，一是客户端，二是web端，具体怎么划分的？其实我就是看心情。工具大概长这样&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/6E2A853B-7FA1-46DB-970B-E153C53EB2AD.png&quot; alt=&quot;客户端&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png&quot; alt=&quot;web端&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;工具的作用&quot;&gt;&lt;a href=&quot;#工具的作用&quot; class=&quot;headerlink&quot; title=&quot;工具的作用&quot;&gt;&lt;/a&gt;工具的作用&lt;/h2&gt;&lt;p&gt;工具大概监控这么几个指标，内存、cpu、wlan流量，以及封装了Monkey做满负载执行。&lt;/p&gt;
+&lt;h2 id=&quot;多次测试正常使用的指标&quot;&gt;&lt;a href=&quot;#多次测试正常使用的指标&quot; class=&quot;headerlink&quot; title=&quot;多次测试正常使用的指标&quot;&gt;&lt;/a&gt;多次测试正常使用的指标&lt;/h2&gt;&lt;h3 id=&quot;一次测试—模拟正常手工操作&quot;&gt;&lt;a href=&quot;#一次测试—模拟正常手工操作&quot; class=&quot;headerlink&quot; title=&quot;一次测试—模拟正常手工操作&quot;&gt;&lt;/a&gt;一次测试—模拟正常手工操作&lt;/h3&gt;&lt;p&gt;首先模拟正常的操作监控内存、cpu和wlan流量（全程使用wifi，所以这个指标代表流量的消耗），测试时间5分钟左右（使用秒表记录，时间可能会有略微的偏差）。&lt;/p&gt;
+&lt;h4 id=&quot;第一次内存监控数据：&quot;&gt;&lt;a href=&quot;#第一次内存监控数据：&quot; class=&quot;headerlink&quot; title=&quot;第一次内存监控数据：&quot;&gt;&lt;/a&gt;第一次内存监控数据：&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/3F7C7D57-9435-4DFE-9CAC-08AB2F5D7619.png&quot; alt=&quot;内存监控&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第一次cpu监控数据：&quot;&gt;&lt;a href=&quot;#第一次cpu监控数据：&quot; class=&quot;headerlink&quot; title=&quot;第一次cpu监控数据：&quot;&gt;&lt;/a&gt;第一次cpu监控数据：&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/20C18466-D2BE-4BF8-A848-57F6EC551E0F.png&quot; alt=&quot;cpu监控&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第一次流量监控：&quot;&gt;&lt;a href=&quot;#第一次流量监控：&quot; class=&quot;headerlink&quot; title=&quot;第一次流量监控：&quot;&gt;&lt;/a&gt;第一次流量监控：&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/EAB14141-4D89-483C-8D34-9289401DA9CC.png&quot; alt=&quot;流量监控&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第一次测试的总结&quot;&gt;&lt;a href=&quot;#第一次测试的总结&quot; class=&quot;headerlink&quot; title=&quot;第一次测试的总结&quot;&gt;&lt;/a&gt;第一次测试的总结&lt;/h4&gt;&lt;p&gt;第一次测试我模拟了正常用户的使用，查看咨询内容、查看个股详情，查看排行榜数据、查看投资学院、修改了头像昵称等操作。&lt;/p&gt;
+&lt;p&gt;第一次测试暴露了以下问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;内存存在抖动现象&lt;/li&gt;
+&lt;li&gt;cpu走势不稳定&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;当然一次测试肯定是不够的，上述两个问题的出现很可能是由于其他因素导致的，比如第一次使用APP，会导致加载大量的数据，导致CPU使用量巨大，内存不稳定等问题，而且第一次使用需要加载大量的数据，流量也会慢慢的往上走，带着这些问题，继续进行第二次测试。&lt;/p&gt;
+&lt;h3 id=&quot;二次测试—模拟手工测试&quot;&gt;&lt;a href=&quot;#二次测试—模拟手工测试&quot; class=&quot;headerlink&quot; title=&quot;二次测试—模拟手工测试&quot;&gt;&lt;/a&gt;二次测试—模拟手工测试&lt;/h3&gt;&lt;p&gt;二次测试如同第一次测试一样手工执行，获取的指标如下：&lt;/p&gt;
+&lt;h4 id=&quot;第二次内存监控数据&quot;&gt;&lt;a href=&quot;#第二次内存监控数据&quot; class=&quot;headerlink&quot; title=&quot;第二次内存监控数据&quot;&gt;&lt;/a&gt;第二次内存监控数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/9DC2A24F-111F-49AA-A5F3-6A7D63BC37C2.png&quot; alt=&quot;内存监控数据&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第二次cpu监控数据&quot;&gt;&lt;a href=&quot;#第二次cpu监控数据&quot; class=&quot;headerlink&quot; title=&quot;第二次cpu监控数据&quot;&gt;&lt;/a&gt;第二次cpu监控数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/E21BA601-C20E-483F-B354-8CBF42C88944.png&quot; alt=&quot;cpu监控数据&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第二次流量监控数据&quot;&gt;&lt;a href=&quot;#第二次流量监控数据&quot; class=&quot;headerlink&quot; title=&quot;第二次流量监控数据&quot;&gt;&lt;/a&gt;第二次流量监控数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/D682E488-1EE0-4884-A571-A9A69177307B.png&quot; alt=&quot;流量监控数据&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第二次测试结果的总结&quot;&gt;&lt;a href=&quot;#第二次测试结果的总结&quot; class=&quot;headerlink&quot; title=&quot;第二次测试结果的总结&quot;&gt;&lt;/a&gt;第二次测试结果的总结&lt;/h4&gt;&lt;p&gt;从第二次测试结果来看，与第一次的结果并没有很大的出入，内存轻微抖动依然存在，CPU时高时低的情况也没有消除，流量数据也是老样子，不过综合第一第二次来分析，APP的流量消耗其实并不大，流量攀升都在APP打开的初始阶段，也就是在刷财讯数据的时候，都是加载新的资源，其他时候流量的消耗都是缓慢上升。属于可接受范围。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;那么问题来了，是因为APP内部的代码有问题，进行了过多的数据处理、图形的绘制，导致走势图抖动，还是正常处理数据的走势图就是这样呢？为了确认这个问题，我找了其他同类的APP进行竞品测试。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;竞品测试&quot;&gt;&lt;a href=&quot;#竞品测试&quot; class=&quot;headerlink&quot; title=&quot;竞品测试&quot;&gt;&lt;/a&gt;竞品测试&lt;/h3&gt;&lt;p&gt;竞品我选择了腾讯的自选股，作为互联网龙头企业的产品比较有标杆作用，来看看自选股的表现怎么样。&lt;/p&gt;
+&lt;p&gt;同样的时间，同样的我在操作，我们来看自选股的几个指标的表现。&lt;/p&gt;
+&lt;h4 id=&quot;自选股内存监控数据&quot;&gt;&lt;a href=&quot;#自选股内存监控数据&quot; class=&quot;headerlink&quot; title=&quot;自选股内存监控数据&quot;&gt;&lt;/a&gt;自选股内存监控数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/8040F4D5-94B4-4D51-9EDB-02699F248CFD.png&quot; alt=&quot;自选股内存监控&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;自选股cpu监控数据&quot;&gt;&lt;a href=&quot;#自选股cpu监控数据&quot; class=&quot;headerlink&quot; title=&quot;自选股cpu监控数据&quot;&gt;&lt;/a&gt;自选股cpu监控数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/0D67E6C8-4AC2-4FFF-9A71-2E602CCD2310.png&quot; alt=&quot;自选股CPU监控数据&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;自选股流量监控数据&quot;&gt;&lt;a href=&quot;#自选股流量监控数据&quot; class=&quot;headerlink&quot; title=&quot;自选股流量监控数据&quot;&gt;&lt;/a&gt;自选股流量监控数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/9FF14466-FB60-449B-AE26-DA1E4C7192F7.png&quot; alt=&quot;自选股流量监控数据&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;综合自选股测试结果的总结&quot;&gt;&lt;a href=&quot;#综合自选股测试结果的总结&quot; class=&quot;headerlink&quot; title=&quot;综合自选股测试结果的总结&quot;&gt;&lt;/a&gt;综合自选股测试结果的总结&lt;/h4&gt;&lt;p&gt;从自选股的三个指标来看，内存的轻微抖动属于正常现象，只要不超过最大值引发OOM，也不是全程频繁的抖动，我们都可以认为是合理的。CPU的上下波动属于正常现象，行情方面涉及到大量的数据处理，CPU标高，离开行情页面，CPU走低，这种波动也属于正常现象。从趋势图我们可以看出，自选股的内存抖动情况比我们的宇宙APP更加频繁，cpu的浮动相对较少，二者都可以理解为正常的范畴。&lt;/p&gt;
+&lt;p&gt;从流量上看，自选股显然要比我们的宇宙APP少很多，但是由于APP安全处理等原因，导致没办法抓通讯数据进行分析，只能从表现层来分析数据，自选股的行情数据是通过手工刷新来更新数据的，而我们的宇宙APP是自动刷新的，也就是说在测试的5分钟内，自选股的行情只有我手工触发刷新时才会产生流量，而我们的宇宙APP属于5分钟内无时无刻都在刷新数据，因此产生的流量较高，当然影响流量的因素还有很多，由于种种原因没办法做很深入的分析，只能做一个粗浅的判断。&lt;/p&gt;
+&lt;h3 id=&quot;结果&quot;&gt;&lt;a href=&quot;#结果&quot; class=&quot;headerlink&quot; title=&quot;结果&quot;&gt;&lt;/a&gt;结果&lt;/h3&gt;&lt;p&gt;有图有真相，有数据有真相，从这三个指标来看，我们的宇宙APP离行业的标杆产品还有一些距离，但是这个距离并不大。&lt;/p&gt;
+&lt;p&gt;当然。APP的好坏不仅仅是这三个指标衡量的，还有功能，用户体验，流畅度等等许多因素影响，本文仅列出这三个指标是因为我的测试工具目前只能测试这三个指标。&lt;/p&gt;
+&lt;p&gt;现在，来一组满负载（使用Monkey执行）的指标图：&lt;/p&gt;
+&lt;p&gt;内存信息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/520B8C6F-5177-485B-9B46-2768B7DA6A59.png&quot; alt=&quot;内存监控&quot;&gt;&lt;/p&gt;
+&lt;p&gt;cpu信息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/CB9F808E-2DCF-4571-9D1A-4DC7C4BDB077.png&quot; alt=&quot;cpu信息&quot;&gt;&lt;/p&gt;
+&lt;p&gt;流量信息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/4974AEB2-EEC0-40CD-8133-401EE815D3FD.png&quot; alt=&quot;流量信息&quot;&gt;&lt;/p&gt;
+&lt;p&gt;由于我对Monkey命令没有做优化处理，因此单一的结果并不具有参考性（很明显，上面测试最后转到了一个死胡同里一直跑，数据全部都是平缓的走）。这里只是为了说明，我们宇宙APP的性能还可以，Monkey并没有跑挂，啊哈哈哈哈！&lt;/p&gt;
+&lt;h2 id=&quot;其他指标&quot;&gt;&lt;a href=&quot;#其他指标&quot; class=&quot;headerlink&quot; title=&quot;其他指标&quot;&gt;&lt;/a&gt;其他指标&lt;/h2&gt;&lt;p&gt;除了我自己工具的几个指标以外，还有一些其他指标，比如gfxinfo、GPU过度绘制等，我也做了一下简单的测试。&lt;/p&gt;
+&lt;h3 id=&quot;gfxinfo&quot;&gt;&lt;a href=&quot;#gfxinfo&quot; class=&quot;headerlink&quot; title=&quot;gfxinfo&quot;&gt;&lt;/a&gt;gfxinfo&lt;/h3&gt;&lt;p&gt;这个指标其实就是FPS，打过游戏的对这个名词应该都不陌生，在APP中就表示动态绘制某个页面的时间，官方的说法是大于16MS就会产生卡顿的感觉。这个指标主要是用来衡量一些动态场景的流畅度，在炒股APP里面，一个股票列表的滑动，另一个是自选个股左右滑动的切换。&lt;/p&gt;
+&lt;p&gt;gfxinfo有三个参考的指标。Draw、Process和Execute。&lt;/p&gt;
+&lt;p&gt;Draw表示显示列表的时间开销，记录了所有view对象的绘制时间，这个指标高，要么就是view太多，要么就是执行效率太低。&lt;/p&gt;
+&lt;p&gt;Process表示显示列表中绘制指令的时间，这个指标过高就表示View的数量过多。&lt;/p&gt;
+&lt;p&gt;Execute表示一副图像由合成器合成的时间，这个指标过高就表示合成的效率低下。&lt;/p&gt;
+&lt;p&gt;针对这个指标，我们的宇宙APP基本上是惨不忍睹。请看图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/FC5C5E0C-8C50-4B1A-A794-2118007EB772.png&quot; alt=&quot;gfxinfo&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在绿色横线以上都是不合格的。所以在使用的时候快速切换个股，可以很直观的感觉非常非常的卡。图中Process的指标突破天际了，所以可以初步断定View的数量过多&lt;/p&gt;
+&lt;p&gt;对比对比其他的我们看看结果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/BFF65971-E761-4573-B35A-8B454F72FBAD.png&quot; alt=&quot;自选股&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/643641D4-D55E-49F9-A8BD-128E88956670.png&quot; alt=&quot;同花顺&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/BE59FD0E-654C-4DDD-A7A7-D4E9B612E919.png&quot; alt=&quot;东方财富&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/064D773D-3951-4663-A75C-817CC85BA2E0.png&quot; alt=&quot;佣金宝&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/857249ED-F71B-4634-AC18-2B5AB99D5610.png&quot; alt=&quot;中山证券&quot;&gt;&lt;/p&gt;
+&lt;p&gt;看了这么些APP的表现。。。只能说券商系的APP在这点上是一脉相承的烂到渣，而互联网公司的产品用户体验就会好上很多。&lt;/p&gt;
+&lt;h3 id=&quot;GPU过度绘制&quot;&gt;&lt;a href=&quot;#GPU过度绘制&quot; class=&quot;headerlink&quot; title=&quot;GPU过度绘制&quot;&gt;&lt;/a&gt;GPU过度绘制&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;GPU过度绘制指的是在屏幕一个像素上绘制多次(超过一次),比如一个TextView后有背景，那么显示文本的像素至少绘了两次，一次是背景，一次是文本。GPU过度绘制或多或少对性能有些影响。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;参考指标：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;蓝色 1x过度绘制&lt;/p&gt;
+&lt;p&gt;绿色 2x过度绘制&lt;/p&gt;
+&lt;p&gt;淡红色 3x过度绘制&lt;/p&gt;
+&lt;p&gt;红色 超过4x过度绘制&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;怎么理解这个指标呢，打开GPU显示，如果是红色一片，就表示绘制过度，如果是蓝色绿色，就表示整个UI的体系设计的还是很好的。&lt;/p&gt;
+&lt;p&gt;我们来看看宇宙APP的表现。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0840.JPG&quot; alt=&quot;com.weizq&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，淡红色一整片附带了一些深红色，也就是说过度绘制是比较严重的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0843.JPG&quot; alt=&quot;WeChat&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上图是微信的表现，可以说是非常棒的，可以说，几乎看不到红色。当然，不同类型的产品可比性是比较低的。就像上文中我们说CPU上下跳动很大的情况一样，同类产品的比较才能看出问题。我找了自选股和同花顺的图来对比。&lt;/p&gt;
+&lt;p&gt;自选股：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0841.JPG&quot; alt=&quot;自选股&quot;&gt;&lt;/p&gt;
+&lt;p&gt;同花顺：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0842.JPG&quot; alt=&quot;同花顺&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，自选股和同花顺都是非常重度的进行了绘制，也从侧面反映了一个问题，行情页面的展示UI是比较复杂的，难免涉及到重复绘制的问题，而IM类的软件结构相对简单，因此重度绘制不明显。&lt;/p&gt;
+&lt;p&gt;不过话又说回来，这种绘制消耗最大的是CPU。而现在安卓手机的配置高的吓人，CPU没有个4核都不好意思拿出来卖，更何况旗舰级都已经到八核十六核了，再多绘几层用户也不会有感觉。&lt;/p&gt;
+&lt;p&gt;但是高CPU会大大增加电量的消耗，为什么玩游戏耗电特别快，就是因为游戏动画需要吃非常高的CPU，手机发热，耗电加快，因此这个指标虽然不影响用户体验，但是在不影响功能的情况下，进行优化，也是对APP一个很大的提升。&lt;/p&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h2&gt;&lt;p&gt;文章列的一些指标都是无需root无需代码，从一些侧面就能够发现的性能问题，还有很多指标，比如uss需要root，数据处理和IO等指标更是需要从代码入手去埋点检查，衡量一个APP的好坏也不仅仅是看这些指标，还有很多其他因素，So，学习之路还很长。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这两周用python自己折腾了一个安卓性能测试工具，当然，整套工具的功能还不够完善，但是，测试几个指标基本上是没什么问题的。本着结果驱动的原则，先用这套工具来试试我们的宇宙级炒股APP&lt;strong&gt;微证券&lt;/strong&gt;（下称宇宙APP）的性能。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Python" scheme="http://www.wengyb.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>AndroidTestTool开发笔记</title>
     <link href="http://www.wengyb.com/2016/04/19/AndroidTestTool%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://www.wengyb.com/2016/04/19/AndroidTestTool开发笔记/</id>
     <published>2016-04-19T02:34:32.000Z</published>
-    <updated>2016-04-19T02:39:13.000Z</updated>
+    <updated>2016-04-19T03:12:43.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这段时间在Testerhome上看了一些有关性能测试的帖子，看别人的东西，始终是别人的，只有自己写一遍才能体会其中的细节，虽然说不要重复造轮子，但是这种基础的东西，造一次轮子能够学会很多东西，最近看的东西也比较多，拿来实战一下也未尝不可。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;整个工程下来难度其实不大，主要是一些基本知识，只不过涉及的面比较广，需要的要素如下：&lt;/p&gt;
 &lt;hr&gt;
@@ -274,7 +380,7 @@
     <link href="http://www.wengyb.com/2016/03/31/Appium%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E5%A4%84%E7%90%86%E6%B7%B7%E5%90%88APP/"/>
     <id>http://www.wengyb.com/2016/03/31/Appium学习之路—处理混合APP/</id>
     <published>2016-03-31T07:08:50.000Z</published>
-    <updated>2016-03-31T07:09:32.000Z</updated>
+    <updated>2016-04-19T03:12:46.000Z</updated>
     
     <content type="html">&lt;p&gt;文章首发：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《我的博客》&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -639,41 +745,6 @@
   </entry>
   
   <entry>
-    <title>Python小知识——深度剖析获取迭代序列</title>
-    <link href="http://www.wengyb.com/2016/03/12/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E8%8E%B7%E5%8F%96%E8%BF%AD%E4%BB%A3%E5%BA%8F%E5%88%97/"/>
-    <id>http://www.wengyb.com/2016/03/12/Python小知识——深度剖析获取迭代序列/</id>
-    <published>2016-03-12T02:41:06.000Z</published>
-    <updated>2016-03-31T03:15:37.000Z</updated>
-    
-    <content type="html">&lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;num = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in li:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; num, &amp;apos;element :&amp;apos;, i&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	num += 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这种方式获取起来很容写，也比较好理解，但是这个运行过程中多声明了一个变量，性能上并不是最优的（当然基本上我们写的东西性能上不差这一点）。&lt;/p&gt;
-&lt;p&gt;另一个替代方法是使用len（）和range（）的结合使用，这个方法用起来也是非常方便的，代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in range(len(li)):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; i, &amp;apos;element :&amp;apos;, li[i]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;类似的方法还有zip（）， while循环等等。&lt;/p&gt;
-&lt;h2 id=&quot;enumerate&quot;&gt;&lt;a href=&quot;#enumerate&quot; class=&quot;headerlink&quot; title=&quot;enumerate&quot;&gt;&lt;/a&gt;enumerate&lt;/h2&gt;&lt;p&gt;今天在看书的时候突然看到这个函数，这个函数处理起来真的是非常巧妙，至少我感觉比上文提到的方法更简单，更粗暴。&lt;/p&gt;
-&lt;p&gt;看下面的代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i, e in enumerate(li):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print  i, e&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;======输出结果===========&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 b&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2 c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Finished in 0.1s]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这种实现方式代码简洁，可读性强。其函数签名如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;enumerate(sequence, start=0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其中的sequence可以为任意一个可迭代的对象，函数的本质上就是一个迭代器，可以使用next()方法获取下一个迭代元素，比如上面的代码我们做一下简单的修改。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;e = enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=======输出结果======&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;enumerate object at 0x1079faaa0&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(0, &amp;apos;a&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(1, &amp;apos;b&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;不适用于字典&quot;&gt;&lt;a href=&quot;#不适用于字典&quot; class=&quot;headerlink&quot; title=&quot;不适用于字典&quot;&gt;&lt;/a&gt;不适用于字典&lt;/h3&gt;&lt;p&gt;字典这个类型是无序的，所以无法使用enumerate来处理字典的迭代,当然，你如果使用了也不会报错。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
-    
-    
-      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Django使用第三方接口（一）</title>
     <link href="http://www.wengyb.com/2016/03/12/Django%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%A5%E5%8F%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://www.wengyb.com/2016/03/12/Django使用第三方接口（一）/</id>
@@ -718,6 +789,41 @@
   </entry>
   
   <entry>
+    <title>Python小知识——深度剖析获取迭代序列</title>
+    <link href="http://www.wengyb.com/2016/03/12/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E8%8E%B7%E5%8F%96%E8%BF%AD%E4%BB%A3%E5%BA%8F%E5%88%97/"/>
+    <id>http://www.wengyb.com/2016/03/12/Python小知识——深度剖析获取迭代序列/</id>
+    <published>2016-03-12T02:41:06.000Z</published>
+    <updated>2016-03-31T03:15:37.000Z</updated>
+    
+    <content type="html">&lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;num = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in li:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; num, &amp;apos;element :&amp;apos;, i&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	num += 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这种方式获取起来很容写，也比较好理解，但是这个运行过程中多声明了一个变量，性能上并不是最优的（当然基本上我们写的东西性能上不差这一点）。&lt;/p&gt;
+&lt;p&gt;另一个替代方法是使用len（）和range（）的结合使用，这个方法用起来也是非常方便的，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;, &amp;apos;f&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i in range(len(li)):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print &amp;apos;index :&amp;apos; i, &amp;apos;element :&amp;apos;, li[i]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;类似的方法还有zip（）， while循环等等。&lt;/p&gt;
+&lt;h2 id=&quot;enumerate&quot;&gt;&lt;a href=&quot;#enumerate&quot; class=&quot;headerlink&quot; title=&quot;enumerate&quot;&gt;&lt;/a&gt;enumerate&lt;/h2&gt;&lt;p&gt;今天在看书的时候突然看到这个函数，这个函数处理起来真的是非常巧妙，至少我感觉比上文提到的方法更简单，更粗暴。&lt;/p&gt;
+&lt;p&gt;看下面的代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for i, e in enumerate(li):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	print  i, e&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;======输出结果===========&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 b&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2 c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Finished in 0.1s]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这种实现方式代码简洁，可读性强。其函数签名如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;enumerate(sequence, start=0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中的sequence可以为任意一个可迭代的对象，函数的本质上就是一个迭代器，可以使用next()方法获取下一个迭代元素，比如上面的代码我们做一下简单的修改。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;li = [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;e = enumerate(li)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print e.next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=======输出结果======&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;enumerate object at 0x1079faaa0&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(0, &amp;apos;a&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(1, &amp;apos;b&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;不适用于字典&quot;&gt;&lt;a href=&quot;#不适用于字典&quot; class=&quot;headerlink&quot; title=&quot;不适用于字典&quot;&gt;&lt;/a&gt;不适用于字典&lt;/h3&gt;&lt;p&gt;字典这个类型是无序的，所以无法使用enumerate来处理字典的迭代,当然，你如果使用了也不会报错。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
+    
+    
+      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《心迷宫》影评</title>
     <link href="http://www.wengyb.com/2016/03/08/%E3%80%8A%E5%BF%83%E8%BF%B7%E5%AE%AB%E3%80%8B%E5%BD%B1%E8%AF%84/"/>
     <id>http://www.wengyb.com/2016/03/08/《心迷宫》影评/</id>
@@ -750,9 +856,9 @@
       <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
     
     
-      <category term="影评" scheme="http://www.wengyb.com/tags/%E5%BD%B1%E8%AF%84/"/>
-    
       <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="影评" scheme="http://www.wengyb.com/tags/%E5%BD%B1%E8%AF%84/"/>
     
   </entry>
   
@@ -788,6 +894,39 @@
       <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
     
       <category term="书评" scheme="http://www.wengyb.com/tags/%E4%B9%A6%E8%AF%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python生成二维码</title>
+    <link href="http://www.wengyb.com/2016/03/01/python%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
+    <id>http://www.wengyb.com/2016/03/01/python生成二维码/</id>
+    <published>2016-03-01T03:08:18.000Z</published>
+    <updated>2016-03-31T03:14:29.000Z</updated>
+    
+    <content type="html">&lt;p&gt;版本相关&lt;br&gt;操作系统：Mac OS X EI Caption&lt;br&gt;Python版本：2.7&lt;br&gt;IDE：Sublime Text 3&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;依赖库&quot;&gt;&lt;a href=&quot;#依赖库&quot; class=&quot;headerlink&quot; title=&quot;依赖库&quot;&gt;&lt;/a&gt;依赖库&lt;/h2&gt;&lt;p&gt;Python生成二维码需要的依赖库为PIL和QRcode。&lt;br&gt;坑爹的是，百度了好久都没有找到PIL，不知道是什么时候改名了，pillow就是传说中的PIL。&lt;br&gt;安装命令：sudo pip install pillow、sudo pip install qrcode&lt;br&gt;验证是否安装成功，使用命令from PIL import Image，就可以验证PIL是否安装成功，qrcode则使用import qrcode，两条命令不报错，就说明依赖的环境已经完毕了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;使用qrcode&quot;&gt;&lt;a href=&quot;#使用qrcode&quot; class=&quot;headerlink&quot; title=&quot;使用qrcode&quot;&gt;&lt;/a&gt;使用qrcode&lt;/h2&gt;&lt;p&gt;qrcode使用起来也很简单，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import qrcode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr = qrcode.QRCode(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    version=7,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    error_correction=qrcode.constants.ERROR_CORRECT_L,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    box_size=10,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    border=4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.add_data(&amp;quot;Hello&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.make(fit=True)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img = qr.make_image()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img.save(&amp;quot;test.png&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;参数 version 表示生成二维码的尺寸大小，取值范围是 1 至 40，最小尺寸 1 会生成 21 &lt;em&gt; 21 的二维码，version 每增加 1，生成的二维码就会添加 4 尺寸，例如 version 是 2，则生成 25 &lt;/em&gt; 25 的二维码。&lt;br&gt;参数 error_correction 指定二维码的容错系数，分别有以下4个系数：&lt;br&gt;1.ERROR_CORRECT_L: 7%的字码可被容错&lt;br&gt;2.ERROR_CORRECT_M: 15%的字码可被容错&lt;br&gt;3.ERROR_CORRECT_Q: 25%的字码可被容错&lt;br&gt;4.ERROR_CORRECT_H: 30%的字码可被容错&lt;br&gt;参数 box_size 表示二维码里每个格子的像素大小。&lt;br&gt;参数 border 表示边框的格子厚度是多少（默认是4）。&lt;br&gt;运行代码后，会在代码的当前目录下生成一个test.png的二维码，用手机扫一下就可以看到Hello了。&lt;/p&gt;
+&lt;h2 id=&quot;带有logo的二维码&quot;&gt;&lt;a href=&quot;#带有logo的二维码&quot; class=&quot;headerlink&quot; title=&quot;带有logo的二维码&quot;&gt;&lt;/a&gt;带有logo的二维码&lt;/h2&gt;&lt;p&gt;生成这个二维码的原理就是利用PIL库操作icon，把icon放到二维码的正中间。PIL操作没有去了解，就直接使用脚本之家的代码来做事例。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import Image&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import qrcode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr = qrcode.QRCode(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    version=2,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    error_correction=qrcode.constants.ERROR_CORRECT_H,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    box_size=10,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    border=1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.add_data(&amp;quot;http://jb51.net/&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.make(fit=True)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img = qr.make_image()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img = img.convert(&amp;quot;RGBA&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;icon = Image.open(&amp;quot;favicon.png&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img_w, img_h = img.size&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;factor = 4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;size_w = int(img_w / factor)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;size_h = int(img_h / factor)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;icon_w, icon_h = icon.size&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if icon_w &amp;gt; size_w:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    icon_w = size_w&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if icon_h &amp;gt; size_h:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    icon_h = size_h&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;icon = icon.resize((icon_w, icon_h), Image.ANTIALIAS)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;w = int((img_w - icon_w) / 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;h = int((img_h - icon_h) / 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img.paste(icon, (w, h), icon)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img.save(&amp;quot;dhqme_qrcode.png&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;版本相关&lt;br&gt;操作系统：Mac OS X EI Caption&lt;br&gt;Python版本：2.7&lt;br&gt;IDE：Sublime Text 3&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;依赖库&quot;&gt;&lt;a href=&quot;#依赖库&quot; class=&quot;headerlink&quot; title=&quot;依赖库&quot;&gt;&lt;/a&gt;依赖库&lt;/h2&gt;&lt;p&gt;Python生成二维码需要的依赖库为PIL和QRcode。&lt;br&gt;坑爹的是，百度了好久都没有找到PIL，不知道是什么时候改名了，pillow就是传说中的PIL。&lt;br&gt;安装命令：sudo pip install pillow、sudo pip install qrcode&lt;br&gt;验证是否安装成功，使用命令from PIL import Image，就可以验证PIL是否安装成功，qrcode则使用import qrcode，两条命令不报错，就说明依赖的环境已经完毕了。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
+    
+    
+      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
+    
+      <category term="Django" scheme="http://www.wengyb.com/tags/Django/"/>
     
   </entry>
   
@@ -837,39 +976,6 @@
   </entry>
   
   <entry>
-    <title>python生成二维码</title>
-    <link href="http://www.wengyb.com/2016/03/01/python%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
-    <id>http://www.wengyb.com/2016/03/01/python生成二维码/</id>
-    <published>2016-03-01T03:08:18.000Z</published>
-    <updated>2016-03-31T03:14:29.000Z</updated>
-    
-    <content type="html">&lt;p&gt;版本相关&lt;br&gt;操作系统：Mac OS X EI Caption&lt;br&gt;Python版本：2.7&lt;br&gt;IDE：Sublime Text 3&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;依赖库&quot;&gt;&lt;a href=&quot;#依赖库&quot; class=&quot;headerlink&quot; title=&quot;依赖库&quot;&gt;&lt;/a&gt;依赖库&lt;/h2&gt;&lt;p&gt;Python生成二维码需要的依赖库为PIL和QRcode。&lt;br&gt;坑爹的是，百度了好久都没有找到PIL，不知道是什么时候改名了，pillow就是传说中的PIL。&lt;br&gt;安装命令：sudo pip install pillow、sudo pip install qrcode&lt;br&gt;验证是否安装成功，使用命令from PIL import Image，就可以验证PIL是否安装成功，qrcode则使用import qrcode，两条命令不报错，就说明依赖的环境已经完毕了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;使用qrcode&quot;&gt;&lt;a href=&quot;#使用qrcode&quot; class=&quot;headerlink&quot; title=&quot;使用qrcode&quot;&gt;&lt;/a&gt;使用qrcode&lt;/h2&gt;&lt;p&gt;qrcode使用起来也很简单，代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import qrcode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr = qrcode.QRCode(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    version=7,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    error_correction=qrcode.constants.ERROR_CORRECT_L,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    box_size=10,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    border=4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.add_data(&amp;quot;Hello&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.make(fit=True)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img = qr.make_image()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img.save(&amp;quot;test.png&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;参数 version 表示生成二维码的尺寸大小，取值范围是 1 至 40，最小尺寸 1 会生成 21 &lt;em&gt; 21 的二维码，version 每增加 1，生成的二维码就会添加 4 尺寸，例如 version 是 2，则生成 25 &lt;/em&gt; 25 的二维码。&lt;br&gt;参数 error_correction 指定二维码的容错系数，分别有以下4个系数：&lt;br&gt;1.ERROR_CORRECT_L: 7%的字码可被容错&lt;br&gt;2.ERROR_CORRECT_M: 15%的字码可被容错&lt;br&gt;3.ERROR_CORRECT_Q: 25%的字码可被容错&lt;br&gt;4.ERROR_CORRECT_H: 30%的字码可被容错&lt;br&gt;参数 box_size 表示二维码里每个格子的像素大小。&lt;br&gt;参数 border 表示边框的格子厚度是多少（默认是4）。&lt;br&gt;运行代码后，会在代码的当前目录下生成一个test.png的二维码，用手机扫一下就可以看到Hello了。&lt;/p&gt;
-&lt;h2 id=&quot;带有logo的二维码&quot;&gt;&lt;a href=&quot;#带有logo的二维码&quot; class=&quot;headerlink&quot; title=&quot;带有logo的二维码&quot;&gt;&lt;/a&gt;带有logo的二维码&lt;/h2&gt;&lt;p&gt;生成这个二维码的原理就是利用PIL库操作icon，把icon放到二维码的正中间。PIL操作没有去了解，就直接使用脚本之家的代码来做事例。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import Image&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import qrcode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr = qrcode.QRCode(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    version=2,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    error_correction=qrcode.constants.ERROR_CORRECT_H,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    box_size=10,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    border=1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.add_data(&amp;quot;http://jb51.net/&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;qr.make(fit=True)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img = qr.make_image()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img = img.convert(&amp;quot;RGBA&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;icon = Image.open(&amp;quot;favicon.png&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img_w, img_h = img.size&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;factor = 4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;size_w = int(img_w / factor)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;size_h = int(img_h / factor)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;icon_w, icon_h = icon.size&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if icon_w &amp;gt; size_w:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    icon_w = size_w&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if icon_h &amp;gt; size_h:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    icon_h = size_h&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;icon = icon.resize((icon_w, icon_h), Image.ANTIALIAS)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;w = int((img_w - icon_w) / 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;h = int((img_h - icon_h) / 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img.paste(icon, (w, h), icon)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;img.save(&amp;quot;dhqme_qrcode.png&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;版本相关&lt;br&gt;操作系统：Mac OS X EI Caption&lt;br&gt;Python版本：2.7&lt;br&gt;IDE：Sublime Text 3&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;依赖库&quot;&gt;&lt;a href=&quot;#依赖库&quot; class=&quot;headerlink&quot; title=&quot;依赖库&quot;&gt;&lt;/a&gt;依赖库&lt;/h2&gt;&lt;p&gt;Python生成二维码需要的依赖库为PIL和QRcode。&lt;br&gt;坑爹的是，百度了好久都没有找到PIL，不知道是什么时候改名了，pillow就是传说中的PIL。&lt;br&gt;安装命令：sudo pip install pillow、sudo pip install qrcode&lt;br&gt;验证是否安装成功，使用命令from PIL import Image，就可以验证PIL是否安装成功，qrcode则使用import qrcode，两条命令不报错，就说明依赖的环境已经完毕了。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
-    
-    
-      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
-    
-      <category term="Django" scheme="http://www.wengyb.com/tags/Django/"/>
-    
-  </entry>
-  
-  <entry>
     <title>《卧虎藏龙—青冥宝剑》影评</title>
     <link href="http://www.wengyb.com/2016/02/28/%E3%80%8A%E5%8D%A7%E8%99%8E%E8%97%8F%E9%BE%99%E2%80%94%E9%9D%92%E5%86%A5%E5%AE%9D%E5%89%91%E3%80%8B%E5%BD%B1%E8%AF%84/"/>
     <id>http://www.wengyb.com/2016/02/28/《卧虎藏龙—青冥宝剑》影评/</id>
@@ -896,9 +1002,9 @@
       <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
     
     
-      <category term="影评" scheme="http://www.wengyb.com/tags/%E5%BD%B1%E8%AF%84/"/>
-    
       <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="影评" scheme="http://www.wengyb.com/tags/%E5%BD%B1%E8%AF%84/"/>
     
   </entry>
   
@@ -1037,57 +1143,6 @@
     
     
       <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2015年度总结</title>
-    <link href="http://www.wengyb.com/2016/02/09/2015%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
-    <id>http://www.wengyb.com/2016/02/09/2015年度总结/</id>
-    <published>2016-02-09T06:38:54.000Z</published>
-    <updated>2016-03-31T06:49:17.000Z</updated>
-    
-    <content type="html">&lt;p&gt;写在前面：本文属于作者个人总结，如有雷同，绝无可能。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;2015年是我工作以来变动最大的一年了，今年离开了工作了3年多的招行，又经历了微众银行3个月的时光。最终落位到华林证券。今年做了这么些事：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;读了一些书&lt;/li&gt;
-&lt;li&gt;做了一些思想总结&lt;/li&gt;
-&lt;li&gt;换了一些单位&lt;/li&gt;
-&lt;li&gt;学了一门编程语言&lt;/li&gt;
-&lt;li&gt;Linux了解了一些&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;读书，思想总结等内容，请移步&lt;a href=&quot;http://www.jianshu.com/p/3b0ee5d4b71c&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《思想汇报（一）——有关读书》&lt;/a&gt;、&lt;a href=&quot;http://www.jianshu.com/p/a3d524118ffc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《思想汇报（二）——有关测试》&lt;/a&gt;、&lt;a href=&quot;http://www.jianshu.com/p/831087e3f846&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《思想汇报（三）——有关互联网》&lt;/a&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;招行三年&quot;&gt;&lt;a href=&quot;#招行三年&quot; class=&quot;headerlink&quot; title=&quot;招行三年&quot;&gt;&lt;/a&gt;招行三年&lt;/h2&gt;&lt;p&gt;在招行混迹是毕业后的第一份工作，感觉真的是有那么些青涩，在大学学的是会计学专业，突然变成了一个软件测试人员，好像跨度有那么点大。不过其实做起来并没有感觉到很吃力。并不是我多牛多牛，而是做一个基础的手工测试，真的不怎么需要专业知识水平。&lt;br&gt;工作中遇到了好领导，真的要珍惜。我很幸运，真的遇到了，而且不止一个。&lt;br&gt;3G改造的时候，李玉姐让我独立负责VISA模块的测试。这真的让我觉得不可思议，那时我才刚刚度过自己的实习期，而且VISA相关的功能并没有完整的文档说明，也没有前辈指导，界面还是全英文的。我都不敢相信会让我一个人负责这样一个充满巨大挑战的任务。整个3G项目的领导层都顶着巨大的压力在推，做成了并不会有直接的收益，做砸了那将会是灭顶之灾。不论出于什么原因，我获得了李玉姐的信任，得到了这次锻炼成长的机会。&lt;br&gt;收单双活时期，承蒙盛哥的信任，带领一个8人团队参与双活项目的测试，期间还穿插了几个零碎的小项目。带团队测试和自己单干完全是两回事，考虑的事情比以前多了太多。不仅要协调外部的资源，对外的沟通，还要调解内部的矛盾，活跃内部的气氛，适当的收缩项目的压力，适当的释放项目的压力……&lt;br&gt;工作中遇到了好同事，真的要珍惜。我很幸运，真的遇到了，而且不止一个。&lt;br&gt;刚开始学习的时候有李玉姐的细心指导，后来又有盛哥、董欢、小强等大牛领路，再后来还有墨迹男、小红、花爷等帮忙排忧解难。&lt;br&gt;刚入职场能获得这么多，已是足够幸运。&lt;br&gt;离开收单后，有一次小夏和我说，在收单双活干活是工作以来最开心的日子。我瞬间就觉得，我这组长没白做啊！&lt;br&gt;我不止一次听到有人说，在招行干没前途啊，什么东西都学不到，完全就是打零工浪费时间，还不如早点辞职去学点有用的东西。&lt;strong&gt;学不到东西只是你不用心&lt;/strong&gt;。工作一段时间如果没收获，那真的只能怪自己了。起码我在招行学到了很多东西。一个人做项目，可以深入了解项目流程，可以了解项目的运作方式以及自己的角色定位。与他人协同做项目，能够学到协同办公的技巧、与不同人沟通的学问。带团队做项目，那学习的东西就更多了，如何协调资源、如何与开发PK、如何带新人、如何协调内部矛盾、如何激发组员的积极性、如何合理的分配工作、如何掌控进度……这些是需要一辈子时间去学习的知识。怎么能说什么都没学到？&lt;br&gt;LR、QTP等只能称之为工具、你要是想靠一个工具混一辈子，那还不如趁早回家考公务员，公务员是可以混一辈子的。包括某某语言、某某工具、某某框架，这些东西要学起来，最慢最慢自学3个月也都能搞定。衡量一个开发水平高不高，绝对不是看这个人会多少语言、而是看他用代码实现的功能是否完善、扩展性是否优秀、算法是否科学等因素。同理，工具的使用也是会过期的、以前自动化王者QTP，现在已经日薄西山，你很精通QTP？你靠这个吃饭？不好意思，现在已经没地方用这个了。LR现在还比较有市场，但是究其原理而言，并不是非常复杂、LR的优点是量大、可以弄出百万级的并发，可是有几家公司的产品需要承受这么高的并发？据我所知，某知名P2P平台（不提名，但是在行业内排名绝对靠前）的最高并发，不过3000。这个数字并不难实现，java、Python等语言的多进程带多线程就能实现这个量级的并发。&lt;br&gt;说了这么多其实就是想表达：在这个快速发展的社会，某一个工具的精通已经不再像以前那么重要了（不是不重要），学习的能力更为重要。社会的本质是人，学会那些看不见摸不着却存在且与人有关的技能能吃的更香。&lt;br&gt;离开收单之后，感觉事情做起来并不是那么顺心，到了UAT之后领导也并不信任我，总感觉做事放不开手脚。而且在招行混迹了三年，做久了都是例行公事，并没有很特别的亮点，给我的上升空间也很局限，So，是离开的时候了。&lt;/p&gt;
-&lt;h2 id=&quot;微众一季&quot;&gt;&lt;a href=&quot;#微众一季&quot; class=&quot;headerlink&quot; title=&quot;微众一季&quot;&gt;&lt;/a&gt;微众一季&lt;/h2&gt;&lt;p&gt;离开招行之后，在微众晃了一个季度，在微众期间我参与了“火鸡”的账务测试以及核心系统的账务测试，在微众的日子可以用养生来形容了，工作上并没有很大的压力，事情做起来也很顺手。测试的都是账务系统，核对的是一些会计报表，看起来好像是和我的专业有关。可是在招行混了三年，会计的相关知识也基本上忘记的差不多了。与其说学习会计及知识，不如说了解了银行起步的一些过程。比如活期存款系统、定期存款系统、重要空白凭证入库出库等流程。&lt;br&gt;在微众领导也是信任我的，工作开展的也顺利，参与银行从无到有的发展过程可能一辈子都不会再遇到第二次了，可是我总感觉没有什么新鲜的地方，做的事甚至还不如招行。可能也是思想那段时间比较累，也厌烦了同样的工作。于是乎，在马上要转正的时候，我提了离职。&lt;/p&gt;
-&lt;p&gt;##偶遇华林&lt;br&gt;能来华林真的是很偶然的事情，当时我还在思考离职的事情，并没有下定决心。当时是墨迹男在找工作，然后去招聘会的时候我顺路跟去的。一般来说招聘会的摊位人多，我和墨迹男都会绕开走，谈都懒得谈，就只有华林这里，我排了将近一小时的队，好像就有种我可能会上的感觉。果不其然，整个面试走下来，除了面试周期有点长，其他方面都很顺利。&lt;/p&gt;
-&lt;h2 id=&quot;关于面试&quot;&gt;&lt;a href=&quot;#关于面试&quot; class=&quot;headerlink&quot; title=&quot;关于面试&quot;&gt;&lt;/a&gt;关于面试&lt;/h2&gt;&lt;p&gt;其实面试并没有想象中的那么可怕，很多时候面试官的水平还不如我。&lt;br&gt;一开始面试的时候总是会紧张，而且面试过后，特别容易被打击。包括身边的朋友，包括我自己都有这样的经历。比如去科技园某公司面试的时候，关于Linux的东西我都不懂，没学过，工作也没接触过，面试官就直接说，我面试过几百个人、你是第一个答不上来这个问题的人。我不知道读者能不能想象当时的场景，反正我当时是非常非常的尴尬。自信满满的去面试，被打击的体无完肤出来。所以今年做的事，就包含了解Linux。&lt;br&gt;后来面试多了，也就习惯了，&lt;strong&gt;面不上并不是你不行，而是你会的东西并不适合这个公司。&lt;/strong&gt;&lt;br&gt;再后来，面试面的不爽的时候，还可以去呛一下，比如某公司面试的时候，烦了面试官问这问那，不问重点，说我有问题就问，但是所有我想知道的他都给我打太极，推这推那，我就问了这么些问题：&lt;br&gt;1、我算了一下（计算过程忽略），你们公司获得的风投资金已经差不多快到了，那我过来万一公司发不出工资了怎么办？&lt;br&gt;2、我查了一下，你们公司CEO在美国涉嫌内幕交易被起诉了，对你们有什么影响？&lt;br&gt;乖乖，面试官脸都变成猪肝色了。&lt;br&gt;当然我并不建议大家这样做，毕竟找工作关系到生计。只是想告诉大家，面试失败不要气馁，总有一款适合你。面试官也是人，平常心对待就好了。&lt;/p&gt;
-&lt;h2 id=&quot;关于管理&quot;&gt;&lt;a href=&quot;#关于管理&quot; class=&quot;headerlink&quot; title=&quot;关于管理&quot;&gt;&lt;/a&gt;关于管理&lt;/h2&gt;&lt;p&gt;再怎么说，在招行也是带过团队的，再再怎么说，当年考研管理学成绩也是出类拔萃的。&lt;br&gt;管理学涉及的智慧太多了，只能简单的总结一下自己的感觉。&lt;br&gt;不同等级的管理者应该管理的内容是不同的，基层的管理者，我感觉应该是要带着平常心，而不是以一种居高临下的姿态。在团队刚刚组建的时候，别人过来找我都喜欢问我，这里都是你的小弟吗？我都会义正言辞的反驳他，这些都是我的战友。能当组长，很多时候是因为在公司呆的久，业务比较熟悉，因此你才当上组长。同理，大家会听你的，也是因为信任你，相信一个组长不会坑队友。&lt;br&gt;待人以诚也是非常重要的，其实这点当时我当组长的时候并没有认真的考虑这点，当时我的想法很简单，各个功能的业务我把他们都教会了，我就可以学(wan)自己想学(wan)的东西了。所以双活初期累成狗，但是到了中后期，基本上上班除了开会就是玩手机，每周统计一下进度就行了。&lt;br&gt;最后的一点就是需要处理好工作环境，其实带团队，不会参与执行具体的事项，这个时候组长需要把各种杂事处理好，尽最大可能给组员一个纯粹的工作环境，组员只考虑做事，其他杂事不用分心处理。极大可能的杜绝组员碎片式工作。这样分工明确，团队的效率才能最大化。&lt;/p&gt;
-&lt;h2 id=&quot;最后&quot;&gt;&lt;a href=&quot;#最后&quot; class=&quot;headerlink&quot; title=&quot;最后&quot;&gt;&lt;/a&gt;最后&lt;/h2&gt;&lt;p&gt;理论上在总结的最后应该给自己立一个Flag。不过鉴于以往立的Flag从来都没有兑现过。今年就不立了吧，一边走一边寻找终点。&lt;/p&gt;
-&lt;p&gt;##失去的年味&lt;br&gt;文章写到这里应该结束了，不过大年初二才写出来这东西，就再加一点自己过年时看到的其他现象，比如：红包。&lt;br&gt;今年过年，又多了一个叫红包的东西，其实严格来说，应该是去年就出来的事情，去年过年的时候微信红包就风靡了全国。但是今年红包已经有点过分了，包括支付宝、微信、微博、QQ在内的所有社交渠道，对！是所有社交渠道都在派发红包。今年过年，全家都在看手机除了最老的不会玩手机没有抢红包，其他所有人都在对着手机看，应该有的年味荡然无存。从这个结果来看，各大公司赢了，他们成功的吸引了所有人的目光。&lt;br&gt;在微信力量的公开课上，张小龙先生阐述了一个他对于微信这款产品的看法：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;好的产品应该是用完即走的&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;第三个，我想跟大家分享微信的一个基本价值观，我们认为一个好的产品是一个用完即走的，就是用完了我就走了，&lt;/strong&gt;可能大家不是第一次听到这个词。一个好的产品不是黏住用户，而是尽量让这个用户离开你的产品，大家同意吗？说同意的都是没有认真思考的，因为我相信每个人做的工作都是围绕一点，怎么样黏住用户，怎么样让用户尽可能待在我的产品里头，不要离开产品。&lt;/p&gt;
-&lt;p&gt;我们认为任何产品都只是一个工具，对工具来说，好的工具就是应该最高效率的完成用户的目的，然后尽快的离开。如果一个用户要沉浸在里面，离不开，就像你买一辆汽车，你开完了，你到了目的地，你说汽车里面的空调特别好，所以要待在里面，那不是它应该做的事情。所以业界很羡慕微信是用户的时间杀手，&lt;strong&gt;但是我们要考虑的则是怎么样更高效率帮助用户完成任务，而不是让用户在微信里面永远都有处理不完的事情，&lt;/strong&gt;所以大家会看到微信的朋友圈会限制很严，各种营销在朋友圈里面我们都会很严格的对待。我们刚开始看朋友圈里面都是一些朋友的动态，可是慢慢发现朋友圈里面有很多心灵鸡汤，被各种各样地诱导上来发了一些内容，如果这样的信息多了其实最终的结果未必好，最终的结果可能是用户觉得朋友圈里面的信息太水了、太杂了，慢慢他再看朋友圈的意愿越来越低，这会变得非常可怕。因为朋友圈的进入次数特别多，平均一个用户每天大概有30、40次进入朋友圈，这是一个反复的过程，我们希望每次进来用户都不是很快的刷屏，而是看到的都是他愿意看到的内容。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;张小龙先生的初衷是很好的，但是现状并不是这样，包括微信、支付宝、微博在内的各大社交产品，都在不停的增强用户黏性。也许微信初衷不想这样，但是从结果来看，他们是粘着用户的。所以不知道张小龙先生回家过年，他的亲人坐在一起低头摇一摇的时候，他的心里是什么感想。&lt;br&gt;在滴滴快滴打车补贴的时候马云先生的母亲打不到车，马云先生是这么说的：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;市场竞争的原则是要让市场受惠、让用户受益。不怕烧钱，更不怕竞争，但最怕伤害用户的利益，特别是老人孩子的利益。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;换到现在，马云现在回家过年，全家人只顾低头咻一咻，抢敬业福。那么他会作何感想呢？&lt;br&gt;做社交，应该是拉近人与人之间的距离，让外出打工的人们能够了解到千里之外的亲朋好友的近况。这点是好的，但是在过年的时候，我们面对面坐着，却都在低头玩手机，抢红包。社交软件赚到了眼球，赚到了钱，却丢失了大企业应该承担的社会责任（也许是我认为的大企业应该承担的社会责任）。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;写在前面：本文属于作者个人总结，如有雷同，绝无可能。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
-    
-    
-      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="思想汇报" scheme="http://www.wengyb.com/tags/%E6%80%9D%E6%83%B3%E6%B1%87%E6%8A%A5/"/>
     
   </entry>
   

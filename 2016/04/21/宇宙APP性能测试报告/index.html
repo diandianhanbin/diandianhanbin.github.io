@@ -1,0 +1,837 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Appium,测试,Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="前言这两周用python自己折腾了一个安卓性能测试工具，当然，整套工具的功能还不够完善，但是，测试几个指标基本上是没什么问题的。本着结果驱动的原则，先用这套工具来试试我们的宇宙级炒股APP微证券（下称宇宙APP）的性能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宇宙APP性能测试报告">
+<meta property="og:url" content="http://www.wengyb.com/2016/04/21/宇宙APP性能测试报告/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="前言这两周用python自己折腾了一个安卓性能测试工具，当然，整套工具的功能还不够完善，但是，测试几个指标基本上是没什么问题的。本着结果驱动的原则，先用这套工具来试试我们的宇宙级炒股APP微证券（下称宇宙APP）的性能。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/6E2A853B-7FA1-46DB-970B-E153C53EB2AD.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/3F7C7D57-9435-4DFE-9CAC-08AB2F5D7619.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/20C18466-D2BE-4BF8-A848-57F6EC551E0F.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/EAB14141-4D89-483C-8D34-9289401DA9CC.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/9DC2A24F-111F-49AA-A5F3-6A7D63BC37C2.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/E21BA601-C20E-483F-B354-8CBF42C88944.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/D682E488-1EE0-4884-A571-A9A69177307B.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/8040F4D5-94B4-4D51-9EDB-02699F248CFD.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/0D67E6C8-4AC2-4FFF-9A71-2E602CCD2310.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/9FF14466-FB60-449B-AE26-DA1E4C7192F7.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/520B8C6F-5177-485B-9B46-2768B7DA6A59.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/CB9F808E-2DCF-4571-9D1A-4DC7C4BDB077.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/4974AEB2-EEC0-40CD-8133-401EE815D3FD.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/FC5C5E0C-8C50-4B1A-A794-2118007EB772.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/BFF65971-E761-4573-B35A-8B454F72FBAD.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/643641D4-D55E-49F9-A8BD-128E88956670.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/BE59FD0E-654C-4DDD-A7A7-D4E9B612E919.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/064D773D-3951-4663-A75C-817CC85BA2E0.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/857249ED-F71B-4634-AC18-2B5AB99D5610.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0840.JPG">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0843.JPG">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0841.JPG">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0842.JPG">
+<meta property="og:updated_time" content="2016-04-21T15:32:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="宇宙APP性能测试报告">
+<meta name="twitter:description" content="前言这两周用python自己折腾了一个安卓性能测试工具，当然，整套工具的功能还不够完善，但是，测试几个指标基本上是没什么问题的。本着结果驱动的原则，先用这套工具来试试我们的宇宙级炒股APP微证券（下称宇宙APP）的性能。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/6E2A853B-7FA1-46DB-970B-E153C53EB2AD.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 宇宙APP性能测试报告 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyb.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                宇宙APP性能测试报告
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-21T23:29:05+08:00" content="2016-04-21">
+              2016-04-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/21/宇宙APP性能测试报告/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/21/宇宙APP性能测试报告/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两周用python自己折腾了一个安卓性能测试工具，当然，整套工具的功能还不够完善，但是，测试几个指标基本上是没什么问题的。本着结果驱动的原则，先用这套工具来试试我们的宇宙级炒股APP<strong>微证券</strong>（下称宇宙APP）的性能。<br><a id="more"></a></p>
+<h2 id="工具概览"><a href="#工具概览" class="headerlink" title="工具概览"></a>工具概览</h2><p>工具的开发流程在这里：<a href="http://wybblog.applinzi.com/blog/article/39/" target="_blank" rel="external">《AndroidTestTool开发笔记》</a></p>
+<p>工具由两部分组成，一是客户端，二是web端，具体怎么划分的？其实我就是看心情。工具大概长这样</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/6E2A853B-7FA1-46DB-970B-E153C53EB2AD.png" alt="客户端"></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/D40ABEF3-5AFF-4107-8DE9-1219E92A724E.png" alt="web端"></p>
+<h2 id="工具的作用"><a href="#工具的作用" class="headerlink" title="工具的作用"></a>工具的作用</h2><p>工具大概监控这么几个指标，内存、cpu、wlan流量，以及封装了Monkey做满负载执行。</p>
+<h2 id="多次测试正常使用的指标"><a href="#多次测试正常使用的指标" class="headerlink" title="多次测试正常使用的指标"></a>多次测试正常使用的指标</h2><h3 id="一次测试—模拟正常手工操作"><a href="#一次测试—模拟正常手工操作" class="headerlink" title="一次测试—模拟正常手工操作"></a>一次测试—模拟正常手工操作</h3><p>首先模拟正常的操作监控内存、cpu和wlan流量（全程使用wifi，所以这个指标代表流量的消耗），测试时间5分钟左右（使用秒表记录，时间可能会有略微的偏差）。</p>
+<h4 id="第一次内存监控数据："><a href="#第一次内存监控数据：" class="headerlink" title="第一次内存监控数据："></a>第一次内存监控数据：</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/3F7C7D57-9435-4DFE-9CAC-08AB2F5D7619.png" alt="内存监控"></p>
+<h4 id="第一次cpu监控数据："><a href="#第一次cpu监控数据：" class="headerlink" title="第一次cpu监控数据："></a>第一次cpu监控数据：</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/20C18466-D2BE-4BF8-A848-57F6EC551E0F.png" alt="cpu监控"></p>
+<h4 id="第一次流量监控："><a href="#第一次流量监控：" class="headerlink" title="第一次流量监控："></a>第一次流量监控：</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/EAB14141-4D89-483C-8D34-9289401DA9CC.png" alt="流量监控"></p>
+<h4 id="第一次测试的总结"><a href="#第一次测试的总结" class="headerlink" title="第一次测试的总结"></a>第一次测试的总结</h4><p>第一次测试我模拟了正常用户的使用，查看咨询内容、查看个股详情，查看排行榜数据、查看投资学院、修改了头像昵称等操作。</p>
+<p>第一次测试暴露了以下问题：</p>
+<ol>
+<li>内存存在抖动现象</li>
+<li>cpu走势不稳定</li>
+</ol>
+<p>当然一次测试肯定是不够的，上述两个问题的出现很可能是由于其他因素导致的，比如第一次使用APP，会导致加载大量的数据，导致CPU使用量巨大，内存不稳定等问题，而且第一次使用需要加载大量的数据，流量也会慢慢的往上走，带着这些问题，继续进行第二次测试。</p>
+<h3 id="二次测试—模拟手工测试"><a href="#二次测试—模拟手工测试" class="headerlink" title="二次测试—模拟手工测试"></a>二次测试—模拟手工测试</h3><p>二次测试如同第一次测试一样手工执行，获取的指标如下：</p>
+<h4 id="第二次内存监控数据"><a href="#第二次内存监控数据" class="headerlink" title="第二次内存监控数据"></a>第二次内存监控数据</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/9DC2A24F-111F-49AA-A5F3-6A7D63BC37C2.png" alt="内存监控数据"></p>
+<h4 id="第二次cpu监控数据"><a href="#第二次cpu监控数据" class="headerlink" title="第二次cpu监控数据"></a>第二次cpu监控数据</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/E21BA601-C20E-483F-B354-8CBF42C88944.png" alt="cpu监控数据"></p>
+<h4 id="第二次流量监控数据"><a href="#第二次流量监控数据" class="headerlink" title="第二次流量监控数据"></a>第二次流量监控数据</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/D682E488-1EE0-4884-A571-A9A69177307B.png" alt="流量监控数据"></p>
+<h4 id="第二次测试结果的总结"><a href="#第二次测试结果的总结" class="headerlink" title="第二次测试结果的总结"></a>第二次测试结果的总结</h4><p>从第二次测试结果来看，与第一次的结果并没有很大的出入，内存轻微抖动依然存在，CPU时高时低的情况也没有消除，流量数据也是老样子，不过综合第一第二次来分析，APP的流量消耗其实并不大，流量攀升都在APP打开的初始阶段，也就是在刷财讯数据的时候，都是加载新的资源，其他时候流量的消耗都是缓慢上升。属于可接受范围。</p>
+<p><strong>那么问题来了，是因为APP内部的代码有问题，进行了过多的数据处理、图形的绘制，导致走势图抖动，还是正常处理数据的走势图就是这样呢？为了确认这个问题，我找了其他同类的APP进行竞品测试。</strong></p>
+<h3 id="竞品测试"><a href="#竞品测试" class="headerlink" title="竞品测试"></a>竞品测试</h3><p>竞品我选择了腾讯的自选股，作为互联网龙头企业的产品比较有标杆作用，来看看自选股的表现怎么样。</p>
+<p>同样的时间，同样的我在操作，我们来看自选股的几个指标的表现。</p>
+<h4 id="自选股内存监控数据"><a href="#自选股内存监控数据" class="headerlink" title="自选股内存监控数据"></a>自选股内存监控数据</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/8040F4D5-94B4-4D51-9EDB-02699F248CFD.png" alt="自选股内存监控"></p>
+<h4 id="自选股cpu监控数据"><a href="#自选股cpu监控数据" class="headerlink" title="自选股cpu监控数据"></a>自选股cpu监控数据</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/0D67E6C8-4AC2-4FFF-9A71-2E602CCD2310.png" alt="自选股CPU监控数据"></p>
+<h4 id="自选股流量监控数据"><a href="#自选股流量监控数据" class="headerlink" title="自选股流量监控数据"></a>自选股流量监控数据</h4><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/9FF14466-FB60-449B-AE26-DA1E4C7192F7.png" alt="自选股流量监控数据"></p>
+<h4 id="综合自选股测试结果的总结"><a href="#综合自选股测试结果的总结" class="headerlink" title="综合自选股测试结果的总结"></a>综合自选股测试结果的总结</h4><p>从自选股的三个指标来看，内存的轻微抖动属于正常现象，只要不超过最大值引发OOM，也不是全程频繁的抖动，我们都可以认为是合理的。CPU的上下波动属于正常现象，行情方面涉及到大量的数据处理，CPU标高，离开行情页面，CPU走低，这种波动也属于正常现象。从趋势图我们可以看出，自选股的内存抖动情况比我们的宇宙APP更加频繁，cpu的浮动相对较少，二者都可以理解为正常的范畴。</p>
+<p>从流量上看，自选股显然要比我们的宇宙APP少很多，但是由于APP安全处理等原因，导致没办法抓通讯数据进行分析，只能从表现层来分析数据，自选股的行情数据是通过手工刷新来更新数据的，而我们的宇宙APP是自动刷新的，也就是说在测试的5分钟内，自选股的行情只有我手工触发刷新时才会产生流量，而我们的宇宙APP属于5分钟内无时无刻都在刷新数据，因此产生的流量较高，当然影响流量的因素还有很多，由于种种原因没办法做很深入的分析，只能做一个粗浅的判断。</p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>有图有真相，有数据有真相，从这三个指标来看，我们的宇宙APP离行业的标杆产品还有一些距离，但是这个距离并不大。</p>
+<p>当然。APP的好坏不仅仅是这三个指标衡量的，还有功能，用户体验，流畅度等等许多因素影响，本文仅列出这三个指标是因为我的测试工具目前只能测试这三个指标。</p>
+<p>现在，来一组满负载（使用Monkey执行）的指标图：</p>
+<p>内存信息：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/520B8C6F-5177-485B-9B46-2768B7DA6A59.png" alt="内存监控"></p>
+<p>cpu信息：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/CB9F808E-2DCF-4571-9D1A-4DC7C4BDB077.png" alt="cpu信息"></p>
+<p>流量信息：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/4974AEB2-EEC0-40CD-8133-401EE815D3FD.png" alt="流量信息"></p>
+<p>由于我对Monkey命令没有做优化处理，因此单一的结果并不具有参考性（很明显，上面测试最后转到了一个死胡同里一直跑，数据全部都是平缓的走）。这里只是为了说明，我们宇宙APP的性能还可以，Monkey并没有跑挂，啊哈哈哈哈！</p>
+<h2 id="其他指标"><a href="#其他指标" class="headerlink" title="其他指标"></a>其他指标</h2><p>除了我自己工具的几个指标以外，还有一些其他指标，比如gfxinfo、GPU过度绘制等，我也做了一下简单的测试。</p>
+<h3 id="gfxinfo"><a href="#gfxinfo" class="headerlink" title="gfxinfo"></a>gfxinfo</h3><p>这个指标其实就是FPS，打过游戏的对这个名词应该都不陌生，在APP中就表示动态绘制某个页面的时间，官方的说法是大于16MS就会产生卡顿的感觉。这个指标主要是用来衡量一些动态场景的流畅度，在炒股APP里面，一个股票列表的滑动，另一个是自选个股左右滑动的切换。</p>
+<p>gfxinfo有三个参考的指标。Draw、Process和Execute。</p>
+<p>Draw表示显示列表的时间开销，记录了所有view对象的绘制时间，这个指标高，要么就是view太多，要么就是执行效率太低。</p>
+<p>Process表示显示列表中绘制指令的时间，这个指标过高就表示View的数量过多。</p>
+<p>Execute表示一副图像由合成器合成的时间，这个指标过高就表示合成的效率低下。</p>
+<p>针对这个指标，我们的宇宙APP基本上是惨不忍睹。请看图：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/FC5C5E0C-8C50-4B1A-A794-2118007EB772.png" alt="gfxinfo"></p>
+<p>在绿色横线以上都是不合格的。所以在使用的时候快速切换个股，可以很直观的感觉非常非常的卡。图中Process的指标突破天际了，所以可以初步断定View的数量过多</p>
+<p>对比对比其他的我们看看结果。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/BFF65971-E761-4573-B35A-8B454F72FBAD.png" alt="自选股"></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/643641D4-D55E-49F9-A8BD-128E88956670.png" alt="同花顺"></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/BE59FD0E-654C-4DDD-A7A7-D4E9B612E919.png" alt="东方财富"></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/064D773D-3951-4663-A75C-817CC85BA2E0.png" alt="佣金宝"></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/857249ED-F71B-4634-AC18-2B5AB99D5610.png" alt="中山证券"></p>
+<p>看了这么些APP的表现。。。只能说券商系的APP在这点上是一脉相承的烂到渣，而互联网公司的产品用户体验就会好上很多。</p>
+<h3 id="GPU过度绘制"><a href="#GPU过度绘制" class="headerlink" title="GPU过度绘制"></a>GPU过度绘制</h3><blockquote>
+<p>GPU过度绘制指的是在屏幕一个像素上绘制多次(超过一次),比如一个TextView后有背景，那么显示文本的像素至少绘了两次，一次是背景，一次是文本。GPU过度绘制或多或少对性能有些影响。</p>
+</blockquote>
+<p>参考指标：</p>
+<blockquote>
+<p>蓝色 1x过度绘制</p>
+<p>绿色 2x过度绘制</p>
+<p>淡红色 3x过度绘制</p>
+<p>红色 超过4x过度绘制</p>
+</blockquote>
+<p>怎么理解这个指标呢，打开GPU显示，如果是红色一片，就表示绘制过度，如果是蓝色绿色，就表示整个UI的体系设计的还是很好的。</p>
+<p>我们来看看宇宙APP的表现。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0840.JPG" alt="com.weizq"></p>
+<p>可以看出，淡红色一整片附带了一些深红色，也就是说过度绘制是比较严重的。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0843.JPG" alt="WeChat"></p>
+<p>上图是微信的表现，可以说是非常棒的，可以说，几乎看不到红色。当然，不同类型的产品可比性是比较低的。就像上文中我们说CPU上下跳动很大的情况一样，同类产品的比较才能看出问题。我找了自选股和同花顺的图来对比。</p>
+<p>自选股：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0841.JPG" alt="自选股"></p>
+<p>同花顺：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/IMG_0842.JPG" alt="同花顺"></p>
+<p>可以看出，自选股和同花顺都是非常重度的进行了绘制，也从侧面反映了一个问题，行情页面的展示UI是比较复杂的，难免涉及到重复绘制的问题，而IM类的软件结构相对简单，因此重度绘制不明显。</p>
+<p>不过话又说回来，这种绘制消耗最大的是CPU。而现在安卓手机的配置高的吓人，CPU没有个4核都不好意思拿出来卖，更何况旗舰级都已经到八核十六核了，再多绘几层用户也不会有感觉。</p>
+<p>但是高CPU会大大增加电量的消耗，为什么玩游戏耗电特别快，就是因为游戏动画需要吃非常高的CPU，手机发热，耗电加快，因此这个指标虽然不影响用户体验，但是在不影响功能的情况下，进行优化，也是对APP一个很大的提升。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>文章列的一些指标都是无需root无需代码，从一些侧面就能够发现的性能问题，还有很多指标，比如uss需要root，数据处理和IO等指标更是需要从代码入手去埋点检查，衡量一个APP的好坏也不仅仅是看这些指标，还有很多其他因素，So，学习之路还很长。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创知识分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/wecharpay.jpeg" alt="点点寒彬 | SvenWeng WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/alipay.jpeg" alt="点点寒彬 | SvenWeng Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+<div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Appium/" rel="tag">#Appium</a>
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/19/AndroidTestTool开发笔记/" rel="next" title="AndroidTestTool开发笔记">
+                <i class="fa fa-chevron-left"></i> AndroidTestTool开发笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/21/宇宙APP性能测试报告/"
+     data-title="宇宙APP性能测试报告"
+     data-content=""
+     data-url="http://www.wengyb.com/2016/04/21/宇宙APP性能测试报告/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/21/宇宙APP性能测试报告/"
+           data-title="宇宙APP性能测试报告" data-url="http://www.wengyb.com/2016/04/21/宇宙APP性能测试报告/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyb.com" target="_blank">我的个人站点</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具概览"><span class="nav-number">2.</span> <span class="nav-text">工具概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具的作用"><span class="nav-number">3.</span> <span class="nav-text">工具的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多次测试正常使用的指标"><span class="nav-number">4.</span> <span class="nav-text">多次测试正常使用的指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一次测试—模拟正常手工操作"><span class="nav-number">4.1.</span> <span class="nav-text">一次测试—模拟正常手工操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次内存监控数据："><span class="nav-number">4.1.1.</span> <span class="nav-text">第一次内存监控数据：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次cpu监控数据："><span class="nav-number">4.1.2.</span> <span class="nav-text">第一次cpu监控数据：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次流量监控："><span class="nav-number">4.1.3.</span> <span class="nav-text">第一次流量监控：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次测试的总结"><span class="nav-number">4.1.4.</span> <span class="nav-text">第一次测试的总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二次测试—模拟手工测试"><span class="nav-number">4.2.</span> <span class="nav-text">二次测试—模拟手工测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次内存监控数据"><span class="nav-number">4.2.1.</span> <span class="nav-text">第二次内存监控数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次cpu监控数据"><span class="nav-number">4.2.2.</span> <span class="nav-text">第二次cpu监控数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次流量监控数据"><span class="nav-number">4.2.3.</span> <span class="nav-text">第二次流量监控数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次测试结果的总结"><span class="nav-number">4.2.4.</span> <span class="nav-text">第二次测试结果的总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#竞品测试"><span class="nav-number">4.3.</span> <span class="nav-text">竞品测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自选股内存监控数据"><span class="nav-number">4.3.1.</span> <span class="nav-text">自选股内存监控数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自选股cpu监控数据"><span class="nav-number">4.3.2.</span> <span class="nav-text">自选股cpu监控数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自选股流量监控数据"><span class="nav-number">4.3.3.</span> <span class="nav-text">自选股流量监控数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合自选股测试结果的总结"><span class="nav-number">4.3.4.</span> <span class="nav-text">综合自选股测试结果的总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-number">4.4.</span> <span class="nav-text">结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他指标"><span class="nav-number">5.</span> <span class="nav-text">其他指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gfxinfo"><span class="nav-number">5.1.</span> <span class="nav-text">gfxinfo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPU过度绘制"><span class="nav-number">5.2.</span> <span class="nav-text">GPU过度绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wengyanbin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
