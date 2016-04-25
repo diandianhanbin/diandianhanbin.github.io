@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-04-21T15:32:54.000Z</updated>
+  <updated>2016-04-25T11:30:14.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Appium实战-开始</title>
+    <link href="http://www.wengyb.com/2016/04/25/Appium%E5%AE%9E%E6%88%98-%E5%BC%80%E5%A7%8B/"/>
+    <id>http://www.wengyb.com/2016/04/25/Appium实战-开始/</id>
+    <published>2016-04-25T11:29:00.000Z</published>
+    <updated>2016-04-25T11:30:14.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;初衷&quot;&gt;&lt;a href=&quot;#初衷&quot; class=&quot;headerlink&quot; title=&quot;初衷&quot;&gt;&lt;/a&gt;初衷&lt;/h2&gt;&lt;p&gt;最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/35/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——驱动和常用功能的封装》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——处理混合APP中H5的操作》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/33/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——无安卓源码的一些准备》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/25/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium学习之路—环境搭建》&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;其实最大的坎还是在自己，只要开始写，一边写一边Google，慢慢的会发现很其实并不难。&lt;/p&gt;
+&lt;p&gt;Appium实战我打算记录自己写自动化的过程。希望对新司机有帮助。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注：整个流程是按照Page Object来写的，直接撸代码的请看&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/35/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——驱动和常用功能的封装》&lt;/a&gt;然后自己撸代码&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;几种设计模式&quot;&gt;&lt;a href=&quot;#几种设计模式&quot; class=&quot;headerlink&quot; title=&quot;几种设计模式&quot;&gt;&lt;/a&gt;几种设计模式&lt;/h2&gt;&lt;h3 id=&quot;线性模式&quot;&gt;&lt;a href=&quot;#线性模式&quot; class=&quot;headerlink&quot; title=&quot;线性模式&quot;&gt;&lt;/a&gt;线性模式&lt;/h3&gt;&lt;p&gt;我称呼它为撸代码，也就是按照业务逻辑直接hard code。基本上初学者都会这样折腾，当然，折腾了一段时间就会觉得很操蛋，自己都不想看自己写的代码。&lt;/p&gt;
+&lt;h3 id=&quot;Page-Object&quot;&gt;&lt;a href=&quot;#Page-Object&quot; class=&quot;headerlink&quot; title=&quot;Page Object&quot;&gt;&lt;/a&gt;Page Object&lt;/h3&gt;&lt;p&gt;比较流行的设计模式，高度解耦，初学者看起来会觉得有点操蛋，但是了解了逻辑之后，会发现这样做非常棒，维护起来简直是轻松加愉快。&lt;/p&gt;
+&lt;h3 id=&quot;通用框架&quot;&gt;&lt;a href=&quot;#通用框架&quot; class=&quot;headerlink&quot; title=&quot;通用框架&quot;&gt;&lt;/a&gt;通用框架&lt;/h3&gt;&lt;p&gt;通用框架就是比较高级的做法了，实施起来比较麻烦，如果水平到了，这种方式肯定是最好的，利用关键字来驱动程序，是比较高级的境界。缺点就是比较难。。。。&lt;/p&gt;
+&lt;h2 id=&quot;设计思路&quot;&gt;&lt;a href=&quot;#设计思路&quot; class=&quot;headerlink&quot; title=&quot;设计思路&quot;&gt;&lt;/a&gt;设计思路&lt;/h2&gt;&lt;p&gt;整个设计思路是基于Page Object模式，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png&quot; alt=&quot;设计图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;什么是Page Object？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you write tests against a web page, you need to refer to elements within that web page in order to click links and determine what’s displayed. However, if you write tests that manipulate the HTML elements directly your tests will be brittle to changes in the UI. A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;原来是Web端的模式，搬到移动端来，就是把页面分拆成一个一个元素，如示意图所示，我拆分为元素数据、元素定位、元素操作、测试步骤这么些东西。&lt;/p&gt;
+&lt;h2 id=&quot;有什么好处？&quot;&gt;&lt;a href=&quot;#有什么好处？&quot; class=&quot;headerlink&quot; title=&quot;有什么好处？&quot;&gt;&lt;/a&gt;有什么好处？&lt;/h2&gt;&lt;p&gt;这种模式整个架构看起来比直接撸代码复杂了很多，不过当遇到一些坑爹的问题时，尤其开发频繁改动的时候，这种设计模式的优势就出来了，比如开发改了元素的ID那些东西，那么我们只要修改相应ID就行了，所有和这个元素相关的都直接关联修改了，，而直接撸代码，涉及到的地方可能会有很多，改动起来很麻烦。查找方法，测试步骤什么的都不用改，维护起来相对轻松。&lt;/p&gt;
+&lt;h2 id=&quot;一些环境&quot;&gt;&lt;a href=&quot;#一些环境&quot; class=&quot;headerlink&quot; title=&quot;一些环境&quot;&gt;&lt;/a&gt;一些环境&lt;/h2&gt;&lt;p&gt;简单列一下我的环境吧：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;系统：Mac OS X EI Capitan&lt;/p&gt;
+&lt;p&gt;Python: 2.7&lt;/p&gt;
+&lt;p&gt;Appium: 1.4.16&lt;/p&gt;
+&lt;p&gt;IDE: PyCharm&lt;/p&gt;
+&lt;p&gt;测试系统：Android&lt;/p&gt;
+&lt;p&gt;测试对象：微证券（应用商店可以直接下载）&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;我的项目结构：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;____.DS_Store&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____config.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____Data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____data.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____img&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____.DS_Store&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____caixun&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____gupiao.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____gupiaoneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____jijin.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____jijinneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____tuijian.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____tuijianneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____xinsanban.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____xinsanbanneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____zhaiquan.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____zhaiquanneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____黄金.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____Report&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____test.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____TestCase&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |______init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____common.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____testCaixun.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____View&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |______init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |______init__.pyc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____BaseTestCase.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____BaseView.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____Caixun.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;大的目录我是这么划分的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Data 用来放置一些数据&lt;/li&gt;
+&lt;li&gt;Report 存放测试报告&lt;/li&gt;
+&lt;li&gt;TestCase 存放测试用例&lt;/li&gt;
+&lt;li&gt;img 存放一些截图&lt;/li&gt;
+&lt;li&gt;config.py 配置文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;当然写到后续可能会做一些调整，毕竟我才刚刚开始写。&lt;/p&gt;
+&lt;h2 id=&quot;一些忠告&quot;&gt;&lt;a href=&quot;#一些忠告&quot; class=&quot;headerlink&quot; title=&quot;一些忠告&quot;&gt;&lt;/a&gt;一些忠告&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;一些很弱智的问题就自己去Google，比如Appium怎么开始啊，怎么学啊，环境怎么搭建啊！&lt;/li&gt;
+&lt;li&gt;多用Google&lt;/li&gt;
+&lt;li&gt;StockOverflow是个好地方&lt;/li&gt;
+&lt;li&gt;多写、多写、多写&lt;/li&gt;
+&lt;li&gt;人脑不是万能的，遇到问题解决后记录下来才是王道&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;初衷&quot;&gt;&lt;a href=&quot;#初衷&quot; class=&quot;headerlink&quot; title=&quot;初衷&quot;&gt;&lt;/a&gt;初衷&lt;/h2&gt;&lt;p&gt;最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/35/&quot;&gt;《Appium——驱动和常用功能的封装》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot;&gt;《Appium——处理混合APP中H5的操作》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/33/&quot;&gt;《Appium——无安卓源码的一些准备》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/25/&quot;&gt;《Appium学习之路—环境搭建》&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>宇宙APP性能测试报告</title>
@@ -1077,65 +1156,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天，苹果公司带着看似狂拽酷炫吊炸天的ApplePay进入大中华。看着支持的银行列表中有招行。带着脑残粉的心态打开了wallet。咦竟然看不到ApplePay，这不科学啊。随后掌上生活推送消息，告知了使用ApplePay的正确姿势。打开一看。。。。好吧我还是放弃尝鲜了，原来小招和ApplePay一起歧视我的5S了。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
-    
-    
-      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微信收费</title>
-    <link href="http://www.wengyb.com/2016/02/16/%E5%BE%AE%E4%BF%A1%E6%94%B6%E8%B4%B9/"/>
-    <id>http://www.wengyb.com/2016/02/16/微信收费/</id>
-    <published>2016-02-16T06:54:47.000Z</published>
-    <updated>2016-03-31T06:56:23.000Z</updated>
-    
-    <content type="html">&lt;p&gt;今天早上有一条新闻刷爆了朋友圈，微信提现收费了。公告的内容是这样的：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2月16日，微信支付团队发布公告，3月1日起，个人用户的微信零钱提现功能（从零钱到银行卡）开始对超额部分收取手续费，转账恢复免费。根据新的政策，从3月1日起计算，每位用户（身份证维度）有累计1000元免费提现额度，超出1000元部分按银行费率收取手续费，费率均为0.1%，每笔最少收0.1元。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;其实里面有许多可以挖掘的信息。&lt;/p&gt;
-&lt;h3 id=&quot;额度1000&quot;&gt;&lt;a href=&quot;#额度1000&quot; class=&quot;headerlink&quot; title=&quot;额度1000&quot;&gt;&lt;/a&gt;额度1000&lt;/h3&gt;&lt;p&gt;对于这个额度1000，其实认真看可以发现，是每位微信用户一辈子的额度，免费的提现额度是1000。对！&lt;strong&gt;一辈子！&lt;/strong&gt;。&lt;br&gt;微信对于用户的区分是用身份证来区分的，那么也就是基本上你没有可以取巧的方式了。&lt;/p&gt;
-&lt;h3 id=&quot;费率0-1&quot;&gt;&lt;a href=&quot;#费率0-1&quot; class=&quot;headerlink&quot; title=&quot;费率0.1%&quot;&gt;&lt;/a&gt;费率0.1%&lt;/h3&gt;&lt;p&gt;超出部分按银行费率收取，均为0.1%，这个数据其实是可商榷的。毕竟，不是所有银行都是这么个费率。&lt;/p&gt;
-&lt;h3 id=&quot;官方回应&quot;&gt;&lt;a href=&quot;#官方回应&quot; class=&quot;headerlink&quot; title=&quot;官方回应&quot;&gt;&lt;/a&gt;官方回应&lt;/h3&gt;&lt;p&gt;微信官方是这么回复的：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;手续费并非微信收取，而是缴纳给了银行，微信称，“一直以来，基于微信支付的每一笔转账和提现交易，不论金额大小都要向银行缴纳手续费交易。对提现交易收费并不是微信支付追求营收之举，而是用于支付银行手续费。”同时，微信支付团队称正在积极与银行方面密切沟通，争取早日实现转账、提现交易完全免费。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;从官方的回复我们可以挖掘出这些信息：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;微信收费并不是为了赚钱，而是让用户自己付自己应该付给银行的钱，微信只是代收。&lt;/li&gt;
-&lt;li&gt;微信被银行收费是按笔来收的&lt;/li&gt;
-&lt;li&gt;微信正在和银行沟通，希望银行能够免了这笔手续费&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;纠结的微信&quot;&gt;&lt;a href=&quot;#纠结的微信&quot; class=&quot;headerlink&quot; title=&quot;纠结的微信&quot;&gt;&lt;/a&gt;纠结的微信&lt;/h3&gt;&lt;p&gt;微信所说的成本大致是这么些东西。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;成本产生来源于两方面：1.银行在第三方支付每次调用快捷支付接口时都会按金额收取手续费，2.部分银行在提现时会再次收取费用，在此次调整中，微信支付选择承担了所有转账的成本，而在提现时收取手续费成本。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这么看来，其实微信收费并不太合理。涉及到银行的收费，只有调用银行快捷支付接口的时候，银行才会收取费用。&lt;br&gt;我们可以想象一下这样的场景，A打麻将输了100元给B。通过微信支付付款。A需要转账给B100元，A的零钱包没有钱，通过快捷支付从银行卡里转了100给B，最后B从微信钱包中提现到自己的银行卡中。资金流向就是从A的银行卡的活期户流到B的微信钱包，再从B的微信钱包提现到银行卡。&lt;br&gt;场景中的手续费发生是这样的：&lt;br&gt;1、A微信支付给B的过程，钱是先从A的银行卡到A的微信钱包，再从A的微信钱包转给B。这里银行收了手续费，因为A从银行充值到钱包的过程中调用了银行的接口，微信帮A垫付了这笔手续费。&lt;br&gt;2、B从微信钱包中提现到自己的银行卡，微信向B收了0.1%的手续费。&lt;br&gt;那么整个过程中，从理论上来看，微信应该向A收取手续费。但是向A收取手续费，虽然道理上说得通，但是用户体验会很差。&lt;/p&gt;
-&lt;p&gt;微信纠结的地方不仅仅如此。这种场景公关处理一下，我相信大家也基本上能够理解。还有一个更厉害的地方。那里才是高成本的聚集地。&lt;/p&gt;
-&lt;p&gt;我们再来看一个场景，ABC三个人斗地主，1毛钱一盘，A输了100盘，于是A向BC的钱包转100次1毛钱。由于A的钱包没有余额，于是100笔全部走银行的快捷支付。这100笔快捷支付，微信都得付钱给银行。&lt;/p&gt;
-&lt;p&gt;类似场景中的零碎钱的支出，才是微信产生巨大成本的地方。这么看起来，微信确实帮我们承担了巨大的成本。&lt;/p&gt;
-&lt;h3 id=&quot;值得商榷的成本&quot;&gt;&lt;a href=&quot;#值得商榷的成本&quot; class=&quot;headerlink&quot; title=&quot;值得商榷的成本&quot;&gt;&lt;/a&gt;值得商榷的成本&lt;/h3&gt;&lt;p&gt;不过巨大成本也是值得商榷的。零钱包有着巨大的余额，至少我是不相信腾讯不会利用这笔资金做些什么。虽然我没有什么理财经验，但是手上握着几十个E的资金，我也会去找银行做协定存款。这笔利息，是用户给微信带来的。也没见微信给个说法。&lt;/p&gt;
-&lt;h3 id=&quot;用户资金导向？&quot;&gt;&lt;a href=&quot;#用户资金导向？&quot; class=&quot;headerlink&quot; title=&quot;用户资金导向？&quot;&gt;&lt;/a&gt;用户资金导向？&lt;/h3&gt;&lt;p&gt;这些年阿里有一件事一直没干成，那就是社交。同理、腾讯的金融一直做的很烂。好不容易微信支付在竞争中占了上风，但是对腾讯的金融梦一直没什么帮助。零钱包中的零钱总数巨大，但是似乎用来买理财产品的人并不多，起码从我个人来看，我更愿意去隔壁阿里买，他们做了这么多年，靠谱。&lt;br&gt;据说前阵子微信推出了零钱理财，很明显和支付宝余额、余额宝是一个道理。你的支付宝余额放在余额中没有收益，转到余额宝每天就能产生利息，恐怕现在没人的支付宝余额有钱吧。&lt;strong&gt;有理由相信，微信未来也会推出一个功能，零钱自动理财，点一下零钱自动转到零钱理财账户的余额中。&lt;/strong&gt;&lt;br&gt;既然提现收费了，那就买点理财产品吧，买我腾讯的产品免费，但是你要提现去买阿里的东西？不好意思，我要收点买路钱。&lt;/p&gt;
-&lt;h3 id=&quot;一些遗漏&quot;&gt;&lt;a href=&quot;#一些遗漏&quot; class=&quot;headerlink&quot; title=&quot;一些遗漏&quot;&gt;&lt;/a&gt;一些遗漏&lt;/h3&gt;&lt;p&gt;还有这么些东西没说到，比如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.部分银行在提现时会再次收取费用&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;既然是官方公告，那么应该不是空穴来风，但是这个&lt;strong&gt;“部分”&lt;/strong&gt;也是值得商榷的，从行为上来看。提现就是银行获得了存款，那么，哪有这么傻缺的银行你送他钱他还要收费？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;微信正在和银行沟通，希望银行能够免了这笔手续费&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这个文案厉害啊！银行免了手续费，微信就获得了好名声。银行不免，那也是银行的事，和我微信没什么关系。&lt;/p&gt;
-&lt;h3 id=&quot;最后补一句&quot;&gt;&lt;a href=&quot;#最后补一句&quot; class=&quot;headerlink&quot; title=&quot;最后补一句&quot;&gt;&lt;/a&gt;最后补一句&lt;/h3&gt;&lt;p&gt;要是你们觉得微信收费很不爽，可以给我发红包，给我发红包不收费的。哈哈哈！！！&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天早上有一条新闻刷爆了朋友圈，微信提现收费了。公告的内容是这样的：&lt;br&gt;
     
     </summary>
     

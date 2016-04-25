@@ -59,16 +59,39 @@
 
 
 
-<meta name="description" content="Appium学习之路—demon的解释">
+<meta name="description" content="初衷最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。
+
+《Appium——驱动和常用功能的封装》
+《Appium——处理混合APP中H5的操作》
+《Appium——无安卓源码的一些准备》
+《Appium学习之路—环境搭建》
+
+相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Appium学习之路—demon的解释">
-<meta property="og:url" content="http://www.wengyb.com/2015/11/23/Appium学习之路—demon的解释/index.html">
+<meta property="og:title" content="Appium实战-开始">
+<meta property="og:url" content="http://www.wengyb.com/2016/04/25/Appium实战-开始/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="Appium学习之路—demon的解释">
-<meta property="og:updated_time" content="2016-03-31T07:04:11.000Z">
+<meta property="og:description" content="初衷最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。
+
+《Appium——驱动和常用功能的封装》
+《Appium——处理混合APP中H5的操作》
+《Appium——无安卓源码的一些准备》
+《Appium学习之路—环境搭建》
+
+相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png">
+<meta property="og:updated_time" content="2016-04-25T11:30:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Appium学习之路—demon的解释">
-<meta name="twitter:description" content="Appium学习之路—demon的解释">
+<meta name="twitter:title" content="Appium实战-开始">
+<meta name="twitter:description" content="初衷最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。
+
+《Appium——驱动和常用功能的封装》
+《Appium——处理混合APP中H5的操作》
+《Appium——无安卓源码的一些准备》
+《Appium学习之路—环境搭建》
+
+相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png">
 
 
 
@@ -86,7 +109,7 @@
   };
 </script>
 
-  <title> Appium学习之路—demon的解释 | 点点寒彬 </title>
+  <title> Appium实战-开始 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +278,7 @@
             
             
               
-                Appium学习之路—demon的解释
+                Appium实战-开始
               
             
           </h1>
@@ -267,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-23T15:01:02+08:00" content="2015-11-23">
-              2015-11-23
+            <time itemprop="dateCreated" datetime="2016-04-25T19:29:00+08:00" content="2016-04-25">
+              2016-04-25
             </time>
           </span>
 
@@ -297,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/23/Appium学习之路—demon的解释/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/23/Appium学习之路—demon的解释/" itemprop="commentsCount"></span>
+                <a href="/2016/04/25/Appium实战-开始/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/Appium实战-开始/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,22 +343,54 @@
       
 
       
-        <h1 id="Appium学习之路—demon的解释"><a href="#Appium学习之路—demon的解释" class="headerlink" title="Appium学习之路—demon的解释"></a>Appium学习之路—demon的解释</h1><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from appium import webdriver</span><br><span class="line">desired_caps = &#123;&#125;</span><br><span class="line">desired_caps[&apos;platformName&apos;] = &apos;Android&apos;</span><br><span class="line">desired_caps[&apos;platformVersion&apos;] = &apos;4.4.2&apos;</span><br><span class="line">desired_caps[&apos;deviceName&apos;] = &apos;wybtest&apos;</span><br><span class="line">desired_caps[&apos;appPackage&apos;] = &apos;com.android.calculator2&apos;</span><br><span class="line">desired_caps[&apos;appActivity&apos;] = &apos;.Calculator&apos;</span><br><span class="line"></span><br><span class="line">driver = webdriver.Remote(&apos;http://localhost:4723/wd/hub&apos;, desired_caps)</span><br></pre></td></tr></table></figure>
-<p>解释转载自<a href="http://www.cnblogs.com/nbkhic/p/3805805.html" target="_blank" rel="external">乙醇大神的博客</a><br>，desired_caps这个东西按照demon来看，其实是一个字典类型的东西，在第二行就定义为一个空字典，之后再34567行加入一些参数。</p>
-<ul>
-<li>platformName表示测试使用的系统，Android或者IOS</li>
-<li>platformVersion表示测试系统的版本</li>
-<li>deviceName表示设备的名称</li>
-<li>appPackage表示测试使用的包名，查询的方式可以使用root的安卓手机，进入data/data查询安装的包名</li>
-<li>appActivity表示进入的Acvtivity</li>
-</ul>
-<p>还有一些其他的参数demon里面没有，乙醇大神列出来了。</p>
-<ul>
-<li>automationName表示使用哪种引擎，不填写默认使用appium</li>
-<li>browserName表示使用移动浏览器的名称，比如Safari’ for iOS and ‘Chrome’, ‘Chromium’, or ‘Browser’ for Android；与app属性互斥。</li>
-</ul>
-<p>不过从我目前使用情况来看，只连接一部手机的话，deviceName、platformVersion这种东西可以随便填，我填的值是错的，但是也是可以正常使用的。</p>
+        <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。</p>
+<ol>
+<li><a href="http://wybblog.applinzi.com/blog/article/35/" target="_blank" rel="external">《Appium——驱动和常用功能的封装》</a></li>
+<li><a href="http://wybblog.applinzi.com/blog/article/34/" target="_blank" rel="external">《Appium——处理混合APP中H5的操作》</a></li>
+<li><a href="http://wybblog.applinzi.com/blog/article/33/" target="_blank" rel="external">《Appium——无安卓源码的一些准备》</a></li>
+<li><a href="http://wybblog.applinzi.com/blog/article/25/" target="_blank" rel="external">《Appium学习之路—环境搭建》</a></li>
+</ol>
+<p>相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。<br><a id="more"></a><br>其实最大的坎还是在自己，只要开始写，一边写一边Google，慢慢的会发现很其实并不难。</p>
+<p>Appium实战我打算记录自己写自动化的过程。希望对新司机有帮助。</p>
+<p><strong>注：整个流程是按照Page Object来写的，直接撸代码的请看<a href="http://wybblog.applinzi.com/blog/article/35/" target="_blank" rel="external">《Appium——驱动和常用功能的封装》</a>然后自己撸代码</strong></p>
+<h2 id="几种设计模式"><a href="#几种设计模式" class="headerlink" title="几种设计模式"></a>几种设计模式</h2><h3 id="线性模式"><a href="#线性模式" class="headerlink" title="线性模式"></a>线性模式</h3><p>我称呼它为撸代码，也就是按照业务逻辑直接hard code。基本上初学者都会这样折腾，当然，折腾了一段时间就会觉得很操蛋，自己都不想看自己写的代码。</p>
+<h3 id="Page-Object"><a href="#Page-Object" class="headerlink" title="Page Object"></a>Page Object</h3><p>比较流行的设计模式，高度解耦，初学者看起来会觉得有点操蛋，但是了解了逻辑之后，会发现这样做非常棒，维护起来简直是轻松加愉快。</p>
+<h3 id="通用框架"><a href="#通用框架" class="headerlink" title="通用框架"></a>通用框架</h3><p>通用框架就是比较高级的做法了，实施起来比较麻烦，如果水平到了，这种方式肯定是最好的，利用关键字来驱动程序，是比较高级的境界。缺点就是比较难。。。。</p>
+<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><p>整个设计思路是基于Page Object模式，如下图：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png" alt="设计图"></p>
+<p>什么是Page Object？</p>
+<blockquote>
+<p>When you write tests against a web page, you need to refer to elements within that web page in order to click links and determine what’s displayed. However, if you write tests that manipulate the HTML elements directly your tests will be brittle to changes in the UI. A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML.</p>
+</blockquote>
+<p>原来是Web端的模式，搬到移动端来，就是把页面分拆成一个一个元素，如示意图所示，我拆分为元素数据、元素定位、元素操作、测试步骤这么些东西。</p>
+<h2 id="有什么好处？"><a href="#有什么好处？" class="headerlink" title="有什么好处？"></a>有什么好处？</h2><p>这种模式整个架构看起来比直接撸代码复杂了很多，不过当遇到一些坑爹的问题时，尤其开发频繁改动的时候，这种设计模式的优势就出来了，比如开发改了元素的ID那些东西，那么我们只要修改相应ID就行了，所有和这个元素相关的都直接关联修改了，，而直接撸代码，涉及到的地方可能会有很多，改动起来很麻烦。查找方法，测试步骤什么的都不用改，维护起来相对轻松。</p>
+<h2 id="一些环境"><a href="#一些环境" class="headerlink" title="一些环境"></a>一些环境</h2><p>简单列一下我的环境吧：</p>
+<hr>
+<p>系统：Mac OS X EI Capitan</p>
+<p>Python: 2.7</p>
+<p>Appium: 1.4.16</p>
+<p>IDE: PyCharm</p>
+<p>测试系统：Android</p>
+<p>测试对象：微证券（应用商店可以直接下载）</p>
+<hr>
+<p>我的项目结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">____.DS_Store</span><br><span class="line">|____config.py</span><br><span class="line">|____Data</span><br><span class="line">| |____data.json</span><br><span class="line">|____img</span><br><span class="line">| |____.DS_Store</span><br><span class="line">| |____caixun</span><br><span class="line">| | |____gupiao.png</span><br><span class="line">| | |____gupiaoneirong.png</span><br><span class="line">| | |____jijin.png</span><br><span class="line">| | |____jijinneirong.png</span><br><span class="line">| | |____tuijian.png</span><br><span class="line">| | |____tuijianneirong.png</span><br><span class="line">| | |____xinsanban.png</span><br><span class="line">| | |____xinsanbanneirong.png</span><br><span class="line">| | |____zhaiquan.png</span><br><span class="line">| | |____zhaiquanneirong.png</span><br><span class="line">| | |____黄金.png</span><br><span class="line">|____Report</span><br><span class="line">|____test.py</span><br><span class="line">|____TestCase</span><br><span class="line">| |______init__.py</span><br><span class="line">| |____common.py</span><br><span class="line">| |____testCaixun.py</span><br><span class="line">|____View</span><br><span class="line">| |______init__.py</span><br><span class="line">| |______init__.pyc</span><br><span class="line">| |____BaseTestCase.py</span><br><span class="line">| |____BaseView.py</span><br><span class="line">| |____Caixun.py</span><br></pre></td></tr></table></figure>
+<p>大的目录我是这么划分的：</p>
+<ol>
+<li>Data 用来放置一些数据</li>
+<li>Report 存放测试报告</li>
+<li>TestCase 存放测试用例</li>
+<li>img 存放一些截图</li>
+<li>config.py 配置文件</li>
+</ol>
+<p>当然写到后续可能会做一些调整，毕竟我才刚刚开始写。</p>
+<h2 id="一些忠告"><a href="#一些忠告" class="headerlink" title="一些忠告"></a>一些忠告</h2><ol>
+<li>一些很弱智的问题就自己去Google，比如Appium怎么开始啊，怎么学啊，环境怎么搭建啊！</li>
+<li>多用Google</li>
+<li>StockOverflow是个好地方</li>
+<li>多写、多写、多写</li>
+<li>人脑不是万能的，遇到问题解决后记录下来才是王道</li>
+</ol>
 
       
     </div>
@@ -382,17 +437,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/20/Python练习题—动态打印歌词/" rel="next" title="Python练习题—动态打印歌词">
-                <i class="fa fa-chevron-left"></i> Python练习题—动态打印歌词
+              <a href="/2016/04/21/宇宙APP性能测试报告/" rel="next" title="宇宙APP性能测试报告">
+                <i class="fa fa-chevron-left"></i> 宇宙APP性能测试报告
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/01/UnitTest—测试多个类/" rel="prev" title="UnitTest—测试多个类">
-                UnitTest—测试多个类 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -407,10 +458,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/11/23/Appium学习之路—demon的解释/"
-     data-title="Appium学习之路—demon的解释"
+        <div class="ds-share flat" data-thread-key="2016/04/25/Appium实战-开始/"
+     data-title="Appium实战-开始"
      data-content=""
-     data-url="http://www.wengyb.com/2015/11/23/Appium学习之路—demon的解释/">
+     data-url="http://www.wengyb.com/2016/04/25/Appium实战-开始/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -437,8 +488,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/11/23/Appium学习之路—demon的解释/"
-           data-title="Appium学习之路—demon的解释" data-url="http://www.wengyb.com/2015/11/23/Appium学习之路—demon的解释/">
+      <div class="ds-thread" data-thread-key="2016/04/25/Appium实战-开始/"
+           data-title="Appium实战-开始" data-url="http://www.wengyb.com/2016/04/25/Appium实战-开始/">
       </div>
     
   </div>
@@ -610,7 +661,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Appium学习之路—demon的解释"><span class="nav-number">1.</span> <span class="nav-text">Appium学习之路—demon的解释</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初衷"><span class="nav-number">1.</span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种设计模式"><span class="nav-number">2.</span> <span class="nav-text">几种设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性模式"><span class="nav-number">2.1.</span> <span class="nav-text">线性模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-Object"><span class="nav-number">2.2.</span> <span class="nav-text">Page Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用框架"><span class="nav-number">2.3.</span> <span class="nav-text">通用框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计思路"><span class="nav-number">3.</span> <span class="nav-text">设计思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有什么好处？"><span class="nav-number">4.</span> <span class="nav-text">有什么好处？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些环境"><span class="nav-number">5.</span> <span class="nav-text">一些环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些忠告"><span class="nav-number">6.</span> <span class="nav-text">一些忠告</span></a></li></ol></div>
             
           </div>
         </section>
