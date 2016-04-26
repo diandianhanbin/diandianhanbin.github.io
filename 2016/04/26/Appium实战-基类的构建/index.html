@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Appium,测试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="接上文《Appium实战-开始》
+文章来源：《Appium实战-基类的构建》
+套用UnitTest构建测试UnitTest是Python的测试框架，我们这次的实战就是基于这个测试框架来构建的，所以就把基类用UnitTest构建起来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Appium实战-基类的构建">
+<meta property="og:url" content="http://www.wengyb.com/2016/04/26/Appium实战-基类的构建/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="接上文《Appium实战-开始》
+文章来源：《Appium实战-基类的构建》
+套用UnitTest构建测试UnitTest是Python的测试框架，我们这次的实战就是基于这个测试框架来构建的，所以就把基类用UnitTest构建起来。">
+<meta property="og:updated_time" content="2016-04-26T15:18:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Appium实战-基类的构建">
+<meta name="twitter:description" content="接上文《Appium实战-开始》
+文章来源：《Appium实战-基类的构建》
+套用UnitTest构建测试UnitTest是Python的测试框架，我们这次的实战就是基于这个测试框架来构建的，所以就把基类用UnitTest构建起来。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Appium实战-基类的构建 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyb.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Appium实战-基类的构建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-26T23:11:08+08:00" content="2016-04-26">
+              2016-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/26/Appium实战-基类的构建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/Appium实战-基类的构建/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>接上文<a href="http://wybblog.applinzi.com/blog/article/41/" target="_blank" rel="external">《Appium实战-开始》</a></p>
+<p>文章来源：<a href="http://wybblog.applinzi.com/blog/article/42/" target="_blank" rel="external">《Appium实战-基类的构建》</a></p>
+<h2 id="套用UnitTest构建测试"><a href="#套用UnitTest构建测试" class="headerlink" title="套用UnitTest构建测试"></a>套用UnitTest构建测试</h2><p>UnitTest是Python的测试框架，我们这次的实战就是基于这个测试框架来构建的，所以就把基类用UnitTest构建起来。<br><a id="more"></a><br>扫盲，什么是UnitTest？怎么用UnitTest？</p>
+<ol>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50129361" target="_blank" rel="external">《Hello PyUnitTest》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50130133" target="_blank" rel="external">《为你的测试结果打印案例名称》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50134631" target="_blank" rel="external">《测试多个类》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50147529" target="_blank" rel="external">《测试用例的初始化和结束函数》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50147571" target="_blank" rel="external">《引入其他类》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50157897" target="_blank" rel="external">《第一个web自动化》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50159449" target="_blank" rel="external">《加上测试报告》</a></li>
+<li><a href="http://blog.csdn.net/wyb199026/article/details/50160673" target="_blank" rel="external">《测试多个文件》</a></li>
+</ol>
+<p>以上是我自己在学习UnitTest过程中做的一些记录。</p>
+<p>测试案例的颗粒度必须要细，而且测试一个点之后最好进行环境的还原，因此我的基类是这么写的。</p>
+<p>新建一个文件叫BestTestCase，然后输入下面的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> appium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> config</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppTestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">		desired_caps = &#123;</span><br><span class="line">			<span class="string">'platformName'</span>: config.CONNECT[<span class="string">'platformName'</span>],</span><br><span class="line">			<span class="string">'platformVersion'</span>: config.CONNECT[<span class="string">'platformVersion'</span>],</span><br><span class="line">			<span class="string">'deviceName'</span>: config.CONNECT[<span class="string">'deviceName'</span>],</span><br><span class="line">			<span class="string">'appPackage'</span>: config.CONNECT[<span class="string">'appPackage'</span>],</span><br><span class="line">			<span class="string">'appActivity'</span>: config.CONNECT[<span class="string">'appActivity'</span>]</span><br><span class="line">		&#125;</span><br><span class="line">		self.driver = webdriver.Remote(config.CONNECT[<span class="string">'baseUrl'</span>], desired_caps)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.driver.quit()</span><br></pre></td></tr></table></figure>
+<p>这样写，只要其他的测试类来集成这个类就行了，就不用再每个测试类中写setUp和tearDown了，而且每次测试完功能点后就会自动退出APP，还原环境。</p>
+<p>导入包有一个import config，这个是我做的一个配置文件，命名为config.py，我把一些不常修改的参数往这里丢。比如这个初始化的参数，我就这样放了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">config.py</span><br><span class="line"></span><br><span class="line">CONNECT = &#123;</span><br><span class="line">	<span class="string">'platformName'</span>: <span class="string">'Android'</span>,</span><br><span class="line">	<span class="string">'platformVersion'</span>: <span class="string">'4.4.4'</span>,</span><br><span class="line">	<span class="string">'deviceName'</span>: <span class="string">'5136b01e'</span>,</span><br><span class="line">	<span class="string">'appPackage'</span>: <span class="string">'com.weizq'</span>,</span><br><span class="line">	<span class="string">'appActivity'</span>: <span class="string">'com.zztzt.android.simple.app.MainActivity'</span>,</span><br><span class="line">	<span class="string">"baseUrl"</span>: <span class="string">"http://127.0.0.1:4723/wd/hub"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构建通用方法"><a href="#构建通用方法" class="headerlink" title="构建通用方法"></a>构建通用方法</h2><p>UnitTest的基类构建完之后，我们要对基础的方法做一些封装。</p>
+<p>常用的功能大概有这些：寻找元素的各种方法，系统的按键，滑动，获取坐标，截图等。废话不多说，先上代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.expected_conditions <span class="keyword">import</span> NoSuchElementException</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">import</span> time <span class="keyword">as</span> t</span><br><span class="line"><span class="keyword">import</span> config</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDdriver</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, driver)</span>:</span></span><br><span class="line">		self.driver = driver</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">'webDdriver'</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">find_element</span><span class="params">(self, *loc)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		定位元素,定位正确后返回元素的信息,外部调用传入元组参数必须有*,</span><br><span class="line">		例如:</span><br><span class="line">		find_element(*self.native_caixun)</span><br><span class="line"></span><br><span class="line">		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')</span><br><span class="line">		:return: element</span><br><span class="line">		"""</span></span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			element = WebDriverWait(self.driver, <span class="number">10</span>).until(<span class="keyword">lambda</span> x: x.find_element(*loc))</span><br><span class="line">			<span class="keyword">return</span> element</span><br><span class="line">		<span class="keyword">except</span> NoSuchElementException, e:</span><br><span class="line">			<span class="keyword">print</span> <span class="string">'Error details :%s'</span> % (e.args[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">find_elements</span><span class="params">(self, *loc)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		定位元素,定位正确后返回元素的信息,外部调用传入元组参数必须有*,</span><br><span class="line">		例如:</span><br><span class="line">		find_elements(*self.native_caixun)</span><br><span class="line"></span><br><span class="line">		:param loc: 元组类型,结构必须是(By.NAME, u'财讯')</span><br><span class="line">		:return: elements</span><br><span class="line">		"""</span></span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			<span class="comment"># return self.driver.find_elements(*loc)</span></span><br><span class="line">			elements = WebDriverWait(self.driver, <span class="number">10</span>).until(<span class="keyword">lambda</span> x: x.find_elements(*loc))</span><br><span class="line">			<span class="keyword">return</span> elements</span><br><span class="line">		<span class="keyword">except</span> NoSuchElementException, e:</span><br><span class="line">			<span class="keyword">print</span> <span class="string">'Error details :%s'</span> % (e.args[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_title</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		获取页面的标题</span><br><span class="line">		:return: str, 页面的标题</span><br><span class="line">		"""</span></span><br><span class="line">		title = self.find_elements(*config.COMMON[<span class="string">'view_title'</span>])[<span class="number">0</span>].text</span><br><span class="line">		<span class="keyword">return</span> title</span><br><span class="line"></span><br><span class="line"><span class="meta">	@property</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">wait</span><span class="params">(self)</span>:</span></span><br><span class="line">		t.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">getScreenshot</span><span class="params">(self, name, url, form=<span class="string">'png'</span>)</span>:</span></span><br><span class="line">		t.sleep(<span class="number">2</span>)</span><br><span class="line">		self.driver.get_screenshot_as_file(url + name + <span class="string">"."</span> + form)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">sysback</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		系统的返回按钮</span><br><span class="line">		:return: None</span><br><span class="line">		"""</span></span><br><span class="line">		self.driver.keyevent(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_size</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		获取当前屏幕的分辨率</span><br><span class="line">		:return: int, x*y</span><br><span class="line">		"""</span></span><br><span class="line">		size = self.driver.get_window_size()</span><br><span class="line">		<span class="keyword">return</span> size</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">swipe_to_up</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		从下往上滑动</span><br><span class="line">		:return: None</span><br><span class="line">		"""</span></span><br><span class="line">		window_size = self.get_size()</span><br><span class="line">		width = window_size.get(<span class="string">"width"</span>)</span><br><span class="line">		height = window_size.get(<span class="string">"height"</span>)</span><br><span class="line">		self.driver.swipe(width / <span class="number">2</span>, height * <span class="number">3</span> / <span class="number">4</span>, width / <span class="number">2</span>, height / <span class="number">4</span>, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">swipe_to_down</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		从上往下滑动</span><br><span class="line">		:return: None</span><br><span class="line">		"""</span></span><br><span class="line">		window_size = self.get_size()</span><br><span class="line">		width = window_size.get(<span class="string">"width"</span>)</span><br><span class="line">		height = window_size.get(<span class="string">"height"</span>)</span><br><span class="line">		self.driver.swipe(width / <span class="number">2</span>, height / <span class="number">4</span>, width / <span class="number">2</span>, height * <span class="number">3</span> / <span class="number">4</span>, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">swipe_to_left</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		从右往左滑动</span><br><span class="line">		:return: None</span><br><span class="line">		"""</span></span><br><span class="line">		window_size = self.get_size()</span><br><span class="line">		width = window_size.get(<span class="string">"width"</span>)</span><br><span class="line">		height = window_size.get(<span class="string">"height"</span>)</span><br><span class="line">		self.driver.swipe(width / <span class="number">4</span>, height / <span class="number">2</span>, width * <span class="number">3</span> / <span class="number">4</span>, height / <span class="number">2</span>, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">swipe_to_right</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		从左往右滑动</span><br><span class="line">		:return: None</span><br><span class="line">		"""</span></span><br><span class="line">		window_size = self.get_size()</span><br><span class="line">		width = window_size.get(<span class="string">"width"</span>)</span><br><span class="line">		height = window_size.get(<span class="string">"height"</span>)</span><br><span class="line">		self.driver.swipe(width * <span class="number">4</span> / <span class="number">5</span>, height / <span class="number">2</span>, width / <span class="number">5</span>, height / <span class="number">2</span>, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">getLocation</span><span class="params">(self, *loc)</span>:</span></span><br><span class="line">		<span class="string">"""</span><br><span class="line">		获取元素的定位信息,外部调用传入元组参数必须有*,</span><br><span class="line">		例如:</span><br><span class="line">		(*self.native_caixun)</span><br><span class="line">		:param loc: 元素的定位方式</span><br><span class="line">		:return: list, [x, y]</span><br><span class="line">		"""</span></span><br><span class="line">		locaX = self.find_element(*loc).location.get(<span class="string">'x'</span>)</span><br><span class="line">		locaY = self.find_element(*loc).location.get(<span class="string">'y'</span>)</span><br><span class="line">		rst = [locaX, locaY]</span><br><span class="line">		<span class="keyword">return</span> rst</span><br></pre></td></tr></table></figure>
+<p>注释我应该写的很清楚了，就把一些比较重要的地方做一些解释，在init中先把刚刚构建的driver初始化了，让类中的其他方法可以使用driver。</p>
+<p>两个最重要的方法，find_element和find_elements做一下重点说明。正常来说，找元素的方法有这么几种，name、id、xpath、tag、class_name、link_text等，但是如果做这么多封装，代码就会显得非常多，当然，如果没有其他办法的话，那就只能老老实实的枚举了，但是如果去看webdriver的源码，就能找到这么一个方法。源码是这样的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">By</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    Set of supported locator strategies.</span><br><span class="line">    """</span></span><br><span class="line"></span><br><span class="line">    ID = <span class="string">"id"</span></span><br><span class="line">    XPATH = <span class="string">"xpath"</span></span><br><span class="line">    LINK_TEXT = <span class="string">"link text"</span></span><br><span class="line">    PARTIAL_LINK_TEXT = <span class="string">"partial link text"</span></span><br><span class="line">    NAME = <span class="string">"name"</span></span><br><span class="line">    TAG_NAME = <span class="string">"tag name"</span></span><br><span class="line">    CLASS_NAME = <span class="string">"class name"</span></span><br><span class="line">    CSS_SELECTOR = <span class="string">"css selector"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_valid</span><span class="params">(cls, by)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> attr <span class="keyword">in</span> dir(cls):</span><br><span class="line">            <span class="keyword">if</span> by == getattr(cls, attr):</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<p>那么也就是说，在webdriver的方法源码中已经帮我们枚举了，那么我们就可以直接调用这个方法，，做参数传入就行了。方法有做入参检查，因此传入参数要求是tuple的类型，所以元素我就全部剥离出来用配置文件处理，配置文件的内容我们就这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line">CAIXUN = &#123;</span><br><span class="line">	<span class="string">'tuijian'</span>: (By.NAME, <span class="string">u'推荐'</span>),</span><br><span class="line">	<span class="string">'gupiao'</span>: (By.NAME, <span class="string">u'股票'</span>),</span><br><span class="line">	<span class="string">'jijin'</span>: (By.NAME, <span class="string">u'基金'</span>),</span><br><span class="line">	<span class="string">'zhaiquan'</span>: (By.NAME, <span class="string">u'债券'</span>),</span><br><span class="line">	<span class="string">'xinsanban'</span>: (By.NAME, <span class="string">u'新三板'</span>),</span><br><span class="line">	<span class="string">'zixunneirong'</span>: (By.ID, <span class="string">'com.weizq:id/new_title'</span>),  <span class="comment"># 财讯记录列表,用find_elements调用</span></span><br><span class="line">	<span class="string">'imgurl'</span>: <span class="string">'/Users/SvenWeng/PycharmProjects/WeStock/img/caixun/'</span>,</span><br><span class="line">	<span class="string">'title'</span>: [</span><br><span class="line">		[<span class="string">'tuijian'</span>, <span class="string">'tuijianneirong'</span>],</span><br><span class="line">		[<span class="string">'gupiao'</span>, <span class="string">'gupiaoneirong'</span>],</span><br><span class="line">		[<span class="string">'jijin'</span>, <span class="string">'jijinneirong'</span>],</span><br><span class="line">		[<span class="string">'zhaiquan'</span>, <span class="string">'zhaiquanneirong'</span>],</span><br><span class="line">		[<span class="string">'xinsanban'</span>, <span class="string">'xinsanbanneirong'</span>]</span><br><span class="line">	],</span><br><span class="line">	<span class="string">'jiahao'</span>: (By.CLASS_NAME, <span class="string">'android.widget.ImageView'</span>),</span><br><span class="line">	<span class="string">'pindao'</span>: (By.ID, <span class="string">'com.weizq:id/text_item'</span>),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>中间的那些元素就直接这样配置，如果开发进行了一些修改，那么我们就直接改这里就行了。这就是Page Object最大的好处了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>最底层的构建就先这样处理了。当然还有其他方法需要构建，比如某个页面的元素定位方法。已经方法的调用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创知识分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/wecharpay.jpeg" alt="点点寒彬 | SvenWeng WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/alipay.jpeg" alt="点点寒彬 | SvenWeng Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+<div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Appium/" rel="tag">#Appium</a>
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/25/Appium实战-开始/" rel="next" title="Appium实战-开始">
+                <i class="fa fa-chevron-left"></i> Appium实战-开始
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/26/Appium实战-基类的构建/"
+     data-title="Appium实战-基类的构建"
+     data-content=""
+     data-url="http://www.wengyb.com/2016/04/26/Appium实战-基类的构建/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/26/Appium实战-基类的构建/"
+           data-title="Appium实战-基类的构建" data-url="http://www.wengyb.com/2016/04/26/Appium实战-基类的构建/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyb.com" target="_blank">我的个人站点</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#套用UnitTest构建测试"><span class="nav-number">1.</span> <span class="nav-text">套用UnitTest构建测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建通用方法"><span class="nav-number">2.</span> <span class="nav-text">构建通用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wengyanbin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
