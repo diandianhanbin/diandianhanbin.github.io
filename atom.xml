@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-05-09T14:18:38.000Z</updated>
+  <updated>2016-05-11T14:02:49.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -16,11 +16,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Appium学习-关于Inspector</title>
+    <link href="http://www.wengyb.com/2016/05/11/Appium%E5%AD%A6%E4%B9%A0-%E5%85%B3%E4%BA%8EInspector/"/>
+    <id>http://www.wengyb.com/2016/05/11/Appium学习-关于Inspector/</id>
+    <published>2016-05-11T14:01:46.000Z</published>
+    <updated>2016-05-11T14:02:49.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;既然开始折腾IOS了，那么第一步是把Demo跑起来看效果，&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/46/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium学习-初窥》&lt;/a&gt;文中已经把官方的Demo跑起来了。现在要接下来做其他的事&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Inspector问题&quot;&gt;&lt;a href=&quot;#Inspector问题&quot; class=&quot;headerlink&quot; title=&quot;Inspector问题&quot;&gt;&lt;/a&gt;Inspector问题&lt;/h2&gt;&lt;p&gt;Inspector是Appium客户端给的一个工具，用来探测IOS的元素布局。当然Android也是可以用的，不过Android一般使用uiautomatorviewer。&lt;/p&gt;
+&lt;p&gt;不过我在使用的时候遇到了这么一个问题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Could not start a new session&lt;/p&gt;
+&lt;p&gt;Be sure the Appium server is running with an application opened by using the “App Path” parameter in Appium.app (along with package and activity for Android) or by connecting with selenium client and supplying this in the desired capabilities object.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;挺奇怪的，我的Appium是最新版的，Xcode是最新的，包括模拟器也都是最新的，为什么会报这个奇怪的错。看这个报错的意思，是因为我没有在App Path上配置我的App，但是我已经做了相关配置，而且在跑Demo的时候也没有遇到这样的问题。&lt;/p&gt;
+&lt;h2 id=&quot;解决方案&quot;&gt;&lt;a href=&quot;#解决方案&quot; class=&quot;headerlink&quot; title=&quot;解决方案&quot;&gt;&lt;/a&gt;解决方案&lt;/h2&gt;&lt;p&gt;有问题当然是找万能的Google。不过在搜的过程中，虽然有很多人遇到类似的问题，不过基本上都是端口没有配置对。基本上找不到可以解决问题的方案。&lt;/p&gt;
+&lt;p&gt;最后没办法，只能自己硬着头皮去看日志了。日志很长，我就不全部贴了，贴一个关键的地方。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[MJSONWP] Calling AppiumDriver.createSession() with args: [{“platformName”:”iOS”,”platformVersion”:”8.4”,”app”:”/Users/SvenWeng/Library/Developer/Xcode/DerivedData/HLSC_iOS-bdhwxwdycvlcikacthovhpujxicb/Bui…&lt;br&gt;[Appium] Creating new IosDriver session&lt;br&gt;[Appium] Capabilities:&lt;br&gt;[Appium]   platformName: ‘iOS’&lt;br&gt;[Appium]   platformVersion: ‘8.4’&lt;br&gt;[Appium]   app: ‘/Users/SvenWeng/Library/Developer/Xcode/DerivedData/HLSC_iOS-bdhwxwdycvlcikacthovhpujxicb/Build/Products/Debug-iphonesimulator/HLSC_iOS.app’&lt;br&gt;[Appium]   automationName: ‘Appium’&lt;br&gt;[Appium]   deviceName: ‘iPhone 5s’&lt;br&gt;[Appium]   showIOSLog: true&lt;/p&gt;
+&lt;p&gt;[debug] [iOS] Not auto-detecting udid.&lt;br&gt;[BaseDriver] Using local app ‘/Users/SvenWeng/Library/Developer/Xcode/DerivedData/HLSC_iOS-bdhwxwdycvlcikacthovhpujxicb/Build/Products/Debug-iphonesimulator/HLSC_iOS.app’&lt;/p&gt;
+&lt;p&gt;[debug] [Instruments] Available devices: Apple TV 1080p (9.2) [44F8DE38-FF72-45B7-9ACA-3F672B6379F1] (Simulator),iPad 2 (9.3) [816AE53B-02BA-4DE2-9BB3-55DDAF2783B1] (Simulator),iPad Air (9.3) [CD83EDC1-16EE-46A0-BC05-2AF844F9021D] (Simulator),iPad Air 2 (9.3) [F830CC23-169D-4785-9867-EFE168E91FCD] (Simulator),iPad Pro (9.3) [1376C2E1-A56F-4E43-AF59-A4EEB981DC63] (Simulator),iPad Retina (9.3) [926EEE63-64C6-4C82-ADE4-E0A3E6E87D0D] (Simulator),iPhone 4s (9.3) [0A818680-510E-4971-A61C-6959AA8257C1] (Simulator),iPhone 5 (9.3) [663A8C62-2E93-438F-970C-FFB4BF7D549B] (Simulator),iPhone 5s (9.3) [39D1C620-D85C-4DC7-9F52-6E765A5CD764] (Simulator),iPhone 6 (9.3) [AF7A72E9-E886-438E-80D7-BAF53AEDFFD5] (Simulator),iPhone 6 Plus (9.3) [E23435AA-1E56-4503-A3D8-C8E313412EB7] (Simulator),iPhone 6s (9.3) [0DFB756B-A5A0-48AE-BB02-6A5BAF32BA89] (Simulator),iPhone 6s (9.3) + Apple Watch - 38mm (2.2) [8F013A8C-94B3-4A86-8573-FDE9D36A1DEC] (Simulator),iPhone 6s Plus (9.3) [126374FA-1277-4CCE-9AA0-3255E9D5C378] (Simulator),iPhone 6s Plus (9.3) + Apple Watch - 42mm (2.2) [DA74EE00-66F5-41F8-B659-995D49354E8F] (Simulator)&lt;/p&gt;
+&lt;p&gt;[iOS] Error: Could not find a device to launch. You requested ‘iPhone 5s (8.4)’, but the available devices were: [“Apple TV 1080p (9.2) [44F8DE38-FF72-45B7-9ACA-3F672B6379F1] (Simulator)”,”iPad 2 (9.3) [816AE53B-02BA-4DE2-9BB3-55DDAF2783B1] (Simulator)”,”iPad Air (9.3) [CD83EDC1-16EE-46A0-BC05-2AF844F9021D] (Simulator)”,”iPad Air 2 (9.3) [F830CC23-169D-4785-9867-EFE168E91FCD] (Simulator)”,”iPad Pro (9.3) [1376C2E1-A56F-4E43-AF59-A4EEB981DC63] (Simulator)”,”iPad Retina (9.3) [926EEE63-64C6-4C82-ADE4-E0A3E6E87D0D] (Simulator)”,”iPhone 4s (9.3) [0A818680-510E-4971-A61C-6959AA8257C1] (Simulator)”,”iPhone 5 (9.3) [663A8C62-2E93-438F-970C-FFB4BF7D549B] (Simulator)”,”iPhone 5s (9.3) [39D1C620-D85C-4DC7-9F52-6E765A5CD764] (Simulator)”,”iPhone 6 (9.3) [AF7A72E9-E886-438E-80D7-BAF53AEDFFD5] (Simulator)”,”iPhone 6 Plus (9.3) [E23435AA-1E56-4503-A3D8-C8E313412EB7] (Simulator)”,”iPhone 6s (9.3) [0DFB756B-A5A0-48AE-BB02-6A5BAF32BA89] (Simulator)”,”iPhone 6s (9.3) + Apple Watch - 38mm (2.2) [8F013A8C-94B3-4A86-8573-FDE9D36A1DEC] (Simulator)”,”iPhone 6s Plus (9.3) [126374FA-1277-4CCE-9AA0-3255E9D5C378] (Simulator)”,”iPhone 6s Plus (9.3) + Apple Watch - 42mm (2.2) [DA74EE00-66F5-41F8-B659-995D49354E8F] (Simulator)”]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;自己看日志来解决问题是最好的了。以上日志能很清楚的说明问题。&lt;/p&gt;
+&lt;p&gt;第一段说明了启动Inspector的配置，其中的关键就是版本给的是8.4.&lt;/p&gt;
+&lt;p&gt;第二段日志说明了没有指定udid，也就是说我们用的是模拟器来测试，给了一段模拟器app的地址&lt;/p&gt;
+&lt;p&gt;第三段日志列出了我的mac上所有的可用的模拟器。&lt;/p&gt;
+&lt;p&gt;第四段给了一个报错。找不到对应的设备启动，设备信息在第一段指定的，版本号是8.4的iphone5s模拟器，但是我的设备只有9.3版本。&lt;/p&gt;
+&lt;p&gt;看到这里，基本上问题就明朗了。版本不对导致的问题。Appium客户端的Inspector最高只支持8.4的版本。那么只要去Xcode下载8.4版本模拟器就行了。成功的效果图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/184D0687-858D-4AEE-A4BC-1806409DD81F.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;最后&quot;&gt;&lt;a href=&quot;#最后&quot; class=&quot;headerlink&quot; title=&quot;最后&quot;&gt;&lt;/a&gt;最后&lt;/h2&gt;&lt;p&gt;总结一下，遇到问题还是先看日志比较靠谱，虽然日志看起来东西很多，很繁琐，但是往往能帮助你解决问题的地方，还是这些日志。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;既然开始折腾IOS了，那么第一步是把Demo跑起来看效果，&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/46/&quot;&gt;《Appium学习-初窥》&lt;/a&gt;文中已经把官方的Demo跑起来了。现在要接下来做其他的事&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Appium学习-IOS初窥</title>
     <link href="http://www.wengyb.com/2016/05/09/Appium%E5%AD%A6%E4%B9%A0-IOS%E5%88%9D%E7%AA%A5/"/>
     <id>http://www.wengyb.com/2016/05/09/Appium学习-IOS初窥/</id>
     <published>2016-05-09T14:17:54.000Z</published>
-    <updated>2016-05-09T14:18:38.000Z</updated>
+    <updated>2016-05-10T01:07:34.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近安卓那边做起来有点烦躁，主要还是我们的安卓第三方包用多了，导致超过了谷歌的上限，打不出包了，很多H5部分不好测试，我们的安卓开发总是习惯的禁掉webview句柄，给Activity加权限，导致跑出来的结果各种报错，换一个口味，玩玩IOS的自动化。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;条件&quot;&gt;&lt;a href=&quot;#条件&quot; class=&quot;headerlink&quot; title=&quot;条件&quot;&gt;&lt;/a&gt;条件&lt;/h2&gt;&lt;p&gt;测试IOS必须要&lt;strong&gt;Mac OS X系统&lt;/strong&gt;，请不要问可不可以用Windows来测试IOS这种问题。&lt;/p&gt;
@@ -1131,41 +1179,6 @@
       <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
     
       <category term="影评" scheme="http://www.wengyb.com/tags/%E5%BD%B1%E8%AF%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>selenium2自动化测试实战书评</title>
-    <link href="http://www.wengyb.com/2016/03/07/selenium2%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AE%9E%E6%88%98%E4%B9%A6%E8%AF%84/"/>
-    <id>http://www.wengyb.com/2016/03/07/selenium2自动化测试实战书评/</id>
-    <published>2016-03-07T06:58:57.000Z</published>
-    <updated>2016-03-31T07:03:09.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h2&gt;&lt;p&gt;《Selenium2自动化测试实战》这本书是今年刚刚出版的有关python-selenium的测试书，从市场上来看，应该是唯一的一本Python-Selenium的书籍。我看了一下出版信息，第一版只印了三千册，也许以后就是绝版咯！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;Selenium是现在比较流行的Web端的自动化测试工具，需要使用变成语言来驱动，因为我是看Python的，虽然Python也是可以驱动Selenium，但是市场上关于Python的资料几乎为0，从这点上来看，这本书目前应该是Python-Selenium最好的入门书籍。&lt;/p&gt;
-&lt;p&gt;最初看到Selenium的时候，其实我并没有研究这块，当时我看的是Appium，因为驱动Appium也可以用Python，所以我才去学了Python，结果Appium的文档都是英文的，看起来心好累，于是通过Appium顺带了解了Selenium，起码这东西还有一些中文的资料参考，也就是那时候知道了虫师（本书的作者）&lt;/p&gt;
-&lt;h2 id=&quot;2&quot;&gt;&lt;a href=&quot;#2&quot; class=&quot;headerlink&quot; title=&quot;2&quot;&gt;&lt;/a&gt;2&lt;/h2&gt;&lt;p&gt;书的内容大致分为三块，一是Python基础、二是Selenium基础、三是实战教程。对于初学者来说还是非常友好的，跟着一步一步走，大概能对Python-Selenium这块有了那么一些大概的了解，起码能够熟练敲一些简单的代码，通过这个找一份工作肯定不是什么难事。&lt;/p&gt;
-&lt;h2 id=&quot;3&quot;&gt;&lt;a href=&quot;#3&quot; class=&quot;headerlink&quot; title=&quot;3&quot;&gt;&lt;/a&gt;3&lt;/h2&gt;&lt;p&gt;书中的Python基础说的比较简单，或者说只是非常非常简单的介绍，只是让你知道有这么个东西，具体要怎么去用，还是需要你自己去找一些Python的东西来看，比如《Python学习手册》、《Python核心编程》、《笨办法学Python》等书籍。要是想通过本书学习Python，那基本上是没戏的，所以我觉得这部分有点像筹字数的东西，Python基础和最前面的测试理论基本上我都觉得是用来筹字数的，加起来占了全书的三分之一。&lt;/p&gt;
-&lt;h2 id=&quot;4&quot;&gt;&lt;a href=&quot;#4&quot; class=&quot;headerlink&quot; title=&quot;4&quot;&gt;&lt;/a&gt;4&lt;/h2&gt;&lt;p&gt;第二部分是Selenium基础，包括元素定位、测试模型、生成测试报告等内容，这部分内容基本上可以理解为官方文档的翻译加上一些作者工作中遇到的一些问题的解决方案。这部分内容接近占了全书的五分之三。是书中的大块内容，这部分的质量还是很好的。图文说明很清晰，最关键的是，每一种方法都带有示例。&lt;/p&gt;
-&lt;p&gt;新手学东西，最怕的就是收乱七八糟的原因干扰，导致跟着敲代码无法实现书中描述的功能，如果是新手自己去网络上找相关Web控件元素，如果它对Web的知识（Html、Css、Js）不了解，很容易写着写着这个方法无法实现，而出现这种情况的原因就是网络上的页面比较复杂，是由于其他原因导致方法失败，而新手并不知道如何去排查这些问题。而书中不一样，相关的html代码都给你写好了，只要对着码，就能快速搭建某种方法的很干净的测试环境，让你能马上看到这个方法的实现，属于wysiwyg（所见即所得）。跟着敲代码，基本上能够有那么一些成就感。书中的代码排版也比较清晰，很容易就能看明白。&lt;/p&gt;
-&lt;h2 id=&quot;5&quot;&gt;&lt;a href=&quot;#5&quot; class=&quot;headerlink&quot; title=&quot;5&quot;&gt;&lt;/a&gt;5&lt;/h2&gt;&lt;p&gt;最后一部分是实战部分，也是我买书的重要原因之一。前面部分其实我已经通过强大的互联网阅读过了，关于实战部分确实需要了解一下，不过可惜的是，书中对于实战部分介绍的非常少，仅仅是魅族社区的一个登陆功能，如果这部分作者能够多写一些内容，这本书就会比较完美。&lt;/p&gt;
-&lt;h2 id=&quot;6&quot;&gt;&lt;a href=&quot;#6&quot; class=&quot;headerlink&quot; title=&quot;6&quot;&gt;&lt;/a&gt;6&lt;/h2&gt;&lt;p&gt;如果是一个大神，那么直接去读源码，这本书对你来说基本上是没有用的。如果是一个老鸟，可以直接去看Python-Selenium的官方文档，反正英文好就能读得懂。如果是新手，那么这本书还是值得一读的。乙醇（测试达人）在序言中也专门阐述了这个观点。&lt;/p&gt;
-&lt;h2 id=&quot;7&quot;&gt;&lt;a href=&quot;#7&quot; class=&quot;headerlink&quot; title=&quot;7&quot;&gt;&lt;/a&gt;7&lt;/h2&gt;&lt;p&gt;最后一部分目录上写了，但是在书中却是没有涉及到这块，而是需要自己去重新下一个文件，不知道是作者偷懒了还是什么其他原因。图灵的书经常有这种情况，但是图灵的书那都是800多页啊！而这本书总共也才300页。&lt;/p&gt;
-&lt;p&gt;其实从买来到读完，也就花了一天的时间，大半部分的内容我老早就看过了，一个原因上文说了，想看看实战相关的内容，另一个原因就是支持一下作者吧，毕竟就算这本书是翻译官方文档，那也是非常辛苦的一个工程，我自己翻译过，心里懂到底是多么苦，&lt;a href=&quot;http://python.usyiyi.cn/django/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;传送门点我&lt;/a&gt;。里面是Django的中文众人翻译的项目，我翻译了一篇，感觉整个人都不好了。。。。。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;----------写于很困很困的周日
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h2&gt;&lt;p&gt;《Selenium2自动化测试实战》这本书是今年刚刚出版的有关python-selenium的测试书，从市场上来看，应该是唯一的一本Python-Selenium的书籍。我看了一下出版信息，第一版只印了三千册，也许以后就是绝版咯！&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
-    
-    
-      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
-    
-      <category term="书评" scheme="http://www.wengyb.com/tags/%E4%B9%A6%E8%AF%84/"/>
     
   </entry>
   
