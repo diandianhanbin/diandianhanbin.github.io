@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-05-15T16:39:45.000Z</updated>
+  <updated>2016-05-17T08:03:04.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MonkeyRunner—环境搭建（Mac）</title>
+    <link href="http://www.wengyb.com/2016/05/17/MonkeyRunner%E2%80%94%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88Mac%EF%BC%89/"/>
+    <id>http://www.wengyb.com/2016/05/17/MonkeyRunner—环境搭建（Mac）/</id>
+    <published>2016-05-17T08:02:06.000Z</published>
+    <updated>2016-05-17T08:03:04.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;机器环境&quot;&gt;&lt;a href=&quot;#机器环境&quot; class=&quot;headerlink&quot; title=&quot;机器环境&quot;&gt;&lt;/a&gt;机器环境&lt;/h2&gt;&lt;p&gt;其实一开始我是想找一个现成的教程学学，结果发现基本上说的都是Windows环境下，只能自己摸索摸索。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;版本相关 &lt;/p&gt;
+&lt;p&gt;操作系统：Mac OS X EI Caption &lt;/p&gt;
+&lt;p&gt;Python版本：2.7&lt;/p&gt;
+&lt;p&gt;IDE：Sublime Text 3&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;MonkeyRunner环境&quot;&gt;&lt;a href=&quot;#MonkeyRunner环境&quot; class=&quot;headerlink&quot; title=&quot;MonkeyRunner环境&quot;&gt;&lt;/a&gt;MonkeyRunner环境&lt;/h2&gt;&lt;p&gt;MonkeyRunner是AndroidSDK自带的一个东西，在SDK目录中的tools文件夹中，直接带有MonkeyRunner。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/E57BA8BB-09BE-4D6F-BE95-E7591D8E9D37.png&quot; alt=&quot;路径&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这个命令可以直接使用命令行工具的open方法来直接打开命令，会进入Jyhon的命令行:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SvenWeng@wengyanbindeMacBook-Pro:~/Desktop/android-sdk-macosx/tools|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;⇒  monkeyrunner&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Jython 2.5.3 (2.5:c56500f08d34+, Aug 13 2012, 14:54:35)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Java HotSpot(TM) 64-Bit Server VM (Oracle Corporation)] on java1.7.0_79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在这里直接输入命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; com.android.monkeyrunner &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; MonkeyRunner&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;没有报错说明MonkeyRunner命令是没问题的，现在需要把MonkeyRunner配置到环境变量中。&lt;/p&gt;
+&lt;h3 id=&quot;配置MonkeyRunner到环境变量&quot;&gt;&lt;a href=&quot;#配置MonkeyRunner到环境变量&quot; class=&quot;headerlink&quot; title=&quot;配置MonkeyRunner到环境变量&quot;&gt;&lt;/a&gt;配置MonkeyRunner到环境变量&lt;/h3&gt;&lt;p&gt;在Mac中，环境变量有好多个，一般来说，我们说的环境变量就是一个配置文件，如果你使用的是Mac的默认命令行终端，那么你用的就是bash，你需要在bash_profile中添加环境变量：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;open ~/.bash_profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;打开文件后，需要输入这些内容：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;export PATH=$&amp;#123;PATH&amp;#125;:/Users/SvenWeng/Desktop/android-sdk-macosx/platform-tools/:/Users/SvenWeng/Desktop/android-sdk-macosx/tools/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后保存后关闭文件，需要注意的是，上面的命令配置sdk的路径是我的，你的肯定不一样，需要把路径做一些修改。然后执行:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;source ~/.bash_profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果你使用的是zsh，那么环境变量就是:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;~/.zshrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;同样的内容放置进去即可。&lt;/p&gt;
+&lt;p&gt;上面的配置完毕之后打开命令行工具运行monkeyrunner，如果成功的进入了Jython，那么恭喜你，MonkeyRunner的环境已经配置成功。如果失败，请按照上面的方法仔细检查检查。&lt;/p&gt;
+&lt;h2 id=&quot;第一个Demo&quot;&gt;&lt;a href=&quot;#第一个Demo&quot; class=&quot;headerlink&quot; title=&quot;第一个Demo&quot;&gt;&lt;/a&gt;第一个Demo&lt;/h2&gt;&lt;p&gt;配置完毕之后，我们需要运行一下脚本检查是否运行成功，MonkeyRunner的API是python的，那么我们就要写一个python的demo。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sys&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; com.android.monkeyrunner &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; MonkeyRunner &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; mr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;device = mr.waitForConnection()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; device:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	device.startActivity(component=&lt;span class=&quot;string&quot;&gt;&#39;com.weizq/com.zztzt.android.simple.app.MainActivity&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面代码中，startActivity方法中需要填入你需要启动的Activity。请使用adb或者咨询开发拿到相关Activity名称。&lt;/p&gt;
+&lt;h3 id=&quot;运行demo&quot;&gt;&lt;a href=&quot;#运行demo&quot; class=&quot;headerlink&quot; title=&quot;运行demo&quot;&gt;&lt;/a&gt;运行demo&lt;/h3&gt;&lt;p&gt;运行的方法很简单，命令是monkeyrunner + py文件的路径，比如我这样：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;monkeyrunner test.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我直接用文件名是因为我已经把shell的路径进到和文件同一层级了，如果不在同一层级，可以使用绝对路径。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="MonkeyRunner" scheme="http://www.wengyb.com/tags/MonkeyRunner/"/>
+    
+  </entry>
   
   <entry>
     <title>Python内置函数(一)</title>
@@ -1216,50 +1273,6 @@
       <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
     
       <category term="MongoDB" scheme="http://www.wengyb.com/tags/MongoDB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Django使用第三方接口（一）</title>
-    <link href="http://www.wengyb.com/2016/03/12/Django%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%A5%E5%8F%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://www.wengyb.com/2016/03/12/Django使用第三方接口（一）/</id>
-    <published>2016-03-12T02:41:06.000Z</published>
-    <updated>2016-03-31T03:08:03.000Z</updated>
-    
-    <content type="html">&lt;p&gt;文章首发：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/30/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我的博客&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;好久没发文章了，最近我在学习使用第三方接口来优化我的网站，这篇文章介绍两个接口吧，都是从百度API商店折腾了之后使用的，一个是天气资讯，另一个是名人名言。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h2&gt;&lt;p&gt;其实调接口很简单，原理和使用数据库的数据差不多，我们使用本地数据库的时候是通过： 连接数据库——获取数据——返回前端——前端处理这么一个流程，调用接口其实也差不多是这样，发送请求——收到数据——数据处理——返回前端——前端处理。理清思路后我们就来处理处理这块的使用方法。&lt;/p&gt;
-&lt;h2 id=&quot;名人名言&quot;&gt;&lt;a href=&quot;#名人名言&quot; class=&quot;headerlink&quot; title=&quot;名人名言&quot;&gt;&lt;/a&gt;名人名言&lt;/h2&gt;&lt;p&gt;关于名人名言，我是放在我博客的首页展示，效果图如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1228386-4d9c798a9e456193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;名人名言效果图&quot;&gt;&lt;/p&gt;
-&lt;p&gt;整个调用流程和上文说的思路差不多，首先，进入百度API商店，传送门在这：&lt;a href=&quot;http://apistore.baidu.com/apiworks/servicedetail/1756.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://apistore.baidu.com/apiworks/servicedetail/1756.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;查看API后，只要请求的时候带上相关参数就行了，API文档比较简单，百度API商店也给了Python的示例，不过百度的示例使用的是urllib这个python自带的库，我用的是requests这个库，对比起来requests这个库使用起来更简单，我的前端使用的是jQuery调用ajax来从Django后台异步获取数据，所以打开网页的时候你会发现这一块一开始是没有的，过了一秒后才会出现数据。废话不多说，上代码。&lt;/p&gt;
-&lt;h3 id=&quot;views-py&quot;&gt;&lt;a href=&quot;#views-py&quot; class=&quot;headerlink&quot; title=&quot;views.py&quot;&gt;&lt;/a&gt;views.py&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;def famous(request):   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  famous_word = Mingrenmingyan()    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  return JsonResponse(famous_word.get_mrmy(), safe=False)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;师徒函数很简单，初始化这个类，然后返回一个json数据给前端。整个处理方法我单独写了一个common类来处理，所以还需要在views的开头引入这个方法。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;from common.common import Weather, Mingrenmingyan&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;common-py&quot;&gt;&lt;a href=&quot;#common-py&quot; class=&quot;headerlink&quot; title=&quot;common.py&quot;&gt;&lt;/a&gt;common.py&lt;/h3&gt;&lt;p&gt;这个方法我是专门来处理一些数据的，所以会写好几个类。代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class Mingrenmingyan:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    处理名人名言接口返回的数据&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    def __init__(self):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        初始化相关数据,包括接口的url,headers和parm&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        :return: None&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.url = &amp;apos;http://apis.baidu.com/avatardata/mingrenmingyan/lookup&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.headers = &amp;#123;&amp;quot;apikey&amp;quot;: &amp;quot;your key&amp;quot;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.parm = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;quot;dtype&amp;quot;: &amp;quot;JSON&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;quot;keyword&amp;quot;: &amp;quot;人生&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;quot;page&amp;quot;: &amp;quot;1&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;quot;rows&amp;quot;: &amp;quot;20&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    def get_mrmy(self):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        从接口获取名人名言数据,随机选取一条返回,返回json数据.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        :return:json, 名人名言数据&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        wb_data = requests.get(self.url, headers=self.headers, params=self.parm)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        data = wb_data.json()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if data[&amp;apos;error_code&amp;apos;] == 0:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            result = data[&amp;apos;result&amp;apos;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            random_num = random.randint(0, 19)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return json.dumps(result[random_num])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return json.dumps(data)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个类是处理名人名言数据的，因为接口返回的是20条数据，因此我会随机选取一条返回给前端。&lt;/p&gt;
-&lt;h3 id=&quot;前端&quot;&gt;&lt;a href=&quot;#前端&quot; class=&quot;headerlink&quot; title=&quot;前端&quot;&gt;&lt;/a&gt;前端&lt;/h3&gt;&lt;p&gt;在前端我是用js的ajax方法异步获取数据，所以这里我只贴js部分的代码，代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function famous()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    $.getJSON(&amp;apos;/blog/get_famous/&amp;apos;, function(data)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        var famous_data = jQuery.parseJSON(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        console.log(famous_data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        $(&amp;apos;#mrmy-body&amp;apos;).html(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;apos;&amp;lt;p&amp;gt;&amp;apos; + famous_data.famous_saying + &amp;apos;&amp;lt;/p&amp;gt;&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        $(&amp;apos;#mrmy-footer&amp;apos;).html(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;apos;&amp;lt;p&amp;gt;By--&amp;apos; + famous_data.famous_name + &amp;apos;&amp;lt;/p&amp;gt;&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        )&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;url-py&quot;&gt;&lt;a href=&quot;#url-py&quot; class=&quot;headerlink&quot; title=&quot;url.py&quot;&gt;&lt;/a&gt;url.py&lt;/h3&gt;&lt;p&gt;在url部分就为前后端通讯加一条路由就行了。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;url(r&amp;apos;^get_famous&amp;apos;, views.famous, name=&amp;apos;famous&amp;apos;),&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这样一个名人名言的接口调用就完成了。&lt;/p&gt;
-&lt;h2 id=&quot;天气资讯&quot;&gt;&lt;a href=&quot;#天气资讯&quot; class=&quot;headerlink&quot; title=&quot;天气资讯&quot;&gt;&lt;/a&gt;天气资讯&lt;/h2&gt;&lt;p&gt;天气资讯接口的调用方式也非常简单，和这部分是一样的。我就不详细的贴了，就是一个页面一个搜索框一个展示，方法和上文说的是一样的，相信聪明的你自己就可以写出来。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;文章首发：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/30/&quot;&gt;我的博客&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;好久没发文章了，最近我在学习使用第三方接口来优化我的网站，这篇文章介绍两个接口吧，都是从百度API商店折腾了之后使用的，一个是天气资讯，另一个是名人名言。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
-    
-    
-      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
-    
-      <category term="Django" scheme="http://www.wengyb.com/tags/Django/"/>
     
   </entry>
   

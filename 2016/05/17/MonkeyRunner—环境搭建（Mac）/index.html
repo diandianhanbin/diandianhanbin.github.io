@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Appium,测试," />
+  <meta name="keywords" content="Appium,测试,MonkeyRunner," />
 
 
 
@@ -59,19 +59,18 @@
 
 
 
-<meta name="description" content="背景最近安卓那边做起来有点烦躁，主要还是我们的安卓第三方包用多了，导致超过了谷歌的上限，打不出包了，很多H5部分不好测试，我们的安卓开发总是习惯的禁掉webview句柄，给Activity加权限，导致跑出来的结果各种报错，换一个口味，玩玩IOS的自动化。">
+<meta name="description" content="背景之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Appium学习-IOS初窥">
-<meta property="og:url" content="http://www.wengyb.com/2016/05/09/Appium学习-IOS初窥/index.html">
+<meta property="og:title" content="MonkeyRunner—环境搭建（Mac）">
+<meta property="og:url" content="http://www.wengyb.com/2016/05/17/MonkeyRunner—环境搭建（Mac）/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="背景最近安卓那边做起来有点烦躁，主要还是我们的安卓第三方包用多了，导致超过了谷歌的上限，打不出包了，很多H5部分不好测试，我们的安卓开发总是习惯的禁掉webview句柄，给Activity加权限，导致跑出来的结果各种报错，换一个口味，玩玩IOS的自动化。">
-<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/769279FC-0D81-4CDD-A691-8CD5C9DFEF13.png">
-<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/57E02A75-FA1D-4529-AF54-F820C50A5FB9.png">
-<meta property="og:updated_time" content="2016-05-10T01:07:34.000Z">
+<meta property="og:description" content="背景之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/E57BA8BB-09BE-4D6F-BE95-E7591D8E9D37.png">
+<meta property="og:updated_time" content="2016-05-17T08:03:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Appium学习-IOS初窥">
-<meta name="twitter:description" content="背景最近安卓那边做起来有点烦躁，主要还是我们的安卓第三方包用多了，导致超过了谷歌的上限，打不出包了，很多H5部分不好测试，我们的安卓开发总是习惯的禁掉webview句柄，给Activity加权限，导致跑出来的结果各种报错，换一个口味，玩玩IOS的自动化。">
-<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/769279FC-0D81-4CDD-A691-8CD5C9DFEF13.png">
+<meta name="twitter:title" content="MonkeyRunner—环境搭建（Mac）">
+<meta name="twitter:description" content="背景之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/E57BA8BB-09BE-4D6F-BE95-E7591D8E9D37.png">
 
 
 
@@ -89,7 +88,7 @@
   };
 </script>
 
-  <title> Appium学习-IOS初窥 | 点点寒彬 </title>
+  <title> MonkeyRunner—环境搭建（Mac） | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +257,7 @@
             
             
               
-                Appium学习-IOS初窥
+                MonkeyRunner—环境搭建（Mac）
               
             
           </h1>
@@ -270,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T22:17:54+08:00" content="2016-05-09">
-              2016-05-09
+            <time itemprop="dateCreated" datetime="2016-05-17T16:02:06+08:00" content="2016-05-17">
+              2016-05-17
             </time>
           </span>
 
@@ -300,8 +299,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/09/Appium学习-IOS初窥/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/Appium学习-IOS初窥/" itemprop="commentsCount"></span>
+                <a href="/2016/05/17/MonkeyRunner—环境搭建（Mac）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/MonkeyRunner—环境搭建（Mac）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,31 +322,37 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近安卓那边做起来有点烦躁，主要还是我们的安卓第三方包用多了，导致超过了谷歌的上限，打不出包了，很多H5部分不好测试，我们的安卓开发总是习惯的禁掉webview句柄，给Activity加权限，导致跑出来的结果各种报错，换一个口味，玩玩IOS的自动化。<br><a id="more"></a></p>
-<h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><p>测试IOS必须要<strong>Mac OS X系统</strong>，请不要问可不可以用Windows来测试IOS这种问题。</p>
-<p>我电脑都是最新的版本，比如系统、比如xcode、比如Appium。</p>
-<h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>我是比较懒，不太想自己去看那些英文，结果搜索出来的结果，基本上都不是我想要的东西，好像整个网络上都是大神，并没有人来写这么一个手把手指导怎么跑官方demo的教程，只好自己去跑一下感觉感觉。</p>
-<h2 id="官方Demo"><a href="#官方Demo" class="headerlink" title="官方Demo"></a>官方Demo</h2><p>官方Demo当然是最好的一个东西，无奈官方的介绍也很短，还都是英文的。Github上有完整的<a href="https://github.com/appium/sample-code" target="_blank" rel="external">官方Demo源码</a>。全部一次性Down下来。在apps里面就能找到IOS的测试包了。就是下图这个东西了。</p>
-<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/769279FC-0D81-4CDD-A691-8CD5C9DFEF13.png" alt="app启动地址"></p>
-<h2 id="跑起来"><a href="#跑起来" class="headerlink" title="跑起来"></a>跑起来</h2><p>跑起来很简单，如果Appium的环境是正常的，那么只要启动Appium的服务，然后执行Python的demo代码就行了。</p>
-<p>官方的说明是这样的：</p>
-<blockquote>
-<p>These are simple samples of how to use Python to run Appium tests. It is suggested that you use a test runner such as pytest or nose.</p>
-<p>Sauce Labs examples require at least version 0.12 of the Appium Python Client, which includes the appium.SauceTestCase base class.</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Usage:</span><br><span class="line"></span><br><span class="line">py.test ios_simple.py</span><br><span class="line">py.test -n2 --boxed ios_simple.py</span><br></pre></td></tr></table></figure>
-<p>成功执行后结果长这个样子。</p>
-<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/57E02A75-FA1D-4529-AF54-F820C50A5FB9.png" alt="执行结果"></p>
-<p>不同的bash展示的是不一样的，在执行过程中你可以看到在IOS模拟器启动，然后启动官方demo，执行这两条用例的整个过程</p>
-<h2 id="Demo的说明"><a href="#Demo的说明" class="headerlink" title="Demo的说明"></a>Demo的说明</h2><p>其实官方的Demo是非常简单的，你不需要知道IOS的代码是怎么跑起来的。demo是基于unittest测试框架写的。不懂的请在<a href="http://blog.csdn.net/wyb199026" target="_blank" rel="external">我的博客</a>翻翻他们是如何运行的。</p>
-<h3 id="初始化驱动"><a href="#初始化驱动" class="headerlink" title="初始化驱动"></a>初始化驱动</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleIOSTests</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># set up appium</span></span><br><span class="line">        app = os.path.abspath(<span class="string">'../../apps/TestApp/build/release-iphonesimulator/TestApp.app'</span>)</span><br><span class="line">        self.driver = webdriver.Remote(</span><br><span class="line">            command_executor=<span class="string">'http://127.0.0.1:4723/wd/hub'</span>,</span><br><span class="line">            desired_capabilities=&#123;</span><br><span class="line">                <span class="string">'app'</span>: app,</span><br><span class="line">                <span class="string">'platformName'</span>: <span class="string">'iOS'</span>,</span><br><span class="line">                <span class="string">'platformVersion'</span>: <span class="string">'9.3'</span>,</span><br><span class="line">                <span class="string">'deviceName'</span>: <span class="string">'iPhone 6'</span></span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
-<p>可以看到在初始化中比较重要的几个参数，app路径、系统名称、系统版本、设备名称。</p>
-<p>从这些参数来看，<strong>用模拟器测试IOS就必须要有源码</strong>，如果没有源码你第一个app路径也都没办法填写。</p>
-<h3 id="第一条测试用例"><a href="#第一条测试用例" class="headerlink" title="第一条测试用例"></a>第一条测试用例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_scroll</span><span class="params">(self)</span>:</span></span><br><span class="line">        els = self.driver.find_elements_by_class_name(<span class="string">'UIAButton'</span>)</span><br><span class="line">        els[<span class="number">5</span>].click()</span><br><span class="line"></span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            el = self.driver.find_element_by_accessibility_id(<span class="string">'OK'</span>)</span><br><span class="line">            el.click()</span><br><span class="line">            sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">        el = self.driver.find_element_by_xpath(<span class="string">'//UIAMapView[1]'</span>)</span><br><span class="line"></span><br><span class="line">        location = el.location</span><br><span class="line">        self.driver.swipe(start_x=location[<span class="string">'x'</span>], start_y=location[<span class="string">'y'</span>], end_x=<span class="number">0.5</span>, end_y=location[<span class="string">'y'</span>], duration=<span class="number">800</span>)</span><br></pre></td></tr></table></figure>
-<p>这条用例就没什么好解释的了，和安卓上使用Appium基本上是一致的使用方式。首先找到classname是UIAButton的元素点击。然后再做一个滑动的操作。</p>
-<h3 id="第二条测试用例"><a href="#第二条测试用例" class="headerlink" title="第二条测试用例"></a>第二条测试用例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_populate</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># populate text fields with two random numbers</span></span><br><span class="line">        els = [self.driver.find_element_by_name(<span class="string">'TextField1'</span>),</span><br><span class="line">               self.driver.find_element_by_name(<span class="string">'TextField2'</span>)]</span><br><span class="line"></span><br><span class="line">        self._sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">            rnd = randint(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">            els[i].send_keys(rnd)</span><br><span class="line">            self._sum += rnd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_ui_computation</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># populate text fields with values</span></span><br><span class="line">        self._populate()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># trigger computation by using the button</span></span><br><span class="line">        self.driver.find_element_by_accessibility_id(<span class="string">'ComputeSumButton'</span>).click()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># is sum equal ?</span></span><br><span class="line">        <span class="comment"># sauce does not handle class name, so get fourth element</span></span><br><span class="line">        sum = self.driver.find_element_by_name(<span class="string">'Answer'</span>).text</span><br><span class="line">        self.assertEqual(int(sum), self._sum)</span><br></pre></td></tr></table></figure>
-<p>简单来说就是两个输入框随机输入10以内的数字，求和，然后下一个断言。代码看起来还是比较简单的，难怪没人会愿意写这么一个教程，因为这基本上就是Down下来直接跑就行了。。。。。。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Appium无论执行Android还是IOS都有一个通病。效率很低。官方的两个Demo这么简单的例子，执行起来需要1分半，要是测试案例多了，一跑就是一整天啦！</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。<br><a id="more"></a></p>
+<h2 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h2><p>其实一开始我是想找一个现成的教程学学，结果发现基本上说的都是Windows环境下，只能自己摸索摸索。</p>
+<hr>
+<p>版本相关 </p>
+<p>操作系统：Mac OS X EI Caption </p>
+<p>Python版本：2.7</p>
+<p>IDE：Sublime Text 3</p>
+<hr>
+<h2 id="MonkeyRunner环境"><a href="#MonkeyRunner环境" class="headerlink" title="MonkeyRunner环境"></a>MonkeyRunner环境</h2><p>MonkeyRunner是AndroidSDK自带的一个东西，在SDK目录中的tools文件夹中，直接带有MonkeyRunner。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/E57BA8BB-09BE-4D6F-BE95-E7591D8E9D37.png" alt="路径"></p>
+<p>这个命令可以直接使用命令行工具的open方法来直接打开命令，会进入Jyhon的命令行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SvenWeng@wengyanbindeMacBook-Pro:~/Desktop/android-sdk-macosx/tools|</span><br><span class="line">⇒  monkeyrunner</span><br><span class="line">Jython 2.5.3 (2.5:c56500f08d34+, Aug 13 2012, 14:54:35)</span><br><span class="line">[Java HotSpot(TM) 64-Bit Server VM (Oracle Corporation)] on java1.7.0_79</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>在这里直接输入命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner</span><br></pre></td></tr></table></figure>
+<p>没有报错说明MonkeyRunner命令是没问题的，现在需要把MonkeyRunner配置到环境变量中。</p>
+<h3 id="配置MonkeyRunner到环境变量"><a href="#配置MonkeyRunner到环境变量" class="headerlink" title="配置MonkeyRunner到环境变量"></a>配置MonkeyRunner到环境变量</h3><p>在Mac中，环境变量有好多个，一般来说，我们说的环境变量就是一个配置文件，如果你使用的是Mac的默认命令行终端，那么你用的就是bash，你需要在bash_profile中添加环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>打开文件后，需要输入这些内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/SvenWeng/Desktop/android-sdk-macosx/platform-tools/:/Users/SvenWeng/Desktop/android-sdk-macosx/tools/</span><br></pre></td></tr></table></figure>
+<p>然后保存后关闭文件，需要注意的是，上面的命令配置sdk的路径是我的，你的肯定不一样，需要把路径做一些修改。然后执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>如果你使用的是zsh，那么环境变量就是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>同样的内容放置进去即可。</p>
+<p>上面的配置完毕之后打开命令行工具运行monkeyrunner，如果成功的进入了Jython，那么恭喜你，MonkeyRunner的环境已经配置成功。如果失败，请按照上面的方法仔细检查检查。</p>
+<h2 id="第一个Demo"><a href="#第一个Demo" class="headerlink" title="第一个Demo"></a>第一个Demo</h2><p>配置完毕之后，我们需要运行一下脚本检查是否运行成功，MonkeyRunner的API是python的，那么我们就要写一个python的demo。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner <span class="keyword">as</span> mr</span><br><span class="line"></span><br><span class="line">device = mr.waitForConnection()</span><br><span class="line"><span class="keyword">if</span> device:</span><br><span class="line">	device.startActivity(component=<span class="string">'com.weizq/com.zztzt.android.simple.app.MainActivity'</span>)</span><br></pre></td></tr></table></figure>
+<p>上面代码中，startActivity方法中需要填入你需要启动的Activity。请使用adb或者咨询开发拿到相关Activity名称。</p>
+<h3 id="运行demo"><a href="#运行demo" class="headerlink" title="运行demo"></a>运行demo</h3><p>运行的方法很简单，命令是monkeyrunner + py文件的路径，比如我这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">monkeyrunner test.py</span><br></pre></td></tr></table></figure>
+<p>我直接用文件名是因为我已经把shell的路径进到和文件同一层级了，如果不在同一层级，可以使用绝对路径。</p>
 
       
     </div>
@@ -387,6 +392,8 @@
           
             <a href="/tags/测试/" rel="tag">#测试</a>
           
+            <a href="/tags/MonkeyRunner/" rel="tag">#MonkeyRunner</a>
+          
         </div>
       
 
@@ -394,17 +401,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/09/官方Demo/" rel="next" title="官方Demo">
-                <i class="fa fa-chevron-left"></i> 官方Demo
+              <a href="/2016/05/16/Python内置函数-一/" rel="next" title="Python内置函数(一)">
+                <i class="fa fa-chevron-left"></i> Python内置函数(一)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/11/Appium学习-关于Inspector/" rel="prev" title="Appium学习-关于Inspector">
-                Appium学习-关于Inspector <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -419,10 +422,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/09/Appium学习-IOS初窥/"
-     data-title="Appium学习-IOS初窥"
+        <div class="ds-share flat" data-thread-key="2016/05/17/MonkeyRunner—环境搭建（Mac）/"
+     data-title="MonkeyRunner—环境搭建（Mac）"
      data-content=""
-     data-url="http://www.wengyb.com/2016/05/09/Appium学习-IOS初窥/">
+     data-url="http://www.wengyb.com/2016/05/17/MonkeyRunner—环境搭建（Mac）/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -449,8 +452,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/09/Appium学习-IOS初窥/"
-           data-title="Appium学习-IOS初窥" data-url="http://www.wengyb.com/2016/05/09/Appium学习-IOS初窥/">
+      <div class="ds-thread" data-thread-key="2016/05/17/MonkeyRunner—环境搭建（Mac）/"
+           data-title="MonkeyRunner—环境搭建（Mac）" data-url="http://www.wengyb.com/2016/05/17/MonkeyRunner—环境搭建（Mac）/">
       </div>
     
   </div>
@@ -622,7 +625,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件"><span class="nav-number">2.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初衷"><span class="nav-number">3.</span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方Demo"><span class="nav-number">4.</span> <span class="nav-text">官方Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跑起来"><span class="nav-number">5.</span> <span class="nav-text">跑起来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo的说明"><span class="nav-number">6.</span> <span class="nav-text">Demo的说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化驱动"><span class="nav-number">6.1.</span> <span class="nav-text">初始化驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一条测试用例"><span class="nav-number">6.2.</span> <span class="nav-text">第一条测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二条测试用例"><span class="nav-number">6.3.</span> <span class="nav-text">第二条测试用例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器环境"><span class="nav-number">2.</span> <span class="nav-text">机器环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MonkeyRunner环境"><span class="nav-number">3.</span> <span class="nav-text">MonkeyRunner环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置MonkeyRunner到环境变量"><span class="nav-number">3.1.</span> <span class="nav-text">配置MonkeyRunner到环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个Demo"><span class="nav-number">4.</span> <span class="nav-text">第一个Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行demo"><span class="nav-number">4.1.</span> <span class="nav-text">运行demo</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
