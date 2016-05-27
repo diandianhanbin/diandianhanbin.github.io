@@ -59,19 +59,16 @@
 
 
 
-<meta name="description" content="##背景
-好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了Django的官方文档，结合虫师的教程简单写了一下">
+<meta name="description" content="背景好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了Django的官方文档，结合虫师的教程简单写了一下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django开发博客（一）快速写简单的博客">
 <meta property="og:url" content="http://www.wengyb.com/2015/12/30/Django开发博客（一）快速写简单的博客/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="##背景
-好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了Django的官方文档，结合虫师的教程简单写了一下">
-<meta property="og:updated_time" content="2016-03-31T05:42:35.000Z">
+<meta property="og:description" content="背景好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了Django的官方文档，结合虫师的教程简单写了一下">
+<meta property="og:updated_time" content="2016-05-27T17:18:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django开发博客（一）快速写简单的博客">
-<meta name="twitter:description" content="##背景
-好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了Django的官方文档，结合虫师的教程简单写了一下">
+<meta name="twitter:description" content="背景好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了Django的官方文档，结合虫师的教程简单写了一下">
 
 
 
@@ -323,39 +320,38 @@
       
 
       
-        <p>##背景</p>
-<p>好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了<a href="http://python.usyiyi.cn/django/index.html" target="_blank" rel="external">Django的官方文档</a>，结合<a href="http://www.cnblogs.com/fnng/p/3737964.html" target="_blank" rel="external">虫师的教程</a>简单写了一下<br><a id="more"></a></p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>好吧，我承认是我比较蛋疼，直接下了Django的最新版，然后好像很多东西都改了，比如生成sqlite数据库的时候，老版本用的是python manage.py syncdb，但是在1.9版本中移除了这个命令。最头疼的是现在网络上的教程说的都是1.8或者更老版本的Django。于是花了点时间看了<a href="http://python.usyiyi.cn/django/index.html" target="_blank" rel="external">Django的官方文档</a>，结合<a href="http://www.cnblogs.com/fnng/p/3737964.html" target="_blank" rel="external">虫师的教程</a>简单写了一下<br><a id="more"></a></p>
 <hr>
 <p>操作系统：Mac OS X EI Caption<br>Python版本：3.4<br>Django版本：1.9<br>IDE：PyCharm</p>
 <hr>
-<p>##新建工程<br>首先在PyCharm中新建一个Django项目，会自动帮你配置好工程的文件，比如我的工程名字叫BlogC。<br>manage.py —– Django项目里面的工具，通过它可以调用django shell和数据库等。<br>settings.py —- 包含了项目的默认设置，包括数据库信息，调试标志以及其他一些工作的变量。<br>urls.py —– 负责把URL模式映射到应用程序。</p>
-<p>##创建一个应用<br>在PyCharm命令行（以下简称命令行）中输入命令python manage.py startapp easyblog，命令的作用就是创建一个名字叫做easyblog的应用，如果是其他方式，就用命令行工具进入到BlogC的根目录下（就是你打ls会看到manage.py这个文件的目录）输入这个命令</p>
-<p>##数据库模型<br>在命令行中输入python manage.py migrate，就会自动根据Django现有的模型建立起一套强大的CMS（这里与老版本不一样的内容是：老版本使用的是syncdb这个命令，而且老版本会自动创建用户）。输入完命令后你就会看到新建了一个db.sqlite的文件，这个就是你的数据库文件（当然你也可以用其他数据库）。这时一个CMS系统已经搭建起来了，输入python manage.py runserver启动Django服务器，然后进入127.0.0.1:8000/admin就可以看到你的CMS系统了，不过现在还没有用户。输入命令python manage.py createsuperuser就会让你输入用户名、密码和邮箱。</p>
+<h2 id="新建工程"><a href="#新建工程" class="headerlink" title="新建工程"></a>新建工程</h2><p>首先在PyCharm中新建一个Django项目，会自动帮你配置好工程的文件，比如我的工程名字叫BlogC。<br>manage.py —– Django项目里面的工具，通过它可以调用django shell和数据库等。<br>settings.py —- 包含了项目的默认设置，包括数据库信息，调试标志以及其他一些工作的变量。<br>urls.py —– 负责把URL模式映射到应用程序。</p>
+<h2 id="创建一个应用"><a href="#创建一个应用" class="headerlink" title="创建一个应用"></a>创建一个应用</h2><p>在PyCharm命令行（以下简称命令行）中输入命令python manage.py startapp easyblog，命令的作用就是创建一个名字叫做easyblog的应用，如果是其他方式，就用命令行工具进入到BlogC的根目录下（就是你打ls会看到manage.py这个文件的目录）输入这个命令</p>
+<h2 id="数据库模型"><a href="#数据库模型" class="headerlink" title="数据库模型"></a>数据库模型</h2><p>在命令行中输入python manage.py migrate，就会自动根据Django现有的模型建立起一套强大的CMS（这里与老版本不一样的内容是：老版本使用的是syncdb这个命令，而且老版本会自动创建用户）。输入完命令后你就会看到新建了一个db.sqlite的文件，这个就是你的数据库文件（当然你也可以用其他数据库）。这时一个CMS系统已经搭建起来了，输入python manage.py runserver启动Django服务器，然后进入127.0.0.1:8000/admin就可以看到你的CMS系统了，不过现在还没有用户。输入命令python manage.py createsuperuser就会让你输入用户名、密码和邮箱。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SvenWengdeMacBook-Pro:BlogC svenweng$ python manage.py createsuperuser</span><br><span class="line">Username (leave blank to use &apos;svenweng&apos;): </span><br><span class="line">Email address: ****@qq.com</span><br><span class="line">Password: </span><br><span class="line">Password (again): </span><br><span class="line">Superuser created successfully.</span><br></pre></td></tr></table></figure>
 <p>现在用这个用户就可以进入CMS系统了</p>
-<p>##定义博客的数据库模型<br>我们网站的CMS已经做好了，现在要定义我们自己的模型。</p>
+<h2 id="定义博客的数据库模型"><a href="#定义博客的数据库模型" class="headerlink" title="定义博客的数据库模型"></a>定义博客的数据库模型</h2><p>我们网站的CMS已经做好了，现在要定义我们自己的模型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">easyblog/models.py</span><br><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BlogPost(models.Model):</span><br><span class="line">    title = models.CharField(max_length=200)</span><br><span class="line">    body = models.TextField()</span><br><span class="line">    timestamp = models.DateTimeField()</span><br><span class="line"></span><br><span class="line">admin.site.register(BlogPost)</span><br></pre></td></tr></table></figure>
 <p>上面的代码帮我们定义了一个简单的数据内容。现在我们要让数据库发生变化。执行以下命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations easyblog</span><br><span class="line">python manage.py sqlmigrate easyblog 0001</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
 <p>按顺序执行命令，就会把我们新增的models生成。这个时候进入CMS就可以看到多了一个group，在里面输入标题，内容和时间，保存即可。</p>
-<p>##视图<br>写完数据模型后，我们写视图函数，让我们的网站能够展示出来。</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>写完数据模型后，我们写视图函数，让我们的网站能够展示出来。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">easyblog/views.py</span><br><span class="line"></span><br><span class="line">from django.shortcuts import render</span><br><span class="line">from easyblog.models import BlogPost</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def index(request):</span><br><span class="line">    blog_list = BlogPost.objects.all()</span><br><span class="line">    return render(request, &apos;index.html&apos;, &#123;&apos;blog_list&apos;: blog_list&#125;)</span><br></pre></td></tr></table></figure>
 <p>def index表示定义一个index的视图函数，BlogPost.objects.all()就表示我们刚刚定义的模型类BlogPost返回所有数据，我们在CMS插入的文章就会全部返回给blog_list。最后就是把视图函数处理的内容返回给模版index.html。</p>
-<p>##模版<br>在模版文件templates中新建index.html。根据视图函数返回的数据，我们来编写这个index.html模版</p>
+<h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><p>在模版文件templates中新建index.html。根据视图函数返回的数据，我们来编写这个index.html模版</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">templates/index.html</span><br><span class="line"></span><br><span class="line">&#123;% for blog in blog_list %&#125;</span><br><span class="line">    &lt;h2&gt;&#123;&#123; blog.title &#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; blog.timestamp &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; blog.body &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor%&#125;</span><br></pre></td></tr></table></figure>
 <p>视图函数最后的{‘blog_list’: blog_list}就表示把blog_list的内容赋值给‘blog_list’，所以在模版中我们要有‘blog_list’这个变量，用for来迭代，把数据全部打出来</p>
-<p>##地址<br>内容我们已经写好了，现在要通过一个地址定位到我们写的网站。在BlogC中已经有一个urls.py文件，这个文件就是把定位到我们网站的地址。</p>
+<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>内容我们已经写好了，现在要通过一个地址定位到我们写的网站。在BlogC中已经有一个urls.py文件，这个文件就是把定位到我们网站的地址。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BlogC/urls.py</span><br><span class="line"></span><br><span class="line">from django.conf.urls import url, include</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^admin/&apos;, include(admin.site.urls)),</span><br><span class="line">    url(r&apos;^easyblog/&apos;, include(&apos;easyblog.urls&apos;)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>上面的代码就表示我们输入地址后带有easyblog的链接全部会跳转到easyblog/urls.py这个文件中，我们需要新建这个文件，然后输入下面的代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">easyblog/urls.py</span><br><span class="line"></span><br><span class="line">from django.conf.urls import url</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^$&apos;, views.index, name=&apos;index&apos;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>这个就表示我们输入地址后带有easyblog的网址链接的视图。url的参数，第一个是一个名称适配的正则。这里表示为空，第二个参数就是视图函数的地址了，name表示视图函数的名称。</p>
-<p>##完工<br>我们简单的blog系统就搭建起来了，现在需要看看结果是什么，运行python manage.py runserver，进入127.0.0.1:8000/easyblog。就可以看到我们刚刚写的网站了。</p>
-<p>##优化<br>我们发现我们写的网站很丑。这时你需要给你的模版加上一些css样式，新建一个base.html模版，输入下列代码</p>
+<h2 id="完工"><a href="#完工" class="headerlink" title="完工"></a>完工</h2><p>我们简单的blog系统就搭建起来了，现在需要看看结果是什么，运行python manage.py runserver，进入127.0.0.1:8000/easyblog。就可以看到我们刚刚写的网站了。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>我们发现我们写的网站很丑。这时你需要给你的模版加上一些css样式，新建一个base.html模版，输入下列代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">templates/base.html</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">      &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        body&#123;color:#efd;background:#453;padding:0 5em;margin:0&#125;</span><br><span class="line">        h1&#123;padding:2em 1em;background:#675;text-align: center&#125;</span><br><span class="line">        h2&#123;color:#bf8;border-top:1px dotted #fff;margin-top:2em&#125;</span><br><span class="line">        p&#123;margin:1em 0&#125;</span><br><span class="line">      &lt;/style&gt;</span><br><span class="line"></span><br><span class="line">      &lt;body&gt;</span><br><span class="line">        &lt;h1&gt;点点寒彬的blog&lt;/h1&gt;</span><br><span class="line">        &lt;h3&gt;精通各大语言的hello world!&lt;/h3&gt;</span><br><span class="line">        &#123;% block content %&#125;</span><br><span class="line">        &#123;% endblock %&#125;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>然后把我们之前的index.html代码改为这样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">templates/index.html</span><br><span class="line"></span><br><span class="line">&#123;% extends &quot;base.html&quot; %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">&#123;% for blog in blog_list %&#125;</span><br><span class="line">    &lt;h2&gt;&#123;&#123; blog.title &#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; blog.timestamp &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; blog.body &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor%&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
 <p>好了，再次进入我们的网站看看。</p>
-<p>##后记<br>这里搭建的只是一个很简单很简单的博客系统，它没有登陆，分类等博客的相关要素，需要你自己去拓展。CSS真是一个不错的东西。值得去看看。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这里搭建的只是一个很简单很简单的博客系统，它没有登陆，分类等博客的相关要素，需要你自己去拓展。CSS真是一个不错的东西。值得去看看。</p>
 
       
     </div>
@@ -503,7 +499,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -630,7 +626,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建工程"><span class="nav-number">2.</span> <span class="nav-text">新建工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个应用"><span class="nav-number">3.</span> <span class="nav-text">创建一个应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库模型"><span class="nav-number">4.</span> <span class="nav-text">数据库模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义博客的数据库模型"><span class="nav-number">5.</span> <span class="nav-text">定义博客的数据库模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">6.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模版"><span class="nav-number">7.</span> <span class="nav-text">模版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#地址"><span class="nav-number">8.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完工"><span class="nav-number">9.</span> <span class="nav-text">完工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">10.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">11.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
         </section>
