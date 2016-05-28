@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-05-27T17:19:53.000Z</updated>
+  <updated>2016-05-28T15:51:22.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于测试书籍的反思</title>
+    <link href="http://www.wengyb.com/2016/05/28/%E5%85%B3%E4%BA%8E%E6%B5%8B%E8%AF%95%E4%B9%A6%E7%B1%8D%E7%9A%84%E5%8F%8D%E6%80%9D/"/>
+    <id>http://www.wengyb.com/2016/05/28/关于测试书籍的反思/</id>
+    <published>2016-05-28T15:50:28.000Z</published>
+    <updated>2016-05-28T15:51:22.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天收到了买来的的两本书，《Wireshark数据包分析实战(第2版) 》和《精通移动App测试实战:技术、工具和案例》，下午觉都没睡就开始啃书。啃着啃着，越来越失望，《精通移动App测试实战:技术、工具和案例》这本书我只能用一个字来形容：烂！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;二&quot;&gt;&lt;a href=&quot;#二&quot; class=&quot;headerlink&quot; title=&quot;二&quot;&gt;&lt;/a&gt;二&lt;/h2&gt;&lt;p&gt;一般来说，每一本技术书都有一定的时效性，尤其是在这个技术飞速发展的时代，本来只想买Wireshark相关的书籍，偶然间浏览到了这本书，出版时间是2016-4，做移动测试半年了，对这方面的技术知识还停留在了解的阶段，急切需要大牛的书来指点迷经。于是我毫不犹豫就买下来了。&lt;/p&gt;
+&lt;h2 id=&quot;三&quot;&gt;&lt;a href=&quot;#三&quot; class=&quot;headerlink&quot; title=&quot;三&quot;&gt;&lt;/a&gt;三&lt;/h2&gt;&lt;p&gt;从目录开始看，我挑了几个我了解的东西来看，比如ADB、Monkey、MonkeyRunner、Appium以及Android性能相关的章节来看。心情从激动变为平静再变为失望。书中的内容基本上都是官网文档的翻译，作者举的例子也基本上都是官方给的。&lt;/p&gt;
+&lt;p&gt;虽然本人英语很烂，但是当初为了学习这些工具，也是翻墙出去拜读过官方文档的。甚至书中还有两处（我发现了两处）错误。书的校对工作显然做的并不到位。&lt;/p&gt;
+&lt;h2 id=&quot;四&quot;&gt;&lt;a href=&quot;#四&quot; class=&quot;headerlink&quot; title=&quot;四&quot;&gt;&lt;/a&gt;四&lt;/h2&gt;&lt;p&gt;书名叫《精通移动App测试实战:技术、工具和案例》，不知道作者为什么敢把“精通”这两个字放上去，书中的内容都是基础的不能再基础的知识，任何一个点拿去Google都能找出一大堆资料。又或者说在作者的眼里，懂了基础知识就是精通了？&lt;/p&gt;
+&lt;h2 id=&quot;五&quot;&gt;&lt;a href=&quot;#五&quot; class=&quot;headerlink&quot; title=&quot;五&quot;&gt;&lt;/a&gt;五&lt;/h2&gt;&lt;p&gt;书中的Robotium和UI Automator两块内容我没有看，因为我不会Java，所以没有接触这两块，不过根据其他模块的内容来看，也基本上就是翻译翻译文档。&lt;/p&gt;
+&lt;p&gt;这本书让我想到了上次买的《零成本实现Android/iOS自动化测试:基于Appium和Test Perfect》基本上是同一个理由（出版时间是2016-01）买的，当然，也是同一个理由失望——除了翻译官方文档还是翻译官方文档。&lt;/p&gt;
+&lt;h2 id=&quot;六&quot;&gt;&lt;a href=&quot;#六&quot; class=&quot;headerlink&quot; title=&quot;六&quot;&gt;&lt;/a&gt;六&lt;/h2&gt;&lt;p&gt;曾经有论坛的朋友说买技术书一定要买国外的，国内的都是坑。当时我并不敢苟同，觉得水友是从洋媚外，现在看来，还是有一定道理的，起码我买的OREILLY的书从没失望过。&lt;/p&gt;
+&lt;h2 id=&quot;七&quot;&gt;&lt;a href=&quot;#七&quot; class=&quot;headerlink&quot; title=&quot;七&quot;&gt;&lt;/a&gt;七&lt;/h2&gt;&lt;p&gt;当然，我自己通过网络渠道学习了这些东西，所以觉得这本书没什么意义，如果是一个零基础的同学来看这本书，也许会有意义。当然，也只是也许，书中Robotium、UI Automator、Appium等都是需要有一定编程基础的，零基础一样看不懂书中在说什么东西。&lt;/p&gt;
+&lt;h2 id=&quot;八&quot;&gt;&lt;a href=&quot;#八&quot; class=&quot;headerlink&quot; title=&quot;八&quot;&gt;&lt;/a&gt;八&lt;/h2&gt;&lt;p&gt;话又说回来，现在移动测试的火爆和技术人才的缺乏，必然会有这种基础工具书籍的需求和市场。&lt;/p&gt;
+&lt;p&gt;手工测试人员从零基础向技术转型，必然会有大量的“伸手党”，在网上经常能看到有人发帖，Appium怎么学？UI Automator怎么学？我应该学哪种编程语言？这种基础书正好填补了他们的空白。不过，不是我歧视这些“伸手党”，你想学Appium，想学UI Automator，怎么不去看官方文档？套一句TesterHome创始人Monkey的话来说&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;什么？你从来不看官方文档？android是谁生的？你连亲爹妈都不看，那么你看啥？看后妈？然后抱怨怎么看不懂？你怪谁？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;九&quot;&gt;&lt;a href=&quot;#九&quot; class=&quot;headerlink&quot; title=&quot;九&quot;&gt;&lt;/a&gt;九&lt;/h2&gt;&lt;p&gt;就整个测试行业而言，其实也是挺悲哀的，只能看到各种圈热钱的书，而看不到真正有质量的书，由于准入门槛很低，导致整个测试行业存在大量底层测试人员，整个行业极度缺乏中高级人才，前几天某蛋还在群里抱怨面试了一个做了八年的测试，连MVC都不懂。&lt;/p&gt;
+&lt;p&gt;科学上网了这么久，我发现测试的技术基本上只能找到从0到0.5的知识，想要从0.5到1，甚至更多，就没有比较成体系的资料可参考，只能自己去看源码。而开发的待遇普遍高于测试，如果能看得懂源码，那就直接做开发就好了，工资拿的还更多。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天收到了买来的的两本书，《Wireshark数据包分析实战(第2版) 》和《精通移动App测试实战:技术、工具和案例》，下午觉都没睡就开始啃书。啃着啃着，越来越失望，《精通移动App测试实战:技术、工具和案例》这本书我只能用一个字来形容：烂！&lt;br&gt;
+    
+    </summary>
+    
+      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
+    
+    
+      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>用Python写一个发邮件模块</title>
@@ -1114,99 +1152,6 @@
     
       &lt;p&gt;文章首发：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot;&gt;《我的博客》&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
-    
-    
-      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
-    
-      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Appium学习之路—环境搭建</title>
-    <link href="http://www.wengyb.com/2016/03/31/Appium%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://www.wengyb.com/2016/03/31/Appium学习之路—环境搭建/</id>
-    <published>2016-03-31T07:07:47.000Z</published>
-    <updated>2016-03-31T07:08:42.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Appium学习之路—环境搭建&quot;&gt;&lt;a href=&quot;#Appium学习之路—环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Appium学习之路—环境搭建&quot;&gt;&lt;/a&gt;Appium学习之路—环境搭建&lt;/h1&gt;&lt;p&gt;说实话，Appium第一次接触还是在testerhome看到的，介绍说这个框架可以测试安卓和IOS，并且只要写一个脚本，不需要做任何改动就可以直接在IOS和Android上运行，这真心是一个好消息，说干就干。先吧环境弄起来看看到底牛掰不牛掰。&lt;br&gt;&lt;strong&gt;PS：笔者使用的是Mac OS X系统。&lt;/strong&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h2&gt;&lt;p&gt;Appium提供了两种方式，一个是客户端，另一个是命令行。不过不论哪种方式，以下的东西都必须准备好&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Xcode Command Line Tools 这个是必须的工具可以百度以下，我是使用Mac系统，干脆直接下了一个完整的Xcode&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Android SDK 和AVD 这个是测试Android必须的，当然AVD可以使用Android的真机来代替。&lt;/p&gt;
-&lt;h2 id=&quot;Appium客户端&quot;&gt;&lt;a href=&quot;#Appium客户端&quot; class=&quot;headerlink&quot; title=&quot;Appium客户端&quot;&gt;&lt;/a&gt;Appium客户端&lt;/h2&gt;&lt;p&gt;我看到这个框架竟然还是有客户端的，真是有一种莫名的兴奋，有客户端就意味着我可以不用搭建那些操蛋的命令行了？下载一个GUI端我就可以轻轻松松的开搞了。不过下载客户端是需要翻墙的，这个有点蛋疼，我自己的专门翻墙出去下载了一个Appium for Mac的客户端，不过那速度慢得让人无法直视。官网地址：&lt;a href=&quot;http://appium.io/downloads.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Appium官网&lt;/a&gt;。我是不太建议在官网下载。这里推荐一个资源，下载速度比较快。&lt;a href=&quot;http://pan.baidu.com/s/1jGvAISu&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Appium国内下载地址&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;客户端的使用&quot;&gt;&lt;a href=&quot;#客户端的使用&quot; class=&quot;headerlink&quot; title=&quot;客户端的使用&quot;&gt;&lt;/a&gt;客户端的使用&lt;/h3&gt;&lt;p&gt;我个人折腾完客户端之后，感觉不是很给力，客户端虽然界面挺漂亮的，风格也挺好，不过总体折腾下来不是我喜欢的类型，如果喜欢客户端的朋友可以自己去折腾折腾客户端，配置起来很简单，就不做过多的赘述了。&lt;/p&gt;
-&lt;h2 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h2&gt;&lt;p&gt;命令行是体现逼格高大上的东东，不过折腾起来也很费事，笔者折腾这个命令行折腾了大概一周的时间，其中种种原因很多&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;java环境&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Mac自带了这东西，不过说实话一般的电脑也都会把这个环境折腾好吧，毕竟java是最流行的开发语言&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Python环境&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Mac自带了这东西，因为笔者是使用Python来写脚本，当然你也可以使用其他语言来写，比如java、ruby、c#等等&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;brew&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;brew是一个套件管理器，不过笔者比较懒，直接使用Mac自带的easy_install来安装，比较省事&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;node&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;node也是必须的，如果有了brew或者easy_install，安装是很省事的 sudo easy_install node，输入密码就搞定了&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SvenWengdeMBP:~ svenweng$ node -v&lt;br&gt;v0.10.34&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这样就算安装成功&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;npm&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;npm这东西和node一样，也是使用安装工具来安装很方便&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SvenWengdeMBP:~ svenweng$ npm -v&lt;br&gt;1.4.28&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Appium&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;终于到我们的主角了安装命令是 npm install -g appium&lt;br&gt;这里要说明一下，Appium的安装不能使用sudo。-g是让npm自动帮我们配置Appium的环境。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SvenWengdeMBP:~ svenweng$ appium -v&lt;br&gt;1.4.16&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如果你看到了这个东西，就表示你的Appium已经完全安装完毕了。网上还有教程说需要安装一个wd的东西，我不知道这个是干什么的，当然我也安装了，npm install wd。很简单的安装&lt;/p&gt;
-&lt;h3 id=&quot;检查Appium的配置是否正确&quot;&gt;&lt;a href=&quot;#检查Appium的配置是否正确&quot; class=&quot;headerlink&quot; title=&quot;检查Appium的配置是否正确&quot;&gt;&lt;/a&gt;检查Appium的配置是否正确&lt;/h3&gt;&lt;p&gt;执行命令appium-doctor，你如果看到一下的界面，就表示已经正确的安装完毕了&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SvenWengdeMBP:~ svenweng$ appium-doctor&lt;br&gt;Running iOS Checks&lt;br&gt;✔ Xcode is installed at /Applications/Xcode.app/Contents/Developer&lt;br&gt;✔ Xcode Command Line Tools are installed.&lt;br&gt;✔ DevToolsSecurity is enabled.&lt;br&gt;✔ The Authorization DB is set up properly.&lt;br&gt;✔ Node binary found at /usr/local/bin/node&lt;br&gt;✔ iOS Checks were successful.&lt;/p&gt;
-&lt;p&gt;Running Android Checks&lt;br&gt;✔ ANDROID_HOME is set to “/Users/svenweng/Desktop/Application/adt-bundle-mac-x86_64-20131030/sdk”&lt;br&gt;✔ JAVA_HOME is set to “/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home.”&lt;br&gt;✔ ADB exists at /Users/svenweng/Desktop/Application/adt-bundle-mac-x86_64-20131030/sdk/platform-tools/adb&lt;br&gt;✔ Android exists at /Users/svenweng/Desktop/Application/adt-bundle-mac-x86_64-20131030/sdk/tools/android&lt;br&gt;✔ Emulator exists at /Users/svenweng/Desktop/Application/adt-bundle-mac-x86_64-20131030/sdk/tools/emulator&lt;br&gt;✔ Android Checks were successful.&lt;/p&gt;
-&lt;p&gt;✔ All Checks were successful&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如果某一行签名不是打钩，而是一个红叉叉，那就表示那个配置没有安装正确&lt;/p&gt;
-&lt;h3 id=&quot;疑问&quot;&gt;&lt;a href=&quot;#疑问&quot; class=&quot;headerlink&quot; title=&quot;疑问&quot;&gt;&lt;/a&gt;疑问&lt;/h3&gt;&lt;p&gt;理论上我的Appium安装是正确的，但是我运行appium的时候出现了下面的一大串错误&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SvenWengdeMBP:~ svenweng$ appium&lt;br&gt;error: uncaughtException: fn must be a function&lt;/p&gt;
-&lt;p&gt;See &lt;a href=&quot;http://goo.gl/916lJJ&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://goo.gl/916lJJ&lt;/a&gt;&lt;br&gt;date=Sat Nov 21 2015 10:37:25 GMT+0800 (HKT), pid=2504, uid=501, gid=20, cwd=/usr/local/lib/node_modules/appium, execPath=/usr/local/bin/node, version=v0.10.34, argv=[node, /usr/local/bin/appium], rss=103559168, heapTotal=86062080, heapUsed=56309664, loadavg=[1.6328125, 1.86767578125, 1.81103515625], uptime=39552, trace=[column=15, file=/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/node_modules/appium-support/node_modules/bluebird/js/main/promisify.js, function=Function.Promise.promisify, line=268, method=Promise.promisify, native=false, column=13, file=lib/fs.js, function=, line=46, method=null, native=false, column=26, file=module.js, function=Module._compile, line=456, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=474, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=356, method=load, native=false, column=12, file=module.js, function=Function.Module._load, line=312, method=Module._load, native=false, column=17, file=module.js, function=Module.require, line=364, method=require, native=false, column=17, file=module.js, function=require, line=380, method=null, native=false, column=11, file=/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/node_modules/appium-support/build/lib/tempdir.js, function=, line=12, method=null, native=false, column=26, file=module.js, function=Module._compile, line=456, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=474, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=356, method=load, native=false, column=12, file=module.js, function=Function.Module._load, line=312, method=Module._load, native=false, column=17, file=module.js, function=Module.require, line=364, method=require, native=false, column=17, file=module.js, function=require, line=380, method=null, native=false, column=19, file=/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/node_modules/appium-support/build/index.js, function=, line=11, method=null, native=false, column=26, file=module.js, function=Module._compile, line=456, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=474, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=356, method=load, native=false, column=12, file=module.js, function=Function.Module._load, line=312, method=Module._load, native=false, column=17, file=module.js, function=Module.require, line=364, method=require, native=false, column=17, file=module.js, function=require, line=380, method=null, native=false, column=42, file=lib/proxy.js, function=, line=2, method=null, native=false, column=26, file=module.js, function=Module._compile, line=456, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=474, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=356, method=load, native=false, column=12, file=module.js, function=Function.Module._load, line=312, method=Module._load, native=false, column=17, file=module.js, function=Module.require, line=364, method=require, native=false, column=17, file=module.js, function=require, line=380, method=null, native=false, column=17, file=/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/build/index.js, function=, line=9, method=null, native=false, column=26, file=module.js, function=Module._compile, line=456, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=474, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=356, method=load, native=false, column=12, file=module.js, function=Function.Module._load, line=312, method=Module._load, native=false, column=17, file=module.js, function=Module.require, line=364, method=require, native=false, column=17, file=module.js, function=require, line=380, method=null, native=false, column=28, file=lib/chromedriver.js, function=, line=3, method=null, native=false, column=26, file=module.js, function=Module._compile, line=456, method=_compile, native=false, column=10, file=module.js, function=Object.Module._extensions..js, line=474, method=Module._extensions..js, native=false, column=32, file=module.js, function=Module.load, line=356, method=load, native=false], stack=[TypeError: fn must be a function, ,     See &lt;a href=&quot;http://goo.gl/916lJJ&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://goo.gl/916lJJ&lt;/a&gt;, ,     at Function.Promise.promisify (/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/node_modules/appium-support/node_modules/bluebird/js/main/promisify.js:268:15),     at Object.&lt;anonymous&gt; (lib/fs.js:46:13),     at Module._compile (module.js:456:26),     at Object.Module._extensions..js (module.js:474:10),     at Module.load (module.js:356:32),     at Function.Module._load (module.js:312:12),     at Module.require (module.js:364:17),     at require (module.js:380:17),     at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/node_modules/appium-support/build/lib/tempdir.js:12:11),     at Module._compile (module.js:456:26),     at Object.Module._extensions..js (module.js:474:10),     at Module.load (module.js:356:32),     at Function.Module._load (module.js:312:12),     at Module.require (module.js:364:17),     at require (module.js:380:17),     at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/node_modules/appium-support/build/index.js:11:19),     at Module._compile (module.js:456:26),     at Object.Module._extensions..js (module.js:474:10),     at Module.load (module.js:356:32),     at Function.Module._load (module.js:312:12),     at Module.require (module.js:364:17),     at require (module.js:380:17),     at Object.&lt;anonymous&gt; (lib/proxy.js:2:42),     at Module._compile (module.js:456:26),     at Object.Module._extensions..js (module.js:474:10),     at Module.load (module.js:356:32),     at Function.Module._load (module.js:312:12),     at Module.require (module.js:364:17),     at require (module.js:380:17),     at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/appium/node_modules/appium-chromedriver/node_modules/appium-jsonwp-proxy/build/index.js:9:17),     at Module._compile (module.js:456:26),     at Object.Module._extensions..js (module.js:474:10),     at Module.load (module.js:356:32),     at Function.Module._load (module.js:312:12),     at Module.require (module.js:364:17),     at require (module.js:380:17),     at Object.&lt;anonymous&gt; (lib/chromedriver.js:3:28),     at Module._compile (module.js:456:26),     at Object.Module._extensions..js (module.js:474:10),     at Module.load (module.js:356:32)]&lt;/anonymous&gt;&lt;/anonymous&gt;&lt;/anonymous&gt;&lt;/anonymous&gt;&lt;/anonymous&gt;&lt;/anonymous&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;求大神给一个解答吧。&lt;/p&gt;
-&lt;p&gt;翻墙工具正常了，我进入了命令行提示的错误网址&lt;br&gt;网址上显示的是这个&lt;br&gt;Error: fn must be a function&lt;/p&gt;
-&lt;p&gt;This page is here for the sake of completeness. There really is nothing much to add on that error.&lt;br&gt;翻译过来就是：&lt;br&gt;错误： FN必须是一个函数&lt;/p&gt;
-&lt;p&gt;这页是这里为了完整性。真的是没有什么补充该错误。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;折腾了一天，终于把问题搞定了，问题的原因是因为node的版本太旧了导致的，原因分析在&lt;a href=&quot;https://github.com/appium/appium/issues/5814&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;1楼回答的那个链接上&lt;/a&gt;，再说说今天自己折腾过程中遇到的问题吧，我在网上搜索帖子的时候说需要吧node卸载了才能升级（我真是天真）。于是按照步骤手贱删除了一些不应该删除的东西，结果搞的很乱，思路都乱了，不知道从何下手。于是我就去睡了一觉，醒来重新折腾，重新去官网下了一个node的安装包，把之前干掉的node环境重新部署好。再使用npm install -g appium的时候，一直会出现这个问题&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SvenWengdeMBP:~ svenweng$ npm install -g appium&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-10484-941ff227/registry.npmjs.org/appium-uiauto/-/appium-uiauto-1.10.10.tgz&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-10484-941ff227/registry.npmjs.org/appium-instruments/-/appium-instruments-2.0.6.tgz&lt;br&gt;loadRequestedDeps → netwo ▐ ╢███████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟&lt;br&gt;^C&lt;br&gt;SvenWengdeMBP:~ svenweng$ sudo chmod -r 777 /usr/local&lt;br&gt;Password:&lt;br&gt;chmod: 777: No such file or directory&lt;br&gt;SvenWengdeMBP:~ svenweng$ sudo chmod -R 777 /usr/local&lt;br&gt;SvenWengdeMBP:~ svenweng$ npm install -g appium&lt;br&gt;loadRequestedDeps → netwo ▄ ╢███████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟&lt;br&gt;^C&lt;br&gt;SvenWengdeMBP:~ svenweng$ npm install -g appium&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/hoek/-/hoek-2.16.3.tgz&lt;br&gt;npm ERR! tar.unpack untar error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/hoek/-/hoek-2.16.3.tgz&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.8.tgz&lt;br&gt;npm ERR! tar.unpack untar error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.8.tgz&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/core-js/-/core-js-0.9.18.tgz&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/appium-adb/-/appium-adb-1.7.5.tgz&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/appium-instruments/-/appium-instruments-2.0.6.tgz&lt;br&gt;npm ERR! tar.unpack unzip error /var/folders/hm/04tcnt812v909nysd8jgl0100000gn/T/npm-13599-e762bf07/registry.npmjs.org/appium-uiauto/-/appium-uiauto-1.10.10.tgz&lt;br&gt;npm ERR! Darwin 15.0.0&lt;br&gt;npm ERR! argv “/usr/local/bin/node” “/usr/local/bin/npm” “install” “-g” “appium”&lt;br&gt;npm ERR! node v5.1.0&lt;br&gt;npm ERR! npm  v3.3.12&lt;br&gt;npm ERR! code Z_BUF_ERROR&lt;br&gt;npm ERR! errno -5&lt;/p&gt;
-&lt;p&gt;npm ERR! unexpected end of file&lt;br&gt;npm ERR!&lt;br&gt;npm ERR! If you need help, you may report this error at:&lt;br&gt;npm ERR!     &lt;a href=&quot;https://github.com/npm/npm/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/npm/npm/issues&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;npm ERR! Please include the following file with any support request:&lt;br&gt;npm ERR!     /Users/svenweng/npm-debug.log&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;每次安装到一半都安装不下去，我的电脑也是翻墙的，按道理应该也都能下载才对，具体详细的原因请恕我是小白，不太懂这个。不过我换了一个下载源就把这个问题搞定了，这里发出来，希望下次有遇到这种问题的朋友不会在这个地方浪费太多时间。命令是这个：npm -g –registry &lt;a href=&quot;http://registry.cnpmjs.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://registry.cnpmjs.org&lt;/a&gt;  install appium&lt;/p&gt;
-&lt;p&gt;前前后后折腾了差不多一周的环境，终于把环境的问题搞定了，希望能够更深入的学习，也给自己一个勉励。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Appium学习之路—环境搭建&quot;&gt;&lt;a href=&quot;#Appium学习之路—环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Appium学习之路—环境搭建&quot;&gt;&lt;/a&gt;Appium学习之路—环境搭建&lt;/h1&gt;&lt;p&gt;说实话，Appium第一次接触还是在testerhome看到的，介绍说这个框架可以测试安卓和IOS，并且只要写一个脚本，不需要做任何改动就可以直接在IOS和Android上运行，这真心是一个好消息，说干就干。先吧环境弄起来看看到底牛掰不牛掰。&lt;br&gt;&lt;strong&gt;PS：笔者使用的是Mac OS X系统。&lt;/strong&gt;&lt;br&gt;
     
     </summary>
     
