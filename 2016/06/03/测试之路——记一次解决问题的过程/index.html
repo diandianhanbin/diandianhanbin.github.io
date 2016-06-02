@@ -1,0 +1,751 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="测试,测试人生," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="一这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。
+事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试之路——记一次解决问题的过程">
+<meta property="og:url" content="http://www.wengyb.com/2016/06/03/测试之路——记一次解决问题的过程/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="一这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。
+事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/6C56B171-A68B-4688-9F3B-912F993F5B8F.png">
+<meta property="og:updated_time" content="2016-06-02T16:24:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="测试之路——记一次解决问题的过程">
+<meta name="twitter:description" content="一这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。
+事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/6C56B171-A68B-4688-9F3B-912F993F5B8F.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 测试之路——记一次解决问题的过程 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyb.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                测试之路——记一次解决问题的过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-03T00:23:45+08:00" content="2016-06-03">
+              2016-06-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/03/测试之路——记一次解决问题的过程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/03/测试之路——记一次解决问题的过程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。</p>
+<p>事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。<br><a id="more"></a></p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>这种事其实发生在谁身上都会很不爽，花了钱买了一个半成品，除了问题还不承认，但是又没有很好证据指向确实是他们的问题，他们一口咬定是我们APP这里有问题。</p>
+<p>这事就有两种处理方式了，一种是懒得管，反正这东西和我关系也不大，赚了钱也是老板的，随便了。另一种是认真钻研，把问题抓出来，直接把问题丢回给供应商。</p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>一般来说我是比较懒散的，并不想参合太深，反正做不做我的钱也都不会多。</p>
+<p>让我不能忍的是，我反馈的问题你竟然不认，不认就算了，竟然还反咬一口，说是我的锅，那这口气是真的忍不下了。</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>忍不下归忍不下，水平确实是实实在在达不到，并不知道从哪个角度去切入这个问题。虽然说APP出问题无非就两种情况，一种是代码写的有问题，另一种是网络有问题。但是对于程序我是个半桶水，能写程序，水平有限。对于网络通讯，连半桶水都算不上了。</p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>术业有专攻，代码的问题还是交给专业的人士来处理，网络方面倒是可以尝试着切入，我原来使用的抓包工具Charles是通过代理的方式抓包，只能抓WiFi的数据，而这次出问题的情况是4G网络。而且出问题的环境4G速度都比较快，不存在弱网加载慢导致通讯挂的问题。</p>
+<h2 id="六"><a href="#六" class="headerlink" title="六"></a>六</h2><p>无意中看到军爷在玩Wireshark，虽然是前端工程师，不过对于网络这方面不会比我强多少，Wireshark确实是可以抓出数据，不过由于功能太强大，抓出来的东西非常多，要有很强的专业知识去对数据包进行过滤。</p>
+<p>经过Google的帮忙，基本上掌握了Wireshark的使用方式，那么剩下的问题就是专业知识了。</p>
+<h2 id="七"><a href="#七" class="headerlink" title="七"></a>七</h2><p>说干就干，过年买的《图解HTTP》重新翻了一遍，又去亚马逊买了一本《Wireshark数据包分析实战》花了两周时间恶补，一边翻书一遍对着抓出来的数据包实践，终于问题被我抓出来了。</p>
+<h2 id="八"><a href="#八" class="headerlink" title="八"></a>八</h2><p>其实问题很简单，思迪的前端向后端请求数据的时候，发送了大量重复无用的垃圾数据，导致后端重置了连接，而前端得不到后端返回的数据，连接又关闭了，没有数据展示，所以出现了白屏的现象。</p>
+<p>关键的数据包如下图：<br><img src="http://7xsgl3.com1.z0.glb.clouddn.com/6C56B171-A68B-4688-9F3B-912F993F5B8F.png" alt="数据包"></p>
+<p>其中红色部分就是连接被重置，且返回的数据包都是空的。</p>
+<h2 id="九"><a href="#九" class="headerlink" title="九"></a>九</h2><p>在一整个过程中，导致我最终于解决问题的是思迪恶劣的态度，自身并没有很主动的想去解决问题。包括自己学写代码，很大程度上也是和开发沟通的时候很多不爽的经历。</p>
+<p>自勉一下吧，学习还是应该主动。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创知识分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/wecharpay.jpeg" alt="点点寒彬 | SvenWeng WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/alipay.jpeg" alt="点点寒彬 | SvenWeng Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+<div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+            <a href="/tags/测试人生/" rel="tag">#测试人生</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/28/关于测试书籍的反思/" rel="next" title="关于测试书籍的反思">
+                <i class="fa fa-chevron-left"></i> 关于测试书籍的反思
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/03/测试之路——记一次解决问题的过程/"
+     data-title="测试之路——记一次解决问题的过程"
+     data-content=""
+     data-url="http://www.wengyb.com/2016/06/03/测试之路——记一次解决问题的过程/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/03/测试之路——记一次解决问题的过程/"
+           data-title="测试之路——记一次解决问题的过程" data-url="http://www.wengyb.com/2016/06/03/测试之路——记一次解决问题的过程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyb.com" target="_blank">我的个人站点</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三"><span class="nav-number">3.</span> <span class="nav-text">三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四"><span class="nav-number">4.</span> <span class="nav-text">四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五"><span class="nav-number">5.</span> <span class="nav-text">五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六"><span class="nav-number">6.</span> <span class="nav-text">六</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七"><span class="nav-number">7.</span> <span class="nav-text">七</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八"><span class="nav-number">8.</span> <span class="nav-text">八</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九"><span class="nav-number">9.</span> <span class="nav-text">九</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wengyanbin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

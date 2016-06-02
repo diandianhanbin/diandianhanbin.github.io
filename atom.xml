@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-05-28T15:51:22.000Z</updated>
+  <updated>2016-06-02T16:24:38.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试之路——记一次解决问题的过程</title>
+    <link href="http://www.wengyb.com/2016/06/03/%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%BF%87%E7%A8%8B/"/>
+    <id>http://www.wengyb.com/2016/06/03/测试之路——记一次解决问题的过程/</id>
+    <published>2016-06-02T16:23:45.000Z</published>
+    <updated>2016-06-02T16:24:38.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。&lt;/p&gt;
+&lt;p&gt;事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;二&quot;&gt;&lt;a href=&quot;#二&quot; class=&quot;headerlink&quot; title=&quot;二&quot;&gt;&lt;/a&gt;二&lt;/h2&gt;&lt;p&gt;这种事其实发生在谁身上都会很不爽，花了钱买了一个半成品，除了问题还不承认，但是又没有很好证据指向确实是他们的问题，他们一口咬定是我们APP这里有问题。&lt;/p&gt;
+&lt;p&gt;这事就有两种处理方式了，一种是懒得管，反正这东西和我关系也不大，赚了钱也是老板的，随便了。另一种是认真钻研，把问题抓出来，直接把问题丢回给供应商。&lt;/p&gt;
+&lt;h2 id=&quot;三&quot;&gt;&lt;a href=&quot;#三&quot; class=&quot;headerlink&quot; title=&quot;三&quot;&gt;&lt;/a&gt;三&lt;/h2&gt;&lt;p&gt;一般来说我是比较懒散的，并不想参合太深，反正做不做我的钱也都不会多。&lt;/p&gt;
+&lt;p&gt;让我不能忍的是，我反馈的问题你竟然不认，不认就算了，竟然还反咬一口，说是我的锅，那这口气是真的忍不下了。&lt;/p&gt;
+&lt;h2 id=&quot;四&quot;&gt;&lt;a href=&quot;#四&quot; class=&quot;headerlink&quot; title=&quot;四&quot;&gt;&lt;/a&gt;四&lt;/h2&gt;&lt;p&gt;忍不下归忍不下，水平确实是实实在在达不到，并不知道从哪个角度去切入这个问题。虽然说APP出问题无非就两种情况，一种是代码写的有问题，另一种是网络有问题。但是对于程序我是个半桶水，能写程序，水平有限。对于网络通讯，连半桶水都算不上了。&lt;/p&gt;
+&lt;h2 id=&quot;五&quot;&gt;&lt;a href=&quot;#五&quot; class=&quot;headerlink&quot; title=&quot;五&quot;&gt;&lt;/a&gt;五&lt;/h2&gt;&lt;p&gt;术业有专攻，代码的问题还是交给专业的人士来处理，网络方面倒是可以尝试着切入，我原来使用的抓包工具Charles是通过代理的方式抓包，只能抓WiFi的数据，而这次出问题的情况是4G网络。而且出问题的环境4G速度都比较快，不存在弱网加载慢导致通讯挂的问题。&lt;/p&gt;
+&lt;h2 id=&quot;六&quot;&gt;&lt;a href=&quot;#六&quot; class=&quot;headerlink&quot; title=&quot;六&quot;&gt;&lt;/a&gt;六&lt;/h2&gt;&lt;p&gt;无意中看到军爷在玩Wireshark，虽然是前端工程师，不过对于网络这方面不会比我强多少，Wireshark确实是可以抓出数据，不过由于功能太强大，抓出来的东西非常多，要有很强的专业知识去对数据包进行过滤。&lt;/p&gt;
+&lt;p&gt;经过Google的帮忙，基本上掌握了Wireshark的使用方式，那么剩下的问题就是专业知识了。&lt;/p&gt;
+&lt;h2 id=&quot;七&quot;&gt;&lt;a href=&quot;#七&quot; class=&quot;headerlink&quot; title=&quot;七&quot;&gt;&lt;/a&gt;七&lt;/h2&gt;&lt;p&gt;说干就干，过年买的《图解HTTP》重新翻了一遍，又去亚马逊买了一本《Wireshark数据包分析实战》花了两周时间恶补，一边翻书一遍对着抓出来的数据包实践，终于问题被我抓出来了。&lt;/p&gt;
+&lt;h2 id=&quot;八&quot;&gt;&lt;a href=&quot;#八&quot; class=&quot;headerlink&quot; title=&quot;八&quot;&gt;&lt;/a&gt;八&lt;/h2&gt;&lt;p&gt;其实问题很简单，思迪的前端向后端请求数据的时候，发送了大量重复无用的垃圾数据，导致后端重置了连接，而前端得不到后端返回的数据，连接又关闭了，没有数据展示，所以出现了白屏的现象。&lt;/p&gt;
+&lt;p&gt;关键的数据包如下图：&lt;br&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/6C56B171-A68B-4688-9F3B-912F993F5B8F.png&quot; alt=&quot;数据包&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其中红色部分就是连接被重置，且返回的数据包都是空的。&lt;/p&gt;
+&lt;h2 id=&quot;九&quot;&gt;&lt;a href=&quot;#九&quot; class=&quot;headerlink&quot; title=&quot;九&quot;&gt;&lt;/a&gt;九&lt;/h2&gt;&lt;p&gt;在一整个过程中，导致我最终于解决问题的是思迪恶劣的态度，自身并没有很主动的想去解决问题。包括自己学写代码，很大程度上也是和开发沟通的时候很多不爽的经历。&lt;/p&gt;
+&lt;p&gt;自勉一下吧，学习还是应该主动。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。&lt;/p&gt;
+&lt;p&gt;事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="测试人生" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95%E4%BA%BA%E7%94%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>关于测试书籍的反思</title>
@@ -1101,66 +1142,6 @@
       <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
     
       <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Appium学习之路—处理混合APP</title>
-    <link href="http://www.wengyb.com/2016/03/31/Appium%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E5%A4%84%E7%90%86%E6%B7%B7%E5%90%88APP/"/>
-    <id>http://www.wengyb.com/2016/03/31/Appium学习之路—处理混合APP/</id>
-    <published>2016-03-31T07:08:50.000Z</published>
-    <updated>2016-04-19T03:12:46.000Z</updated>
-    
-    <content type="html">&lt;p&gt;文章首发：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《我的博客》&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;操作系统：Mac OS X EI Caption&lt;/p&gt;
-&lt;p&gt;Appium: 1.4.16&lt;/p&gt;
-&lt;p&gt;Java: java version “1.7.0_79”&lt;/p&gt;
-&lt;p&gt;node.js: v5.3.0&lt;/p&gt;
-&lt;p&gt;npm: 3.3.12&lt;/p&gt;
-&lt;p&gt;手机：小米NOTE4&lt;/p&gt;
-&lt;p&gt;待测应用： 微证券&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;常规方法&quot;&gt;&lt;a href=&quot;#常规方法&quot; class=&quot;headerlink&quot; title=&quot;常规方法&quot;&gt;&lt;/a&gt;常规方法&lt;/h2&gt;&lt;p&gt;正常来说，常规的方法应该是使用UI Automator Viewer来探测页面的元素，比如下面这样：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/811987cbgw1f20rlzwtwwj21kw103thr.jpg&quot; alt=&quot;页面元素&quot;&gt;&lt;/p&gt;
-&lt;p&gt;但是，如果是混合开发，就会出现只有一个webview元素的情况，正常的方法无法定位。比如这样：&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/811987cbgw1f25r2354hcj21d4120n6k.jpg&quot; alt=&quot;webview&quot;&gt;&lt;/p&gt;
-&lt;p&gt;常规的方法是没办法定位出这部分内容，只有一个webview，无法像原生一样获取内容。&lt;/p&gt;
-&lt;h2 id=&quot;取巧的办法&quot;&gt;&lt;a href=&quot;#取巧的办法&quot; class=&quot;headerlink&quot; title=&quot;取巧的办法&quot;&gt;&lt;/a&gt;取巧的办法&lt;/h2&gt;&lt;p&gt;如果针对H5的元素，只需要点击的话，可以这么做，比如上文我们的开户页面，我们需要做的只是在这个页面上点击立即开户，跳转到下一个页面，我们可以用这种取巧的方法：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;self.driver.get_name(&amp;apos;立即开户&amp;apos;).click()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这样的代码，也是可以实现的，当然，上面的get_name我是进行封装了的，原来的代码是：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;def get_name(self, name):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        element = self.driver.find_element_by_name(name)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return element&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;更优化的处理方式&quot;&gt;&lt;a href=&quot;#更优化的处理方式&quot; class=&quot;headerlink&quot; title=&quot;更优化的处理方式&quot;&gt;&lt;/a&gt;更优化的处理方式&lt;/h2&gt;&lt;p&gt;既然是H5页面，如果能够获取HTML代码就好了，那么就可以使用操作DOM的方式来操作这个H5。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;谷歌浏览器：版本 49.0.2623.87 (64-bit)&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;我用的谷歌浏览器是这个版本，把手机连接上电脑，在谷歌浏览器中输入这个代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chrome://inspect&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;点击这个按钮：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/811987cbgw1f25rku93r2j21kw176grv.jpg&quot; alt=&quot;inspect&quot;&gt;&lt;/p&gt;
-&lt;p&gt;神奇的一幕出现了，所有的代码都展示在你面前。就像web一样调试混合APP中的H5.&lt;/p&gt;
-&lt;h2 id=&quot;切换webdriver&quot;&gt;&lt;a href=&quot;#切换webdriver&quot; class=&quot;headerlink&quot; title=&quot;切换webdriver&quot;&gt;&lt;/a&gt;切换webdriver&lt;/h2&gt;&lt;p&gt;虽然解决了html代码的问题，但是另一个问题出现了，我们要怎么去操作DOM。常规的方法是没办法了，只能操作原生的，这个时候我们需要把webdriver切换成H5的，而不是原生的。&lt;/p&gt;
-&lt;p&gt;其实原理很简单，只要把webdriver切换到H5的方式就行了。使用如下代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;contexts&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;contexts(self):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Returns the contexts within the current session.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    返回当前会话中的上下文，使用后可以识别H5页面的控件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    :Usage:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        driver.contexts&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;用法 driver.contexts&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;调用这个方法后，把结果打印出来，你会发现是一个列表，列表中的第一个是NATIVE_APP，这个就表示现在的webdriver是调用原生的功能，我们使用这个命令切换一下就行了。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;def switch_h5(self):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, &amp;#123;&amp;quot;name&amp;quot;: &amp;quot;WEBVIEW_com.weizq&amp;quot;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    def switch_app(self):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, &amp;#123;&amp;quot;name&amp;quot;: &amp;quot;NATIVE_APP&amp;quot;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;第一个函数就是封装切换到H5的方法，name对应的东西就是通过contexts列表中打印出来的东西，当然你也可以使用其他的方法封装。&lt;/p&gt;
-&lt;p&gt;切换到H5的webdriver之后，再使用driver.find_element_by_id试试？现在就变成查找DOM相关的功能了，再调用第二个函数，又切回原生的webdriver了。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;文章首发：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot;&gt;《我的博客》&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;自己自学APPIUM测试公司的APP有一段时间的，Android原生的元素定位，包括数据处理和逻辑判断也基本上搞熟了，但是公司的APP很坑爹，开发过程中存在混合开发的情况，这就意味着我必须要处理APP里面的webview，真的是很坑爹的东西。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
-    
-    
-      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
-    
-      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
