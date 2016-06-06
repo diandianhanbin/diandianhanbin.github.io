@@ -59,16 +59,16 @@
 
 
 
-<meta name="description" content="背景之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。">
+<meta name="description" content="背景我旁边的开发在学ReactNative，说要拿我的博客练手，顺带给我写一个Android的博客客户端。这感情好啊，这个时候就必须要给他写两个接口，一个是获取文章列表，另一个是文章的详情。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Django开发博客（三）——在新的页面展示文章">
-<meta property="og:url" content="http://www.wengyb.com/2016/01/04/Django开发博客（三）——在新的页面展示文章/index.html">
+<meta property="og:title" content="Django开发博客（十一）—跨域资源共享（CORS）">
+<meta property="og:url" content="http://www.wengyb.com/2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="背景之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。">
-<meta property="og:updated_time" content="2016-03-31T05:37:01.000Z">
+<meta property="og:description" content="背景我旁边的开发在学ReactNative，说要拿我的博客练手，顺带给我写一个Android的博客客户端。这感情好啊，这个时候就必须要给他写两个接口，一个是获取文章列表，另一个是文章的详情。">
+<meta property="og:updated_time" content="2016-06-06T14:35:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Django开发博客（三）——在新的页面展示文章">
-<meta name="twitter:description" content="背景之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。">
+<meta name="twitter:title" content="Django开发博客（十一）—跨域资源共享（CORS）">
+<meta name="twitter:description" content="背景我旁边的开发在学ReactNative，说要拿我的博客练手，顺带给我写一个Android的博客客户端。这感情好啊，这个时候就必须要给他写两个接口，一个是获取文章列表，另一个是文章的详情。">
 
 
 
@@ -86,7 +86,7 @@
   };
 </script>
 
-  <title> Django开发博客（三）——在新的页面展示文章 | 点点寒彬 </title>
+  <title> Django开发博客（十一）—跨域资源共享（CORS） | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
             
             
               
-                Django开发博客（三）——在新的页面展示文章
+                Django开发博客（十一）—跨域资源共享（CORS）
               
             
           </h1>
@@ -267,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-04T11:27:23+08:00" content="2016-01-04">
-              2016-01-04
+            <time itemprop="dateCreated" datetime="2016-06-06T22:33:09+08:00" content="2016-06-06">
+              2016-06-06
             </time>
           </span>
 
@@ -297,8 +297,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/04/Django开发博客（三）——在新的页面展示文章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/04/Django开发博客（三）——在新的页面展示文章/" itemprop="commentsCount"></span>
+                <a href="/2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,39 +320,29 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前的文章写了如何用模版快速改成自己的博客，但是那只有首页，其他页面并没有做出来。现在需要实现的功能为：在首页点击一篇文章的标题，能够在新的页面展示文章的所有内容。<br><a id="more"></a></p>
-<hr>
-<p>版本相关<br>操作系统：Mac OS X EI Caption<br>Python版本：3.4<br>Django版本：1.9<br>IDE：PyCharm</p>
-<hr>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路很简单，其实就是我点击标题，要跳转到一个新的url地址，跳转到这个地址的时候，会传给url一个<strong>唯一的标识</strong>视图函数再从url中捕获这个<strong>唯一的标识</strong>，这个标识就代表这个标题的文章所有信息的索引。然后用这个<strong>唯一的标识</strong>去数据库查询出这里的记录，再把查出来的记录传递到展示文章内容的页面就可以了。</p>
-<h2 id="模版文件的修改"><a href="#模版文件的修改" class="headerlink" title="模版文件的修改"></a>模版文件的修改</h2><p>模版文件是html的内容，Html中我们文章的标题有一个a标签，这个标签标识超链接，点击标题就会跳转到a标签指向的url。所以我们就从这里下手</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for content in blog_body %&#125;</span><br><span class="line">&lt;li&gt;</span><br><span class="line">  &lt;div class=&quot;arrow_box&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ti&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!--三角形--&gt;</span><br><span class="line">    &lt;div class=&quot;ci&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!--圆形--&gt;</span><br><span class="line">    &lt;h2 class=&quot;title&quot;&gt;&lt;a href=&quot;&#123;% url &apos;article&apos; content.id%&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123; content.blog_title &#125;&#125;&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;ul class=&quot;textinfo&quot;&gt;</span><br><span class="line">      &lt;a href=&quot;/&quot;&gt;&lt;img src=&quot;&#123;&#123; content.blog_imgurl &#125;&#125;&quot;&gt;&lt;/a&gt;</span><br><span class="line">      &lt;p&gt; &#123;&#123; content.blog_body &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;ul class=&quot;details&quot;&gt;</span><br><span class="line">      &lt;li class=&quot;likes&quot;&gt;&lt;a href=&quot;#&quot;&gt;10&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li class=&quot;comments&quot;&gt;&lt;a href=&quot;#&quot;&gt;34&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li class=&quot;icon-time&quot;&gt;&lt;a href=&quot;#&quot;&gt;&#123;&#123; content.blog_timestamp &#125;&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;!--arrow_box end--&gt; </span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
-<p>用for循环生成的文章标题的a标签都用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">href=&quot;&#123;% url &apos;article&apos; content.id%&#125;&quot;</span><br></pre></td></tr></table></figure>
-<p>这个带入，每一篇文章的标题的链接就是/app/article/id。这里我们就完成了跳转的第一步。</p>
-<p>##url跳转视图函数<br>跳转到了新的url。我们需要获取这个url的id信息，然后传递给视图函数去执行相关处理。在url.py中加入这个url匹配信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url.py</span><br><span class="line"></span><br><span class="line"> url(r&apos;^article/(?P&lt;blog_body_id&gt;[0-9])/$&apos;, views.article, name=&apos;article&apos;),</span><br></pre></td></tr></table></figure>
-<p>url其中的?P blog_body_id[0-9]就表示这样一个信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Python 正则表达式中，命名正则表达式组的语法是(?P&lt;name&gt;pattern)，其中name 是组的名称，pattern 是要匹配的模式。</span><br></pre></td></tr></table></figure>
-<p>所以我们这样写，blog_body_id就表示传递进去的id值，也就是a标签跳转页面/app/article/id中的id。[0-9]表示是这个位置只会出现数字。这部分具体的介绍请参考<a href="http://python.usyiyi.cn/django/topics/http/urls.html" target="_blank" rel="external">《URL调度器》</a></p>
-<h2 id="视图函数处理"><a href="#视图函数处理" class="headerlink" title="视图函数处理"></a>视图函数处理</h2><p>这时url已经把id传递给了视图函数。现在视图函数要执行的处理有：1、获取传入的id。2、使用id查询文章的信息。3、把文章的信息返回给处理的模版。</p>
-<ul>
-<li>获取传入的id</li>
-</ul>
-<p>在视图函数中定义一个article的函数，获取的信息为request和blog_body_id.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def article(request, blog_body_id=&apos;&apos;):</span><br><span class="line">	print(blog_body_id)</span><br></pre></td></tr></table></figure>
-<p>执行的时候，如果有参数传入，则会把传入的参数打印出来</p>
-<ul>
-<li>使用id查询文章</li>
-</ul>
-<p>这个就比较简单了，因为这个id是唯一的，所以只要用get方法就可以获取了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog_content = BlogBody.objects.get(id=blog_body_id)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>把文章信息返回给模版</li>
-</ul>
-<p>返回信息给模版，我们下载的模版有一个view.html文件，就是它了，你也可以自己改一个名字。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return render(request, &apos;view.html&apos;, &#123;&apos;blog_content&apos;: blog_content&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="view-html模版的修改"><a href="#view-html模版的修改" class="headerlink" title="view.html模版的修改"></a>view.html模版的修改</h2><p>相关修改的内容参照<a href="http://blog.csdn.net/wyb199026/article/details/50456143" target="_blank" rel="external">《使用现有的H5模版写网站》</a>修改就可以了。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我旁边的开发在学ReactNative，说要拿我的博客练手，顺带给我写一个Android的博客客户端。这感情好啊，这个时候就必须要给他写两个接口，一个是获取文章列表，另一个是文章的详情。<br><a id="more"></a></p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>说实话，写两个接口应该是非常简单的，我也是这么想的，当然，分分钟也就写出来了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_article</span><span class="params">(request, article_id)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    获取文章详情</span><br><span class="line">    :param request:</span><br><span class="line">    :param article_id:文章ID</span><br><span class="line">    :return: Json</span><br><span class="line">    """</span></span><br><span class="line">    article_view = BlogBody.objects.get(id=article_id)</span><br><span class="line">    rst_data = &#123;</span><br><span class="line">        <span class="string">"errmsg"</span>: <span class="string">"OK"</span>,</span><br><span class="line">        <span class="string">"article_title"</span>: article_view.blog_title,</span><br><span class="line">        <span class="string">"article_body"</span>: markdown.markdown(article_view.blog_body),</span><br><span class="line">        <span class="string">"article_author"</span>: article_view.blog_author,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(rst_data, safe=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_article_list</span><span class="params">(request, list_type)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    获取文章列表</span><br><span class="line">    :param request:</span><br><span class="line">    :param list_type:类型</span><br><span class="line">    :return:</span><br><span class="line">    """</span></span><br><span class="line">    article_list = []</span><br><span class="line">    <span class="keyword">if</span> list_type == <span class="string">"all"</span>:</span><br><span class="line">        article_list_all = BlogBody.objects.all()</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> article_list_all:</span><br><span class="line">            article_list_title = x.blog_title</span><br><span class="line">            article_list_id = x.id</span><br><span class="line">            article_data = &#123;</span><br><span class="line">                <span class="string">"title"</span>: article_list_title,</span><br><span class="line">                <span class="string">"id"</span>: article_list_id</span><br><span class="line">            &#125;</span><br><span class="line">            article_list.append(article_data)</span><br><span class="line">        rst_data = &#123;</span><br><span class="line">            <span class="string">"errmsg"</span>: <span class="string">"OK"</span>,</span><br><span class="line">            <span class="string">"article_list"</span>: article_list</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(rst_data, safe=<span class="keyword">False</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        article_list_type = BlogBody.objects.filter(blog_type=list_type)</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> article_list_type:</span><br><span class="line">            article_list_title = x.blog_title</span><br><span class="line">            article_list_id = x.id</span><br><span class="line">            article_data = &#123;</span><br><span class="line">                <span class="string">"title"</span>: article_list_title,</span><br><span class="line">                <span class="string">"id"</span>: article_list_id</span><br><span class="line">            &#125;</span><br><span class="line">            article_list.append(article_data)</span><br><span class="line">        rst_data = &#123;</span><br><span class="line">            <span class="string">"errmsg"</span>: <span class="string">"OK"</span>,</span><br><span class="line">            <span class="string">"article_list"</span>: article_list</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(rst_data, safe=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<p>URL我就不当列了，并不难写。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>身为一个测试人员，自己写完的东西肯定是要测一下的。我在本地环境调试的时候测试通过，部署上SAE之后，我自己也测了一下，并没有问题。该返回的也都返回了。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当我把接口文档丢给开发之后，开发的反馈是，无法获取数据。这就很奇怪了，我自己测试时很正常啊，就是一个普通的http请求而已。</p>
+<p>根据开发的经验，这个是跨域调用的问题。我返回的数据必须要是CORS的数据，也就是返回头部要有Access-Control-Allow-Origin这个信息。否则只能同源调用。</p>
+<p>什么是CORS?</p>
+<blockquote>
+<p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
+<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
+<p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
+</blockquote>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>Google了一下，有两种解决办法，一种是使用JSONP来处理返回数据，看起来有点麻烦，另一种是在Http返回的时候加一个头部信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response = HttpResponse()</span><br><span class="line">response[<span class="string">'Access-Control-Allow-Origin'</span>] = <span class="string">'*'</span></span><br><span class="line"><span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<p>那么问题又来了，我使用的是JsonResponse()，并不是HttpResponse()。</p>
+<p>好吧，其实两个是一样的，我们可以看JsonResponse的源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonResponse</span><span class="params">(HttpResponse)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    An HTTP response class that consumes data to be serialized to JSON.</span><br><span class="line"></span><br><span class="line">    :param data: Data to be dumped into json. By default only ``dict`` objects</span><br><span class="line">      are allowed to be passed due to a security flaw before EcmaScript 5. See</span><br><span class="line">      the ``safe`` parameter for more information.</span><br><span class="line">    :param encoder: Should be an json encoder class. Defaults to</span><br><span class="line">      ``django.core.serializers.json.DjangoJSONEncoder``.</span><br><span class="line">    :param safe: Controls if only ``dict`` objects may be serialized. Defaults</span><br><span class="line">      to ``True``.</span><br><span class="line">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data, encoder=DjangoJSONEncoder, safe=True, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> safe <span class="keyword">and</span> <span class="keyword">not</span> isinstance(data, dict):</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'In order to allow non-dict objects to be '</span></span><br><span class="line">                <span class="string">'serialized set the safe parameter to False'</span>)</span><br><span class="line">        kwargs.setdefault(<span class="string">'content_type'</span>, <span class="string">'application/json'</span>)</span><br><span class="line">        data = json.dumps(data, cls=encoder)</span><br><span class="line">        super(JsonResponse, self).__init__(content=data, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>其他的看不懂没关系，只要看懂JsonResponse是继承于HttpResponse就行了。父类的方法，子类肯定也是可以适用的，最后的返回结果我们只要简单的修改一下就行了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response = JsonResponse(rst_data, safe=<span class="keyword">False</span>)</span><br><span class="line">response[<span class="string">'Access-Control-Allow-Origin'</span>] = <span class="string">'*'</span></span><br><span class="line"><span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">response = JsonResponse(rst_data, safe=<span class="keyword">False</span>)</span><br><span class="line">response[<span class="string">'Access-Control-Allow-Origin'</span>] = <span class="string">'*'</span></span><br><span class="line"><span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<p>这样用jQuery就可以成功的跨域调用了。</p>
+<p><strong>注意：没必要共享的借口就不要使用跨域资源共享，否则容易引起攻击</strong></p>
 
       
     </div>
@@ -399,17 +389,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/30/Django开发博客（一）快速写简单的博客/" rel="next" title="Django开发博客（一）快速写简单的博客">
-                <i class="fa fa-chevron-left"></i> Django开发博客（一）快速写简单的博客
+              <a href="/2016/06/03/测试之路——记一次解决问题的过程/" rel="next" title="测试之路——记一次解决问题的过程">
+                <i class="fa fa-chevron-left"></i> 测试之路——记一次解决问题的过程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/04/Django开发博客（二）——使用模版写网站/" rel="prev" title="Django开发博客（二）——使用模版写网站">
-                Django开发博客（二）——使用模版写网站 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -424,10 +410,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/04/Django开发博客（三）——在新的页面展示文章/"
-     data-title="Django开发博客（三）——在新的页面展示文章"
+        <div class="ds-share flat" data-thread-key="2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/"
+     data-title="Django开发博客（十一）—跨域资源共享（CORS）"
      data-content=""
-     data-url="http://www.wengyb.com/2016/01/04/Django开发博客（三）——在新的页面展示文章/">
+     data-url="http://www.wengyb.com/2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -454,8 +440,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/04/Django开发博客（三）——在新的页面展示文章/"
-           data-title="Django开发博客（三）——在新的页面展示文章" data-url="http://www.wengyb.com/2016/01/04/Django开发博客（三）——在新的页面展示文章/">
+      <div class="ds-thread" data-thread-key="2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/"
+           data-title="Django开发博客（十一）—跨域资源共享（CORS）" data-url="http://www.wengyb.com/2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/">
       </div>
     
   </div>
@@ -627,7 +613,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模版文件的修改"><span class="nav-number">3.</span> <span class="nav-text">模版文件的修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图函数处理"><span class="nav-number">4.</span> <span class="nav-text">视图函数处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#view-html模版的修改"><span class="nav-number">5.</span> <span class="nav-text">view.html模版的修改</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">2.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">5.</span> <span class="nav-text">解决办法</span></a></li></ol></div>
             
           </div>
         </section>
