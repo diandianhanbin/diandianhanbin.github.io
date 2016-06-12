@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试,python," />
+  <meta name="keywords" content="测试,测试人生," />
 
 
 
@@ -59,16 +59,16 @@
 
 
 
-<meta name="description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
+<meta name="description" content="一作为一个有追求的测试人员，不断学习是必须的，现在是互联网时代，那么了解互联网之间的通讯方式是非常有必要的，不论是web端还是移动端，基本上都是通过TCP/IP进行交互的。那么TCP/IP应该是一个硬技能。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python开发测试工具（二）—Monkey工具的优化">
-<meta property="og:url" content="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/index.html">
+<meta property="og:title" content="这段时间关于网络方面的学习">
+<meta property="og:url" content="http://www.wengyb.com/2016/06/12/这段时间关于网络方面的学习/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
-<meta property="og:updated_time" content="2016-04-06T14:22:24.000Z">
+<meta property="og:description" content="一作为一个有追求的测试人员，不断学习是必须的，现在是互联网时代，那么了解互联网之间的通讯方式是非常有必要的，不论是web端还是移动端，基本上都是通过TCP/IP进行交互的。那么TCP/IP应该是一个硬技能。">
+<meta property="og:updated_time" content="2016-06-12T15:45:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python开发测试工具（二）—Monkey工具的优化">
-<meta name="twitter:description" content="前言上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。">
+<meta name="twitter:title" content="这段时间关于网络方面的学习">
+<meta name="twitter:description" content="一作为一个有追求的测试人员，不断学习是必须的，现在是互联网时代，那么了解互联网之间的通讯方式是非常有必要的，不论是web端还是移动端，基本上都是通过TCP/IP进行交互的。那么TCP/IP应该是一个硬技能。">
 
 
 
@@ -86,7 +86,7 @@
   };
 </script>
 
-  <title> Python开发测试工具（二）—Monkey工具的优化 | 点点寒彬 </title>
+  <title> 这段时间关于网络方面的学习 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
             
             
               
-                Python开发测试工具（二）—Monkey工具的优化
+                这段时间关于网络方面的学习
               
             
           </h1>
@@ -267,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-06T22:19:11+08:00" content="2016-04-06">
-              2016-04-06
+            <time itemprop="dateCreated" datetime="2016-06-12T23:44:17+08:00" content="2016-06-12">
+              2016-06-12
             </time>
           </span>
 
@@ -281,8 +281,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
                   </a>
                 </span>
 
@@ -297,8 +297,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/" itemprop="commentsCount"></span>
+                <a href="/2016/06/12/这段时间关于网络方面的学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/12/这段时间关于网络方面的学习/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,26 +320,18 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次写的Monkey工具虽然是可以运行，不过用起来非常烂，可以说非常非常的烂，点了执行Monkey程序就会卡死，现在我们来解决这个问题。<br><a id="more"></a></p>
-<h2 id="多线程处理"><a href="#多线程处理" class="headerlink" title="多线程处理"></a>多线程处理</h2><p>上篇文章末尾提到可以使用多线程或者多进程来处理，其实我心里也没有底。今天算是稍微了解了一下，百度之后发现提的比较多的就是线程，我就先尝试了多线程的处理方式，不过不管用多线程还是多进程，都必须对原来的代码进行改写了，原来的代码编写方式是使用最基本的方式，连函数都没有处理，这次改动就一起改了，新生成一个AndroidTools类，然后在init函数中把原来界面的代码copy进去，这样实例化这个类的时候，就会画出界面了。</p>
-<h3 id="给按钮加一个线程"><a href="#给按钮加一个线程" class="headerlink" title="给按钮加一个线程"></a>给按钮加一个线程</h3><p>其实整个调用方式是在AndroidTools类中加一个函数，然后把执行Monkey按钮的命令封装到这个函数里，在这个函数中给这个命令分配一个线程</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_monkey</span><span class="params">(self)</span>:</span></span><br><span class="line">        t = threading.Thread(target=<span class="keyword">lambda</span>: self.mk.merge_command(self.cm.get_text(log_path), *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br></pre></td></tr></table></figure>
-<p>这样开了一个线程给按钮，运行之后确实解决了界面卡顿的问题，不过新的问题就来了，这个进程没办法停止。即使我点击结束Monkey，从日志来看命令也确实执行了，但是这个线程就是停不下来。这又是一个巨大的坑。</p>
-<p>当然，我尝试过很多种方式处理这个问题。比如设置一个全局变量来监控，点击停止后先结束线程，再执行结束Monkey的命令。不过结果都是很失败，不是线程阻塞就是线程阻塞。</p>
-<p>网上停止线程的方式基本都是通过一个死循环来监控变量，结束父线程的方式来结束子线程。对线程的了解还不是很深入，实施了几次都不成功。</p>
-<p>官方也没有提供停止线程的方法，据说是不提倡手动停止线程。</p>
-<p><strong> 按我的理解，线程在执行Monkeky，这时我通过命令停止Monkey，那么这个线程就应该自动结束了。不知道为什么执行起来并不是那么回事</strong></p>
-<p>如果有朋友知道，请留言告诉我。</p>
-<h2 id="多进程的处理"><a href="#多进程的处理" class="headerlink" title="多进程的处理"></a>多进程的处理</h2><p>大概折腾了一整个下午吧，实在是有点心烦，我就换了一个东西写，在写爬虫的时候用到了多进程，我就在想如果把我的思想换一下，用多进程来处理这些按钮事件，是不是也很好呢？</p>
-<blockquote>
-<p><strong>按我的理解，线程在执行Monkeky，这时我通过命令停止Monkey，那么这个线程就应该自动结束了。不知道为什么执行起来并不是那么回事</strong></p>
-</blockquote>
-<p>如果把这个理解放到进程上呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> def run_monkey(self):</span><br><span class="line">        t = multiprocessing.Process(target=lambda: 		</span><br><span class="line">        self.mk.merge_command(self.cm.get_text(log_path),  *self.cm.collect(*ENTRYLIST)))</span><br><span class="line">        t.start()</span><br><span class="line"></span><br><span class="line">def stop_monkey(self):</span><br><span class="line">        self.ad.stop_monkey(status)</span><br></pre></td></tr></table></figure>
-<p>这样跑起来，果然是成功了。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>写代码有时候是这样，突然的灵光一闪，几分钟就可能解决一个大问题，今天这个线程的问题我整整google了一天，结果突然一个想法，换成进程，就成功了。</p>
-<p>工具的基本功能是完善了，后续可以加上内存监控，电量监控，cup监控等功能，不过那都是后话了。</p>
-<p>完整功能的代码在<a href="https://github.com/diandianhanbin/AndroidTools" target="_blank" rel="external">Github</a></p>
+        <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>作为一个有追求的测试人员，不断学习是必须的，现在是互联网时代，那么了解互联网之间的通讯方式是非常有必要的，不论是web端还是移动端，基本上都是通过TCP/IP进行交互的。那么TCP/IP应该是一个硬技能。<br><a id="more"></a></p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>一般来说，每门知识都有一本“圣经”，《TCP/IP详解》无疑是这方面的宝典。如果能够完整的看下来，当然是最好的，但是这类“圣经”讲解的都非常细，内容相对枯燥，很难从头到尾把它看完。所以我选择了另一种方式学习。</p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>HTTP是TCP/IP协议的应用。日常生活中接触的也比较多，从HTTP入门再去学习TCP/IP，有了一些概念，学起来很多地方就可以脑补，就不会那么困难了。</p>
+<p>《图解TCP/IP(第5版)》是日本人写的一本介绍HTTP的书籍，我觉得入门学习非常棒，书中有着大量的图片来描述枯燥无味的通讯。我是去年把这本书看完的，把它阅读完之后，基本上对于HTTP就有了一个基本的了解，起码一些比较专业的术语、概念等有了一个比较清晰的认识。</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>学完HTTP基础的概念之后，试着找了一些抓包工具来看HTTP在实际生活中的内容，理论上比较火的抓包工具是Fiddler，不过Fiddler那个界面内容太多，再去学习Fiddler整个学习曲线就变了，而且也浪费太多时间，Mac电脑上用Charles比较简单，Charles也自动规避了那些复杂的底层的通讯内容，只展示网络请求。</p>
+<p>学以致用，最近工作中和微博合作的时候，通过Charles成功的定位了问题。好吧，就是把锅甩给微博了。</p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>随着工作的深入，慢慢的要往底层学习，HTTP在某些时候已经不能满足工作需要了，而且Charles有时候也不顶用，比如我们的APP本来就是代理的方式来处理数据，再通过Charles代理，会出现页面无法展示的错误，而且Charles只能捕捉WiFi的数据，要捕获3G/4G就无法胜任了。这个时候就需要重新找一个工具了。</p>
+<h2 id="六"><a href="#六" class="headerlink" title="六"></a>六</h2><p>Wireshark是一个更强大的工具，并且通过Wireshark能够更深层次的学习TCP/IP，因为这些底层的数据包Wireshark也能够捕获和展示。</p>
+<p>《Wireshark数据包分析实战》是一本非常棒的书，在这个层次上满足了我的需求，Wireshark是一个非常强大的工具，如何使用它也是一个头疼的事，这本书讲解TCP/IP相关的知识就是通过Wireshark来讲解的，所以在学习TCP/IP的同时，又能够学习Wireshark。一举两得。</p>
+<p>学以致用，通过学习Wireshark，在思迪的炒股大赛项目中，成功的定位了问题。好吧，这次也是把锅甩给思迪。</p>
+<h2 id="七"><a href="#七" class="headerlink" title="七"></a>七</h2><p>需要学习的东西还很多，TCP/IP的知识还可以更深入的学习，一些新的知识也可以插进来学习，比如苹果在本月初已经全部改为IPV6了，IPV6未来也是一个趋势，也是值得学习的方向。</p>
+<p>未来的路还很长。。。。。。</p>
 
       
     </div>
@@ -377,7 +369,7 @@
           
             <a href="/tags/测试/" rel="tag">#测试</a>
           
-            <a href="/tags/python/" rel="tag">#python</a>
+            <a href="/tags/测试人生/" rel="tag">#测试人生</a>
           
         </div>
       
@@ -386,17 +378,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/01/Python开发测试工具-一-—Monkey/" rel="next" title="Python开发测试工具(一)—Monkey">
-                <i class="fa fa-chevron-left"></i> Python开发测试工具(一)—Monkey
+              <a href="/2016/06/06/Django开发博客（十一）—跨域资源共享（CORS）/" rel="next" title="Django开发博客（十一）—跨域资源共享（CORS）">
+                <i class="fa fa-chevron-left"></i> Django开发博客（十一）—跨域资源共享（CORS）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/10/易中天与《易中天中华史》/" rel="prev" title="易中天与《易中天中华史》">
-                易中天与《易中天中华史》 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -411,10 +399,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/"
-     data-title="Python开发测试工具（二）—Monkey工具的优化"
+        <div class="ds-share flat" data-thread-key="2016/06/12/这段时间关于网络方面的学习/"
+     data-title="这段时间关于网络方面的学习"
      data-content=""
-     data-url="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/">
+     data-url="http://www.wengyb.com/2016/06/12/这段时间关于网络方面的学习/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -441,8 +429,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/06/Python开发测试工具（二）—Monkey工具的优化/"
-           data-title="Python开发测试工具（二）—Monkey工具的优化" data-url="http://www.wengyb.com/2016/04/06/Python开发测试工具（二）—Monkey工具的优化/">
+      <div class="ds-thread" data-thread-key="2016/06/12/这段时间关于网络方面的学习/"
+           data-title="这段时间关于网络方面的学习" data-url="http://www.wengyb.com/2016/06/12/这段时间关于网络方面的学习/">
       </div>
     
   </div>
@@ -614,7 +602,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程处理"><span class="nav-number">2.</span> <span class="nav-text">多线程处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给按钮加一个线程"><span class="nav-number">2.1.</span> <span class="nav-text">给按钮加一个线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程的处理"><span class="nav-number">3.</span> <span class="nav-text">多进程的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三"><span class="nav-number">3.</span> <span class="nav-text">三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四"><span class="nav-number">4.</span> <span class="nav-text">四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五"><span class="nav-number">5.</span> <span class="nav-text">五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六"><span class="nav-number">6.</span> <span class="nav-text">六</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七"><span class="nav-number">7.</span> <span class="nav-text">七</span></a></li></ol></div>
             
           </div>
         </section>
