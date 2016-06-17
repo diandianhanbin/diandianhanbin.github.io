@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-06-12T15:45:02.000Z</updated>
+  <updated>2016-06-17T14:20:59.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python+MongoDB自增键值的实现</title>
+    <link href="http://www.wengyb.com/2016/06/17/Python-MongoDB%E8%87%AA%E5%A2%9E%E9%94%AE%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://www.wengyb.com/2016/06/17/Python-MongoDB自增键值的实现/</id>
+    <published>2016-06-17T14:19:53.000Z</published>
+    <updated>2016-06-17T14:20:59.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在写一个测试工具箱，里面有一个bug记录系统，因为后台我是用Django和MongoDB来实现的，就遇到了一个问题，要如何实现一个自增的字段。&lt;/p&gt;
+&lt;p&gt;传统的关系型数据库要实现起来是非常容易，只要直接设置一个自增字段就行了，插入数据时不用管这个键值，只管自己处理的数据就行了，会自动实现自增的功能，但是非关系型数据库好像没有这个功能（或者我不知道）。百度之后发现都是MongoDB的设置方法，并不是我想要的。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;解决思路&quot;&gt;&lt;a href=&quot;#解决思路&quot; class=&quot;headerlink&quot; title=&quot;解决思路&quot;&gt;&lt;/a&gt;解决思路&lt;/h2&gt;&lt;p&gt;百度没有找到好的思路，那就只能自己解决了，我的想法很简单，字段不会自增，那么就自己造一个自增的方案。&lt;/p&gt;
+&lt;p&gt;我发现在MongoDB修改的方法有一个&lt;code&gt;$inc&lt;/code&gt;的方法.可以实现&lt;code&gt;int&lt;/code&gt;类型的自增。那么就非常简单了，自己建一个&lt;code&gt;collection&lt;/code&gt;，然后这个&lt;code&gt;collection&lt;/code&gt;中只有一个&lt;code&gt;int&lt;/code&gt;的字段，每次插入数据时来这个&lt;code&gt;collection&lt;/code&gt;取&lt;code&gt;ID&lt;/code&gt;就行了，然后再调用一下&lt;code&gt;$inc&lt;/code&gt;方法，那么就实现了自动自增的方案。&lt;/p&gt;
+&lt;h2 id=&quot;代码展示&quot;&gt;&lt;a href=&quot;#代码展示&quot; class=&quot;headerlink&quot; title=&quot;代码展示&quot;&gt;&lt;/a&gt;代码展示&lt;/h2&gt;&lt;p&gt;Python实现起来还是非常简单的Python和Django非常契合。代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bugPlus&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	bugID自增&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	:return:True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&quot;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	db = self.__chooseCollection(config.COLLECTION[&lt;span class=&quot;string&quot;&gt;&#39;bugID&#39;&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	db.update_one(&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;bugID&quot;&lt;/span&gt;: self.getBugID()&amp;#125;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;$inc&quot;&lt;/span&gt;: &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;bugID&quot;&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&amp;#125;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;True&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;每次插入成功后，调用这个方法就可以实现ID的自增。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getBugID&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	获取当前bug的最新编号&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	:return:None&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&quot;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	db = self.__chooseCollection(config.COLLECTION[&lt;span class=&quot;string&quot;&gt;&#39;bugID&#39;&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	rst = db.find_one()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; rst[&lt;span class=&quot;string&quot;&gt;&#39;bugID&#39;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在插入之前，调用这个方法，这样每次插入数据时插入的ID就是实现自增的ID。&lt;/p&gt;
+&lt;h2 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h2&gt;&lt;p&gt;当然，这种方式还是有缺点的，调用的时候多使用了方法，因此需要确认方法是否执行成功，否则会导致下次插入的ID不是自增后的数据。每次多调了一次方法，会导致性能下降。&lt;/p&gt;
+&lt;h2 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h2&gt;&lt;p&gt;如果有更好的实现方式，请告诉我！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在写一个测试工具箱，里面有一个bug记录系统，因为后台我是用Django和MongoDB来实现的，就遇到了一个问题，要如何实现一个自增的字段。&lt;/p&gt;
+&lt;p&gt;传统的关系型数据库要实现起来是非常容易，只要直接设置一个自增字段就行了，插入数据时不用管这个键值，只管自己处理的数据就行了，会自动实现自增的功能，但是非关系型数据库好像没有这个功能（或者我不知道）。百度之后发现都是MongoDB的设置方法，并不是我想要的。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
+    
+    
+      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
+    
+      <category term="MongoDB" scheme="http://www.wengyb.com/tags/MongoDB/"/>
+    
+  </entry>
   
   <entry>
     <title>这段时间关于网络方面的学习</title>
@@ -1070,53 +1106,6 @@
       <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
     
       <category term="Python" scheme="http://www.wengyb.com/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>易中天与《易中天中华史》</title>
-    <link href="http://www.wengyb.com/2016/04/10/%E6%98%93%E4%B8%AD%E5%A4%A9%E4%B8%8E%E3%80%8A%E6%98%93%E4%B8%AD%E5%A4%A9%E4%B8%AD%E5%8D%8E%E5%8F%B2%E3%80%8B/"/>
-    <id>http://www.wengyb.com/2016/04/10/易中天与《易中天中华史》/</id>
-    <published>2016-04-09T17:15:31.000Z</published>
-    <updated>2016-04-09T17:18:02.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;易中天其人&quot;&gt;&lt;a href=&quot;#易中天其人&quot; class=&quot;headerlink&quot; title=&quot;易中天其人&quot;&gt;&lt;/a&gt;易中天其人&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;易中天（1947年2月8日－），湖南长沙人，中国知名作家、学者、教育家。&lt;/p&gt;
-&lt;p&gt;1981年毕业于武汉大学，获文学硕士学位并留校任教。后在厦门大学中文系任教 。2015年4月声明已经退休。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;易中天长期从事文学、艺术、美学、心理学、人类学、历史学等研究，著有《〈文心雕龙〉美学思想论稿》、《艺术人类学》等著作。2005年央视《百家讲坛》“开坛论道”的学者，2006年在央视“百家讲坛”主讲《汉代风云人物》、《易中天品三国》。2008年主讲《先秦诸子百家争鸣》。  2013年宣布写作36卷本《易中天中华史》，2013年12月5日，荣获第八届作家富豪榜最佳历史书。&lt;br&gt;引自百度百科&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;初识易中天&quot;&gt;&lt;a href=&quot;#初识易中天&quot; class=&quot;headerlink&quot; title=&quot;初识易中天&quot;&gt;&lt;/a&gt;初识易中天&lt;/h2&gt;&lt;p&gt;最初知道易中天先生，是在央视《百家讲坛》上看到了品三国。&lt;/p&gt;
-&lt;p&gt;男生都喜欢三国这段历史，但是对三国的认知大多限于《三国演义》和一些三国系列的游戏。当时听到了易中天先生的品三国系列，让我从另外一个角度重新审视三国，让本来就喜欢历史的我获取了一个新的历史观，原来我觉得历史就是看故事，看了品三国之后，发现历史不仅仅只有故事，还有很多可以了解和研究的方向。&lt;/p&gt;
-&lt;p&gt;05年正值高中，每天课业都比较重，基本上没时间完整的看完品三国，于是就买了品三国书籍来看，看完之后特别受教，也特别喜欢易中天先生的写作风格和历史观（虽然有些观点我并不怎么赞同），之后接连阅读了易中天先生的其他书籍，包括《帝国的惆怅》、《帝国的终结》、《美国宪法的诞生和我们的反思》。&lt;/p&gt;
-&lt;p&gt;再之后由于高三，虽然我对念书不怎么感冒，毕竟高考是人生的一大考，还是要花很多时间准备的，慢慢的就没有继续接触易中天先生的其他书籍。&lt;/p&gt;
-&lt;h2 id=&quot;再见易中天&quot;&gt;&lt;a href=&quot;#再见易中天&quot; class=&quot;headerlink&quot; title=&quot;再见易中天&quot;&gt;&lt;/a&gt;再见易中天&lt;/h2&gt;&lt;p&gt;再次看到易中天先生，是在央视的《开讲啦》，说实话，我一直觉得央视最好的节目就是《百家讲坛》和《开讲啦》，当然《宇宙联播》一定是第一节目。&lt;/p&gt;
-&lt;p&gt;一个将近70岁的老头在电视上讲述他的过去，看起来也挺逗的，在最后他说他现在退休了，准备写出36卷的《易中天中华史》，即使2个月的时间能写完一本也需要3年的时间。不得不说老先生很值得我敬佩。&lt;/p&gt;
-&lt;h2 id=&quot;《易中天中华史》&quot;&gt;&lt;a href=&quot;#《易中天中华史》&quot; class=&quot;headerlink&quot; title=&quot;《易中天中华史》&quot;&gt;&lt;/a&gt;《易中天中华史》&lt;/h2&gt;&lt;p&gt;截止到今天，一共出了十三卷，我看了其中的三卷，分别是《从春秋到战国》、《秦并天下》和《隋唐定局》，如果能等到36卷完结的那天，我一定会全套购买来阅读。读了3本，再加上之前的理解，慢慢的整理了一些自己的思想。&lt;/p&gt;
-&lt;h3 id=&quot;适合人群&quot;&gt;&lt;a href=&quot;#适合人群&quot; class=&quot;headerlink&quot; title=&quot;适合人群&quot;&gt;&lt;/a&gt;适合人群&lt;/h3&gt;&lt;p&gt;每个人的历史观是不一样的，取决于每个人对历史的理解，比如一个历史知识比较渊博的人，那么他会比较偏爱看一些史料的讲解，那些东西更接近真正的历史，就像一位资深程序员，那么他就会偏爱看一些语言源码实现的分析，程序架构设计等内容。而历史知识比较匮乏而又想了解历史，学习历史、那么这套书就会很适合你，相对诙谐的笔法、独到的见解，对初学者非常的友好。&lt;/p&gt;
-&lt;h3 id=&quot;轻松的历史&quot;&gt;&lt;a href=&quot;#轻松的历史&quot; class=&quot;headerlink&quot; title=&quot;轻松的历史&quot;&gt;&lt;/a&gt;轻松的历史&lt;/h3&gt;&lt;p&gt;书的风格几乎完整的延续了品三国。读起来相对友好，小故事带动制度、文化的知识。再通过一段一段的联系，不断的层层递进，很轻松的就能够理清逻辑关系，读起来不至于一头雾水。&lt;/p&gt;
-&lt;h3 id=&quot;节点的历史&quot;&gt;&lt;a href=&quot;#节点的历史&quot; class=&quot;headerlink&quot; title=&quot;节点的历史&quot;&gt;&lt;/a&gt;节点的历史&lt;/h3&gt;&lt;p&gt;整部中华史从介绍来看，大体是按一个一个的时间节点来分的。我国的历史书基本上分为两种，一种是编年体史书，比如《春秋》、《资治通鉴》等。另一种是纪传体史书，比如《史记》、《二十四史》等。而这套易中天中华史，基本上是以时间为主线，在每个时间节点上以制度、文化为中心点，展开来讲述。这种写法让整部中华史的脉络非常清晰，易于理解。&lt;/p&gt;
-&lt;h3 id=&quot;多元化的社会&quot;&gt;&lt;a href=&quot;#多元化的社会&quot; class=&quot;headerlink&quot; title=&quot;多元化的社会&quot;&gt;&lt;/a&gt;多元化的社会&lt;/h3&gt;&lt;p&gt;天下大势，合久必分，分久必合，在这些分分合合中，慢慢的由单一的社会发展为多元化的社会。&lt;/p&gt;
-&lt;p&gt;夏商西周的统一后东周社会分崩离析、造就了春秋战国时期思想的百家争鸣，各国的战争格局，慢慢的促进了民族的融合，包括政治、包括思想、包括文化。在不断的战争中不断的融合。等到秦汉统一的时候，使得中国空前强大。再后来的魏晋南北朝，慢慢接受了一些少数民族的文化，比如羯、白匈奴、丁零、铁弗、卢水胡、鲜卑等民族的文化慢慢的融入了中华文明，于是造就了世界级的隋唐时代。&lt;/p&gt;
-&lt;h3 id=&quot;权利的游戏&quot;&gt;&lt;a href=&quot;#权利的游戏&quot; class=&quot;headerlink&quot; title=&quot;权利的游戏&quot;&gt;&lt;/a&gt;权利的游戏&lt;/h3&gt;&lt;p&gt;纵观中国历史，就是一部权利的游戏，跟着易中天先生一点一点的了解帝制的演变，可以发现真的是非常非常非常的有意思，从最初的禅让制到家天下的过度，皇帝不断的集权，这才是可研究的大道，深入研究这些演变，整个权利演变的大局观的培养，能够很好的应用到现代社会，比如职场规划，从宏观上为自己规划一条道路，比研究那些职场小伎俩靠谱的多。&lt;/p&gt;
-&lt;p&gt;皇帝从宰相手中中夺权、从将军手中夺权。随着皇权的不断集中，在明清时代达到了中央集权的巅峰。《易中天中华史》给我们勾勒出一幅完整的演变图。&lt;/p&gt;
-&lt;h2 id=&quot;坚持的力量&quot;&gt;&lt;a href=&quot;#坚持的力量&quot; class=&quot;headerlink&quot; title=&quot;坚持的力量&quot;&gt;&lt;/a&gt;坚持的力量&lt;/h2&gt;&lt;p&gt;说实话，坚持几年持之以恒的做一件事，真的是非常非常难，但是很多成功又是离不开坚持的。&lt;/p&gt;
-&lt;p&gt;曾经我坚持写日记，写了5本满满的日记本，大概一千多篇吧。随着杂事越来越多，终于是坚持不下去了，每天处理了很多杂事之后，还要静下心来写日记，从我自己的体验来看，即使是随便写写，一篇日记三四百字，也是非常伤脑的。&lt;/p&gt;
-&lt;p&gt;之所以博客为什么不火而微博却火了这么久，其中原因之一就是因为世界上绝大多数人是坚持不下来一直写东西，内容驱动的产品缺乏内容，必然是无法火的，为什么内容产生不多，一是可写的东西不多，二是在当时并没有很健全的体制来保护原创和内容变现，最最关键的一个原因就是：&lt;strong&gt;坚持真的很难&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;祝愿易中天先生能够实现这个伟大的愿望吧！&lt;/p&gt;
-&lt;h2 id=&quot;最后的最后&quot;&gt;&lt;a href=&quot;#最后的最后&quot; class=&quot;headerlink&quot; title=&quot;最后的最后&quot;&gt;&lt;/a&gt;最后的最后&lt;/h2&gt;&lt;p&gt;给自己一个flag吧，&lt;strong&gt;每个月写一篇作文&lt;/strong&gt;，不求文章写的多好，但求再次感知坚持的力量。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;易中天其人&quot;&gt;&lt;a href=&quot;#易中天其人&quot; class=&quot;headerlink&quot; title=&quot;易中天其人&quot;&gt;&lt;/a&gt;易中天其人&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;易中天（1947年2月8日－），湖南长沙人，中国知名作家、学者、教育家。&lt;/p&gt;
-&lt;p&gt;1981年毕业于武汉大学，获文学硕士学位并留校任教。后在厦门大学中文系任教 。2015年4月声明已经退休。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
-    
-    
-      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
