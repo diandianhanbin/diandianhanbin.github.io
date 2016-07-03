@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试,测试人生," />
+  <meta name="keywords" content="Git," />
 
 
 
@@ -59,19 +59,21 @@
 
 
 
-<meta name="description" content="声明部分内容摘自网络，如有侵权，请告知删除！
-写代码测试需要学会编程吗？我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。">
+<meta name="description" content="前言
+真的是非常难得的周末啊，好不容易可以静下心来慢慢的学习，慢慢的整理一些东西。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试之始--你应该知道的知识">
-<meta property="og:url" content="http://www.wengyb.com/2016/05/25/测试之始-你应该知道的知识/index.html">
+<meta property="og:title" content="Git学习小记——文件分块提交">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/03/Git学习小记——文件分块提交/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="声明部分内容摘自网络，如有侵权，请告知删除！
-写代码测试需要学会编程吗？我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。">
-<meta property="og:updated_time" content="2016-05-25T13:43:00.000Z">
+<meta property="og:description" content="前言
+真的是非常难得的周末啊，好不容易可以静下心来慢慢的学习，慢慢的整理一些东西。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-03-de3a0cf6eb61abffb6e02d79d5c51bb4.jpg">
+<meta property="og:updated_time" content="2016-07-03T08:18:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试之始--你应该知道的知识">
-<meta name="twitter:description" content="声明部分内容摘自网络，如有侵权，请告知删除！
-写代码测试需要学会编程吗？我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。">
+<meta name="twitter:title" content="Git学习小记——文件分块提交">
+<meta name="twitter:description" content="前言
+真的是非常难得的周末啊，好不容易可以静下心来慢慢的学习，慢慢的整理一些东西。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-03-de3a0cf6eb61abffb6e02d79d5c51bb4.jpg">
 
 
 
@@ -89,7 +91,7 @@
   };
 </script>
 
-  <title> 测试之始--你应该知道的知识 | 点点寒彬 </title>
+  <title> Git学习小记——文件分块提交 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +260,7 @@
             
             
               
-                测试之始--你应该知道的知识
+                Git学习小记——文件分块提交
               
             
           </h1>
@@ -270,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T21:42:11+08:00" content="2016-05-25">
-              2016-05-25
+            <time itemprop="dateCreated" datetime="2016-07-03T16:16:57+08:00" content="2016-07-03">
+              2016-07-03
             </time>
           </span>
 
@@ -300,8 +302,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/25/测试之始-你应该知道的知识/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/测试之始-你应该知道的知识/" itemprop="commentsCount"></span>
+                <a href="/2016/07/03/Git学习小记——文件分块提交/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/Git学习小记——文件分块提交/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,17 +325,34 @@
       
 
       
-        <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>部分内容摘自网络，如有侵权，请告知删除！</p>
-<h2 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h2><h3 id="测试需要学会编程吗？"><a href="#测试需要学会编程吗？" class="headerlink" title="测试需要学会编程吗？"></a>测试需要学会编程吗？</h3><p>我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。<br><a id="more"></a></p>
-<h3 id="学哪门语言？"><a href="#学哪门语言？" class="headerlink" title="学哪门语言？"></a>学哪门语言？</h3><p>一般来说，所在公司的开发语言是什么，就应该学什么，如果是学生或者暂时用不到的，那么就学比较大众化的语言咯！Python和Java是比较推荐的。</p>
-<p>测试人员学编程语言一般是出于两个目的:作为入门了解;想要运用到后续测试工作中。从 这两个角度来看,这两个语言都是可以的。而 python 会比 java 更容易入门。</p>
-<h2 id="用什么工具？"><a href="#用什么工具？" class="headerlink" title="用什么工具？"></a>用什么工具？</h2><p>测试过程中会用到的工具还是挺多的。大概有这么些：<br>测试分析与设计:Xmind Excel 等;<br>Bug 定位: Firebug/Chrome、Charles 等<br>测试管理:Redmine、Jira、Testlink 等<br>自动化测试工具:Selenium、Robot Framework、TestNG、Appium 等<br>性能测试工具:Grinder、JMeter、LR 等<br>以上是比较常用的工具，根据个人的情况不同会有一些变化，但是大概的内容就是这么些。</p>
-<h2 id="大公司还是小公司？"><a href="#大公司还是小公司？" class="headerlink" title="大公司还是小公司？"></a>大公司还是小公司？</h2><p>这个就要看个人的情况了，大公司更多的倾向于学习流程，做一颗螺丝钉，小公司则需要你是一个多面手，完成测试但不仅限于测试。</p>
-<h2 id="找工作"><a href="#找工作" class="headerlink" title="找工作"></a>找工作</h2><p>目前的形势来看，找一份测试的工作还是很容易的。不过想找一份好的工作，还是需要运气的。</p>
-<p>不同公司对测试的要求和定位都不一样，需要找一个测试团队相对和谐，并且公司比较重视测试的公司。</p>
-<p>每个公司的测试发展状态不一致，达到的层次不一致导致的。有些可能测试团队刚开始组建，有些只是找大牛，情况比较杂。有些甚至都还不知道手机上可以像PC上那么做自动化，有些也都有自己的测试框架，docker也都在用等等。</p>
-<h2 id="薪资"><a href="#薪资" class="headerlink" title="薪资"></a>薪资</h2><p>这块是一个比较敏感的话题，测试的工资一般来说会比开发低一些，但是总体来说，还是高于行业的平均水平的。</p>
-<h2 id="测试思想"><a href="#测试思想" class="headerlink" title="测试思想"></a>测试思想</h2><p>不得不说，测试思想才是一名测试人员的核心要素，不管是做什么方面的测试，思想才是最核心的技能，这方面需要在工作中不断的积累。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-03-de3a0cf6eb61abffb6e02d79d5c51bb4.jpg" alt="de3a0cf6eb61abffb6e02d79d5c51bb4"></p>
+<p>真的是非常难得的周末啊，好不容易可以静下心来慢慢的学习，慢慢的整理一些东西。<br><a id="more"></a></p>
+<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>第一次见到Git的这个功能，我简直惊呆了。尤其是我这种非专业开发人员，常年线性撸代码，简直就是福音啊！</p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>我们来做一个实验，首先先在本地生成一个<code>git仓库</code>，建立一个文件叫做<code>file</code>.里面的内容是五行A。如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master</span><br><span class="line">⇒  echo a &gt; file</span><br><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  echo a &gt;&gt; file</span><br><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  echo a &gt;&gt; file</span><br><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  echo a &gt;&gt; file</span><br><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  echo a &gt;&gt; file</span><br><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  cat file</span><br><span class="line">a</span><br><span class="line">a</span><br><span class="line">a</span><br><span class="line">a</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<p>现在把我们的文件提交。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  git add file</span><br><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  git commit -am&apos;init&apos;</span><br><span class="line">[master (root-commit) a3e5e97] init</span><br><span class="line"> 1 file changed, 5 insertions(+)</span><br><span class="line"> create mode 100644 file</span><br></pre></td></tr></table></figure>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>提交文件之后，我们对文件做一些修改。修改内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/file b/file</span><br><span class="line">index 72e1fe3..a39bec5 100644</span><br><span class="line">--- a/file</span><br><span class="line">+++ b/file</span><br><span class="line">@@ -1,5 +1,5 @@</span><br><span class="line">+ab</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line">-a</span><br><span class="line">-a</span><br><span class="line">+abc</span><br></pre></td></tr></table></figure>
+<p>第一行，把a变成了ab,第五行，我把a变成了abc。那么就存在两个地方修改，现在要把这两个地方修改分次提交上去。</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我们使用<code>git add -p</code>。得到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  git add -p</span><br><span class="line">diff --git a/file b/file</span><br><span class="line">index 72e1fe3..a39bec5 100644</span><br><span class="line">--- a/file</span><br><span class="line">+++ b/file</span><br><span class="line">@@ -1,5 +1,5 @@</span><br><span class="line">+ab</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line">-a</span><br><span class="line">-a</span><br><span class="line">+abc</span><br><span class="line">Stage this hunk [y,n,q,a,d,/,s,e,?]?</span><br></pre></td></tr></table></figure>
+<p>最后一句<code>Stage this hunk [y,n,q,a,d,/,s,e,?]?</code>是让我们选择一种方式，我们选择<code>s</code>，表示我们要做<code>拆分（split）</code>。拆分之后，我们可以查看拆分的内容。输入<code>g</code>可以查看拆分的区块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? g</span><br><span class="line">  1:  -1,3 +1,4          +ab</span><br><span class="line">  2:  -1,5 +2,4          -a</span><br><span class="line">  go to which hunk?</span><br></pre></td></tr></table></figure>
+<p>最后一句<code>go to which hunk?</code>是问我们跳转到哪个区块。我们选择1。</p>
+<p>进入1之后，我们选择<code>y</code>表示提交这一块。选择<code>y</code>之后，会吧第二个区块展示给我们看，这个时候我们输入<code>q</code>表示退出。然后我们提交，这时会出现一个很有意思的情况，我们看这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SvenWeng@wengyanbin:~/Desktop/gittest|master⚡</span><br><span class="line">⇒  git status -s</span><br><span class="line">MM file</span><br></pre></td></tr></table></figure>
+<p><code>file</code>这个文件一部分在暂存区，一部分在修改区</p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>我们做一次提交查看一次不同:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/file b/file</span><br><span class="line">index fc27ec6..a39bec5 100644</span><br><span class="line">--- a/file</span><br><span class="line">+++ b/file</span><br><span class="line">@@ -2,5 +2,4 @@ ab</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line">-a</span><br><span class="line">-a</span><br><span class="line">+abc</span><br></pre></td></tr></table></figure>
+<p>现在就之后一处修改暂未提交了。我们再次提交。</p>
+<p>使用<code>git log</code>查看一下提交的记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">commit a0804d4aa4fa413c74c6f03e9fb938036b4d1a8d</span><br><span class="line">Author: 翁彦彬 &lt;diandianhanbin@gmail.com&gt;</span><br><span class="line">Date:   Sun Jul 3 15:39:17 2016 +0800</span><br><span class="line"></span><br><span class="line">    hunk2 commit</span><br><span class="line"></span><br><span class="line">commit 85e1635c6542b47d40ea74dacfce3ba68dfaa677</span><br><span class="line">Author: 翁彦彬 &lt;diandianhanbin@gmail.com&gt;</span><br><span class="line">Date:   Sun Jul 3 15:36:35 2016 +0800</span><br><span class="line"></span><br><span class="line">    hunk1 commit</span><br><span class="line"></span><br><span class="line">commit a3e5e97a6e7eaacc2acdcf5fc20c7947b168d587</span><br><span class="line">Author: 翁彦彬 &lt;diandianhanbin@gmail.com&gt;</span><br><span class="line">Date:   Sun Jul 3 15:24:06 2016 +0800</span><br><span class="line"></span><br><span class="line">    init</span><br></pre></td></tr></table></figure>
+<p>可以很清楚的看到，我们提交了三次，第一次是init，第二次是hunk1 commit，第三次是hunk2 commit。</p>
+<h2 id="六"><a href="#六" class="headerlink" title="六"></a>六</h2><p>当然，我们也可以查看每次提交的不同的具体位置。</p>
+<p>使用<code>git show head -2</code>表示查看近两次提交的不同点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">commit a0804d4aa4fa413c74c6f03e9fb938036b4d1a8d</span><br><span class="line">Author: 翁彦彬 &lt;diandianhanbin@gmail.com&gt;</span><br><span class="line">Date:   Sun Jul 3 15:39:17 2016 +0800</span><br><span class="line"></span><br><span class="line">    hunk2 commit</span><br><span class="line"></span><br><span class="line">diff --git a/file b/file</span><br><span class="line">index fc27ec6..a39bec5 100644</span><br><span class="line">--- a/file</span><br><span class="line">+++ b/file</span><br><span class="line">@@ -2,5 +2,4 @@ ab</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line">-a</span><br><span class="line">-a</span><br><span class="line">+abc</span><br><span class="line"></span><br><span class="line">commit 85e1635c6542b47d40ea74dacfce3ba68dfaa677</span><br><span class="line">Author: 翁彦彬 &lt;diandianhanbin@gmail.com&gt;</span><br><span class="line">Date:   Sun Jul 3 15:36:35 2016 +0800</span><br><span class="line"></span><br><span class="line">    hunk1 commit</span><br><span class="line"></span><br><span class="line">diff --git a/file b/file</span><br><span class="line">index 72e1fe3..fc27ec6 100644</span><br><span class="line">--- a/file</span><br><span class="line">+++ b/file</span><br><span class="line">@@ -1,3 +1,4 @@</span><br><span class="line">+ab</span><br><span class="line"> a</span><br><span class="line"> a</span><br><span class="line"> a</span><br></pre></td></tr></table></figure>
+<p>可以很清晰的看到，hunk1修改的是第一行我把a变成ab的结果。hunk2是我把a变成abc的结果。</p>
 
       
     </div>
@@ -369,9 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/测试/" rel="tag">#测试</a>
-          
-            <a href="/tags/测试人生/" rel="tag">#测试人生</a>
+            <a href="/tags/Git/" rel="tag">#Git</a>
           
         </div>
       
@@ -380,17 +397,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/23/基于Python的接口测试框架/" rel="next" title="基于Python的接口测试框架">
-                <i class="fa fa-chevron-left"></i> 基于Python的接口测试框架
+              <a href="/2016/07/03/Java-Mac-Selenium入门/" rel="next" title="Java+Mac+Selenium入门">
+                <i class="fa fa-chevron-left"></i> Java+Mac+Selenium入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/28/用Python写一个发邮件模块/" rel="prev" title="用Python写一个发邮件模块">
-                用Python写一个发邮件模块 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,10 +418,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/25/测试之始-你应该知道的知识/"
-     data-title="测试之始--你应该知道的知识"
+        <div class="ds-share flat" data-thread-key="2016/07/03/Git学习小记——文件分块提交/"
+     data-title="Git学习小记——文件分块提交"
      data-content=""
-     data-url="http://www.wengyb.com/2016/05/25/测试之始-你应该知道的知识/">
+     data-url="http://www.wengyb.com/2016/07/03/Git学习小记——文件分块提交/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -435,8 +448,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/25/测试之始-你应该知道的知识/"
-           data-title="测试之始--你应该知道的知识" data-url="http://www.wengyb.com/2016/05/25/测试之始-你应该知道的知识/">
+      <div class="ds-thread" data-thread-key="2016/07/03/Git学习小记——文件分块提交/"
+           data-title="Git学习小记——文件分块提交" data-url="http://www.wengyb.com/2016/07/03/Git学习小记——文件分块提交/">
       </div>
     
   </div>
@@ -608,7 +621,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写代码"><span class="nav-number">2.</span> <span class="nav-text">写代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试需要学会编程吗？"><span class="nav-number">2.1.</span> <span class="nav-text">测试需要学会编程吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学哪门语言？"><span class="nav-number">2.2.</span> <span class="nav-text">学哪门语言？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用什么工具？"><span class="nav-number">3.</span> <span class="nav-text">用什么工具？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大公司还是小公司？"><span class="nav-number">4.</span> <span class="nav-text">大公司还是小公司？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找工作"><span class="nav-number">5.</span> <span class="nav-text">找工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#薪资"><span class="nav-number">6.</span> <span class="nav-text">薪资</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试思想"><span class="nav-number">7.</span> <span class="nav-text">测试思想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一"><span class="nav-number">2.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二"><span class="nav-number">3.</span> <span class="nav-text">二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三"><span class="nav-number">4.</span> <span class="nav-text">三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四"><span class="nav-number">5.</span> <span class="nav-text">四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五"><span class="nav-number">6.</span> <span class="nav-text">五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六"><span class="nav-number">7.</span> <span class="nav-text">六</span></a></li></ol></div>
             
           </div>
         </section>
