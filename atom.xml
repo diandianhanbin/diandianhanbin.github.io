@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-07-01T09:02:56.000Z</updated>
+  <updated>2016-07-03T05:27:24.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java+Mac+Selenium入门</title>
+    <link href="http://www.wengyb.com/2016/07/03/Java-Mac-Selenium%E5%85%A5%E9%97%A8/"/>
+    <id>http://www.wengyb.com/2016/07/03/Java-Mac-Selenium入门/</id>
+    <published>2016-07-03T05:26:21.000Z</published>
+    <updated>2016-07-03T05:27:24.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在看Java的一些基础知识，因为Selenium是支持各种语言的，所以我想用java+Selenium来试水一下，虽然Mac也是可以正常的支持Java和Selenium，但是实际操作起来，有那么些不同，这些不同就会导致刚开始根本进行不下去，我也花了差不多1小时左右才正式跑通Demo。说实话，网络上关于Mac+Java+Selenium的说明实在是太少了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;版本相关 &lt;/p&gt;
+&lt;p&gt;操作系统：Mac OS X EI Caption &lt;/p&gt;
+&lt;p&gt;IDE：Eclipse&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;与Python的区别&quot;&gt;&lt;a href=&quot;#与Python的区别&quot; class=&quot;headerlink&quot; title=&quot;与Python的区别&quot;&gt;&lt;/a&gt;与Python的区别&lt;/h2&gt;&lt;p&gt;我们都知道，用Python来跑同Selenium真的太简单了，使用Pip安装好Selenium，然后直接引入就可以使用了，但是Java不同，Java要先导入架包，然后初始化&lt;code&gt;driver&lt;/code&gt;路径，然后才是正常的书写。&lt;/p&gt;
+&lt;h2 id=&quot;配置环境&quot;&gt;&lt;a href=&quot;#配置环境&quot; class=&quot;headerlink&quot; title=&quot;配置环境&quot;&gt;&lt;/a&gt;配置环境&lt;/h2&gt;&lt;h3 id=&quot;下载架包&quot;&gt;&lt;a href=&quot;#下载架包&quot; class=&quot;headerlink&quot; title=&quot;下载架包&quot;&gt;&lt;/a&gt;下载架包&lt;/h3&gt;&lt;p&gt;JDK那些我就不多说了，去Selenium官网上下架包，需要下三个文件。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;|____selenium-java-2.53.0-srcs.jar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____selenium-java-2.53.0.jar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____selenium-server-standalone-2.53.0.jar&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;对，是三个文件，最后一个&lt;code&gt;selenium-server-standalone-2.53.0.jar&lt;/code&gt;是非常关键的，因为导入架包就是要导入这个东西。&lt;/p&gt;
+&lt;h3 id=&quot;eclipse配置架包&quot;&gt;&lt;a href=&quot;#eclipse配置架包&quot; class=&quot;headerlink&quot; title=&quot;eclipse配置架包&quot;&gt;&lt;/a&gt;eclipse配置架包&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/D1017B9B-861B-4E5C-AFB7-E5F784B03065.png&quot; alt=&quot;buildpath&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;引入架包&quot;&gt;&lt;a href=&quot;#引入架包&quot; class=&quot;headerlink&quot; title=&quot;引入架包&quot;&gt;&lt;/a&gt;引入架包&lt;/h3&gt;&lt;p&gt;导入成功之后，需要在代码中引用&lt;code&gt;Selenium&lt;/code&gt;包和驱动，我使用的是Chrome来执行，因此我的引入代码是这样的：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.openqa.selenium.*;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.openqa.selenium.chrome.ChromeDriver;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;初始化Driver&quot;&gt;&lt;a href=&quot;#初始化Driver&quot; class=&quot;headerlink&quot; title=&quot;初始化Driver&quot;&gt;&lt;/a&gt;初始化&lt;code&gt;Driver&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;在代码中，我们需要初始化&lt;code&gt;Driver&lt;/code&gt;，方法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;System.setProperty(&lt;span class=&quot;string&quot;&gt;&quot;webdriver.chrome.driver&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;/Users/SvenWeng/PycharmProjects/chromedriver&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;第一个参数，你使用chrome就这样写，没啥好纠结的。第二个参数是你的chromedriver的路径。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;源码的处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;setProperty&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String key, String value)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    checkKey(key);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    SecurityManager sm = getSecurityManager();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (sm != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        sm.checkPermission(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; PropertyPermission(key,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            SecurityConstants.PROPERTY_WRITE_ACTION));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (String) props.setProperty(key, value);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;实际上是一个代理的过程。&lt;/p&gt;
+&lt;h2 id=&quot;正常的逻辑代码&quot;&gt;&lt;a href=&quot;#正常的逻辑代码&quot; class=&quot;headerlink&quot; title=&quot;正常的逻辑代码&quot;&gt;&lt;/a&gt;正常的逻辑代码&lt;/h2&gt;&lt;p&gt;在写正常的逻辑代码的时候，我又感觉到了java的面向对象设计——一些都是对象。用&lt;code&gt;Python&lt;/code&gt;写的时候并没有这么强烈的感觉。不多说了，上完整的代码。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.openqa.selenium.*;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.openqa.selenium.chrome.ChromeDriver;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SearchSelenium&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.setProperty(&lt;span class=&quot;string&quot;&gt;&quot;webdriver.chrome.driver&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;/Users/SvenWeng/PycharmProjects/chromedriver&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		WebDriver driver = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ChromeDriver();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		driver.get(&lt;span class=&quot;string&quot;&gt;&quot;http://youdao.com&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		WebElement element = driver.findElement(By.id(&lt;span class=&quot;string&quot;&gt;&quot;translateContent&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		element.sendKeys(&lt;span class=&quot;string&quot;&gt;&quot;selenium&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		element.submit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		driver.quit();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;最后&quot;&gt;&lt;a href=&quot;#最后&quot; class=&quot;headerlink&quot; title=&quot;最后&quot;&gt;&lt;/a&gt;最后&lt;/h2&gt;&lt;p&gt;同样，应该算是一个科普贴吧，用Mac上手Java+Selenium的朋友可以参考一下，本文没有很深的学习内容，仅作为一个入门的知识科普，希望刚入门的可以少走弯路。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在看Java的一些基础知识，因为Selenium是支持各种语言的，所以我想用java+Selenium来试水一下，虽然Mac也是可以正常的支持Java和Selenium，但是实际操作起来，有那么些不同，这些不同就会导致刚开始根本进行不下去，我也花了差不多1小时左右才正式跑通Demo。说实话，网络上关于Mac+Java+Selenium的说明实在是太少了。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Java" scheme="http://www.wengyb.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Django开发博博客（十二）—优化导航条的处理</title>
@@ -883,85 +931,6 @@
       &lt;p&gt;接上文&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/41/&quot;&gt;《Appium实战-开始》&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;文章来源：&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/42/&quot;&gt;《Appium实战-基类的构建》&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;套用UnitTest构建测试&quot;&gt;&lt;a href=&quot;#套用UnitTest构建测试&quot; class=&quot;headerlink&quot; title=&quot;套用UnitTest构建测试&quot;&gt;&lt;/a&gt;套用UnitTest构建测试&lt;/h2&gt;&lt;p&gt;UnitTest是Python的测试框架，我们这次的实战就是基于这个测试框架来构建的，所以就把基类用UnitTest构建起来。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
-    
-    
-      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
-    
-      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Appium实战-开始</title>
-    <link href="http://www.wengyb.com/2016/04/25/Appium%E5%AE%9E%E6%88%98-%E5%BC%80%E5%A7%8B/"/>
-    <id>http://www.wengyb.com/2016/04/25/Appium实战-开始/</id>
-    <published>2016-04-25T11:29:00.000Z</published>
-    <updated>2016-04-25T16:18:18.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;初衷&quot;&gt;&lt;a href=&quot;#初衷&quot; class=&quot;headerlink&quot; title=&quot;初衷&quot;&gt;&lt;/a&gt;初衷&lt;/h2&gt;&lt;p&gt;最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/35/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——驱动和常用功能的封装》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——处理混合APP中H5的操作》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/33/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——无安卓源码的一些准备》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/25/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium学习之路—环境搭建》&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;其实最大的坎还是在自己，只要开始写，一边写一边Google，慢慢的会发现很其实并不难。&lt;/p&gt;
-&lt;p&gt;Appium实战我打算记录自己写自动化的过程。希望对新司机有帮助。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注：整个流程是按照Page Object来写的，直接撸代码的请看&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/35/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Appium——驱动和常用功能的封装》&lt;/a&gt;然后自己撸代码&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;几种设计模式&quot;&gt;&lt;a href=&quot;#几种设计模式&quot; class=&quot;headerlink&quot; title=&quot;几种设计模式&quot;&gt;&lt;/a&gt;几种设计模式&lt;/h2&gt;&lt;h3 id=&quot;线性模式&quot;&gt;&lt;a href=&quot;#线性模式&quot; class=&quot;headerlink&quot; title=&quot;线性模式&quot;&gt;&lt;/a&gt;线性模式&lt;/h3&gt;&lt;p&gt;我称呼它为撸代码，也就是按照业务逻辑直接hard code。基本上初学者都会这样折腾，当然，折腾了一段时间就会觉得很操蛋，自己都不想看自己写的代码。&lt;/p&gt;
-&lt;h3 id=&quot;Page-Object&quot;&gt;&lt;a href=&quot;#Page-Object&quot; class=&quot;headerlink&quot; title=&quot;Page Object&quot;&gt;&lt;/a&gt;Page Object&lt;/h3&gt;&lt;p&gt;比较流行的设计模式，高度解耦，初学者看起来会觉得有点操蛋，但是了解了逻辑之后，会发现这样做非常棒，维护起来简直是轻松加愉快。&lt;/p&gt;
-&lt;h3 id=&quot;通用框架&quot;&gt;&lt;a href=&quot;#通用框架&quot; class=&quot;headerlink&quot; title=&quot;通用框架&quot;&gt;&lt;/a&gt;通用框架&lt;/h3&gt;&lt;p&gt;通用框架就是比较高级的做法了，实施起来比较麻烦，如果水平到了，这种方式肯定是最好的，利用关键字来驱动程序，是比较高级的境界。缺点就是比较难。。。。&lt;/p&gt;
-&lt;h2 id=&quot;设计思路&quot;&gt;&lt;a href=&quot;#设计思路&quot; class=&quot;headerlink&quot; title=&quot;设计思路&quot;&gt;&lt;/a&gt;设计思路&lt;/h2&gt;&lt;p&gt;整个设计思路是基于Page Object模式，如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png&quot; alt=&quot;设计图&quot;&gt;&lt;/p&gt;
-&lt;p&gt;什么是Page Object？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When you write tests against a web page, you need to refer to elements within that web page in order to click links and determine what’s displayed. However, if you write tests that manipulate the HTML elements directly your tests will be brittle to changes in the UI. A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;原来是Web端的模式，搬到移动端来，就是把页面分拆成一个一个元素，如示意图所示，我拆分为元素数据、元素定位、元素操作、测试步骤这么些东西。&lt;/p&gt;
-&lt;h2 id=&quot;有什么好处？&quot;&gt;&lt;a href=&quot;#有什么好处？&quot; class=&quot;headerlink&quot; title=&quot;有什么好处？&quot;&gt;&lt;/a&gt;有什么好处？&lt;/h2&gt;&lt;p&gt;这种模式整个架构看起来比直接撸代码复杂了很多，不过当遇到一些坑爹的问题时，尤其开发频繁改动的时候，这种设计模式的优势就出来了，比如开发改了元素的ID那些东西，那么我们只要修改相应ID就行了，所有和这个元素相关的都直接关联修改了，，而直接撸代码，涉及到的地方可能会有很多，改动起来很麻烦。查找方法，测试步骤什么的都不用改，维护起来相对轻松。&lt;/p&gt;
-&lt;h2 id=&quot;一些环境&quot;&gt;&lt;a href=&quot;#一些环境&quot; class=&quot;headerlink&quot; title=&quot;一些环境&quot;&gt;&lt;/a&gt;一些环境&lt;/h2&gt;&lt;p&gt;简单列一下我的环境吧：&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;系统：Mac OS X EI Capitan&lt;/p&gt;
-&lt;p&gt;Python: 2.7&lt;/p&gt;
-&lt;p&gt;Appium: 1.4.16&lt;/p&gt;
-&lt;p&gt;IDE: PyCharm&lt;/p&gt;
-&lt;p&gt;测试系统：Android&lt;/p&gt;
-&lt;p&gt;测试对象：微证券（应用商店可以直接下载）&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;我的项目结构：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;____.DS_Store&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____config.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____Data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____data.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____img&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____.DS_Store&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____caixun&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____gupiao.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____gupiaoneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____jijin.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____jijinneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____tuijian.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____tuijianneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____xinsanban.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____xinsanbanneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____zhaiquan.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____zhaiquanneirong.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| | |____黄金.png&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____Report&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____test.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____TestCase&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |______init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____common.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____testCaixun.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|____View&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |______init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |______init__.pyc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____BaseTestCase.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____BaseView.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;| |____Caixun.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;大的目录我是这么划分的：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Data 用来放置一些数据&lt;/li&gt;
-&lt;li&gt;Report 存放测试报告&lt;/li&gt;
-&lt;li&gt;TestCase 存放测试用例&lt;/li&gt;
-&lt;li&gt;img 存放一些截图&lt;/li&gt;
-&lt;li&gt;config.py 配置文件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;当然写到后续可能会做一些调整，毕竟我才刚刚开始写。&lt;/p&gt;
-&lt;h2 id=&quot;一些忠告&quot;&gt;&lt;a href=&quot;#一些忠告&quot; class=&quot;headerlink&quot; title=&quot;一些忠告&quot;&gt;&lt;/a&gt;一些忠告&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;一些很弱智的问题就自己去Google，比如Appium怎么开始啊，怎么学啊，环境怎么搭建啊！&lt;/li&gt;
-&lt;li&gt;多用Google&lt;/li&gt;
-&lt;li&gt;StockOverflow是个好地方&lt;/li&gt;
-&lt;li&gt;多写、多写、多写&lt;/li&gt;
-&lt;li&gt;人脑不是万能的，遇到问题解决后记录下来才是王道&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;初衷&quot;&gt;&lt;a href=&quot;#初衷&quot; class=&quot;headerlink&quot; title=&quot;初衷&quot;&gt;&lt;/a&gt;初衷&lt;/h2&gt;&lt;p&gt;最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/35/&quot;&gt;《Appium——驱动和常用功能的封装》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/34/&quot;&gt;《Appium——处理混合APP中H5的操作》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/33/&quot;&gt;《Appium——无安卓源码的一些准备》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wybblog.applinzi.com/blog/article/25/&quot;&gt;《Appium学习之路—环境搭建》&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。&lt;br&gt;
     
     </summary>
     

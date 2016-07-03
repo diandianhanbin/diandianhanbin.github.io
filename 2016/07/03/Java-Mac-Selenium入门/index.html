@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试,测试人生," />
+  <meta name="keywords" content="测试,Java," />
 
 
 
@@ -59,19 +59,18 @@
 
 
 
-<meta name="description" content="声明部分内容摘自网络，如有侵权，请告知删除！
-写代码测试需要学会编程吗？我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。">
+<meta name="description" content="背景最近在看Java的一些基础知识，因为Selenium是支持各种语言的，所以我想用java+Selenium来试水一下，虽然Mac也是可以正常的支持Java和Selenium，但是实际操作起来，有那么些不同，这些不同就会导致刚开始根本进行不下去，我也花了差不多1小时左右才正式跑通Demo。说实话，网络上关于Mac+Java+Selenium的说明实在是太少了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试之始--你应该知道的知识">
-<meta property="og:url" content="http://www.wengyb.com/2016/05/25/测试之始-你应该知道的知识/index.html">
+<meta property="og:title" content="Java+Mac+Selenium入门">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/03/Java-Mac-Selenium入门/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="声明部分内容摘自网络，如有侵权，请告知删除！
-写代码测试需要学会编程吗？我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。">
-<meta property="og:updated_time" content="2016-05-25T13:43:00.000Z">
+<meta property="og:description" content="背景最近在看Java的一些基础知识，因为Selenium是支持各种语言的，所以我想用java+Selenium来试水一下，虽然Mac也是可以正常的支持Java和Selenium，但是实际操作起来，有那么些不同，这些不同就会导致刚开始根本进行不下去，我也花了差不多1小时左右才正式跑通Demo。说实话，网络上关于Mac+Java+Selenium的说明实在是太少了。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/D1017B9B-861B-4E5C-AFB7-E5F784B03065.png">
+<meta property="og:updated_time" content="2016-07-03T05:27:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试之始--你应该知道的知识">
-<meta name="twitter:description" content="声明部分内容摘自网络，如有侵权，请告知删除！
-写代码测试需要学会编程吗？我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。">
+<meta name="twitter:title" content="Java+Mac+Selenium入门">
+<meta name="twitter:description" content="背景最近在看Java的一些基础知识，因为Selenium是支持各种语言的，所以我想用java+Selenium来试水一下，虽然Mac也是可以正常的支持Java和Selenium，但是实际操作起来，有那么些不同，这些不同就会导致刚开始根本进行不下去，我也花了差不多1小时左右才正式跑通Demo。说实话，网络上关于Mac+Java+Selenium的说明实在是太少了。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/D1017B9B-861B-4E5C-AFB7-E5F784B03065.png">
 
 
 
@@ -89,7 +88,7 @@
   };
 </script>
 
-  <title> 测试之始--你应该知道的知识 | 点点寒彬 </title>
+  <title> Java+Mac+Selenium入门 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +257,7 @@
             
             
               
-                测试之始--你应该知道的知识
+                Java+Mac+Selenium入门
               
             
           </h1>
@@ -270,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T21:42:11+08:00" content="2016-05-25">
-              2016-05-25
+            <time itemprop="dateCreated" datetime="2016-07-03T13:26:21+08:00" content="2016-07-03">
+              2016-07-03
             </time>
           </span>
 
@@ -300,8 +299,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/25/测试之始-你应该知道的知识/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/测试之始-你应该知道的知识/" itemprop="commentsCount"></span>
+                <a href="/2016/07/03/Java-Mac-Selenium入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/Java-Mac-Selenium入门/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,17 +322,30 @@
       
 
       
-        <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>部分内容摘自网络，如有侵权，请告知删除！</p>
-<h2 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h2><h3 id="测试需要学会编程吗？"><a href="#测试需要学会编程吗？" class="headerlink" title="测试需要学会编程吗？"></a>测试需要学会编程吗？</h3><p>我比较建议学，不用学太深，因为测试的对象就是软件，那么它们是如何构成的还是需要做一些基本的了解。有了程序员的思维，在与开发的沟通过程中也能更好的相互理解。<br><a id="more"></a></p>
-<h3 id="学哪门语言？"><a href="#学哪门语言？" class="headerlink" title="学哪门语言？"></a>学哪门语言？</h3><p>一般来说，所在公司的开发语言是什么，就应该学什么，如果是学生或者暂时用不到的，那么就学比较大众化的语言咯！Python和Java是比较推荐的。</p>
-<p>测试人员学编程语言一般是出于两个目的:作为入门了解;想要运用到后续测试工作中。从 这两个角度来看,这两个语言都是可以的。而 python 会比 java 更容易入门。</p>
-<h2 id="用什么工具？"><a href="#用什么工具？" class="headerlink" title="用什么工具？"></a>用什么工具？</h2><p>测试过程中会用到的工具还是挺多的。大概有这么些：<br>测试分析与设计:Xmind Excel 等;<br>Bug 定位: Firebug/Chrome、Charles 等<br>测试管理:Redmine、Jira、Testlink 等<br>自动化测试工具:Selenium、Robot Framework、TestNG、Appium 等<br>性能测试工具:Grinder、JMeter、LR 等<br>以上是比较常用的工具，根据个人的情况不同会有一些变化，但是大概的内容就是这么些。</p>
-<h2 id="大公司还是小公司？"><a href="#大公司还是小公司？" class="headerlink" title="大公司还是小公司？"></a>大公司还是小公司？</h2><p>这个就要看个人的情况了，大公司更多的倾向于学习流程，做一颗螺丝钉，小公司则需要你是一个多面手，完成测试但不仅限于测试。</p>
-<h2 id="找工作"><a href="#找工作" class="headerlink" title="找工作"></a>找工作</h2><p>目前的形势来看，找一份测试的工作还是很容易的。不过想找一份好的工作，还是需要运气的。</p>
-<p>不同公司对测试的要求和定位都不一样，需要找一个测试团队相对和谐，并且公司比较重视测试的公司。</p>
-<p>每个公司的测试发展状态不一致，达到的层次不一致导致的。有些可能测试团队刚开始组建，有些只是找大牛，情况比较杂。有些甚至都还不知道手机上可以像PC上那么做自动化，有些也都有自己的测试框架，docker也都在用等等。</p>
-<h2 id="薪资"><a href="#薪资" class="headerlink" title="薪资"></a>薪资</h2><p>这块是一个比较敏感的话题，测试的工资一般来说会比开发低一些，但是总体来说，还是高于行业的平均水平的。</p>
-<h2 id="测试思想"><a href="#测试思想" class="headerlink" title="测试思想"></a>测试思想</h2><p>不得不说，测试思想才是一名测试人员的核心要素，不管是做什么方面的测试，思想才是最核心的技能，这方面需要在工作中不断的积累。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在看Java的一些基础知识，因为Selenium是支持各种语言的，所以我想用java+Selenium来试水一下，虽然Mac也是可以正常的支持Java和Selenium，但是实际操作起来，有那么些不同，这些不同就会导致刚开始根本进行不下去，我也花了差不多1小时左右才正式跑通Demo。说实话，网络上关于Mac+Java+Selenium的说明实在是太少了。<br><a id="more"></a></p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><hr>
+<p>版本相关 </p>
+<p>操作系统：Mac OS X EI Caption </p>
+<p>IDE：Eclipse</p>
+<hr>
+<h2 id="与Python的区别"><a href="#与Python的区别" class="headerlink" title="与Python的区别"></a>与Python的区别</h2><p>我们都知道，用Python来跑同Selenium真的太简单了，使用Pip安装好Selenium，然后直接引入就可以使用了，但是Java不同，Java要先导入架包，然后初始化<code>driver</code>路径，然后才是正常的书写。</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><h3 id="下载架包"><a href="#下载架包" class="headerlink" title="下载架包"></a>下载架包</h3><p>JDK那些我就不多说了，去Selenium官网上下架包，需要下三个文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|____selenium-java-2.53.0-srcs.jar</span><br><span class="line">|____selenium-java-2.53.0.jar</span><br><span class="line">|____selenium-server-standalone-2.53.0.jar</span><br></pre></td></tr></table></figure>
+<p>对，是三个文件，最后一个<code>selenium-server-standalone-2.53.0.jar</code>是非常关键的，因为导入架包就是要导入这个东西。</p>
+<h3 id="eclipse配置架包"><a href="#eclipse配置架包" class="headerlink" title="eclipse配置架包"></a>eclipse配置架包</h3><p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/D1017B9B-861B-4E5C-AFB7-E5F784B03065.png" alt="buildpath"></p>
+<h3 id="引入架包"><a href="#引入架包" class="headerlink" title="引入架包"></a>引入架包</h3><p>导入成功之后，需要在代码中引用<code>Selenium</code>包和驱动，我使用的是Chrome来执行，因此我的引入代码是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openqa.selenium.*;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.chrome.ChromeDriver;</span><br></pre></td></tr></table></figure>
+<h3 id="初始化Driver"><a href="#初始化Driver" class="headerlink" title="初始化Driver"></a>初始化<code>Driver</code></h3><p>在代码中，我们需要初始化<code>Driver</code>，方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.setProperty(<span class="string">"webdriver.chrome.driver"</span>, <span class="string">"/Users/SvenWeng/PycharmProjects/chromedriver"</span>);</span><br></pre></td></tr></table></figure>
+<p>第一个参数，你使用chrome就这样写，没啥好纠结的。第二个参数是你的chromedriver的路径。</p>
+<ul>
+<li>源码的处理</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">setProperty</span><span class="params">(String key, String value)</span> </span>&#123;</span><br><span class="line">    checkKey(key);</span><br><span class="line">    SecurityManager sm = getSecurityManager();</span><br><span class="line">    <span class="keyword">if</span> (sm != <span class="keyword">null</span>) &#123;</span><br><span class="line">        sm.checkPermission(<span class="keyword">new</span> PropertyPermission(key,</span><br><span class="line">            SecurityConstants.PROPERTY_WRITE_ACTION));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (String) props.setProperty(key, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际上是一个代理的过程。</p>
+<h2 id="正常的逻辑代码"><a href="#正常的逻辑代码" class="headerlink" title="正常的逻辑代码"></a>正常的逻辑代码</h2><p>在写正常的逻辑代码的时候，我又感觉到了java的面向对象设计——一些都是对象。用<code>Python</code>写的时候并没有这么强烈的感觉。不多说了，上完整的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openqa.selenium.*;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.chrome.ChromeDriver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchSelenium</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		System.setProperty(<span class="string">"webdriver.chrome.driver"</span>, <span class="string">"/Users/SvenWeng/PycharmProjects/chromedriver"</span>);</span><br><span class="line">		</span><br><span class="line">		WebDriver driver = <span class="keyword">new</span> ChromeDriver();</span><br><span class="line">		driver.get(<span class="string">"http://youdao.com"</span>);</span><br><span class="line">		WebElement element = driver.findElement(By.id(<span class="string">"translateContent"</span>));</span><br><span class="line">		element.sendKeys(<span class="string">"selenium"</span>);</span><br><span class="line">		element.submit();</span><br><span class="line">		driver.quit();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>同样，应该算是一个科普贴吧，用Mac上手Java+Selenium的朋友可以参考一下，本文没有很深的学习内容，仅作为一个入门的知识科普，希望刚入门的可以少走弯路。</p>
 
       
     </div>
@@ -371,7 +383,7 @@
           
             <a href="/tags/测试/" rel="tag">#测试</a>
           
-            <a href="/tags/测试人生/" rel="tag">#测试人生</a>
+            <a href="/tags/Java/" rel="tag">#Java</a>
           
         </div>
       
@@ -380,17 +392,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/23/基于Python的接口测试框架/" rel="next" title="基于Python的接口测试框架">
-                <i class="fa fa-chevron-left"></i> 基于Python的接口测试框架
+              <a href="/2016/07/01/Django开发博博客（十二）—优化导航条的处理/" rel="next" title="Django开发博博客（十二）—优化导航条的处理">
+                <i class="fa fa-chevron-left"></i> Django开发博博客（十二）—优化导航条的处理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/28/用Python写一个发邮件模块/" rel="prev" title="用Python写一个发邮件模块">
-                用Python写一个发邮件模块 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,10 +413,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/25/测试之始-你应该知道的知识/"
-     data-title="测试之始--你应该知道的知识"
+        <div class="ds-share flat" data-thread-key="2016/07/03/Java-Mac-Selenium入门/"
+     data-title="Java+Mac+Selenium入门"
      data-content=""
-     data-url="http://www.wengyb.com/2016/05/25/测试之始-你应该知道的知识/">
+     data-url="http://www.wengyb.com/2016/07/03/Java-Mac-Selenium入门/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -435,8 +443,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/25/测试之始-你应该知道的知识/"
-           data-title="测试之始--你应该知道的知识" data-url="http://www.wengyb.com/2016/05/25/测试之始-你应该知道的知识/">
+      <div class="ds-thread" data-thread-key="2016/07/03/Java-Mac-Selenium入门/"
+           data-title="Java+Mac+Selenium入门" data-url="http://www.wengyb.com/2016/07/03/Java-Mac-Selenium入门/">
       </div>
     
   </div>
@@ -608,7 +616,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写代码"><span class="nav-number">2.</span> <span class="nav-text">写代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试需要学会编程吗？"><span class="nav-number">2.1.</span> <span class="nav-text">测试需要学会编程吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学哪门语言？"><span class="nav-number">2.2.</span> <span class="nav-text">学哪门语言？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用什么工具？"><span class="nav-number">3.</span> <span class="nav-text">用什么工具？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大公司还是小公司？"><span class="nav-number">4.</span> <span class="nav-text">大公司还是小公司？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找工作"><span class="nav-number">5.</span> <span class="nav-text">找工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#薪资"><span class="nav-number">6.</span> <span class="nav-text">薪资</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试思想"><span class="nav-number">7.</span> <span class="nav-text">测试思想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与Python的区别"><span class="nav-number">3.</span> <span class="nav-text">与Python的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">4.</span> <span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载架包"><span class="nav-number">4.1.</span> <span class="nav-text">下载架包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse配置架包"><span class="nav-number">4.2.</span> <span class="nav-text">eclipse配置架包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入架包"><span class="nav-number">4.3.</span> <span class="nav-text">引入架包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化Driver"><span class="nav-number">4.4.</span> <span class="nav-text">初始化Driver</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正常的逻辑代码"><span class="nav-number">5.</span> <span class="nav-text">正常的逻辑代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
