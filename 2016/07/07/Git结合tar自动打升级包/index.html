@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="Git," />
 
 
 
@@ -59,16 +59,21 @@
 
 
 
-<meta name="description" content="相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式">
+<meta name="description" content="近日武汉遭受特大洪水，仿佛又见98年特大洪灾，每次出现天灾，总是一方有难八方支援。为武汉祈福。
+次次灾情都有伟大的人民子弟兵站在第一线，向他们致敬。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python小知识——深度剖析获取迭代序列">
-<meta property="og:url" content="http://www.wengyb.com/2016/03/12/Python小知识——深度剖析获取迭代序列/index.html">
+<meta property="og:title" content="Git结合tar自动打升级包">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/07/Git结合tar自动打升级包/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式">
-<meta property="og:updated_time" content="2016-03-31T03:15:37.000Z">
+<meta property="og:description" content="近日武汉遭受特大洪水，仿佛又见98年特大洪灾，每次出现天灾，总是一方有难八方支援。为武汉祈福。
+次次灾情都有伟大的人民子弟兵站在第一线，向他们致敬。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-07-IMG_0039.png">
+<meta property="og:updated_time" content="2016-07-07T13:36:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python小知识——深度剖析获取迭代序列">
-<meta name="twitter:description" content="相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式">
+<meta name="twitter:title" content="Git结合tar自动打升级包">
+<meta name="twitter:description" content="近日武汉遭受特大洪水，仿佛又见98年特大洪灾，每次出现天灾，总是一方有难八方支援。为武汉祈福。
+次次灾情都有伟大的人民子弟兵站在第一线，向他们致敬。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-07-IMG_0039.png">
 
 
 
@@ -86,7 +91,7 @@
   };
 </script>
 
-  <title> Python小知识——深度剖析获取迭代序列 | 点点寒彬 </title>
+  <title> Git结合tar自动打升级包 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +260,7 @@
             
             
               
-                Python小知识——深度剖析获取迭代序列
+                Git结合tar自动打升级包
               
             
           </h1>
@@ -267,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T10:41:06+08:00" content="2016-03-12">
-              2016-03-12
+            <time itemprop="dateCreated" datetime="2016-07-07T21:35:54+08:00" content="2016-07-07">
+              2016-07-07
             </time>
           </span>
 
@@ -281,8 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
                   </a>
                 </span>
 
@@ -297,8 +302,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/12/Python小知识——深度剖析获取迭代序列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/12/Python小知识——深度剖析获取迭代序列/" itemprop="commentsCount"></span>
+                <a href="/2016/07/07/Git结合tar自动打升级包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/07/Git结合tar自动打升级包/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,19 +325,34 @@
       
 
       
-        <p>相信获取迭代序列是一个非常普遍的需求功能，基本上写代码都要考虑到这个东西，我自己写博客系统的时候也经常遇到这个问题，实现起来其实很简单，只要在for循环外加一个参数监听迭代就行了，比如下面这种方式<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">li = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;f&apos;]</span><br><span class="line">num = 0</span><br><span class="line">for i in li:</span><br><span class="line">	print &apos;index :&apos; num, &apos;element :&apos;, i</span><br><span class="line">	num += 1</span><br></pre></td></tr></table></figure></p>
-<p>这种方式获取起来很容写，也比较好理解，但是这个运行过程中多声明了一个变量，性能上并不是最优的（当然基本上我们写的东西性能上不差这一点）。</p>
-<p>另一个替代方法是使用len（）和range（）的结合使用，这个方法用起来也是非常方便的，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;f&apos;]</span><br><span class="line">for i in range(len(li)):</span><br><span class="line">	print &apos;index :&apos; i, &apos;element :&apos;, li[i]</span><br></pre></td></tr></table></figure>
-<p>类似的方法还有zip（）， while循环等等。</p>
-<h2 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate"></a>enumerate</h2><p>今天在看书的时候突然看到这个函数，这个函数处理起来真的是非常巧妙，至少我感觉比上文提到的方法更简单，更粗暴。</p>
-<p>看下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">li = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</span><br><span class="line">for i, e in enumerate(li):</span><br><span class="line">	print  i, e</span><br><span class="line"></span><br><span class="line">======输出结果===========</span><br><span class="line">0 a</span><br><span class="line">1 b</span><br><span class="line">2 c</span><br><span class="line">[Finished in 0.1s]</span><br></pre></td></tr></table></figure>
-<p>这种实现方式代码简洁，可读性强。其函数签名如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enumerate(sequence, start=0)</span><br></pre></td></tr></table></figure>
-<p>其中的sequence可以为任意一个可迭代的对象，函数的本质上就是一个迭代器，可以使用next()方法获取下一个迭代元素，比如上面的代码我们做一下简单的修改。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">li = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</span><br><span class="line">print enumerate(li)</span><br><span class="line">e = enumerate(li)</span><br><span class="line">print e.next()</span><br><span class="line">print e.next()</span><br><span class="line"></span><br><span class="line">=======输出结果======</span><br><span class="line">&lt;enumerate object at 0x1079faaa0&gt;</span><br><span class="line">(0, &apos;a&apos;)</span><br><span class="line">(1, &apos;b&apos;)</span><br></pre></td></tr></table></figure>
-<h3 id="不适用于字典"><a href="#不适用于字典" class="headerlink" title="不适用于字典"></a>不适用于字典</h3><p>字典这个类型是无序的，所以无法使用enumerate来处理字典的迭代,当然，你如果使用了也不会报错。</p>
+        <p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-07-IMG_0039.png" alt="IMG_0039"></p>
+<p>近日武汉遭受特大洪水，仿佛又见98年特大洪灾，每次出现天灾，总是一方有难八方支援。为武汉祈福。</p>
+<p>次次灾情都有伟大的人民子弟兵站在第一线，向他们致敬。<br><a id="more"></a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在看<code>Git</code>，那么看了之后就需要用<code>Git</code>来解决一些工作中遇到的问题，学了不能用在工作中，等于白学。</p>
+<p>这次遇到的问题是打包升级的问题，我们公司目前还处于最原始的手工打更新包的状况，每次打包都要找开发要更新的内容，非常非常的麻烦，于是我就想用学习的<code>Git</code>来解决这个问题。</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>我们的环境有两个，一个是开发环境、另一个是测试环境，那么我希望每次在开发环境都能自动把一个周期内开发改动的内容自动打包出来。我只要<code>down</code>下来用<code>ftp</code>上传到测试环境就行了。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>当然，两个环境都需要装上<code>Git</code>。装完之后我需要让两个环境的数据同步。所以要先手工处理一次，然后在两个环境打上相同的<code>Tag</code>。以后，不管开发提交了几次改动，我只要和我上次使用的<code>Tag</code>做比对，就能知道开发做了哪些改动</p>
+<h2 id="自动打包"><a href="#自动打包" class="headerlink" title="自动打包"></a>自动打包</h2><p>自动打包有两个工作要做，第一步要把改动的文件抓出来，第二步要把他们打包。</p>
+<ul>
+<li>抓出改动的文件</li>
+</ul>
+<p>我使用的是diff命令，<code>Git</code>中自带了这个功能。</p>
+<p><code>git diff &lt;原来的版本&gt; &lt;现在的版本&gt; --only-name</code></p>
+<p>这条命令就能抓出两个版本中不同的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">README.MD</span><br><span class="line">TestTools/mobile/adb.py</span><br><span class="line">TestTools/mobile/adbconfig.py</span><br><span class="line">TestTools/urls.py</span><br><span class="line">TestTools/views.py</span><br><span class="line">static/bootstrap/bootstrap.min.css</span><br><span class="line">static/img/bodyBg.jpg</span><br><span class="line">static/img/bodyBg2.jpg</span><br><span class="line">static/img/bodyBg3.jpg</span><br><span class="line">static/img/test1.jpg</span><br><span class="line">static/img/test2.jpg</span><br><span class="line">static/js/androidbaseinfo.js</span><br><span class="line">static/js/bootstrap.min.js</span><br><span class="line">static/js/bug.js</span><br><span class="line">static/js/commonfunction.js</span><br><span class="line">static/js/jquery-3.0.0.min.js</span><br><span class="line">templates/TestTools/base.html</span><br><span class="line">templates/TestTools/mobileTest/baseinfo.html</span><br></pre></td></tr></table></figure>
+<p>比如某次我的工具箱的改动就是这些。</p>
+<ul>
+<li>自动打包</li>
+</ul>
+<p>在<code>Linux</code>中，打包的命令是<code>tar</code>。</p>
+<p><code>tar -cvf + &lt;文件名&gt; + &lt;打包的文件名&gt;</code>就可以把文件打包出来了，那么，我们第一步的操作，不就是把改动的文件名输出出来么？</p>
+<ul>
+<li>通过管道符连接两个句子</li>
+</ul>
+<p><code>Linux</code>中神奇的管道符可谓功能多多。完整的句子如下：</p>
+<p><code>git diff fff3e56 0685a03 --name-only | xargs tar -cvf update.tar</code></p>
+<p>这样当前目录就会多出一个update.tar的压缩包。解压缩出来就是这次改动的更新包了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我们的环境是<code>Windows</code>的，所以还要研究一下怎么去跑自动化。如果是<code>Linux</code>的，那就非常简单了，写一个<code>shell</code>脚本就能很轻松的实现自动化更新了。</p>
 
       
     </div>
@@ -368,7 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag">#python</a>
+            <a href="/tags/Git/" rel="tag">#Git</a>
           
         </div>
       
@@ -377,17 +397,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/12/Django使用第三方接口（一）/" rel="next" title="Django使用第三方接口（一）">
-                <i class="fa fa-chevron-left"></i> Django使用第三方接口（一）
+              <a href="/2016/07/03/Git学习小记——文件分块提交/" rel="next" title="Git学习小记——文件分块提交">
+                <i class="fa fa-chevron-left"></i> Git学习小记——文件分块提交
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/14/Python-MongoDB翻译/" rel="prev" title="Python-MongoDB翻译">
-                Python-MongoDB翻译 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -402,10 +418,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/12/Python小知识——深度剖析获取迭代序列/"
-     data-title="Python小知识——深度剖析获取迭代序列"
+        <div class="ds-share flat" data-thread-key="2016/07/07/Git结合tar自动打升级包/"
+     data-title="Git结合tar自动打升级包"
      data-content=""
-     data-url="http://www.wengyb.com/2016/03/12/Python小知识——深度剖析获取迭代序列/">
+     data-url="http://www.wengyb.com/2016/07/07/Git结合tar自动打升级包/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -432,8 +448,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/12/Python小知识——深度剖析获取迭代序列/"
-           data-title="Python小知识——深度剖析获取迭代序列" data-url="http://www.wengyb.com/2016/03/12/Python小知识——深度剖析获取迭代序列/">
+      <div class="ds-thread" data-thread-key="2016/07/07/Git结合tar自动打升级包/"
+           data-title="Git结合tar自动打升级包" data-url="http://www.wengyb.com/2016/07/07/Git结合tar自动打升级包/">
       </div>
     
   </div>
@@ -605,7 +621,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#enumerate"><span class="nav-number">1.</span> <span class="nav-text">enumerate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不适用于字典"><span class="nav-number">1.1.</span> <span class="nav-text">不适用于字典</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动打包"><span class="nav-number">4.</span> <span class="nav-text">自动打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>

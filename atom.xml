@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-07-03T08:18:19.000Z</updated>
+  <updated>2016-07-07T13:36:29.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git结合tar自动打升级包</title>
+    <link href="http://www.wengyb.com/2016/07/07/Git%E7%BB%93%E5%90%88tar%E8%87%AA%E5%8A%A8%E6%89%93%E5%8D%87%E7%BA%A7%E5%8C%85/"/>
+    <id>http://www.wengyb.com/2016/07/07/Git结合tar自动打升级包/</id>
+    <published>2016-07-07T13:35:54.000Z</published>
+    <updated>2016-07-07T13:36:29.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-07-IMG_0039.png&quot; alt=&quot;IMG_0039&quot;&gt;&lt;/p&gt;
+&lt;p&gt;近日武汉遭受特大洪水，仿佛又见98年特大洪灾，每次出现天灾，总是一方有难八方支援。为武汉祈福。&lt;/p&gt;
+&lt;p&gt;次次灾情都有伟大的人民子弟兵站在第一线，向他们致敬。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近在看&lt;code&gt;Git&lt;/code&gt;，那么看了之后就需要用&lt;code&gt;Git&lt;/code&gt;来解决一些工作中遇到的问题，学了不能用在工作中，等于白学。&lt;/p&gt;
+&lt;p&gt;这次遇到的问题是打包升级的问题，我们公司目前还处于最原始的手工打更新包的状况，每次打包都要找开发要更新的内容，非常非常的麻烦，于是我就想用学习的&lt;code&gt;Git&lt;/code&gt;来解决这个问题。&lt;/p&gt;
+&lt;h2 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的&quot;&gt;&lt;/a&gt;目的&lt;/h2&gt;&lt;p&gt;我们的环境有两个，一个是开发环境、另一个是测试环境，那么我希望每次在开发环境都能自动把一个周期内开发改动的内容自动打包出来。我只要&lt;code&gt;down&lt;/code&gt;下来用&lt;code&gt;ftp&lt;/code&gt;上传到测试环境就行了。&lt;/p&gt;
+&lt;h2 id=&quot;开始&quot;&gt;&lt;a href=&quot;#开始&quot; class=&quot;headerlink&quot; title=&quot;开始&quot;&gt;&lt;/a&gt;开始&lt;/h2&gt;&lt;p&gt;当然，两个环境都需要装上&lt;code&gt;Git&lt;/code&gt;。装完之后我需要让两个环境的数据同步。所以要先手工处理一次，然后在两个环境打上相同的&lt;code&gt;Tag&lt;/code&gt;。以后，不管开发提交了几次改动，我只要和我上次使用的&lt;code&gt;Tag&lt;/code&gt;做比对，就能知道开发做了哪些改动&lt;/p&gt;
+&lt;h2 id=&quot;自动打包&quot;&gt;&lt;a href=&quot;#自动打包&quot; class=&quot;headerlink&quot; title=&quot;自动打包&quot;&gt;&lt;/a&gt;自动打包&lt;/h2&gt;&lt;p&gt;自动打包有两个工作要做，第一步要把改动的文件抓出来，第二步要把他们打包。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;抓出改动的文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我使用的是diff命令，&lt;code&gt;Git&lt;/code&gt;中自带了这个功能。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git diff &amp;lt;原来的版本&amp;gt; &amp;lt;现在的版本&amp;gt; --only-name&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这条命令就能抓出两个版本中不同的内容。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;README.MD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TestTools/mobile/adb.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TestTools/mobile/adbconfig.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TestTools/urls.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TestTools/views.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/bootstrap/bootstrap.min.css&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/img/bodyBg.jpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/img/bodyBg2.jpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/img/bodyBg3.jpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/img/test1.jpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/img/test2.jpg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/js/androidbaseinfo.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/js/bootstrap.min.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/js/bug.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/js/commonfunction.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static/js/jquery-3.0.0.min.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;templates/TestTools/base.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;templates/TestTools/mobileTest/baseinfo.html&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;比如某次我的工具箱的改动就是这些。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自动打包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;中，打包的命令是&lt;code&gt;tar&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tar -cvf + &amp;lt;文件名&amp;gt; + &amp;lt;打包的文件名&amp;gt;&lt;/code&gt;就可以把文件打包出来了，那么，我们第一步的操作，不就是把改动的文件名输出出来么？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过管道符连接两个句子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Linux&lt;/code&gt;中神奇的管道符可谓功能多多。完整的句子如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git diff fff3e56 0685a03 --name-only | xargs tar -cvf update.tar&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这样当前目录就会多出一个update.tar的压缩包。解压缩出来就是这次改动的更新包了。&lt;/p&gt;
+&lt;h2 id=&quot;最后&quot;&gt;&lt;a href=&quot;#最后&quot; class=&quot;headerlink&quot; title=&quot;最后&quot;&gt;&lt;/a&gt;最后&lt;/h2&gt;&lt;p&gt;我们的环境是&lt;code&gt;Windows&lt;/code&gt;的，所以还要研究一下怎么去跑自动化。如果是&lt;code&gt;Linux&lt;/code&gt;的，那就非常简单了，写一个&lt;code&gt;shell&lt;/code&gt;脚本就能很轻松的实现自动化更新了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-07-IMG_0039.png&quot; alt=&quot;IMG_0039&quot;&gt;&lt;/p&gt;
+&lt;p&gt;近日武汉遭受特大洪水，仿佛又见98年特大洪灾，每次出现天灾，总是一方有难八方支援。为武汉祈福。&lt;/p&gt;
+&lt;p&gt;次次灾情都有伟大的人民子弟兵站在第一线，向他们致敬。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="Git" scheme="http://www.wengyb.com/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>Git学习小记——文件分块提交</title>
@@ -899,40 +951,6 @@
     
     
       <category term="思想汇报" scheme="http://www.wengyb.com/tags/%E6%80%9D%E6%83%B3%E6%B1%87%E6%8A%A5/"/>
-    
-      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浅谈碎片化阅读</title>
-    <link href="http://www.wengyb.com/2016/04/28/%E6%B5%85%E8%B0%88%E7%A2%8E%E7%89%87%E5%8C%96%E9%98%85%E8%AF%BB/"/>
-    <id>http://www.wengyb.com/2016/04/28/浅谈碎片化阅读/</id>
-    <published>2016-04-28T05:23:52.000Z</published>
-    <updated>2016-04-28T05:27:11.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天在找Mac软件的时候，无意中玩了一下上古神器RSS。在搜索RSS源的时候突然就想到了前几天在刷朋友圈鸡汤的时候刷到了这个东西。&lt;/p&gt;
-&lt;h2 id=&quot;二&quot;&gt;&lt;a href=&quot;#二&quot; class=&quot;headerlink&quot; title=&quot;二&quot;&gt;&lt;/a&gt;二&lt;/h2&gt;&lt;p&gt;碎片化阅读简单来说就是利用碎片化时间去获取一些知识，比如我上高中的时候很流行的李阳疯狂英语就很主张碎片化学习英语，利用碎片时间背单词，读句子。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;随着移动设备的普及，移动社交的发展，碎片化学习在这些年越来越流行，而各大机构又特别亲民的推出了很多诸如“一张图让你看懂XXX”、“一篇文章告诉你XXX”等等所谓的“干货”，更让大家觉得知识并不是那么的遥不可及。&lt;/p&gt;
-&lt;h2 id=&quot;三&quot;&gt;&lt;a href=&quot;#三&quot; class=&quot;headerlink&quot; title=&quot;三&quot;&gt;&lt;/a&gt;三&lt;/h2&gt;&lt;p&gt;块状阅读这个名词我是在知乎上看到的，觉得特别贴切。块状阅读和碎片化阅读的区别就是块状阅读是把一整部分的知识分成一块一块的阅读，而碎片化阅读很大程度上是阅读一些杂乱无章的知识体系的总结内容。知乎上这位大神的看法是支持块状阅读而反对碎片化阅读。&lt;/p&gt;
-&lt;h2 id=&quot;四&quot;&gt;&lt;a href=&quot;#四&quot; class=&quot;headerlink&quot; title=&quot;四&quot;&gt;&lt;/a&gt;四&lt;/h2&gt;&lt;p&gt;从上文的行文方式来看，也基本能看出我的一些观点，我并不太支持碎片化阅读。&lt;/p&gt;
-&lt;p&gt;最初我是很喜欢碎片化阅读的，尤其是一天看了非常多高聚合的文章，我感觉自己好像读懂了全世界。不过慢慢的我发现这些东西我都忘光了。相信很多人都有这种感觉，今天早上读的东西，50%下午就忘记了，40%的东西睡一觉就忘了，10%的东西过一周就忘了，基本上能记得住的东西，基本都是本来对这个领域有一定的理解。&lt;/p&gt;
-&lt;p&gt;前天看到的一篇报道，是一位投资者说创业者在拉风投的故事，里面提到的一点很有意思，他说很大一部分创业者很大程度上对自己的行业都不了解，表面上可以侃大山一样侃上几小时，但是基本上都停留在表面层，一旦做了一些深入的问询，就经常会答非所问。这其实就指出了一个很关键的点，&lt;strong&gt;很多人的知识都不成体系&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;五&quot;&gt;&lt;a href=&quot;#五&quot; class=&quot;headerlink&quot; title=&quot;五&quot;&gt;&lt;/a&gt;五&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;知识体系&lt;/strong&gt;就是某一方面的知识树。我们从小到大接受的教育，都是成体系的，比如语文、数学等，都是按照一定的阶梯，由浅入深的学习，慢慢的构建知识树。没有一定程度的积累，单凭几篇文章就想了解，无异于痴人说梦。&lt;/p&gt;
-&lt;h2 id=&quot;六&quot;&gt;&lt;a href=&quot;#六&quot; class=&quot;headerlink&quot; title=&quot;六&quot;&gt;&lt;/a&gt;六&lt;/h2&gt;&lt;p&gt;我曾经花了大概小半年的时间，相对深入的研究了《管理学》（其实是考研考的管理学），管理学的一些分类比如企业行为学模块，人力资源管理模块，有效决策学模块，供应链管理模块，运营管理模块，策略管理模块等等，每一块单独拿出来都可以让人研究很久很久。而现在网络上把很多管理学的内容单独抽出来，作为一些成功学，心灵鸡汤来传递知识，其实很大程度上都是断章取义，很多知识点都是依赖于特定的环境特定的人才能发挥比较好的效果，如果知识体系不完备，这些以偏概全的所谓知识，很可能会误导你。&lt;/p&gt;
-&lt;h2 id=&quot;七&quot;&gt;&lt;a href=&quot;#七&quot; class=&quot;headerlink&quot; title=&quot;七&quot;&gt;&lt;/a&gt;七&lt;/h2&gt;&lt;p&gt;当然，碎片化阅读并不是一无是处，如果把碎片化阅读当成一种信息获取渠道，挑选出感兴趣的知识点，慢慢的对这些知识进行补充总结，不断的加深自己的理解。构建自己的知识体系，利用它来寻找自己的兴趣点，那么又何尝不是一个好东西呢？&lt;/p&gt;
-&lt;h2 id=&quot;八&quot;&gt;&lt;a href=&quot;#八&quot; class=&quot;headerlink&quot; title=&quot;八&quot;&gt;&lt;/a&gt;八&lt;/h2&gt;&lt;p&gt;社会日趋浮躁，尤其在快节奏的大城市更加如此。闲暇时间的减少和对知识的渴求催生了碎片化阅读这一高需求的获取知识方式。在我的观点里，过度追求碎片化阅读获取知识，表面上看起来什么都懂，实际上花了碎片时间，依然一无所有。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;让人变得低效的不是碎片化阅读，而是以为通过碎片化阅读可以高效学习的想法本身。它会让人陷入一种找到捷径的浮躁心理，就好比练功求捷径，那么，等待它的只能是走火入魔。&lt;/strong&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天在找Mac软件的时候，无意中玩了一下上古神器RSS。在搜索RSS源的时候突然就想到了前几天在刷朋友圈鸡汤的时候刷到了这个东西。&lt;/p&gt;
-&lt;h2 id=&quot;二&quot;&gt;&lt;a href=&quot;#二&quot; class=&quot;headerlink&quot; title=&quot;二&quot;&gt;&lt;/a&gt;二&lt;/h2&gt;&lt;p&gt;碎片化阅读简单来说就是利用碎片化时间去获取一些知识，比如我上高中的时候很流行的李阳疯狂英语就很主张碎片化学习英语，利用碎片时间背单词，读句子。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
-    
     
       <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
     
