@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-07-07T13:36:29.000Z</updated>
+  <updated>2016-07-08T15:48:01.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python生成邀请码以及重复校验</title>
+    <link href="http://www.wengyb.com/2016/07/08/Python%E7%94%9F%E6%88%90%E9%82%80%E8%AF%B7%E7%A0%81%E4%BB%A5%E5%8F%8A%E9%87%8D%E5%A4%8D%E6%A0%A1%E9%AA%8C/"/>
+    <id>http://www.wengyb.com/2016/07/08/Python生成邀请码以及重复校验/</id>
+    <published>2016-07-08T15:43:09.000Z</published>
+    <updated>2016-07-08T15:48:01.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-08-org_20160626131921_113.jpg&quot; alt=&quot;org_20160626131921_113&quot;&gt;&lt;/p&gt;
+&lt;p&gt;5S坏了，用了好几年的手机毕竟是有感情的，希望明天到的屏幕能够拯救我亲爱的5S吧&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;最近公司在弄一个邀请码的东西，要搞一个生成的机制，理论上这是后端开发做的事情，但是我们的前端开发也去搞了一套这个验证码的东西，有兴趣的朋友可以看看&lt;a href=&quot;http://www.jianshu.com/p/9995cc192588&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Javascript实现的一种简单的推荐码算法》&lt;/a&gt;。我也就顺带写了一个验证重复的代码，最好控制一下比如1KW不会重复就行了。&lt;/p&gt;
+&lt;h2 id=&quot;验证重复&quot;&gt;&lt;a href=&quot;#验证重复&quot; class=&quot;headerlink&quot; title=&quot;验证重复&quot;&gt;&lt;/a&gt;验证重复&lt;/h2&gt;&lt;p&gt;其实验证重复的逻辑很简单，用&lt;code&gt;Python&lt;/code&gt;来处理就是几行代码的事。主要流程就是从把生成的邀请码读取到一个列表中，然后用&lt;code&gt;set&lt;/code&gt;方法去重，最后比对去重前后列表的长度，就能知道有没有重复了。&lt;/p&gt;
+&lt;h2 id=&quot;代码如下&quot;&gt;&lt;a href=&quot;#代码如下&quot; class=&quot;headerlink&quot; title=&quot;代码如下&quot;&gt;&lt;/a&gt;代码如下&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; time&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;start = time.time()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt; open(&lt;span class=&quot;string&quot;&gt;&#39;test.txt&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;r&#39;&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; f:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	data = f.readlines()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;arr = [x.strip() &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; data]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;old = len(arr)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new = len(set(arr))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; old&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; new&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; old == new:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end = time.time()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; end-start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;代码中我加上了运行时间的处理，可以观察在读取大量数据的时候的效率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注 ：请不要使用以下的方式来建立列表&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;testlist = []&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; f.readlines():&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	testlist.append(x)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;事实证明，这种方式在数据量大的情况下效率会低很多。&lt;/p&gt;
+&lt;p&gt;我们来做一个测试，使用1000W条数据来处理。第一种方式的结果如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;10000000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10000000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;success&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5.89996790886&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;第二种方式的结果如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;10000000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10000000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;success&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7.04926991463&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当然，结果也证明了我写的验证码在1KW条的情况下，不会出现重复的情况。&lt;/p&gt;
+&lt;h2 id=&quot;随机邀请码生成&quot;&gt;&lt;a href=&quot;#随机邀请码生成&quot; class=&quot;headerlink&quot; title=&quot;随机邀请码生成&quot;&gt;&lt;/a&gt;随机邀请码生成&lt;/h2&gt;&lt;p&gt;一般我们看到的序列号或者邀请码长成这样的：&lt;code&gt;BKMv-c1Nf-IvRr-ZAsy&lt;/code&gt;，这种逻辑的生成也挺简单的，就是取随机的字母和数字，然后拼接起来就好了。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#coding: utf-8&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; random&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;field = string.letters + string.digits&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 生成num位的随机字母或数字组成的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getSingleMa&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(num)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	singleMa = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;.join(random.sample(field, num))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; singleMa&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 把num个字符串拼接起来&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getAllMa&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(num)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	AllMa = &lt;span class=&quot;string&quot;&gt;&quot;-&quot;&lt;/span&gt;.join([getSingleMa(&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(num)])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; AllMa&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 生成num组邀请码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;outMa&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(num)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	AllMaList = [getAllMa(&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(num)]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; AllMaList&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&#39;__main__&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	data = outMa(&lt;span class=&quot;number&quot;&gt;10000&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt; open(&lt;span class=&quot;string&quot;&gt;&quot;test.txt&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;w&quot;&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; f:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; data:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			f.write(x)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			f.write(&lt;span class=&quot;string&quot;&gt;&#39;\n&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样本地就生成了一个名为&lt;code&gt;test.txt&lt;/code&gt;的邀请码文件，里面有10000个邀请码。&lt;/p&gt;
+&lt;h2 id=&quot;最后&quot;&gt;&lt;a href=&quot;#最后&quot; class=&quot;headerlink&quot; title=&quot;最后&quot;&gt;&lt;/a&gt;最后&lt;/h2&gt;&lt;p&gt;我这种方式我验证了一下，在1KW条记录的情况下，只要有4组4个字母组成的邀请码，基本上不会出现重复的情况，我测试了大概20次，就只有一次出现了一个验证码重复。&lt;/p&gt;
+&lt;p&gt;当然，1E条邀请码的情况我没有测试，毕竟电脑配置有限，如果能够使用多线程来生成多个文件，最后再合并，应该效果会快很多。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-08-org_20160626131921_113.jpg&quot; alt=&quot;org_20160626131921_113&quot;&gt;&lt;/p&gt;
+&lt;p&gt;5S坏了，用了好几年的手机毕竟是有感情的，希望明天到的屏幕能够拯救我亲爱的5S吧&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
+    
+    
+      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Git结合tar自动打升级包</title>
@@ -915,44 +958,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>守护童心OR随波逐流</title>
-    <link href="http://www.wengyb.com/2016/05/09/%E5%AE%88%E6%8A%A4%E7%AB%A5%E5%BF%83OR%E9%9A%8F%E6%B3%A2%E9%80%90%E6%B5%81/"/>
-    <id>http://www.wengyb.com/2016/05/09/守护童心OR随波逐流/</id>
-    <published>2016-05-08T16:12:32.000Z</published>
-    <updated>2016-05-08T16:15:03.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天和某人一起吃了顿饭，某人说，我的心态太年轻了，当然这是委婉的说法，直接点说，像个孩子。&lt;/p&gt;
-&lt;p&gt;上次陪蔡经理去参加某某活动，别人对我的评价也大致如此。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;二&quot;&gt;&lt;a href=&quot;#二&quot; class=&quot;headerlink&quot; title=&quot;二&quot;&gt;&lt;/a&gt;二&lt;/h2&gt;&lt;p&gt;话说回来，在招行的时候，玉姐、盛哥、包括一些其他同事都说我的思想就像30岁一样。&lt;/p&gt;
-&lt;p&gt;那么问题来了，我精神分裂了？&lt;/p&gt;
-&lt;h2 id=&quot;三&quot;&gt;&lt;a href=&quot;#三&quot; class=&quot;headerlink&quot; title=&quot;三&quot;&gt;&lt;/a&gt;三&lt;/h2&gt;&lt;p&gt;其实我觉得吧，应该分别看待这两个东西，工作中我更倾向于用理性的眼光看待问题，比如问题的处理，人员的调配，任务的安排，等等。开个会我可以从头讲到尾，也可以因为某个问题和开发争执、和同事争执。&lt;/p&gt;
-&lt;p&gt;但是在生活上，我更愿意用一个孩子的心态来处理事。&lt;/p&gt;
-&lt;h2 id=&quot;四&quot;&gt;&lt;a href=&quot;#四&quot; class=&quot;headerlink&quot; title=&quot;四&quot;&gt;&lt;/a&gt;四&lt;/h2&gt;&lt;p&gt;所以在办公室，笑的最大声的那个肯定是我，评论某件事最大声的肯定也是我。我更愿意把我的快乐分享给大家。开心的时候大笑，不爽的时候拉上几个朋友去KTV喝酒狂吼。工作本就压抑，工作之余，何必再压着自己。不累么？&lt;/p&gt;
-&lt;h2 id=&quot;五&quot;&gt;&lt;a href=&quot;#五&quot; class=&quot;headerlink&quot; title=&quot;五&quot;&gt;&lt;/a&gt;五&lt;/h2&gt;&lt;p&gt;至于其他方面，我觉得取决于人生阅历吧。毕竟年纪不大，生活也没多大挫折，很多方面肯定也是欠缺的，再加上深入骨髓的懒，说不成熟倒也没错。&lt;/p&gt;
-&lt;h2 id=&quot;六&quot;&gt;&lt;a href=&quot;#六&quot; class=&quot;headerlink&quot; title=&quot;六&quot;&gt;&lt;/a&gt;六&lt;/h2&gt;&lt;p&gt;不过话说回来，很多东西并不是不懂，道理我都懂，但是改不改又是另一回事了，我并不想这些所谓的“成熟”来破坏我内心的纯粹。&lt;/p&gt;
-&lt;h2 id=&quot;七&quot;&gt;&lt;a href=&quot;#七&quot; class=&quot;headerlink&quot; title=&quot;七&quot;&gt;&lt;/a&gt;七&lt;/h2&gt;&lt;p&gt;最近练琴的时候就感觉特别明显。以前虽然是压迫式的练琴，但是心里是很干净的，一心就是弹琴，最近重新弹琴，最大的感触就是没有以前那么平静了，比较容易走神，犯低级错误。&lt;/p&gt;
-&lt;h2 id=&quot;八&quot;&gt;&lt;a href=&quot;#八&quot; class=&quot;headerlink&quot; title=&quot;八&quot;&gt;&lt;/a&gt;八&lt;/h2&gt;&lt;p&gt;现在想想，自己的几个爱好其实是有共同之处的，弹琴、看书、游泳，都能或多或少的排除心里的杂质。&lt;/p&gt;
-&lt;h2 id=&quot;九&quot;&gt;&lt;a href=&quot;#九&quot; class=&quot;headerlink&quot; title=&quot;九&quot;&gt;&lt;/a&gt;九&lt;/h2&gt;&lt;p&gt;进入社会这个大染缸，当然是无法避免越来越“那个啥”，只是我希望这天不要这么快到来。&lt;/p&gt;
-&lt;h2 id=&quot;十&quot;&gt;&lt;a href=&quot;#十&quot; class=&quot;headerlink&quot; title=&quot;十&quot;&gt;&lt;/a&gt;十&lt;/h2&gt;&lt;p&gt;最后：王品台塑虽然环境很好，但是味道一般，性价比比较低。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;今天和某人一起吃了顿饭，某人说，我的心态太年轻了，当然这是委婉的说法，直接点说，像个孩子。&lt;/p&gt;
-&lt;p&gt;上次陪蔡经理去参加某某活动，别人对我的评价也大致如此。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MyTalk" scheme="http://www.wengyb.com/categories/MyTalk/"/>
-    
-    
-      <category term="思想汇报" scheme="http://www.wengyb.com/tags/%E6%80%9D%E6%83%B3%E6%B1%87%E6%8A%A5/"/>
-    
-      <category term="个人杂谈" scheme="http://www.wengyb.com/tags/%E4%B8%AA%E4%BA%BA%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
