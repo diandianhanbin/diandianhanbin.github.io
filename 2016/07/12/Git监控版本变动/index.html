@@ -1,0 +1,755 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="葡萄牙竟然获得了冠军，这真是不科学！！！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git监控版本变动">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/12/Git监控版本变动/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="葡萄牙竟然获得了冠军，这真是不科学！！！！">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-12-20160710.jpg">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-12-git自动打包流程图.png">
+<meta property="og:updated_time" content="2016-07-12T00:27:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git监控版本变动">
+<meta name="twitter:description" content="葡萄牙竟然获得了冠军，这真是不科学！！！！">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-12-20160710.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Git监控版本变动 | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyb.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git监控版本变动
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-12T08:26:16+08:00" content="2016-07-12">
+              2016-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/12/Git监控版本变动/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/12/Git监控版本变动/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-12-20160710.jpg" alt="20160710"></p>
+<p>葡萄牙竟然获得了冠军，这真是不科学！！！！<br><a id="more"></a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>上一篇文章说道Git可以结合tar来自动打升级包，如果要每次去开发环境执行监控代码，那其实意义并不大，这篇文章介绍的是写一个监控程序来监控变动情况，一旦发生变动，就发邮件通知自己，然后每天定时在某个时点把更新包打出来。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路其实很简单，就利用上一篇文章<a href="http://www.wengyb.com/2016/07/07/Git结合tar自动打升级包/">《Git结合tar自动打升级包》</a>介绍的方法，做一个拓展就好了，流程图如下：</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-12-git自动打包流程图.png" alt="git自动打包流程图"></p>
+<h2 id="流程中的方法"><a href="#流程中的方法" class="headerlink" title="流程中的方法"></a>流程中的方法</h2><ul>
+<li>定时执行<code>git status -s</code>来监控是否有新的改动，如果返回空，则表示没变动。</li>
+<li>发生了新的变动，就提交版本，然后邮件通知变动的内容</li>
+<li>在某个时点打上<code>tag</code>，然后校验最后两次<code>tag</code>的内容，把变动打出升级包，然后邮件通知</li>
+<li>如果两次<code>tag</code>没有发生变动，就表示没有发生变化，就直接退出</li>
+</ul>
+<h2 id="动手"><a href="#动手" class="headerlink" title="动手"></a>动手</h2><p>理清了思路之后，整个流程很简单，就是用<code>Python</code>来控制<code>Shell</code>去执行<code>Git</code>，按照流程一步一步走下来就行了。</p>
+<h3 id="常用方法封装"><a href="#常用方法封装" class="headerlink" title="常用方法封装"></a>常用方法封装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> NetEastMail <span class="keyword">import</span> NetEastMail</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandExec</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">direExec</span><span class="params">(self, command)</span>:</span></span><br><span class="line">		os.system(command)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">listExec</span><span class="params">(self, command)</span>:</span></span><br><span class="line">		fileobj = os.popen(command)</span><br><span class="line">		<span class="keyword">return</span> fileobj</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fileObjAnaNoNull</span><span class="params">(self, command)</span>:</span></span><br><span class="line">		data = [x.strip() <span class="keyword">for</span> x <span class="keyword">in</span> self.listExec(command)]</span><br><span class="line">		<span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fileObjAnaNative</span><span class="params">(self, command)</span>:</span></span><br><span class="line">		data = [x <span class="keyword">for</span> x <span class="keyword">in</span> self.listExec(command)]</span><br><span class="line">		<span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<p>在整个过程中会经常用到执行命令和对命令返回值的校验，所以对这些常用的方法做一下封装。</p>
+<p>代码中的<code>from NetEastMail import NetEastMail</code>是之前一篇文章<a href="http://www.wengyb.com/2016/05/28/用Python写一个发邮件模块/">《用Python写一个发邮件的模块》</a>写的发邮件的方法。</p>
+<h3 id="Git监控的处理"><a href="#Git监控的处理" class="headerlink" title="Git监控的处理"></a>Git监控的处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GitDeal</span><span class="params">(CommandExec)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		CommandExec.__init__(self)</span><br><span class="line">		self.smdl = NetEastMail.MyNetEastMail(<span class="string">'plain'</span>)</span><br><span class="line">		self.gitstatus = <span class="string">"git status -s"</span></span><br><span class="line">		self.gitcommit = <span class="string">"git commit -m'hlzq&#123;&#125;'"</span>.format(time.strftime(<span class="string">"%Y%m%d%H"</span>))</span><br><span class="line">		self.gitadd = <span class="string">"git add ."</span></span><br><span class="line">		self.gittag = <span class="string">"git tag hlzq&#123;&#125;"</span>.format(time.strftime(<span class="string">"%Y%m%d"</span>))</span><br><span class="line">		self.getnewtags = <span class="string">"git tag"</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">getNewTag</span><span class="params">(self)</span>:</span></span><br><span class="line">		data = [x.strip() <span class="keyword">for</span> x <span class="keyword">in</span> self.fileObjAnaNoNull(self.getnewtags)]</span><br><span class="line">		<span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">tagDiff</span><span class="params">(self)</span>:</span></span><br><span class="line">		new = self.getNewTag()[<span class="number">-1</span>]</span><br><span class="line">		old = self.getNewTag()[<span class="number">-2</span>]</span><br><span class="line">		diff = <span class="string">"git diff &#123;&#125; &#123;&#125; --name-only"</span>.format(new, old)</span><br><span class="line">		data = [x.strip() <span class="keyword">for</span> x <span class="keyword">in</span> self.fileObjAnaNoNull(diff)]</span><br><span class="line">		<span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">tarUpdate</span><span class="params">(self)</span>:</span></span><br><span class="line">		new = self.getNewTag()[<span class="number">-1</span>]</span><br><span class="line">		old = self.getNewTag()[<span class="number">-2</span>]</span><br><span class="line">		update = <span class="string">"git diff &#123;&#125; &#123;&#125; --name-only | xargs tar -cvf &#123;&#125;update.tar"</span>.format(new, old, time.strftime(<span class="string">"%Y%m%d"</span>))</span><br><span class="line">		self.direExec(update)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">		changeText = <span class="string">""</span></span><br><span class="line">		theme = <span class="string">""</span></span><br><span class="line">		<span class="keyword">if</span> len(self.fileObjAnaNoNull(self.gitstatus)) != <span class="number">0</span>:</span><br><span class="line">			changeText = <span class="string">"请认真核对变动信息是否正确,变动信息如下:\n\n"</span> + <span class="string">"\n"</span>.join(self.fileObjAnaNoNull(self.gitstatus))</span><br><span class="line">			theme = <span class="string">"开发环境&#123;&#125;发生变动,请核对变动信息"</span>.format(time.strftime(<span class="string">"%Y%m%d%H"</span>))</span><br><span class="line">			self.direExec(self.gitadd)</span><br><span class="line">			self.direExec(self.gitcommit)</span><br><span class="line">		<span class="keyword">if</span> time.strftime(<span class="string">"%H"</span>) == <span class="string">"9"</span>:</span><br><span class="line">			self.direExec(self.gittag)</span><br><span class="line">			<span class="keyword">if</span> len(self.tagDiff()) == <span class="number">0</span>:</span><br><span class="line">				self.direExec(<span class="string">"git tag -d &#123;&#125;"</span>.format(self.getNewTag()[<span class="number">-1</span>]))</span><br><span class="line">			changeText = <span class="string">"本次更新内容详情如下: \n\n"</span> + <span class="string">"\n"</span>.join(self.tagDiff())</span><br><span class="line">			theme = <span class="string">"Tag与更新包已经打完,请下载更新包更新到测试环境"</span></span><br><span class="line">			self.tarUpdate()</span><br><span class="line">		<span class="keyword">if</span> changeText != <span class="string">""</span>:</span><br><span class="line">			self.smdl.sendMailByNetEastMail(changeText, theme)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">print</span> <span class="string">"暂无变动"</span></span><br></pre></td></tr></table></figure>
+<p>到此为止，基本的代码就写完了，只要执行<code>Gitdeal（）中的run方法就行了</code>。</p>
+<h2 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h2><p>说了要自动处理，那么就一定要带一个监控程序。其实监控程序就是上面那个东东。只是少了个循环执行的东西，我比较喜欢用另外的启动程序来启动这个程序，可以在启动程序中加很多东西，简单的就比如这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">	os.system(<span class="string">"python gitmanager.py"</span>)</span><br><span class="line">	time.sleep(<span class="number">3600</span>)</span><br></pre></td></tr></table></figure>
+<p>循环的时间自己是可以控制的，要实时获取数据，就把<code>sleep</code>的时间减少就行了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p><code>Python</code>是一个很强大的胶水语言，学好了可以帮助工作中做很多有意义的事，可以节省大量时间来投入一些有意义的事中。</p>
+<h2 id="巨大的坑"><a href="#巨大的坑" class="headerlink" title="巨大的坑"></a>巨大的坑</h2><p>本来应该结束了，但是在部署的时候发现了一个巨大的坑。公司的服务器是windows的，诶~~~用了才知道到底是多坑。</p>
+<p>整个流程的核心是自动打包。结果在windows上<code>xargs</code>和<code>tar</code>都不能用，真是坑爹。</p>
+<p>当然，也不是没办法解决，在windows上cmd要执行某个命令，那么就需要把环境变量配到<code>*.exe</code>的路径，在windows上我发现<code>GitBash</code>是可以使用<code>Linux</code>的命令，那么肯定有相关的可执行文件在<code>Git</code>安装目录下。我发现<code>C:\Program Files (x86)\Git\usr\bin</code>路径中有大量<code>Linux命令的可执行文件</code>，那么我只要把这个路径配到环境变量就行了，试了一下，果然成功了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创知识分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/wecharpay.jpeg" alt="点点寒彬 | SvenWeng WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/alipay.jpeg" alt="点点寒彬 | SvenWeng Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+<div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/08/Python生成邀请码以及重复校验/" rel="next" title="Python生成邀请码以及重复校验">
+                <i class="fa fa-chevron-left"></i> Python生成邀请码以及重复校验
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/12/Git监控版本变动/"
+     data-title="Git监控版本变动"
+     data-content=""
+     data-url="http://www.wengyb.com/2016/07/12/Git监控版本变动/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/12/Git监控版本变动/"
+           data-title="Git监控版本变动" data-url="http://www.wengyb.com/2016/07/12/Git监控版本变动/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">70</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyb.com" target="_blank">我的个人站点</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程中的方法"><span class="nav-number">3.</span> <span class="nav-text">流程中的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动手"><span class="nav-number">4.</span> <span class="nav-text">动手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法封装"><span class="nav-number">4.1.</span> <span class="nav-text">常用方法封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git监控的处理"><span class="nav-number">4.2.</span> <span class="nav-text">Git监控的处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控程序"><span class="nav-number">5.</span> <span class="nav-text">监控程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨大的坑"><span class="nav-number">7.</span> <span class="nav-text">巨大的坑</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wengyanbin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
