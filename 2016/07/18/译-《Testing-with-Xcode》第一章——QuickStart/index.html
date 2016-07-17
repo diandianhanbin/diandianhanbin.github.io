@@ -1,0 +1,806 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="测试,IOS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="点点寒彬" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="原文地址：https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/02-quick_start.html#//apple_ref/doc/uid/TP40014132-CH2-SW1
+文章导读本篇介绍了Xcod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]《Testing with Xcode》第一章——QuickStart">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/index.html">
+<meta property="og:site_name" content="点点寒彬">
+<meta property="og:description" content="原文地址：https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/02-quick_start.html#//apple_ref/doc/uid/TP40014132-CH2-SW1
+文章导读本篇介绍了Xcod">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-1_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-2_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-3_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-4_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-6_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-7_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-8_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-9_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-8a_2x.png">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-10_2x.png">
+<meta property="og:updated_time" content="2016-07-17T16:22:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]《Testing with Xcode》第一章——QuickStart">
+<meta name="twitter:description" content="原文地址：https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/02-quick_start.html#//apple_ref/doc/uid/TP40014132-CH2-SW1
+文章导读本篇介绍了Xcod">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-1_2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> [译]《Testing with Xcode》第一章——QuickStart | 点点寒彬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=500046752";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">点点寒彬</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">www.wengyb.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-abouttest">
+          <a href="/categories/AboutTest" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有关测试
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mytalk">
+          <a href="/categories/MyTalk" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            个人杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [译]《Testing with Xcode》第一章——QuickStart
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-18T00:20:32+08:00" content="2016-07-18">
+              2016-07-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AboutTest/" itemprop="url" rel="index">
+                    <span itemprop="name">AboutTest</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文地址：<a href="https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/02-quick_start.html#//apple_ref/doc/uid/TP40014132-CH2-SW1" target="_blank" rel="external">https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/02-quick_start.html#//apple_ref/doc/uid/TP40014132-CH2-SW1</a></p>
+<h2 id="文章导读"><a href="#文章导读" class="headerlink" title="文章导读"></a>文章导读</h2><p>本篇介绍了Xcode执行测试的方法，说明了Xcode工具如何新建、执行一个测试用例。</p>
+<p>看完之后你能学习到：</p>
+<ul>
+<li><p>如何使用Xcode来创建一个测试用例。</p>
+</li>
+<li><p>如何执行测试用例</p>
+</li>
+<li><p>如何观察Xcode的测试结果</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>文章翻译自Apple官方文档《Testing with Xcode》，不保证每个字都能翻译的精准，如有翻译错误，请留言指出，不胜感激。</p>
+<h1 id="QuickStart"><a href="#QuickStart" class="headerlink" title="QuickStart"></a>QuickStart</h1><p>这个快速开始是为了告诉你，你可以很容易的给你开发的软件做一些必须的测试。</p>
+<h2 id="介绍测试导航菜单"><a href="#介绍测试导航菜单" class="headerlink" title="介绍测试导航菜单"></a>介绍测试导航菜单</h2><p>当你开始测试工作的时候，你经常会使用Xcode的导航功能。</p>
+<p>测试导航菜单是工作区的一部分，是让你便捷的创建，管理，运行和检视测试代码。你可以点击在issue导航和debug导航中间的的图标进入测试导航菜单。当你的项目有定义测试套件，你可以在这里看到类似的导航菜单。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-1_2x.png" alt="twx-qs-1_2x"></p>
+<p>测试导航菜单想一个项目一样以列表的形式分级的展示了包，类和方法。这个项目是一个类似计算器的app。计算器的工程项一套工程的结构，可以看到优先级最高的<code>SampleCalcTests</code>测试包，是为了测试应用的代码。</p>
+<hr>
+<p><strong>注意：</strong>Xcode只想的测试包会在测试导航菜单中展示。</p>
+<p>如果你测试时使用数据，图片和其他内容，他们可以被添加到测试包，在执行的时候使用<code>NSBundle</code>APIs。使用<code>+[NSBundle bundleForClass:]</code>和你的测试类时，你要确保你取回了正确的测试包和正确的数据。更多详情请看<a href="https://developer.apple.com/reference/foundation/nsbundle" target="_blank" rel="external">NSBundle Class Reference</a>.</p>
+<p>Xcode会计划和控制构建的内容。Schemes也会操作可执行的测试的方法进行测试。你可以在测试菜单中使用Control-clicking有选择的使用或者忽略测试包，类和方法。</p>
+<hr>
+<p>在视图中活动的测试包是<code>SampleCalcTests. SampleCalcTests</code>，它包含该了一个测试包，测试包中包括9个测试方法。当你把鼠标放在列表中任意一项上，运行按钮就会出现在列表名称的右侧。测试结束后会返回成功或失败的结果给Xcode。测试开始执行的时候，这些图标会更新，给你展示测试的结果。绿色表示通过，红色表示失败。这里测试导航菜单显示的测试结果，有两项被断言为失败。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-2_2x.png" alt="twx-qs-2_2x"></p>
+<p>点击列表中任意一个测试类或者测试方法，会在代码编辑器中打开对应的测试类。测试类和测试方法也会在编辑器中做上标记。测试失败会在代码编辑器中展示断言处和对应的方法。</p>
+<p>在测试菜单的底部是增加按钮和过滤控制，你可以减少展示的内容，只显示活动的测试项或者只展示失败的测试，当然，你也可以按照名称来过滤。</p>
+<p>更多测试导航菜单的详细操作，请看<em>Test Navigator Help</em>。</p>
+<h2 id="为你的APP增加测试方法"><a href="#为你的APP增加测试方法" class="headerlink" title="为你的APP增加测试方法"></a>为你的APP增加测试方法</h2><p>在Xcode5和以后的版本中你可以在新建app，框架和资源的时候添加一个测试的target。当你开始一个新的项目时打开测试导航菜单，你可以看到一个测试包，一个测试类和一个测试方法的模板。但是你不要使用没有测试target的Xcode版本来打开以前的项目。这里的工作流程假设一个之前的项目是没有纳入测试的。</p>
+<h3 id="创建一个测试Target"><a href="#创建一个测试Target" class="headerlink" title="创建一个测试Target"></a>创建一个测试Target</h3><p>点击测试导航菜单左下方的增加按钮来选择新建一个<code>Unit Test Target</code></p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-3_2x.png" alt="twx-qs-3_2x"></p>
+<p>在下一个对话框中选择OS X或者IOS<code>Unit Testing Bundle</code>，然后点击<code>Next</code>。会出现一个新的对话框，编辑项目名称和其他你需要的参数。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-4_2x.png" alt="twx-qs-4_2x"></p>
+<p>点击<code>Finish</code>来增加你的target，在测试导航菜单师徒中包含了一个测试类的模板和两个测试方法的模板</p>
+<h3 id="运行测试和观察结果"><a href="#运行测试和观察结果" class="headerlink" title="运行测试和观察结果"></a>运行测试和观察结果</h3><p>现在你可以为你的项目增加测试方法了。你想要开发一些有用的测试方法。但是首先，先把鼠标放到测试导航菜单的<code>SampleCalcTests</code>上并点击运行按钮来执行所有的测试方法。测试结果会在函数名的旁边用绿色的标记标记出来，在代码编辑器中也一样。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-6_2x.png" alt="twx-qs-6_2x"></p>
+<p>模板中的单元测试和演示的测试方法都是空的。这就是为什么他们都会被标记为成功，没有失败的断言。注意34行灰色菱形<code>measureBlock:</code>方法。点击菱形来展示演示结果的面板。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-7_2x.png" alt="twx-qs-7_2x"></p>
+<p>面板允许你设置一个预期的基线和最大STDDEV参数。这些方面稍后会讨论。</p>
+<h3 id="编辑测试案例再次运行"><a href="#编辑测试案例再次运行" class="headerlink" title="编辑测试案例再次运行"></a>编辑测试案例再次运行</h3><p>由于这个样本项目是一个计算器APP，你想要检查他能否想其他计算函数一样正确的执行加减乘除。由于测试是在app项目内部构建，你可以增加所有你愿意增加的测试环境。创建测试要做的事就是在执行单元测试的文件中增加一个函数。</p>
+<p>例如。你给<code>SampleCalcTests.m</code>文件增加一个<code>#import</code>和声明变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;XCTest/XCTest.h&gt;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">// Import the application specific header files</span><br><span class="line"></span><br><span class="line">#import &quot;CalcViewController.h&quot;</span><br><span class="line"></span><br><span class="line">#import &quot;CalcAppDelegate.h&quot;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">@interface CalcTests : XCTestCase &#123;</span><br><span class="line"></span><br><span class="line">// add instance variables to the CalcTests class</span><br><span class="line"></span><br><span class="line">@private</span><br><span class="line"></span><br><span class="line">    NSApplication       *app;</span><br><span class="line"></span><br><span class="line">    CalcAppDelegate     *appDelegate;</span><br><span class="line"></span><br><span class="line">    CalcViewController  *calcViewController;</span><br><span class="line"></span><br><span class="line">    NSView              *calcView;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>然后给测试方法一个描述的名称，就像<code>testAddition</code>一样，然后为方法增加一个执行的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">- (void) testAddition</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   // obtain the app variables for test access</span><br><span class="line"></span><br><span class="line">   app                  = [NSApplication sharedApplication];</span><br><span class="line"></span><br><span class="line">   calcViewController   = (CalcViewController*)[[NSApplication sharedApplication] delegate];</span><br><span class="line"></span><br><span class="line">   calcView             = calcViewController.view;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   // perform two addition tests</span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag: 6]];  // 6</span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag:13]];  // +</span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag: 2]];  // 2</span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag:12]];  // =</span><br><span class="line"></span><br><span class="line">    XCTAssertEqualObjects([calcViewController.displayField stringValue], @&quot;8&quot;, @&quot;Part 1 failed.&quot;);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag:13]];  // +</span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag: 2]];  // 2</span><br><span class="line"></span><br><span class="line">   [calcViewController press:[calcView viewWithTag:12]];  // =</span><br><span class="line"></span><br><span class="line">    XCTAssertEqualObjects([calcViewController.displayField stringValue], @&quot;10&quot;, @&quot;Part 2 failed.&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意测试导航菜单中样例的测试方法，<code>testExample</code>被替换成了<code>testAddition</code>。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-8_2x.png" alt="twx-qs-8_2x"></p>
+<p>现在点击测试导航菜单中的运行按钮（或者代码编辑器中的指示）来运行<code>testAddition</code>方法。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-9_2x.png" alt="twx-qs-9_2x"></p>
+<p>就像你看到的一样，一个断言失败了，在测试导航菜单和代码编辑器中都高亮显示了。看源代码。Part 1成功了，是Part 2有一个问题。在测试中，错误很明显：在76行，<code>[calcView viewWithTag:11]</code>错了。应该是<code>[calcView viewWithTag:12]</code>。收集错误信息修复问题后，测试成功。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-8a_2x.png" alt="twx-qs-8a_2x"></p>
+<h3 id="为普通的代码使用setUp-和tearDown-方法"><a href="#为普通的代码使用setUp-和tearDown-方法" class="headerlink" title="为普通的代码使用setUp()和tearDown()方法"></a>为普通的代码使用setUp()和tearDown()方法</h3><p>Xcode为活动的测试包运行所有的测试方法一次。在这个小例子中只有一个方法执行了。它需要接受三个计算器app提供的变量对象。如果你写了四个或者五个测试方法在同样的类中。你会发现你需要为每一条测试案例输入重复的代码。XCTest框架提供你一个测试类的入口方法，<code>setUp</code>和<code>tearDown</code>，你可以用他们来放置每次执行测试方法的前置方法和结束方法。</p>
+<p>使用<code>setUp</code>和<code>tearDown</code>方法很简单。从<code>Mac_Calc_Tests.m</code>文件中的<code>testAddition</code>代码中剪切4行<code>// obtain the app variable for test access</code>然后粘贴他们到模板默认的<code>setUp</code>入口方法中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)setUp</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    [super setUp];</span><br><span class="line"></span><br><span class="line">    // Put setup code here. This method is called before the invocation of each test method in the class.</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   // obtain the app variables for test access</span><br><span class="line"></span><br><span class="line">   app                  = [NSApplication sharedApplication];</span><br><span class="line"></span><br><span class="line">   calcViewController   = (CalcViewController*)[[NSApplication sharedApplication] delegate];</span><br><span class="line"></span><br><span class="line">   calcView             = calcViewController.view;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在使用最少重复代码增加更多的测试方法——<code>testSubtraction</code>和其他方法。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-18-twx-qs-10_2x.png" alt="twx-qs-10_2x"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你能看到的这个简短的快速开始，它非常简单的给项目增加测试。这里有一些需要注意的地方：</p>
+<ul>
+<li>Xcode提供了大量基础的测试架构。当你为你的项目增加一个测试target时，Xcode会自动只想你的项目。会增加一个首字母为test的类，它含有一个单独的测试方法，并且可以在测试导航菜单中看到。</li>
+<li>测试导航菜单让你很容易的定位和编辑测试方法。你可以在测试导航菜单中直接运行测试方法，或者在打开的测试类中直接从代码编辑器中运行。当一个测试失败时，测试导航菜单和代码编辑器都会把失败的部分标记出来</li>
+<li>一个单独的测试方法可以包含该多个断言，结果只显示一个通过或者失败。这种方式允许你创建项目需要的简单或者复杂的测试。</li>
+<li><code>setUp</code>方法和<code>tearDown</code>方法作为入口方法，能够让你把常用的代码统一的使用在方法中，保持代码的连贯性也更容易发现问题。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创知识分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/wecharpay.jpeg" alt="点点寒彬 | SvenWeng WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xsgl3.com1.z0.glb.clouddn.com/alipay.jpeg" alt="点点寒彬 | SvenWeng Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+<div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+            <a href="/tags/IOS/" rel="tag">#IOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/18/《如何变得有思想》读后/" rel="next" title="《如何变得有思想》读后">
+                <i class="fa fa-chevron-left"></i> 《如何变得有思想》读后
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/"
+     data-title="[译]《Testing with Xcode》第一章——QuickStart"
+     data-content=""
+     data-url="http://www.wengyb.com/2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/"
+           data-title="[译]《Testing with Xcode》第一章——QuickStart" data-url="http://www.wengyb.com/2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xsgl3.com1.z0.glb.clouddn.com/head.jpg"
+               alt="点点寒彬 | SvenWeng" />
+          <p class="site-author-name" itemprop="name">点点寒彬 | SvenWeng</p>
+          <p class="site-description motion-element" itemprop="description">积一时之跬步,臻千里之遥程,烙成功之印记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/diandianhanbin" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2165934027/profile?topnav=1&wvr=6&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/dian-dian-han-bin-22" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/sven.weng.9" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/彦彬-翁-1311ba108?trk=hp-identity-name" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wybblog.applinzi.com" target="_blank">我的独立博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wengyb.com" target="_blank">我的个人站点</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://testerhome.com" target="_blank">TesterHome</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/wyb199026" target="_blank">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/82eee120776d/latest_articles" target="_blank">我的简书</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章导读"><span class="nav-number">1.</span> <span class="nav-text">文章导读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">2.</span> <span class="nav-text">声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#QuickStart"><span class="nav-number"></span> <span class="nav-text">QuickStart</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍测试导航菜单"><span class="nav-number">1.</span> <span class="nav-text">介绍测试导航菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为你的APP增加测试方法"><span class="nav-number">2.</span> <span class="nav-text">为你的APP增加测试方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个测试Target"><span class="nav-number">2.1.</span> <span class="nav-text">创建一个测试Target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试和观察结果"><span class="nav-number">2.2.</span> <span class="nav-text">运行测试和观察结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑测试案例再次运行"><span class="nav-number">2.3.</span> <span class="nav-text">编辑测试案例再次运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为普通的代码使用setUp-和tearDown-方法"><span class="nav-number">2.4.</span> <span class="nav-text">为普通的代码使用setUp()和tearDown()方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点点寒彬 | SvenWeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wengyanbin"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
