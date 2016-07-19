@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Appium,测试," />
+  <meta name="keywords" content="测试,IOS," />
 
 
 
@@ -59,39 +59,19 @@
 
 
 
-<meta name="description" content="初衷最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。
-
-《Appium——驱动和常用功能的封装》
-《Appium——处理混合APP中H5的操作》
-《Appium——无安卓源码的一些准备》
-《Appium学习之路—环境搭建》
-
-相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。">
+<meta name="description" content="原文地址：https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1
+文章导读本文是纯理论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Appium实战-开始">
-<meta property="og:url" content="http://www.wengyb.com/2016/04/25/Appium实战-开始/index.html">
+<meta property="og:title" content="[译]《Testing with Xcode》第二章——Testing Basics">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/20/Testing-Basics/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="初衷最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。
-
-《Appium——驱动和常用功能的封装》
-《Appium——处理混合APP中H5的操作》
-《Appium——无安卓源码的一些准备》
-《Appium学习之路—环境搭建》
-
-相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。">
-<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png">
-<meta property="og:updated_time" content="2016-04-25T16:18:18.000Z">
+<meta property="og:description" content="原文地址：https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1
+文章导读本文是纯理论">
+<meta property="og:updated_time" content="2016-07-19T16:02:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Appium实战-开始">
-<meta name="twitter:description" content="初衷最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。
-
-《Appium——驱动和常用功能的封装》
-《Appium——处理混合APP中H5的操作》
-《Appium——无安卓源码的一些准备》
-《Appium学习之路—环境搭建》
-
-相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。">
-<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png">
+<meta name="twitter:title" content="[译]《Testing with Xcode》第二章——Testing Basics">
+<meta name="twitter:description" content="原文地址：https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1
+文章导读本文是纯理论">
 
 
 
@@ -109,7 +89,7 @@
   };
 </script>
 
-  <title> Appium实战-开始 | 点点寒彬 </title>
+  <title> [译]《Testing with Xcode》第二章——Testing Basics | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +258,7 @@
             
             
               
-                Appium实战-开始
+                [译]《Testing with Xcode》第二章——Testing Basics
               
             
           </h1>
@@ -290,8 +270,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-25T19:29:00+08:00" content="2016-04-25">
-              2016-04-25
+            <time itemprop="dateCreated" datetime="2016-07-20T00:01:10+08:00" content="2016-07-20">
+              2016-07-20
             </time>
           </span>
 
@@ -320,8 +300,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/25/Appium实战-开始/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/Appium实战-开始/" itemprop="commentsCount"></span>
+                <a href="/2016/07/20/Testing-Basics/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/20/Testing-Basics/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -343,54 +323,63 @@
       
 
       
-        <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>最近研究了挺多有关于Appium的东西。也写了一些Appium的学习笔记。</p>
-<ol>
-<li><a href="http://wybblog.applinzi.com/blog/article/35/" target="_blank" rel="external">《Appium——驱动和常用功能的封装》</a></li>
-<li><a href="http://wybblog.applinzi.com/blog/article/34/" target="_blank" rel="external">《Appium——处理混合APP中H5的操作》</a></li>
-<li><a href="http://wybblog.applinzi.com/blog/article/33/" target="_blank" rel="external">《Appium——无安卓源码的一些准备》</a></li>
-<li><a href="http://wybblog.applinzi.com/blog/article/25/" target="_blank" rel="external">《Appium学习之路—环境搭建》</a></li>
-</ol>
-<p>相信很多人和我一开始一样，都会觉得学习文档太少了，但是没什么基础的又看不懂别人写好的代码，官方的demo比较简单等等问题，不知道怎么走下去。<br><a id="more"></a><br>其实最大的坎还是在自己，只要开始写，一边写一边Google，慢慢的会发现很其实并不难。</p>
-<p>Appium实战我打算记录自己写自动化的过程。希望对新司机有帮助。</p>
-<p><strong>注：整个流程是按照Page Object来写的，直接撸代码的请看<a href="http://wybblog.applinzi.com/blog/article/35/" target="_blank" rel="external">《Appium——驱动和常用功能的封装》</a>然后自己撸代码</strong></p>
-<h2 id="几种设计模式"><a href="#几种设计模式" class="headerlink" title="几种设计模式"></a>几种设计模式</h2><h3 id="线性模式"><a href="#线性模式" class="headerlink" title="线性模式"></a>线性模式</h3><p>我称呼它为撸代码，也就是按照业务逻辑直接hard code。基本上初学者都会这样折腾，当然，折腾了一段时间就会觉得很操蛋，自己都不想看自己写的代码。</p>
-<h3 id="Page-Object"><a href="#Page-Object" class="headerlink" title="Page Object"></a>Page Object</h3><p>比较流行的设计模式，高度解耦，初学者看起来会觉得有点操蛋，但是了解了逻辑之后，会发现这样做非常棒，维护起来简直是轻松加愉快。</p>
-<h3 id="通用框架"><a href="#通用框架" class="headerlink" title="通用框架"></a>通用框架</h3><p>通用框架就是比较高级的做法了，实施起来比较麻烦，如果水平到了，这种方式肯定是最好的，利用关键字来驱动程序，是比较高级的境界。缺点就是比较难。。。。</p>
-<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><p>整个设计思路是基于Page Object模式，如下图：</p>
-<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/45490789-D8EC-429B-A04C-7839111575B2.png" alt="设计图"></p>
-<p>什么是Page Object？</p>
-<blockquote>
-<p>When you write tests against a web page, you need to refer to elements within that web page in order to click links and determine what’s displayed. However, if you write tests that manipulate the HTML elements directly your tests will be brittle to changes in the UI. A page object wraps an HTML page, or fragment, with an application-specific API, allowing you to manipulate page elements without digging around in the HTML.</p>
-</blockquote>
-<p>原来是Web端的模式，搬到移动端来，就是把页面分拆成一个一个元素，如示意图所示，我拆分为元素数据、元素定位、元素操作、测试步骤这么些东西。</p>
-<h2 id="有什么好处？"><a href="#有什么好处？" class="headerlink" title="有什么好处？"></a>有什么好处？</h2><p>这种模式整个架构看起来比直接撸代码复杂了很多，不过当遇到一些坑爹的问题时，尤其开发频繁改动的时候，这种设计模式的优势就出来了，比如开发改了元素的ID那些东西，那么我们只要修改相应ID就行了，所有和这个元素相关的都直接关联修改了，，而直接撸代码，涉及到的地方可能会有很多，改动起来很麻烦。查找方法，测试步骤什么的都不用改，维护起来相对轻松。</p>
-<h2 id="一些环境"><a href="#一些环境" class="headerlink" title="一些环境"></a>一些环境</h2><p>简单列一下我的环境吧：</p>
+        <p>原文地址：<a href="https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1" target="_blank" rel="external">https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1</a></p>
+<h2 id="文章导读"><a href="#文章导读" class="headerlink" title="文章导读"></a>文章导读</h2><p>本文是纯理论片，介绍了测试的基础概念。<br><a id="more"></a></p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>文章翻译自Apple官方文档《Testing with Xcode》，不保证每个字都能翻译的精准，如有翻译错误，请留言指出，不胜感激。</p>
+<p>本文由于是纯理论，翻译起来非常生硬，大概意思应该是能看懂的，语言上可能组织不当，我已经约了一个精通英语的朋友，等他有时间会帮我校对，现在就请大家将就着看吧。</p>
+<h1 id="Testing-Basics-测试基础"><a href="#Testing-Basics-测试基础" class="headerlink" title="Testing Basics(测试基础)"></a>Testing Basics(测试基础)</h1><p>测试是你写的代码或者代码库的代码运行在App中，获取结果来比对预期的结果，成功或者失败。测试需要检查经过一系列操作后，变量变化的情况。当涉及到边界等情况，能跑出一个特别的结果。对于性能测试，衡量标准就是你完成一系列运行的最大次数。</p>
+<h2 id="Defining-Test-Scope（定义测试范围）"><a href="#Defining-Test-Scope（定义测试范围）" class="headerlink" title="Defining Test Scope（定义测试范围）"></a>Defining Test Scope（定义测试范围）</h2><p>一个软件是由很多部分构成的，意味着小的元素放在一起组成一个大的。当项目的目标和需求都被满足了，高等级的元素有着非常实用性的意义。好的测试需要覆盖程序所有等级。XCTest允许为程序所有等级的元素编写测试用例。</p>
+<p>测试用例的构成由你定义。可以是一个类中的方法，或者是一系列你认为必要的方法。例如，它可以是一个计算的操作，就像在第一章QuickStart中例子介绍的计算类型的app那样。你需要用不同的方法来区别<code>TableView</code>和你代码中数据结构定义的名字。它们中的每一个方法都意味着测试app实用功能。元素测试的行为可以有一个确定的结果，成功或者失败。</p>
+<p>app元素的行为你细分的越多。在你的项目增长和变化过程中，就能越有效的测试代码的行为是否符合标准。在大型的项目中，有非常多的元素，你需要运行非常大量的测试代码去完全的测试程序。如果可能，测试用例需要被设计的执行非常快速。但是某些测试用例必须要非常大而且执行的很慢。小而快速的执行测试可以经常的执行，很简单的定位，帮忙诊断和修复问题失败的地方。</p>
+<p>为一个项目设计单元测试时基于测试驱动开发——一种写代码的方式，在写功能代码之前先写测试逻辑的代码。这种开发方式能够让你代码在实施之前更符合需求和边缘情况的规范。当你下次执行测试的时候，你可以很自信的修改你的代码，因为任何变化都在于其的行为中。</p>
+<p>当然如果你不使用测试驱动开发的方式，测试也能帮你减少开发新功能时引入新的bug。当你修复bug时，你可以增加测试用例来证实缺陷被修复了。测试需要执行你的代码。寻找成功或者失败的情况，来覆盖所有的边界情况。</p>
 <hr>
-<p>系统：Mac OS X EI Capitan</p>
-<p>Python: 2.7</p>
-<p>Appium: 1.4.16</p>
-<p>IDE: PyCharm</p>
-<p>测试系统：Android</p>
-<p>测试对象：微证券（应用商店可以直接下载）</p>
+<p>注意： 如果原来没有测试的项目增加测试用例，可能需要重新设计部分代码来让测试更容易实施。<a href="https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/A1-guidelines_writing_testable_code.html#//apple_ref/doc/uid/TP40014132-CH8-SW1" target="_blank" rel="external"> Appendix A: Writing Testable Code</a>为你编写测试代码提供了简单的指南，你可能会找到一些有用的东西</p>
 <hr>
-<p>我的项目结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">____.DS_Store</span><br><span class="line">|____config.py</span><br><span class="line">|____Data</span><br><span class="line">| |____data.json</span><br><span class="line">|____img</span><br><span class="line">| |____.DS_Store</span><br><span class="line">| |____caixun</span><br><span class="line">| | |____gupiao.png</span><br><span class="line">| | |____gupiaoneirong.png</span><br><span class="line">| | |____jijin.png</span><br><span class="line">| | |____jijinneirong.png</span><br><span class="line">| | |____tuijian.png</span><br><span class="line">| | |____tuijianneirong.png</span><br><span class="line">| | |____xinsanban.png</span><br><span class="line">| | |____xinsanbanneirong.png</span><br><span class="line">| | |____zhaiquan.png</span><br><span class="line">| | |____zhaiquanneirong.png</span><br><span class="line">| | |____黄金.png</span><br><span class="line">|____Report</span><br><span class="line">|____test.py</span><br><span class="line">|____TestCase</span><br><span class="line">| |______init__.py</span><br><span class="line">| |____common.py</span><br><span class="line">| |____testCaixun.py</span><br><span class="line">|____View</span><br><span class="line">| |______init__.py</span><br><span class="line">| |______init__.pyc</span><br><span class="line">| |____BaseTestCase.py</span><br><span class="line">| |____BaseView.py</span><br><span class="line">| |____Caixun.py</span><br></pre></td></tr></table></figure>
-<p>大的目录我是这么划分的：</p>
-<ol>
-<li>Data 用来放置一些数据</li>
-<li>Report 存放测试报告</li>
-<li>TestCase 存放测试用例</li>
-<li>img 存放一些截图</li>
-<li>config.py 配置文件</li>
-</ol>
-<p>当然写到后续可能会做一些调整，毕竟我才刚刚开始写。</p>
-<h2 id="一些忠告"><a href="#一些忠告" class="headerlink" title="一些忠告"></a>一些忠告</h2><ol>
-<li>一些很弱智的问题就自己去Google，比如Appium怎么开始啊，怎么学啊，环境怎么搭建啊！</li>
-<li>多用Google</li>
-<li>StockOverflow是个好地方</li>
-<li>多写、多写、多写</li>
-<li>人脑不是万能的，遇到问题解决后记录下来才是王道</li>
-</ol>
+<p>你的app的任意两个不同的单元可能会互相影响，由于一些类型的测试需要执行很长的时间，你最好周期性的运行他们或者只在一个服务商运行。稍后你会看到下一章，你可以安排你的测试用例，使用不同方式执行来适应不同的需求。</p>
+<h2 id="Performance-Testing（性能测试）"><a href="#Performance-Testing（性能测试）" class="headerlink" title="Performance Testing（性能测试）"></a>Performance Testing（性能测试）</h2><p>单元测试可以在测试自然环境下的功能，或者性能。XCTest提供了API来衡量性能指标。让你能够和功能测试一样的跟踪性能改善的情况。</p>
+<p>当执行性能测试的时候，需要提供一个成功或者失败的结果，一个测试用例需要有一个基线来评估。基线市值程序运行十次结果的平均值。测试结果高于基线时间很多的用例要被报告为失败。</p>
+<hr>
+<p>注意：你第一次运行性能测试的时候，XCTest总会给一个失败的结果，是由于基线还不知道。如果你有接受了某一次性能的指标可以当成基线，XCTest会在报告中评估结果是成功或者失败，然后提供给你测试结果的细节。</p>
+<hr>
+<h2 id="User-Interface-Testing（界面测试）"><a href="#User-Interface-Testing（界面测试）" class="headerlink" title="User Interface Testing（界面测试）"></a>User Interface Testing（界面测试）</h2><p>到目前为止，讨论的功能和性能测试，通常被称为单元测试。其中的“单元”取决于你对功能细分的颗粒度。单元测试主要关心的是符合预期的组件，或者与其他组件交互的预期行为。从设计的角度来看，单元测试可以在开发项目的时候，就从内部检查，实现你的意图。</p>
+<p>用户通过界面来与你的代码进行交互。用户界面的交互一般来说是比较高级的行为。使用外部的界面来操作几个组件来实现app的功能。如果没有特殊的设计来操作app外部会话，要想通过单元测试来测试用户通过界面执行的方法是非常困难的。这些特殊的设计被称为“UI测试”。</p>
+<p>UI测试就像用户操作一样，测试app的表面层。他们让你写测试用例，发送模拟的时间给系统和界面的对象，捕捉这些对象的响应，然后就像你做单元测试一样测试响应的正确性是否符合预期。</p>
+<h2 id="App-and-Library-Tests（App和库测试？）"><a href="#App-and-Library-Tests（App和库测试？）" class="headerlink" title="App and Library Tests（App和库测试？）"></a>App and Library Tests（App和库测试？）</h2><p>Xcode提供了两种单元测试的会话，App测试和库测试。</p>
+<ul>
+<li>app测试</li>
+</ul>
+<p>App测试检查app中代码行为的正确性，就像例子中的计算器app计算的操作一样。</p>
+<ul>
+<li>库测试</li>
+</ul>
+<p>库测试检查代码在动态库和框架中行为的正确性，而不依赖于他们在程序运行时使用的框架。进行库测试，你可以构建单元测试来测试库的组件。</p>
+<h2 id="XCTest——the-Xcode-Testing-Framework（Xcode测试框架）"><a href="#XCTest——the-Xcode-Testing-Framework（Xcode测试框架）" class="headerlink" title="XCTest——the Xcode Testing Framework（Xcode测试框架）"></a>XCTest——the Xcode Testing Framework（Xcode测试框架）</h2><p>从Xcode5开始包含该了XCTest，是提供给你的测试框架。</p>
+<p>考虑到版本的一致性：</p>
+<ul>
+<li><p>In Xcode 5, XCTest is compatible with running on OS X v10.8 and OS X v10.9, and with iOS 7 and later.</p>
+</li>
+<li><p>In Xcode 6, XCTest is compatible with running on OS X v10.9 and OS X v10.10, and with iOS 6 and later.</p>
+</li>
+<li><p>In Xcode 7, XCTest is compatible with running on OS X v10.10 and OS X v10.11, and with iOS 6 and later.</p>
+</li>
+</ul>
+<p>UI测试在OS X v10.11和IOS9之后支持运行，可以运行在模拟器和设备上。</p>
+<p>更多详细的版本信息，请看 <a href="https://developer.apple.com/library/prerelease/content/releasenotes/DeveloperTools/RN-Xcode/Introduction.html#//apple_ref/doc/uid/TP40001051" target="_blank" rel="external">Xcode Release Notes</a>.</p>
+<p>Xcode把<code>XCTest.framework</code>收入在你的项目中。这个框架提供了让你设计测试并且在你的代码中运行他们的接口。获取更多有关于XCTest测试框架的信息，请看<em>XCTest Framework Reference</em>。</p>
+<hr>
+<p>注意：Xcode包含了已经存在OCUnit test项目的更新迁移方法，获取更多信息请看<a href="https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/A2-transitioning_ocunit_to_xctest.html#//apple_ref/doc/uid/TP40014132-CH10-SW1" target="_blank" rel="external">Appendix B: Transitioning from OCUnit to XCTest</a>。</p>
+<hr>
+<h2 id="Where-to-Start-When-Testing（当测试的时候从哪里开始）"><a href="#Where-to-Start-When-Testing（当测试的时候从哪里开始）" class="headerlink" title="Where to Start When Testing（当测试的时候从哪里开始）"></a>Where to Start When Testing（当测试的时候从哪里开始）</h2><p>当你开始创建测试的时候，记住下列几个建议：</p>
+<ul>
+<li>当创建单元测试的时候，重点测试你代码中最基础的功能，模型中与控制器交互的类和方法。</li>
+</ul>
+<p>一个高级的程序框架，通常会有模型，视图和控制器类。这是大多数与Cocoa和Cocoa Touch工作中最熟悉的设计模式。如果你需要写的测试要覆盖所有的模型类，在你测以你的方式测试控制器类等app复杂部分之前，你需要确定你的app是容易被测试。</p>
+<p>作为一个起点，如果你正在编写一个测试框架或者库，你最好从你API的表面开始，从那里，你的工作方式就是内部类。</p>
+<ul>
+<li>当创建UI测试的时候，要考虑大部分常见的工作流。考虑当用户开始使用app的时候会从哪里开始，UI层会马上执行哪些进程。使用UI录制是一个很好的方式来捕获用户一些列行为到测试方法中，这些测试方法经过扩展，可以很容易的正确的实现测试和性能测试。</li>
+</ul>
+<p>这种UI测试倾向于一个粗颗粒度的测试，每个测试可能会跨越多个子系统。他们会返回很多信息让你难以分析。所以你和你的UI测试套件工作的时候，你最要细分每个测试，以便更清晰的反映某个子系统的行为。</p>
 
       
     </div>
@@ -426,9 +415,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Appium/" rel="tag">#Appium</a>
-          
             <a href="/tags/测试/" rel="tag">#测试</a>
+          
+            <a href="/tags/IOS/" rel="tag">#IOS</a>
           
         </div>
       
@@ -437,17 +426,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/21/宇宙APP性能测试报告/" rel="next" title="宇宙APP性能测试报告">
-                <i class="fa fa-chevron-left"></i> 宇宙APP性能测试报告
+              <a href="/2016/07/18/译-《Testing-with-Xcode》第一章——QuickStart/" rel="next" title="[译]《Testing with Xcode》第一章——QuickStart">
+                <i class="fa fa-chevron-left"></i> [译]《Testing with Xcode》第一章——QuickStart
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/26/Appium实战-基类的构建/" rel="prev" title="Appium实战-基类的构建">
-                Appium实战-基类的构建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,10 +447,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/04/25/Appium实战-开始/"
-     data-title="Appium实战-开始"
+        <div class="ds-share flat" data-thread-key="2016/07/20/Testing-Basics/"
+     data-title="[译]《Testing with Xcode》第二章——Testing Basics"
      data-content=""
-     data-url="http://www.wengyb.com/2016/04/25/Appium实战-开始/">
+     data-url="http://www.wengyb.com/2016/07/20/Testing-Basics/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -492,8 +477,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/25/Appium实战-开始/"
-           data-title="Appium实战-开始" data-url="http://www.wengyb.com/2016/04/25/Appium实战-开始/">
+      <div class="ds-thread" data-thread-key="2016/07/20/Testing-Basics/"
+           data-title="[译]《Testing with Xcode》第二章——Testing Basics" data-url="http://www.wengyb.com/2016/07/20/Testing-Basics/">
       </div>
     
   </div>
@@ -665,7 +650,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初衷"><span class="nav-number">1.</span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种设计模式"><span class="nav-number">2.</span> <span class="nav-text">几种设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性模式"><span class="nav-number">2.1.</span> <span class="nav-text">线性模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-Object"><span class="nav-number">2.2.</span> <span class="nav-text">Page Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用框架"><span class="nav-number">2.3.</span> <span class="nav-text">通用框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计思路"><span class="nav-number">3.</span> <span class="nav-text">设计思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有什么好处？"><span class="nav-number">4.</span> <span class="nav-text">有什么好处？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些环境"><span class="nav-number">5.</span> <span class="nav-text">一些环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些忠告"><span class="nav-number">6.</span> <span class="nav-text">一些忠告</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章导读"><span class="nav-number">1.</span> <span class="nav-text">文章导读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">2.</span> <span class="nav-text">声明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Testing-Basics-测试基础"><span class="nav-number"></span> <span class="nav-text">Testing Basics(测试基础)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Defining-Test-Scope（定义测试范围）"><span class="nav-number">1.</span> <span class="nav-text">Defining Test Scope（定义测试范围）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Testing（性能测试）"><span class="nav-number">2.</span> <span class="nav-text">Performance Testing（性能测试）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Interface-Testing（界面测试）"><span class="nav-number">3.</span> <span class="nav-text">User Interface Testing（界面测试）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App-and-Library-Tests（App和库测试？）"><span class="nav-number">4.</span> <span class="nav-text">App and Library Tests（App和库测试？）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XCTest——the-Xcode-Testing-Framework（Xcode测试框架）"><span class="nav-number">5.</span> <span class="nav-text">XCTest——the Xcode Testing Framework（Xcode测试框架）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Where-to-Start-When-Testing（当测试的时候从哪里开始）"><span class="nav-number">6.</span> <span class="nav-text">Where to Start When Testing（当测试的时候从哪里开始）</span></a></li></ol></div>
             
           </div>
         </section>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-07-17T16:22:38.000Z</updated>
+  <updated>2016-07-19T16:02:34.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[译]《Testing with Xcode》第二章——Testing Basics</title>
+    <link href="http://www.wengyb.com/2016/07/20/Testing-Basics/"/>
+    <id>http://www.wengyb.com/2016/07/20/Testing-Basics/</id>
+    <published>2016-07-19T16:01:10.000Z</published>
+    <updated>2016-07-19T16:02:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;原文地址：&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;文章导读&quot;&gt;&lt;a href=&quot;#文章导读&quot; class=&quot;headerlink&quot; title=&quot;文章导读&quot;&gt;&lt;/a&gt;文章导读&lt;/h2&gt;&lt;p&gt;本文是纯理论片，介绍了测试的基础概念。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;声明&quot;&gt;&lt;a href=&quot;#声明&quot; class=&quot;headerlink&quot; title=&quot;声明&quot;&gt;&lt;/a&gt;声明&lt;/h2&gt;&lt;p&gt;文章翻译自Apple官方文档《Testing with Xcode》，不保证每个字都能翻译的精准，如有翻译错误，请留言指出，不胜感激。&lt;/p&gt;
+&lt;p&gt;本文由于是纯理论，翻译起来非常生硬，大概意思应该是能看懂的，语言上可能组织不当，我已经约了一个精通英语的朋友，等他有时间会帮我校对，现在就请大家将就着看吧。&lt;/p&gt;
+&lt;h1 id=&quot;Testing-Basics-测试基础&quot;&gt;&lt;a href=&quot;#Testing-Basics-测试基础&quot; class=&quot;headerlink&quot; title=&quot;Testing Basics(测试基础)&quot;&gt;&lt;/a&gt;Testing Basics(测试基础)&lt;/h1&gt;&lt;p&gt;测试是你写的代码或者代码库的代码运行在App中，获取结果来比对预期的结果，成功或者失败。测试需要检查经过一系列操作后，变量变化的情况。当涉及到边界等情况，能跑出一个特别的结果。对于性能测试，衡量标准就是你完成一系列运行的最大次数。&lt;/p&gt;
+&lt;h2 id=&quot;Defining-Test-Scope（定义测试范围）&quot;&gt;&lt;a href=&quot;#Defining-Test-Scope（定义测试范围）&quot; class=&quot;headerlink&quot; title=&quot;Defining Test Scope（定义测试范围）&quot;&gt;&lt;/a&gt;Defining Test Scope（定义测试范围）&lt;/h2&gt;&lt;p&gt;一个软件是由很多部分构成的，意味着小的元素放在一起组成一个大的。当项目的目标和需求都被满足了，高等级的元素有着非常实用性的意义。好的测试需要覆盖程序所有等级。XCTest允许为程序所有等级的元素编写测试用例。&lt;/p&gt;
+&lt;p&gt;测试用例的构成由你定义。可以是一个类中的方法，或者是一系列你认为必要的方法。例如，它可以是一个计算的操作，就像在第一章QuickStart中例子介绍的计算类型的app那样。你需要用不同的方法来区别&lt;code&gt;TableView&lt;/code&gt;和你代码中数据结构定义的名字。它们中的每一个方法都意味着测试app实用功能。元素测试的行为可以有一个确定的结果，成功或者失败。&lt;/p&gt;
+&lt;p&gt;app元素的行为你细分的越多。在你的项目增长和变化过程中，就能越有效的测试代码的行为是否符合标准。在大型的项目中，有非常多的元素，你需要运行非常大量的测试代码去完全的测试程序。如果可能，测试用例需要被设计的执行非常快速。但是某些测试用例必须要非常大而且执行的很慢。小而快速的执行测试可以经常的执行，很简单的定位，帮忙诊断和修复问题失败的地方。&lt;/p&gt;
+&lt;p&gt;为一个项目设计单元测试时基于测试驱动开发——一种写代码的方式，在写功能代码之前先写测试逻辑的代码。这种开发方式能够让你代码在实施之前更符合需求和边缘情况的规范。当你下次执行测试的时候，你可以很自信的修改你的代码，因为任何变化都在于其的行为中。&lt;/p&gt;
+&lt;p&gt;当然如果你不使用测试驱动开发的方式，测试也能帮你减少开发新功能时引入新的bug。当你修复bug时，你可以增加测试用例来证实缺陷被修复了。测试需要执行你的代码。寻找成功或者失败的情况，来覆盖所有的边界情况。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;注意： 如果原来没有测试的项目增加测试用例，可能需要重新设计部分代码来让测试更容易实施。&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/A1-guidelines_writing_testable_code.html#//apple_ref/doc/uid/TP40014132-CH8-SW1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Appendix A: Writing Testable Code&lt;/a&gt;为你编写测试代码提供了简单的指南，你可能会找到一些有用的东西&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;你的app的任意两个不同的单元可能会互相影响，由于一些类型的测试需要执行很长的时间，你最好周期性的运行他们或者只在一个服务商运行。稍后你会看到下一章，你可以安排你的测试用例，使用不同方式执行来适应不同的需求。&lt;/p&gt;
+&lt;h2 id=&quot;Performance-Testing（性能测试）&quot;&gt;&lt;a href=&quot;#Performance-Testing（性能测试）&quot; class=&quot;headerlink&quot; title=&quot;Performance Testing（性能测试）&quot;&gt;&lt;/a&gt;Performance Testing（性能测试）&lt;/h2&gt;&lt;p&gt;单元测试可以在测试自然环境下的功能，或者性能。XCTest提供了API来衡量性能指标。让你能够和功能测试一样的跟踪性能改善的情况。&lt;/p&gt;
+&lt;p&gt;当执行性能测试的时候，需要提供一个成功或者失败的结果，一个测试用例需要有一个基线来评估。基线市值程序运行十次结果的平均值。测试结果高于基线时间很多的用例要被报告为失败。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;注意：你第一次运行性能测试的时候，XCTest总会给一个失败的结果，是由于基线还不知道。如果你有接受了某一次性能的指标可以当成基线，XCTest会在报告中评估结果是成功或者失败，然后提供给你测试结果的细节。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;User-Interface-Testing（界面测试）&quot;&gt;&lt;a href=&quot;#User-Interface-Testing（界面测试）&quot; class=&quot;headerlink&quot; title=&quot;User Interface Testing（界面测试）&quot;&gt;&lt;/a&gt;User Interface Testing（界面测试）&lt;/h2&gt;&lt;p&gt;到目前为止，讨论的功能和性能测试，通常被称为单元测试。其中的“单元”取决于你对功能细分的颗粒度。单元测试主要关心的是符合预期的组件，或者与其他组件交互的预期行为。从设计的角度来看，单元测试可以在开发项目的时候，就从内部检查，实现你的意图。&lt;/p&gt;
+&lt;p&gt;用户通过界面来与你的代码进行交互。用户界面的交互一般来说是比较高级的行为。使用外部的界面来操作几个组件来实现app的功能。如果没有特殊的设计来操作app外部会话，要想通过单元测试来测试用户通过界面执行的方法是非常困难的。这些特殊的设计被称为“UI测试”。&lt;/p&gt;
+&lt;p&gt;UI测试就像用户操作一样，测试app的表面层。他们让你写测试用例，发送模拟的时间给系统和界面的对象，捕捉这些对象的响应，然后就像你做单元测试一样测试响应的正确性是否符合预期。&lt;/p&gt;
+&lt;h2 id=&quot;App-and-Library-Tests（App和库测试？）&quot;&gt;&lt;a href=&quot;#App-and-Library-Tests（App和库测试？）&quot; class=&quot;headerlink&quot; title=&quot;App and Library Tests（App和库测试？）&quot;&gt;&lt;/a&gt;App and Library Tests（App和库测试？）&lt;/h2&gt;&lt;p&gt;Xcode提供了两种单元测试的会话，App测试和库测试。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;app测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;App测试检查app中代码行为的正确性，就像例子中的计算器app计算的操作一样。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;库测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;库测试检查代码在动态库和框架中行为的正确性，而不依赖于他们在程序运行时使用的框架。进行库测试，你可以构建单元测试来测试库的组件。&lt;/p&gt;
+&lt;h2 id=&quot;XCTest——the-Xcode-Testing-Framework（Xcode测试框架）&quot;&gt;&lt;a href=&quot;#XCTest——the-Xcode-Testing-Framework（Xcode测试框架）&quot; class=&quot;headerlink&quot; title=&quot;XCTest——the Xcode Testing Framework（Xcode测试框架）&quot;&gt;&lt;/a&gt;XCTest——the Xcode Testing Framework（Xcode测试框架）&lt;/h2&gt;&lt;p&gt;从Xcode5开始包含该了XCTest，是提供给你的测试框架。&lt;/p&gt;
+&lt;p&gt;考虑到版本的一致性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;In Xcode 5, XCTest is compatible with running on OS X v10.8 and OS X v10.9, and with iOS 7 and later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In Xcode 6, XCTest is compatible with running on OS X v10.9 and OS X v10.10, and with iOS 6 and later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In Xcode 7, XCTest is compatible with running on OS X v10.10 and OS X v10.11, and with iOS 6 and later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;UI测试在OS X v10.11和IOS9之后支持运行，可以运行在模拟器和设备上。&lt;/p&gt;
+&lt;p&gt;更多详细的版本信息，请看 &lt;a href=&quot;https://developer.apple.com/library/prerelease/content/releasenotes/DeveloperTools/RN-Xcode/Introduction.html#//apple_ref/doc/uid/TP40001051&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Xcode Release Notes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Xcode把&lt;code&gt;XCTest.framework&lt;/code&gt;收入在你的项目中。这个框架提供了让你设计测试并且在你的代码中运行他们的接口。获取更多有关于XCTest测试框架的信息，请看&lt;em&gt;XCTest Framework Reference&lt;/em&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;注意：Xcode包含了已经存在OCUnit test项目的更新迁移方法，获取更多信息请看&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/A2-transitioning_ocunit_to_xctest.html#//apple_ref/doc/uid/TP40014132-CH10-SW1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Appendix B: Transitioning from OCUnit to XCTest&lt;/a&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;Where-to-Start-When-Testing（当测试的时候从哪里开始）&quot;&gt;&lt;a href=&quot;#Where-to-Start-When-Testing（当测试的时候从哪里开始）&quot; class=&quot;headerlink&quot; title=&quot;Where to Start When Testing（当测试的时候从哪里开始）&quot;&gt;&lt;/a&gt;Where to Start When Testing（当测试的时候从哪里开始）&lt;/h2&gt;&lt;p&gt;当你开始创建测试的时候，记住下列几个建议：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当创建单元测试的时候，重点测试你代码中最基础的功能，模型中与控制器交互的类和方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个高级的程序框架，通常会有模型，视图和控制器类。这是大多数与Cocoa和Cocoa Touch工作中最熟悉的设计模式。如果你需要写的测试要覆盖所有的模型类，在你测以你的方式测试控制器类等app复杂部分之前，你需要确定你的app是容易被测试。&lt;/p&gt;
+&lt;p&gt;作为一个起点，如果你正在编写一个测试框架或者库，你最好从你API的表面开始，从那里，你的工作方式就是内部类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当创建UI测试的时候，要考虑大部分常见的工作流。考虑当用户开始使用app的时候会从哪里开始，UI层会马上执行哪些进程。使用UI录制是一个很好的方式来捕获用户一些列行为到测试方法中，这些测试方法经过扩展，可以很容易的正确的实现测试和性能测试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种UI测试倾向于一个粗颗粒度的测试，每个测试可能会跨越多个子系统。他们会返回很多信息让你难以分析。所以你和你的UI测试套件工作的时候，你最要细分每个测试，以便更清晰的反映某个子系统的行为。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文地址：&lt;a href=&quot;https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1&quot;&gt;https://developer.apple.com/library/prerelease/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/03-testing_basics.html#//apple_ref/doc/uid/TP40014132-CH3-SW1&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;文章导读&quot;&gt;&lt;a href=&quot;#文章导读&quot; class=&quot;headerlink&quot; title=&quot;文章导读&quot;&gt;&lt;/a&gt;文章导读&lt;/h2&gt;&lt;p&gt;本文是纯理论片，介绍了测试的基础概念。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
+    
+    
+      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="IOS" scheme="http://www.wengyb.com/tags/IOS/"/>
+    
+  </entry>
   
   <entry>
     <title>[译]《Testing with Xcode》第一章——QuickStart</title>
@@ -913,63 +995,6 @@
       <category term="Django" scheme="http://www.wengyb.com/tags/Django/"/>
     
       <category term="接口测试" scheme="http://www.wengyb.com/tags/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MonkeyRunner—环境搭建（Mac）</title>
-    <link href="http://www.wengyb.com/2016/05/17/MonkeyRunner%E2%80%94%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88Mac%EF%BC%89/"/>
-    <id>http://www.wengyb.com/2016/05/17/MonkeyRunner—环境搭建（Mac）/</id>
-    <published>2016-05-17T08:02:06.000Z</published>
-    <updated>2016-05-17T08:03:04.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;机器环境&quot;&gt;&lt;a href=&quot;#机器环境&quot; class=&quot;headerlink&quot; title=&quot;机器环境&quot;&gt;&lt;/a&gt;机器环境&lt;/h2&gt;&lt;p&gt;其实一开始我是想找一个现成的教程学学，结果发现基本上说的都是Windows环境下，只能自己摸索摸索。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;版本相关 &lt;/p&gt;
-&lt;p&gt;操作系统：Mac OS X EI Caption &lt;/p&gt;
-&lt;p&gt;Python版本：2.7&lt;/p&gt;
-&lt;p&gt;IDE：Sublime Text 3&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;MonkeyRunner环境&quot;&gt;&lt;a href=&quot;#MonkeyRunner环境&quot; class=&quot;headerlink&quot; title=&quot;MonkeyRunner环境&quot;&gt;&lt;/a&gt;MonkeyRunner环境&lt;/h2&gt;&lt;p&gt;MonkeyRunner是AndroidSDK自带的一个东西，在SDK目录中的tools文件夹中，直接带有MonkeyRunner。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/E57BA8BB-09BE-4D6F-BE95-E7591D8E9D37.png&quot; alt=&quot;路径&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这个命令可以直接使用命令行工具的open方法来直接打开命令，会进入Jyhon的命令行:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SvenWeng@wengyanbindeMacBook-Pro:~/Desktop/android-sdk-macosx/tools|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;⇒  monkeyrunner&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Jython 2.5.3 (2.5:c56500f08d34+, Aug 13 2012, 14:54:35)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Java HotSpot(TM) 64-Bit Server VM (Oracle Corporation)] on java1.7.0_79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;在这里直接输入命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; com.android.monkeyrunner &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; MonkeyRunner&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;没有报错说明MonkeyRunner命令是没问题的，现在需要把MonkeyRunner配置到环境变量中。&lt;/p&gt;
-&lt;h3 id=&quot;配置MonkeyRunner到环境变量&quot;&gt;&lt;a href=&quot;#配置MonkeyRunner到环境变量&quot; class=&quot;headerlink&quot; title=&quot;配置MonkeyRunner到环境变量&quot;&gt;&lt;/a&gt;配置MonkeyRunner到环境变量&lt;/h3&gt;&lt;p&gt;在Mac中，环境变量有好多个，一般来说，我们说的环境变量就是一个配置文件，如果你使用的是Mac的默认命令行终端，那么你用的就是bash，你需要在bash_profile中添加环境变量：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;open ~/.bash_profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;打开文件后，需要输入这些内容：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;export PATH=$&amp;#123;PATH&amp;#125;:/Users/SvenWeng/Desktop/android-sdk-macosx/platform-tools/:/Users/SvenWeng/Desktop/android-sdk-macosx/tools/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后保存后关闭文件，需要注意的是，上面的命令配置sdk的路径是我的，你的肯定不一样，需要把路径做一些修改。然后执行:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;source ~/.bash_profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;如果你使用的是zsh，那么环境变量就是:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;~/.zshrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;同样的内容放置进去即可。&lt;/p&gt;
-&lt;p&gt;上面的配置完毕之后打开命令行工具运行monkeyrunner，如果成功的进入了Jython，那么恭喜你，MonkeyRunner的环境已经配置成功。如果失败，请按照上面的方法仔细检查检查。&lt;/p&gt;
-&lt;h2 id=&quot;第一个Demo&quot;&gt;&lt;a href=&quot;#第一个Demo&quot; class=&quot;headerlink&quot; title=&quot;第一个Demo&quot;&gt;&lt;/a&gt;第一个Demo&lt;/h2&gt;&lt;p&gt;配置完毕之后，我们需要运行一下脚本检查是否运行成功，MonkeyRunner的API是python的，那么我们就要写一个python的demo。&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sys&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; com.android.monkeyrunner &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; MonkeyRunner &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; mr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;device = mr.waitForConnection()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; device:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	device.startActivity(component=&lt;span class=&quot;string&quot;&gt;&#39;com.weizq/com.zztzt.android.simple.app.MainActivity&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;上面代码中，startActivity方法中需要填入你需要启动的Activity。请使用adb或者咨询开发拿到相关Activity名称。&lt;/p&gt;
-&lt;h3 id=&quot;运行demo&quot;&gt;&lt;a href=&quot;#运行demo&quot; class=&quot;headerlink&quot; title=&quot;运行demo&quot;&gt;&lt;/a&gt;运行demo&lt;/h3&gt;&lt;p&gt;运行的方法很简单，命令是monkeyrunner + py文件的路径，比如我这样：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;monkeyrunner test.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;我直接用文件名是因为我已经把shell的路径进到和文件同一层级了，如果不在同一层级，可以使用绝对路径。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前想学习自动化测试的时候，就研究过MonkeyRunner，说实话MonkeyRunner在一定程度上是有局限性的，但是在某些方面解决问题来看，是非常方便的。比如使用Monkey测试的时候，无法很好的控制Monkey的落点。不能保证所有的页面都测到，因此可以使用MonkeyRunner来定制脚本，保证每个Activity都能覆盖。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
-    
-    
-      <category term="Appium" scheme="http://www.wengyb.com/tags/Appium/"/>
-    
-      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="MonkeyRunner" scheme="http://www.wengyb.com/tags/MonkeyRunner/"/>
     
   </entry>
   
