@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,unittest," />
+  <meta name="keywords" content="python,Django," />
 
 
 
@@ -59,19 +59,22 @@
 
 
 
-<meta name="description" content="Hello PyUnitTestPyUnitTest是什么
-作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上">
+<meta name="description" content="最近在努力的翻译Apple的测试文档，英文差果然是一个硬伤。
+背景博客内容越来越多了，慢慢的发现有时候需要一个搜索引擎来处理一些搜索的要求。当然，不需要那么复杂的逻辑，我们的博客只需要一个很小很小的搜索引擎，甚至不需要很高大上的算法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UnitTest—hello-unittest">
-<meta property="og:url" content="http://www.wengyb.com/2015/12/01/UnitTest—hello-unittest/index.html">
+<meta property="og:title" content="Django博客开发（十三）—一个简单的站内搜索">
+<meta property="og:url" content="http://www.wengyb.com/2016/07/24/Django博客开发（十三）—一个简单的站内搜索/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="Hello PyUnitTestPyUnitTest是什么
-作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上">
-<meta property="og:updated_time" content="2016-03-31T06:06:26.000Z">
+<meta property="og:description" content="最近在努力的翻译Apple的测试文档，英文差果然是一个硬伤。
+背景博客内容越来越多了，慢慢的发现有时候需要一个搜索引擎来处理一些搜索的要求。当然，不需要那么复杂的逻辑，我们的博客只需要一个很小很小的搜索引擎，甚至不需要很高大上的算法。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-24-20160714.jpg">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-24-27659CDC-D026-433A-8D9F-78E468D65805.png">
+<meta property="og:updated_time" content="2016-07-24T03:12:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UnitTest—hello-unittest">
-<meta name="twitter:description" content="Hello PyUnitTestPyUnitTest是什么
-作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上">
+<meta name="twitter:title" content="Django博客开发（十三）—一个简单的站内搜索">
+<meta name="twitter:description" content="最近在努力的翻译Apple的测试文档，英文差果然是一个硬伤。
+背景博客内容越来越多了，慢慢的发现有时候需要一个搜索引擎来处理一些搜索的要求。当然，不需要那么复杂的逻辑，我们的博客只需要一个很小很小的搜索引擎，甚至不需要很高大上的算法。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-24-20160714.jpg">
 
 
 
@@ -89,7 +92,7 @@
   };
 </script>
 
-  <title> UnitTest—hello-unittest | 点点寒彬 </title>
+  <title> Django博客开发（十三）—一个简单的站内搜索 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +261,7 @@
             
             
               
-                UnitTest—hello-unittest
+                Django博客开发（十三）—一个简单的站内搜索
               
             
           </h1>
@@ -270,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-01T14:02:35+08:00" content="2015-12-01">
-              2015-12-01
+            <time itemprop="dateCreated" datetime="2016-07-24T11:11:45+08:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -300,8 +303,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/01/UnitTest—hello-unittest/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/01/UnitTest—hello-unittest/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/Django博客开发（十三）—一个简单的站内搜索/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/Django博客开发（十三）—一个简单的站内搜索/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,25 +326,25 @@
       
 
       
-        <h1 id="Hello-PyUnitTest"><a href="#Hello-PyUnitTest" class="headerlink" title="Hello PyUnitTest"></a>Hello PyUnitTest</h1><h2 id="PyUnitTest是什么"><a href="#PyUnitTest是什么" class="headerlink" title="PyUnitTest是什么"></a>PyUnitTest是什么</h2><blockquote>
-<p>作为标准python中的一个模块，是其它框架和工具的基础，参考资料是它的官方文档：<a href="http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上。" target="_blank" rel="external">http://docs.python.org/2.7/library/unittest.html和源代码，文档已经写的非常好了，我在这里记录的主要是它的一些重要概念、关键点以及可能会碰到的一些坑，目的在于对unittest加深理解，而不是停留在泛泛的表面层上。</a><br>unittest是一个python版本的junit，junit是java中的单元测试框架，对java的单元测试，有一句话很贴切：Keep the bar green，相信使用eclipse写过java单元测试的都心领神会。unittest实现了很多junit中的概念，比如我们非常熟悉的test case, test suite等，总之，原理都是相通的，只是用不同的语言表达出来。</p>
-</blockquote>
-<a id="more"></a>
-<p>这里吐槽一下，我其实是想研究Appium对移动端的自动化测试，结果发现Appium是基于selenium发展过来的，Python调用selenium自动化测试有比较详细的文档，而Appium文档实在是太少太少，于是我就顺着Appium看到了selenium。看着看着发现，要执行selenium的自动化测试，必须要了解测试框架。于是又开始研究这个Python的unittest测试框架。</p>
-<h2 id="第一个例子"><a href="#第一个例子" class="headerlink" title="第一个例子"></a>第一个例子</h2><p>程序语言都喜欢使用helloworld来开始，这个框架我们也使用这个来作例子吧。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import unittest</span><br><span class="line"></span><br><span class="line">def hello():</span><br><span class="line">	return &quot;hello world&quot;</span><br><span class="line"></span><br><span class="line">class testNum(unittest.TestCase):</span><br><span class="line">	def testHello(self):</span><br><span class="line">		self.assertEqual(&quot;hello world&quot;,hello())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	unittest.main()</span><br></pre></td></tr></table></figure>
-<p>上面是一个很简单的测试例子。运行的结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 1 tests in 0.000s</span><br><span class="line"></span><br><span class="line">OK</span><br><span class="line">[Finished in 0.1s]</span><br></pre></td></tr></table></figure>
-<p>我们来分析一下这个代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import unittest</span><br></pre></td></tr></table></figure>
-<p>编码类型使用UTF8，引用unittest模块，unittest是Python自带的模块，无需另外安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def hello():</span><br><span class="line">	return &quot;hello world&quot;</span><br></pre></td></tr></table></figure>
-<p>功能函数，返回hello world，也是我们的被测试函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class testNum(unittest.TestCase):</span><br><span class="line">	def testHello(self):</span><br><span class="line">		self.assertEqual(&quot;hello world&quot;,hello())</span><br></pre></td></tr></table></figure>
-<p>测试函数，继承unittest.TestCase。里面所有的测试案例都使用test开头，里面的方法self.assertEqual()表示断言两个值相等比如调用hello()函数，我们得到的结果就是hello world。和我们给的预期值相同。运行结果就是成功。如果运行失败，会显示下面的东西</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">F</span><br><span class="line">======================================================================</span><br><span class="line">FAIL: testHello (__main__.testNum)</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/Users/svenweng/Desktop/Development/unittest/testcal.py&quot;, line 21, in testHello</span><br><span class="line">    self.assertEqual(&quot;hello word&quot;,hello())</span><br><span class="line">AssertionError: &apos;hello word&apos; != &apos;hello world&apos;</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 1 tests in 0.000s</span><br><span class="line"></span><br><span class="line">FAILED (failures=1)</span><br><span class="line">[Finished in 0.1s with exit code 1]</span><br><span class="line">[shell_cmd: python -u &quot;/Users/svenweng/Desktop/Development/unittest/testcal.py&quot;]</span><br><span class="line">[dir: /Users/svenweng/Desktop/Development/unittest]</span><br><span class="line">[path: /usr/bin:/bin:/usr/sbin:/sbin]</span><br></pre></td></tr></table></figure>
-<p>错误提示很明确。AssertionError: ‘hello word’ != ‘hello world’</p>
-<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>assertEqual(a, b)     a == b<br>assertNotEqual(a, b)     a != b<br>assertTrue(x)     bool(x) is True<br>assertFalse(x)     bool(x) is False<br>assertIs(a, b)     a is b     2.7<br>assertIsNot(a, b)     a is not b     2.7<br>assertIsNone(x)     x is None     2.7<br>assertIsNotNone(x)     x is not None     2.7<br>assertIn(a, b)     a in b     2.7<br>assertNotIn(a, b)     a not in b     2.7<br>assertIsInstance(a, b)     isinstance(a, b)     2.7<br>assertNotIsInstance(a, b)     not isinstance(a, b)     2.7 </p>
+        <p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-24-20160714.jpg" alt="20160714"></p>
+<p>最近在努力的翻译Apple的测试文档，英文差果然是一个硬伤。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>博客内容越来越多了，慢慢的发现有时候需要一个搜索引擎来处理一些搜索的要求。当然，不需要那么复杂的逻辑，我们的博客只需要一个很小很小的搜索引擎，甚至不需要很高大上的算法。<br><a id="more"></a><br>PS：百度站内搜索也是一个解决方案，不过用它的搜索，整个网站风格就变了，所以还是决定自己写一个。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路其实很简单，把关键字拿去比对标题和内容就好了，比如输入一个关键字，先去把包含这个关键字的标题的文章抓出来，再把内容包含该关键字的文章，去重一下就OK了。</p>
+<p>最初的思路是抓出来去重，后来我实践中试了一下，搜索有点慢，我就做了一下优化处理，在判断标题的时候也判断内容，如果标题不存在，内容存在，就放到搜索结果中，这样就不用去重处理了。</p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>前端首先要放一个搜索框出来，提供一个输入的地方。</p>
+<p>还要有一个搜索结果的展示页。这个展示页效果大概是这样的。</p>
+<p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-07-24-27659CDC-D026-433A-8D9F-78E468D65805.png" alt="27659CDC-D026-433A-8D9F-78E468D65805"></p>
+<p>导航页和右侧的边栏是直接从<code>base.html</code>中继承过来的，完全不用动，那么其实就是增加一个搜索数量，还有搜索结果。</p>
+<p>前端的代码长这样：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends "blog/base.html" %&#125;</span><br><span class="line">&#123;% block bodycontent %&#125;</span><br><span class="line">    &#123;% if SearchStatus == 'Error' %&#125;</span><br><span class="line">        &lt;div class="well fade in daytips"&gt;</span><br><span class="line">            &lt;button type="button" class="close" data-dismiss="alert"&gt;×&lt;/button&gt;</span><br><span class="line">            &lt;strong&gt;作者水平有限,并没有关于&lt;font color="red"&gt;&lt;b&gt;"&#123;&#123; keyword &#125;&#125;"&lt;/b&gt;&lt;/font&gt;的内容,请换一个词试试&lt;/strong&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">    &#123;% if SearchStatus == 'Success' %&#125;</span><br><span class="line">        &lt;div class="well fade in daytips"&gt;</span><br><span class="line">            &lt;strong&gt;关于&lt;font color="red"&gt;&lt;b&gt;"&#123;&#123; keyword &#125;&#125;"&lt;/b&gt;&lt;/font&gt;的搜索结果一共有&lt;font</span><br><span class="line">                    color="red"&gt;&lt;b&gt;"&#123;&#123; ResultAmount &#125;&#125;"&lt;/b&gt;&lt;/font&gt;条&lt;/strong&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id="article-list"&gt;</span><br><span class="line">            &#123;% for x in SearchResult %&#125;</span><br><span class="line">                &lt;article class="excerpt excerpt-first"&gt;</span><br><span class="line">                    &lt;header&gt;&lt;a class="cat" href="#" id="wybtype"&gt; &#123;&#123; x.blog_type &#125;&#125; &lt;i&gt;&lt;/i&gt;&lt;/a&gt;</span><br><span class="line">                        &lt;h2&gt;&lt;a class="gotoArchive" href="&#123;% url 'article' x.id %&#125;"</span><br><span class="line">                               title="&#123;&#123; x.blog_title &#125;&#125;"&gt;&#123;&#123; x.blog_title &#125;&#125;&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">                    &lt;/header&gt;</span><br><span class="line">                    &lt;p class="meta"&gt;</span><br><span class="line">                    &lt;span class="posttime"&gt;</span><br><span class="line">                        &#123;&#123; x.blog_timestamp &#125;&#125;</span><br><span class="line">                    &lt;/span&gt;</span><br><span class="line">                        &lt;span class="viewnum"&gt;浏览(&lt;a href="#"&gt;&#123;&#123; x.blog_clicknum &#125;&#125;&lt;/a&gt;)&lt;/span&gt;</span><br><span class="line">                    &lt;p class="note"&gt;&#123;&#123; x.blog_body | slice:':300' &#125;&#125;&lt;/p&gt;</span><br><span class="line">                    &lt;footer class="entry-footer"&gt;</span><br><span class="line">                        &lt;a class="more-link gotoArchive" rel="nofollow" href="&#123;% url 'article' x.id %&#125;"&gt;继续阅读 »&lt;/a&gt;</span><br><span class="line">                    &lt;/footer&gt;</span><br><span class="line">                &lt;/article&gt;</span><br><span class="line">            &#123;% endfor %&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<p>展示的时候要考虑两种情况，如果没有结果，要给一个友好的提示，比如我代码中这样的。</p>
+<p>有搜索结果，就要告诉访问者，搜索的关键字是什么，总共有多少结果。</p>
+<p>那么问题来了，要从后端获取哪些数据？</p>
+<h2 id="后端处理"><a href="#后端处理" class="headerlink" title="后端处理"></a>后端处理</h2><p><code>url</code>就不说了，要交互肯定是需要一个<code>search</code>的url。</p>
+<p>逻辑处理大概是这样的，先获取前端送过来的关键字，然后用这个关键字对数据库进行全部搜索，包括标题和内容。把符合条件的文章放到一个列表中。最后返回的时候，这个列表的长度就是记录数。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_search</span><span class="params">(request)</span>:</span></span><br><span class="line">    keyword = request.POST[<span class="string">'searchWords'</span>]</span><br><span class="line">    allArticle = BlogBody.objects.all()</span><br><span class="line">    SearchResult = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> allArticle:</span><br><span class="line">        <span class="keyword">if</span> keyword <span class="keyword">in</span> x.blog_title:</span><br><span class="line">            SearchResult.append(x)</span><br><span class="line">        <span class="keyword">elif</span> keyword <span class="keyword">in</span> x.blog_body:</span><br><span class="line">            SearchResult.append(x)</span><br><span class="line">    SearchStatus = <span class="string">"Error"</span> <span class="keyword">if</span> len(SearchResult) == <span class="number">0</span> <span class="keyword">else</span> <span class="string">"Success"</span></span><br><span class="line">    ResultAmount = len(SearchResult)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'blog/search.html'</span>, &#123;<span class="string">"keyword"</span>: keyword,</span><br><span class="line">                                                <span class="string">"SearchResult"</span>: SearchResult,</span><br><span class="line">                                                <span class="string">"SearchStatus"</span>: SearchStatus,</span><br><span class="line">                                                <span class="string">"ResultAmount"</span>: ResultAmount&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>做的东西是很简单，但是在博客数量大到一定程度的时候，性能会比较差，所以后续可能要对搜索的逻辑做一下优化。</p>
 
       
     </div>
@@ -379,7 +382,7 @@
           
             <a href="/tags/python/" rel="tag">#python</a>
           
-            <a href="/tags/unittest/" rel="tag">#unittest</a>
+            <a href="/tags/Django/" rel="tag">#Django</a>
           
         </div>
       
@@ -388,17 +391,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/01/UnitTest—为你的测试结果打印案例名称/" rel="next" title="UnitTest—为你的测试结果打印案例名称">
-                <i class="fa fa-chevron-left"></i> UnitTest—为你的测试结果打印案例名称
+              <a href="/2016/07/20/Testing-Basics/" rel="next" title="[译]《Testing with Xcode》第二章——Testing Basics">
+                <i class="fa fa-chevron-left"></i> [译]《Testing with Xcode》第二章——Testing Basics
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/02/UnitTest—引入其他类/" rel="prev" title="UnitTest—引入其他类">
-                UnitTest—引入其他类 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -413,10 +412,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/01/UnitTest—hello-unittest/"
-     data-title="UnitTest—hello-unittest"
+        <div class="ds-share flat" data-thread-key="2016/07/24/Django博客开发（十三）—一个简单的站内搜索/"
+     data-title="Django博客开发（十三）—一个简单的站内搜索"
      data-content=""
-     data-url="http://www.wengyb.com/2015/12/01/UnitTest—hello-unittest/">
+     data-url="http://www.wengyb.com/2016/07/24/Django博客开发（十三）—一个简单的站内搜索/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -443,8 +442,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/01/UnitTest—hello-unittest/"
-           data-title="UnitTest—hello-unittest" data-url="http://www.wengyb.com/2015/12/01/UnitTest—hello-unittest/">
+      <div class="ds-thread" data-thread-key="2016/07/24/Django博客开发（十三）—一个简单的站内搜索/"
+           data-title="Django博客开发（十三）—一个简单的站内搜索" data-url="http://www.wengyb.com/2016/07/24/Django博客开发（十三）—一个简单的站内搜索/">
       </div>
     
   </div>
@@ -616,7 +615,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-PyUnitTest"><span class="nav-number">1.</span> <span class="nav-text">Hello PyUnitTest</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PyUnitTest是什么"><span class="nav-number">1.1.</span> <span class="nav-text">PyUnitTest是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个例子"><span class="nav-number">1.2.</span> <span class="nav-text">第一个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方法"><span class="nav-number">1.3.</span> <span class="nav-text">其他方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端"><span class="nav-number">3.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端处理"><span class="nav-number">4.</span> <span class="nav-text">后端处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
