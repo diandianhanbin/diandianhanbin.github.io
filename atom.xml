@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wengyb.com/"/>
-  <updated>2016-08-04T13:28:04.000Z</updated>
+  <updated>2016-08-07T04:36:44.000Z</updated>
   <id>http://www.wengyb.com/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多线程自动执行类中的所有函数</title>
+    <link href="http://www.wengyb.com/2016/08/07/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E7%B1%BB%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%87%BD%E6%95%B0/"/>
+    <id>http://www.wengyb.com/2016/08/07/多线程自动执行类中的所有函数/</id>
+    <published>2016-08-07T04:09:17.000Z</published>
+    <updated>2016-08-07T04:36:44.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/2016-08-07-guitar-1245856_1920.jpg&quot; alt=&quot;guitar-1245856_1920&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;电脑每次开机总有许多服务要起，比如MongoDB、爬虫、本地网站的服务等等，这些都分布在各个文件夹，每次重启电脑都需要到各个目录下去启动服务，虽然也不会花多少时间，但是非常麻烦，所以就看了一下多进程来解决这个问题。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h2&gt;&lt;p&gt;每一个服务都是独立的，切启动之后不会关闭，那么传统的直线型写代码肯定不行，必须要多个进程来处理这些东西。&lt;/p&gt;
+&lt;h2 id=&quot;开始&quot;&gt;&lt;a href=&quot;#开始&quot; class=&quot;headerlink&quot; title=&quot;开始&quot;&gt;&lt;/a&gt;开始&lt;/h2&gt;&lt;p&gt;多线程的内容我就不多写了，最初我是按照网上的demo来写的，非常简单粗暴：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; os&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; multiprocessing&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;pabing&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    os.system(&lt;span class=&quot;string&quot;&gt;&quot;python /Users/SvenWeng/Develop/H5/pachong/pabing/run.py&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;mongod&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    os.system(&lt;span class=&quot;string&quot;&gt;&quot;mongod&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&#39;__main__&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    threads = []&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    t1 = multiprocessing.Process(target=pabing)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    threads.append(t1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    t2 = multiprocessing.Process(target=mongod)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    threads.append(t2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; t &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; threads:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        t.start()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这种写法非常简单，就是手工直接开进程，需要几个进程就手工开几个，但是如果服务多了，这样写起来就会很累，有没有更好的办法呢？&lt;/p&gt;
+&lt;h2 id=&quot;使用进程池&quot;&gt;&lt;a href=&quot;#使用进程池&quot; class=&quot;headerlink&quot; title=&quot;使用进程池&quot;&gt;&lt;/a&gt;使用进程池&lt;/h2&gt;&lt;p&gt;上面两个函数多进程的执行可以通过进程池来执行，这样执行看起来更简单。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func_list = [pabing, mongod]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pool = multiprocessing.Pool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; func_list:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        pool.apply_async(x)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; type(x)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pool.close()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pool.join()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中&lt;code&gt;Pool()&lt;/code&gt;中间没传值就表示系统自动分配，也可以指定最大进程数。这样写起来看着就比较简洁，但是还是需要手工指定函数名，如果函数一多，也会出项上面那样的问题，写起来非常累，我需要的是动态执行，也就是程序自己取函数名自己执行。我想到的方法，就是把所有函数包装到一个类中。&lt;/p&gt;
+&lt;h3 id=&quot;一个简单的demo&quot;&gt;&lt;a href=&quot;#一个简单的demo&quot; class=&quot;headerlink&quot; title=&quot;一个简单的demo&quot;&gt;&lt;/a&gt;一个简单的demo&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; multiprocessing&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; time&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(object)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;aaa&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, time.time()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bbb&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, time.time()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&#39;__main__&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	b = a()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	func_list = []&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; dir(b):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; x.startswith(&lt;span class=&quot;string&quot;&gt;&quot;__&quot;&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			func_list.append(x)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pool = multiprocessing.Pool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; func_list:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		pool.apply_async(eval(&lt;span class=&quot;string&quot;&gt;&quot;b.&quot;&lt;/span&gt; + x + &lt;span class=&quot;string&quot;&gt;&quot;()&quot;&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pool.close()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	pool.join()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样的执行结果是：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SvenWeng@wengyanbin:~/Desktop|⇒  python test.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2 1470492989.2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4 1470492989.2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;通过dir函数来获取类中的可执行函数，然后去掉“__”开头的系统的函数，就是我们自己写的函数了，dir函数返回的是str类型的数组，那么我们就只能用&lt;code&gt;eval&lt;/code&gt;这个方法来直接执行，结果令人满意，这样就完成了动态的执行类中所有的方法，以后如果有新的服务，就只需要在类中增加方法即可。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/2016-08-07-guitar-1245856_1920.jpg&quot; alt=&quot;guitar-1245856_1920&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;电脑每次开机总有许多服务要起，比如MongoDB、爬虫、本地网站的服务等等，这些都分布在各个文件夹，每次重启电脑都需要到各个目录下去启动服务，虽然也不会花多少时间，但是非常麻烦，所以就看了一下多进程来解决这个问题。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wengyb.com/categories/Python/"/>
+    
+    
+      <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Appium与React Native</title>
@@ -936,47 +972,6 @@
       <category term="python" scheme="http://www.wengyb.com/tags/python/"/>
     
       <category term="Django" scheme="http://www.wengyb.com/tags/Django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>测试之路——记一次解决问题的过程</title>
-    <link href="http://www.wengyb.com/2016/06/03/%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%BF%87%E7%A8%8B/"/>
-    <id>http://www.wengyb.com/2016/06/03/测试之路——记一次解决问题的过程/</id>
-    <published>2016-06-02T16:23:45.000Z</published>
-    <updated>2016-06-02T16:24:38.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。&lt;/p&gt;
-&lt;p&gt;事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;二&quot;&gt;&lt;a href=&quot;#二&quot; class=&quot;headerlink&quot; title=&quot;二&quot;&gt;&lt;/a&gt;二&lt;/h2&gt;&lt;p&gt;这种事其实发生在谁身上都会很不爽，花了钱买了一个半成品，除了问题还不承认，但是又没有很好证据指向确实是他们的问题，他们一口咬定是我们APP这里有问题。&lt;/p&gt;
-&lt;p&gt;这事就有两种处理方式了，一种是懒得管，反正这东西和我关系也不大，赚了钱也是老板的，随便了。另一种是认真钻研，把问题抓出来，直接把问题丢回给供应商。&lt;/p&gt;
-&lt;h2 id=&quot;三&quot;&gt;&lt;a href=&quot;#三&quot; class=&quot;headerlink&quot; title=&quot;三&quot;&gt;&lt;/a&gt;三&lt;/h2&gt;&lt;p&gt;一般来说我是比较懒散的，并不想参合太深，反正做不做我的钱也都不会多。&lt;/p&gt;
-&lt;p&gt;让我不能忍的是，我反馈的问题你竟然不认，不认就算了，竟然还反咬一口，说是我的锅，那这口气是真的忍不下了。&lt;/p&gt;
-&lt;h2 id=&quot;四&quot;&gt;&lt;a href=&quot;#四&quot; class=&quot;headerlink&quot; title=&quot;四&quot;&gt;&lt;/a&gt;四&lt;/h2&gt;&lt;p&gt;忍不下归忍不下，水平确实是实实在在达不到，并不知道从哪个角度去切入这个问题。虽然说APP出问题无非就两种情况，一种是代码写的有问题，另一种是网络有问题。但是对于程序我是个半桶水，能写程序，水平有限。对于网络通讯，连半桶水都算不上了。&lt;/p&gt;
-&lt;h2 id=&quot;五&quot;&gt;&lt;a href=&quot;#五&quot; class=&quot;headerlink&quot; title=&quot;五&quot;&gt;&lt;/a&gt;五&lt;/h2&gt;&lt;p&gt;术业有专攻，代码的问题还是交给专业的人士来处理，网络方面倒是可以尝试着切入，我原来使用的抓包工具Charles是通过代理的方式抓包，只能抓WiFi的数据，而这次出问题的情况是4G网络。而且出问题的环境4G速度都比较快，不存在弱网加载慢导致通讯挂的问题。&lt;/p&gt;
-&lt;h2 id=&quot;六&quot;&gt;&lt;a href=&quot;#六&quot; class=&quot;headerlink&quot; title=&quot;六&quot;&gt;&lt;/a&gt;六&lt;/h2&gt;&lt;p&gt;无意中看到军爷在玩Wireshark，虽然是前端工程师，不过对于网络这方面不会比我强多少，Wireshark确实是可以抓出数据，不过由于功能太强大，抓出来的东西非常多，要有很强的专业知识去对数据包进行过滤。&lt;/p&gt;
-&lt;p&gt;经过Google的帮忙，基本上掌握了Wireshark的使用方式，那么剩下的问题就是专业知识了。&lt;/p&gt;
-&lt;h2 id=&quot;七&quot;&gt;&lt;a href=&quot;#七&quot; class=&quot;headerlink&quot; title=&quot;七&quot;&gt;&lt;/a&gt;七&lt;/h2&gt;&lt;p&gt;说干就干，过年买的《图解HTTP》重新翻了一遍，又去亚马逊买了一本《Wireshark数据包分析实战》花了两周时间恶补，一边翻书一遍对着抓出来的数据包实践，终于问题被我抓出来了。&lt;/p&gt;
-&lt;h2 id=&quot;八&quot;&gt;&lt;a href=&quot;#八&quot; class=&quot;headerlink&quot; title=&quot;八&quot;&gt;&lt;/a&gt;八&lt;/h2&gt;&lt;p&gt;其实问题很简单，思迪的前端向后端请求数据的时候，发送了大量重复无用的垃圾数据，导致后端重置了连接，而前端得不到后端返回的数据，连接又关闭了，没有数据展示，所以出现了白屏的现象。&lt;/p&gt;
-&lt;p&gt;关键的数据包如下图：&lt;br&gt;&lt;img src=&quot;http://7xsgl3.com1.z0.glb.clouddn.com/6C56B171-A68B-4688-9F3B-912F993F5B8F.png&quot; alt=&quot;数据包&quot;&gt;&lt;/p&gt;
-&lt;p&gt;其中红色部分就是连接被重置，且返回的数据包都是空的。&lt;/p&gt;
-&lt;h2 id=&quot;九&quot;&gt;&lt;a href=&quot;#九&quot; class=&quot;headerlink&quot; title=&quot;九&quot;&gt;&lt;/a&gt;九&lt;/h2&gt;&lt;p&gt;在一整个过程中，导致我最终于解决问题的是思迪恶劣的态度，自身并没有很主动的想去解决问题。包括自己学写代码，很大程度上也是和开发沟通的时候很多不爽的经历。&lt;/p&gt;
-&lt;p&gt;自勉一下吧，学习还是应该主动。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;这段时间工作上遇到了一些并不顺心的事，供应商提供的东西太烂，而且出问题还死不承认。&lt;/p&gt;
-&lt;p&gt;事情是这样的，思迪提供了一套炒股大赛的软件嵌入我们的APP，上线之后发现出现的问题挺多，最大的一个应该就是用4G网络经常会出现白屏的情况，反馈了以后他们居然说他们那边重现不出来，无法解决。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="AboutTest" scheme="http://www.wengyb.com/categories/AboutTest/"/>
-    
-    
-      <category term="测试" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="测试人生" scheme="http://www.wengyb.com/tags/%E6%B5%8B%E8%AF%95%E4%BA%BA%E7%94%9F/"/>
     
   </entry>
   

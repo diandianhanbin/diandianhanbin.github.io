@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,unittest," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -59,16 +59,18 @@
 
 
 
-<meta name="description" content="前两篇文章中学习了如何做一个简单的单元测试。现在问题来了，如果多一个测试类呢？要写两个文件吗？">
+<meta name="description" content="背景电脑每次开机总有许多服务要起，比如MongoDB、爬虫、本地网站的服务等等，这些都分布在各个文件夹，每次重启电脑都需要到各个目录下去启动服务，虽然也不会花多少时间，但是非常麻烦，所以就看了一下多进程来解决这个问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UnitTest—测试多个类">
-<meta property="og:url" content="http://www.wengyb.com/2015/12/01/UnitTest—测试多个类/index.html">
+<meta property="og:title" content="多线程自动执行类中的所有函数">
+<meta property="og:url" content="http://www.wengyb.com/2016/08/07/多线程自动执行类中的所有函数/index.html">
 <meta property="og:site_name" content="点点寒彬">
-<meta property="og:description" content="前两篇文章中学习了如何做一个简单的单元测试。现在问题来了，如果多一个测试类呢？要写两个文件吗？">
-<meta property="og:updated_time" content="2016-03-31T05:51:39.000Z">
+<meta property="og:description" content="背景电脑每次开机总有许多服务要起，比如MongoDB、爬虫、本地网站的服务等等，这些都分布在各个文件夹，每次重启电脑都需要到各个目录下去启动服务，虽然也不会花多少时间，但是非常麻烦，所以就看了一下多进程来解决这个问题。">
+<meta property="og:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-08-07-guitar-1245856_1920.jpg">
+<meta property="og:updated_time" content="2016-08-07T04:36:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UnitTest—测试多个类">
-<meta name="twitter:description" content="前两篇文章中学习了如何做一个简单的单元测试。现在问题来了，如果多一个测试类呢？要写两个文件吗？">
+<meta name="twitter:title" content="多线程自动执行类中的所有函数">
+<meta name="twitter:description" content="背景电脑每次开机总有许多服务要起，比如MongoDB、爬虫、本地网站的服务等等，这些都分布在各个文件夹，每次重启电脑都需要到各个目录下去启动服务，虽然也不会花多少时间，但是非常麻烦，所以就看了一下多进程来解决这个问题。">
+<meta name="twitter:image" content="http://7xsgl3.com1.z0.glb.clouddn.com/2016-08-07-guitar-1245856_1920.jpg">
 
 
 
@@ -86,7 +88,7 @@
   };
 </script>
 
-  <title> UnitTest—测试多个类 | 点点寒彬 </title>
+  <title> 多线程自动执行类中的所有函数 | 点点寒彬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +257,7 @@
             
             
               
-                UnitTest—测试多个类
+                多线程自动执行类中的所有函数
               
             
           </h1>
@@ -267,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-01T11:48:31+08:00" content="2015-12-01">
-              2015-12-01
+            <time itemprop="dateCreated" datetime="2016-08-07T12:09:17+08:00" content="2016-08-07">
+              2016-08-07
             </time>
           </span>
 
@@ -297,8 +299,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/01/UnitTest—测试多个类/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/01/UnitTest—测试多个类/" itemprop="commentsCount"></span>
+                <a href="/2016/08/07/多线程自动执行类中的所有函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/多线程自动执行类中的所有函数/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,9 +322,20 @@
       
 
       
-        <p>前两篇文章中学习了如何做一个简单的单元测试。现在问题来了，如果多一个测试类呢？要写两个文件吗？<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import unittest</span><br><span class="line"></span><br><span class="line">def sumnum(a,b):</span><br><span class="line">	return a + b</span><br><span class="line"></span><br><span class="line">def delnum(a,b):</span><br><span class="line">	return a - b</span><br><span class="line"></span><br><span class="line">def hello():</span><br><span class="line">	return &quot;hello world&quot;</span><br><span class="line"></span><br><span class="line">def chengfa(a,b):</span><br><span class="line">	return a * b</span><br><span class="line"></span><br><span class="line">class testNum(unittest.TestCase):</span><br><span class="line">	def testSum(self):</span><br><span class="line">		self.assertEqual(2,sumnum(1,1))</span><br><span class="line"></span><br><span class="line">	def testDel(self):</span><br><span class="line">		self.assertEqual(0,delnum(1,1))</span><br><span class="line"></span><br><span class="line">	def testHello(self):</span><br><span class="line">		self.assertEqual(&quot;hello world&quot;,hello())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class testChengFa(unittest.TestCase):</span><br><span class="line">	def testChengFa(self):</span><br><span class="line">		self.assertEqual(1,chengfa(1,1))</span><br></pre></td></tr></table></figure></p>
-<p>比如上面这一串代码，要怎么样同时测试testNum和testChengFa这两个类呢？<br>我们可以建立两个suite，然后放到一个列表里面，再直接运行即可，代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	suite1 = unittest.TestLoader().loadTestsFromTestCase(testNum)</span><br><span class="line">	suite2 = unittest.TestLoader().loadTestsFromTestCase(testChengFa)</span><br><span class="line">	alltest = unittest.TestSuite([suite1,suite2])</span><br><span class="line">	unittest.TextTestRunner(verbosity=2).run(alltest)</span><br></pre></td></tr></table></figure>
+        <p><img src="http://7xsgl3.com1.z0.glb.clouddn.com/2016-08-07-guitar-1245856_1920.jpg" alt="guitar-1245856_1920"></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>电脑每次开机总有许多服务要起，比如MongoDB、爬虫、本地网站的服务等等，这些都分布在各个文件夹，每次重启电脑都需要到各个目录下去启动服务，虽然也不会花多少时间，但是非常麻烦，所以就看了一下多进程来解决这个问题。<br><a id="more"></a></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>每一个服务都是独立的，切启动之后不会关闭，那么传统的直线型写代码肯定不行，必须要多个进程来处理这些东西。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>多线程的内容我就不多写了，最初我是按照网上的demo来写的，非常简单粗暴：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pabing</span><span class="params">()</span>:</span></span><br><span class="line">    os.system(<span class="string">"python /Users/SvenWeng/Develop/H5/pachong/pabing/run.py"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mongod</span><span class="params">()</span>:</span></span><br><span class="line">    os.system(<span class="string">"mongod"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    threads = []</span><br><span class="line">    t1 = multiprocessing.Process(target=pabing)</span><br><span class="line">    threads.append(t1)</span><br><span class="line">    t2 = multiprocessing.Process(target=mongod)</span><br><span class="line">    threads.append(t2)</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.start()</span><br></pre></td></tr></table></figure>
+<p>这种写法非常简单，就是手工直接开进程，需要几个进程就手工开几个，但是如果服务多了，这样写起来就会很累，有没有更好的办法呢？</p>
+<h2 id="使用进程池"><a href="#使用进程池" class="headerlink" title="使用进程池"></a>使用进程池</h2><p>上面两个函数多进程的执行可以通过进程池来执行，这样执行看起来更简单。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func_list = [pabing, mongod]</span><br><span class="line">pool = multiprocessing.Pool()</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> func_list:</span><br><span class="line">        pool.apply_async(x)</span><br><span class="line">        <span class="keyword">print</span> type(x)</span><br><span class="line">    pool.close()</span><br><span class="line">    pool.join()</span><br></pre></td></tr></table></figure>
+<p>其中<code>Pool()</code>中间没传值就表示系统自动分配，也可以指定最大进程数。这样写起来看着就比较简洁，但是还是需要手工指定函数名，如果函数一多，也会出项上面那样的问题，写起来非常累，我需要的是动态执行，也就是程序自己取函数名自己执行。我想到的方法，就是把所有函数包装到一个类中。</p>
+<h3 id="一个简单的demo"><a href="#一个简单的demo" class="headerlink" title="一个简单的demo"></a>一个简单的demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">aaa</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">print</span> <span class="number">1</span> + <span class="number">1</span>, time.time()</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">bbb</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">print</span> <span class="number">2</span> + <span class="number">2</span>, time.time()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	b = a()</span><br><span class="line">	func_list = []</span><br><span class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> dir(b):</span><br><span class="line">		<span class="keyword">if</span> x.startswith(<span class="string">"__"</span>):</span><br><span class="line">			<span class="keyword">pass</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			func_list.append(x)</span><br><span class="line"></span><br><span class="line">	pool = multiprocessing.Pool()</span><br><span class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> func_list:</span><br><span class="line">		pool.apply_async(eval(<span class="string">"b."</span> + x + <span class="string">"()"</span>))</span><br><span class="line">	pool.close()</span><br><span class="line">	pool.join()</span><br></pre></td></tr></table></figure>
+<p>这样的执行结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SvenWeng@wengyanbin:~/Desktop|⇒  python test.py</span><br><span class="line">2 1470492989.2</span><br><span class="line">4 1470492989.2</span><br></pre></td></tr></table></figure>
+<p>通过dir函数来获取类中的可执行函数，然后去掉“__”开头的系统的函数，就是我们自己写的函数了，dir函数返回的是str类型的数组，那么我们就只能用<code>eval</code>这个方法来直接执行，结果令人满意，这样就完成了动态的执行类中所有的方法，以后如果有新的服务，就只需要在类中增加方法即可。</p>
+
       
     </div>
 
@@ -359,8 +372,6 @@
           
             <a href="/tags/python/" rel="tag">#python</a>
           
-            <a href="/tags/unittest/" rel="tag">#unittest</a>
-          
         </div>
       
 
@@ -368,17 +379,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/23/Appium学习之路—demon的解释/" rel="next" title="Appium学习之路—demon的解释">
-                <i class="fa fa-chevron-left"></i> Appium学习之路—demon的解释
+              <a href="/2016/08/04/Appium与React-Native/" rel="next" title="Appium与React Native">
+                <i class="fa fa-chevron-left"></i> Appium与React Native
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/01/UnitTest—测试案例初始化和退出/" rel="prev" title="UnitTest—测试案例初始化和退出">
-                UnitTest—测试案例初始化和退出 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -393,10 +400,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/01/UnitTest—测试多个类/"
-     data-title="UnitTest—测试多个类"
+        <div class="ds-share flat" data-thread-key="2016/08/07/多线程自动执行类中的所有函数/"
+     data-title="多线程自动执行类中的所有函数"
      data-content=""
-     data-url="http://www.wengyb.com/2015/12/01/UnitTest—测试多个类/">
+     data-url="http://www.wengyb.com/2016/08/07/多线程自动执行类中的所有函数/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -423,8 +430,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/01/UnitTest—测试多个类/"
-           data-title="UnitTest—测试多个类" data-url="http://www.wengyb.com/2015/12/01/UnitTest—测试多个类/">
+      <div class="ds-thread" data-thread-key="2016/08/07/多线程自动执行类中的所有函数/"
+           data-title="多线程自动执行类中的所有函数" data-url="http://www.wengyb.com/2016/08/07/多线程自动执行类中的所有函数/">
       </div>
     
   </div>
@@ -596,7 +603,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用进程池"><span class="nav-number">4.</span> <span class="nav-text">使用进程池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个简单的demo"><span class="nav-number">4.1.</span> <span class="nav-text">一个简单的demo</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
